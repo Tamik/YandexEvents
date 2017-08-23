@@ -1,0 +1,25 @@
+{
+  "name": "ru.yamblz.events",
+  "displayName": "Яндекс.События",
+  "version": "0.0.1",
+  "description": "Приложение-агрегатор событий для проекта Мобилизация",
+  "main": "index.js",
+  "scripts": {
+  },
+  "author": "Tamik Lokyaev <hello@Tamik.ru>, Baltabek Bekenov, Angelina Belokuraya, Maria Evstropova, Ivan Shedrin",
+  "license": "Apache-2.0",
+  "dependencies": {
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-whitelist": {}
+    },
+    "platforms": [
+      "android",
+      "browser",
+      "ios"
+    ]
+  },
+  "devDependencies": {
+  }
+}

@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="ru.yamblz.events" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Яндекс.События</name>
+    <description>
+        Приложение Яндекс.События для проекта "Мобилизация"
+    </description>
+    <author email="hello@Tamik.ru" href="http://Tamik.ru">
+        Тамерлан Локьяев
+    </author>
+    <author href="http://github.com/cibry0nix">
+        Балтабек Бекенов
+    </author>
+    <author href="http://github.com/Lunory">
+        Ангелина Белокурая
+    </author>
+    <author href="http://github.com/MariaEvstropova">
+        Мария Евстропова
+    </author>
+    <author href="http://github.com/oktava6">
+        Иван Щедрин
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="Orientation" value="portrait" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+    <engine name="android" spec="~6.2.3" />
+    <engine name="browser" spec="^4.1.0" />
+    <engine name="ios" spec="~4.4.0" />
+    <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
+</widget>
