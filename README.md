@@ -21,3 +21,43 @@
 - `cordova prepare` – подготовить билд для сборки
 - `cordova build [platform]` – собрать приложение под требуемые платформу (доступны: `ios`, `android`, `browser`)
 
+<h2 align="center">Команда разработки</h2>
+<table align="center">
+    <tr align="center">
+      <td align="center">
+        <a href="https://github.com/Tamik">
+          <img width="150" height="150" src="https://static.yamblz.ru/events/team/lokyaev.jpg">
+        </a>
+        <br>
+        <a href="https://github.com/Tamik">Тамерлан Локьяев</a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/cybri0nix">
+          <img width="150" height="150" src="https://static.yamblz.ru/events/team/bekenov.jpg">
+        </a>
+        <br>
+        <a href="https://github.com/cybri0nix">Балтабек Бекенов</a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/Lunory">
+          <img width="150" height="150" src="https://static.yamblz.ru/events/team/belokuraya.jpg">
+        </a>
+        <br>
+        <a href="https://github.com/Lunory">Ангелина Белокурая</a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/MariaEvstropova">
+          <img width="150" height="150" src="https://static.yamblz.ru/events/team/evstropova.jpg">
+        </a>
+        <br>
+        <a href="https://github.com/MariaEvstropova">Мария Евстропова</a>
+      </td>
+      <td align="center">
+        <a href="https://github.com/oktava6">
+          <img width="150" height="150" src="https://static.yamblz.ru/events/team/shchedrin.jpg">
+        </a>
+        <br>
+        <a href="https://github.com/oktava6">Иван Щедрин</a>
+      </td>
+    <tr>
+</table>
