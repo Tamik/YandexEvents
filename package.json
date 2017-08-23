@@ -5,6 +5,17 @@
   "description": "Приложение-агрегатор событий для проекта Мобилизация",
   "main": "index.js",
   "scripts": {
+    "dev": "npm run clear && npm run copy:html && NODE_ENV=development webpack-dev-server --config ./configs/webpack/develop.config.js",
+    "prod": "npm run clear && NODE_ENV=production webpack --config ./configs/webpack/production.config.js",
+    "copy:html": "cp ./src/index.dev.html ./www/index.html",
+    "ios": "cordova run ios",
+    "ios:device": "cordova run ios --target device",
+    "android": "cordova run android",
+    "android:device": "cordova run android --target device",
+    "browser": "cordova run browser --target Chrome",
+    "test": "jest",
+    "clear": "rm -rf ./www/assets",
+    "lintfix": "eslint --fix"
   },
   "author": "Tamik Lokyaev <hello@Tamik.ru>, Baltabek Bekenov, Angelina Belokuraya, Maria Evstropova, Ivan Shedrin",
   "license": "Apache-2.0",
