@@ -15,7 +15,7 @@
     "browser": "cordova run browser --target Chrome",
     "test": "jest",
     "clear": "rm -rf ./www/assets",
-    "lintfix": "eslint --fix"
+    "lint:fix": "eslint --fix"
   },
   "author": "Tamik Lokyaev <hello@Tamik.ru>, Baltabek Bekenov, Angelina Belokuraya, Maria Evstropova, Ivan Shedrin",
   "license": "Apache-2.0",
