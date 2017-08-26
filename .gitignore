@@ -5,12 +5,17 @@
 # Windows
 Thumbs.db
 
-# JetBrains IDEs
-.idea/
+# Editors
+.idea
+.vscode
+
+# NPM
+node_modules
+package-log.json
+*.log
 
 # Project
-node_modules/
-hooks/
-platforms/
-plugins/
+platforms
+plugins
+hooks
 www/*[!.gitkeep]
