@@ -17,10 +17,10 @@ module.exports = {
     'react-hot-loader/patch',
     'webpack-dev-server/client?http://127.0.0.1:8080',
     'webpack/hot/only-dev-server',
-    path.join(__dirname, '../src/js/index.js'),
+    path.join(__dirname, '../../src/js/index.js'),
   ],
   output: {
-    path: path.resolve(__dirname, '../www'),
+    path: path.resolve(__dirname, '../../www'),
     filename: 'index.js',
     publicPath: 'http://127.0.0.1:8080/',
   },
@@ -54,14 +54,14 @@ module.exports = {
   resolve: {
     extensions: ['.js'],
     modules: [
-      path.join(__dirname, '../src/js'),
-      path.join(__dirname, '../node_modules'),
+      path.join(__dirname, '../../src/js'),
+      path.join(__dirname, '../../node_modules'),
     ],
   },
   devServer: {
     host: '127.0.0.1',
     port: 8080,
-    contentBase: path.join(__dirname, '../www'),
+    contentBase: path.join(__dirname, '../../www'),
     hot: true,
     stats: {
       colors: true,
@@ -85,12 +85,12 @@ module.exports = {
     new HotModuleReplacementPlugin(),
     new NamedModulesPlugin(),
     new DotEnvPlugin({
-      sample: path.join(__dirname, '../.env'),
-      path: path.join(__dirname, '../.env'),
+      sample: path.join(__dirname, '../../.env'),
+      path: path.join(__dirname, '../../.env'),
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(__dirname, '../src/index.dev.html'),
+      template: path.join(__dirname, '../../src/index.dev.html'),
     }),
   ],
 }
