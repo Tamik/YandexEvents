@@ -14,23 +14,26 @@ const {
 
 module.exports = {
   entry: [
-    path.join(__dirname, '../src/js/index.js'),
+    path.join(__dirname, '../../src/js/index.js'),
   ],
   output: {
-    path: path.resolve(__dirname, '../www'),
+    path: path.resolve(__dirname, '../../www'),
     filename: 'assets/js/index.js',
     publicPath: './',
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
       },
       {
         test: /\.(scss|sass)$/,
         use: [
+          {
+            loader: 'style-loader',
+          },
           {
             loader: 'css-loader',
             query: {
@@ -43,16 +46,16 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|svg)$/,
-        loader: 'file-loader?name=./assets/i/[name].[ext]',
+        test: /\.(png|jpe?g|svg)$/,
+        loader: 'file-loader?name=./assets/[name].[ext]',
       },
     ],
   },
   resolve: {
     extensions: ['.js'],
     modules: [
-      path.join(__dirname, '../src/js'),
-      path.join(__dirname, '../node_modules'),
+      path.join(__dirname, '../../src/js'),
+      path.join(__dirname, '../../node_modules'),
     ],
   },
   plugins: [
@@ -67,8 +70,8 @@ module.exports = {
       },
     }),
     new DotEnvPlugin({
-      sample: path.join(__dirname, '../.env'),
-      path: path.join(__dirname, '../.env'),
+      sample: path.join(__dirname, '../../.env'),
+      path: path.join(__dirname, '../../.env'),
     }),
     new UglifyJsPlugin({
       beautify: false,
@@ -90,7 +93,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: path.join(__dirname, '../src/index.prod.html'),
+      template: path.join(__dirname, '../../src/index.prod.html'),
       minify: {
         collapseBooleanAttributes: true,
         collapseWhitespace: true,
