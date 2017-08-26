@@ -32,6 +32,9 @@ module.exports = {
         test: /\.(scss|sass)$/,
         use: [
           {
+            loader: 'style-loader',
+          },
+          {
             loader: 'css-loader',
             query: {
               modules: true,
