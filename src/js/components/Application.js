@@ -1,18 +1,26 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
+import React, { Component } from 'react'
+import { Route, Redirect } from 'react-router-dom'
 
-const Application = () => (
-  <div>
-    {/* <Route path='/'>
+import { Welcome, Feed, Places, Map } from 'components/screens'
+
+export default class Application extends Component {
+  state = {
+    firstEnter: true,
+  }
+
+  render() {
+    return (
       <div>
-        <Route path='/add' render={Indexed} />
-        <Route path='/add' component={Another} />
+        <Route exact path='/' render={() => (
+          this.state.firstEnter
+          ? (<Welcome />)
+          : (<Redirect to='/feed' />)
+        )} />
+        <Route path='/welcome' component={Welcome} />
+        <Route path='/feed' component={Feed} />
+        <Route path='/places' component={Places} />
+        <Route path='/map' component={Map} />
       </div>
-    </Route>
-    <Route path='/feed'>
-      <Route path='/feed/add' render={Indexed} />
-    </Route> */}
-  </div>
-)
-
-export default Application
+    )
+  }
+}
