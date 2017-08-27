@@ -1,6 +1,5 @@
 import React from 'react'
 import { render } from 'react-dom'
-import { HashRouter as Router } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 
@@ -13,9 +12,7 @@ function renderApp(Component) {
   render(
     <AppContainer>
       <Provider store={store}>
-        <Router>
-          <Application />
-        </Router>
+        <Application />
       </Provider>
     </AppContainer>,
     document.getElementById('App')
