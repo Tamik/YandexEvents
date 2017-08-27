@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { Image } from 'ui-components'
 
 const Avatar = props => (
-  <div>
-    <img src={props.src} style={{}} alt='Pri' />
-  </div>
+  <Image src={props.src} size='small' />
 )
 
 Avatar.defaultProps = {
-  src: 'http://placehold.it/350x50',
+  src: 'http://placehold.it/50x50',
 }
 
 Avatar.propTypes = {
