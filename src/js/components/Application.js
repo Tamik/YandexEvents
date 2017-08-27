@@ -1,26 +1,41 @@
 import React, { Component } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import ReactDom from 'react-dom'
+import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import PageTransition from 'react-router-page-transition'
 
-import { Welcome, Feed, Places, Map } from 'components/screens'
+import { Main, OnBoarding, Feed, Places, Map } from 'components/screens'
 
-export default class Application extends Component {
-  state = {
-    firstEnter: true,
+class Application extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+  }
+
+  componentDidMount() {
+    //
   }
 
   render() {
     return (
-      <div>
-        <Route exact path='/' render={() => (
-          this.state.firstEnter
-          ? (<Welcome />)
-          : (<Redirect to='/feed' />)
-        )} />
-        <Route path='/welcome' component={Welcome} />
-        <Route path='/feed' component={Feed} />
-        <Route path='/places' component={Places} />
-        <Route path='/map' component={Map} />
-      </div>
+      <Router>
+        <PageTransition>
+          <Switch location={this.props.location}>
+            <Route exact path='/' component={Main} />
+            <Route path='/onboarding' component={OnBoarding} />
+            <Route path='/feed' component={Feed} />
+            <Route path='/places' component={Places} />
+            <Route path='/map' component={Map} />
+          </Switch>
+        </PageTransition>
+      </Router>
     )
   }
 }
+
+const mapStateToProps = store => ({
+  firstEnter: store.userStore.firstEnter,
+})
+
+export default connect(mapStateToProps)(Application)

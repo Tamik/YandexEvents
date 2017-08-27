@@ -41,6 +41,7 @@ module.exports = {
             loader: 'css-loader',
             query: {
               modules: true,
+              sourceMap: true,
             },
           },
           {
