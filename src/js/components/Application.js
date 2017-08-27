@@ -23,7 +23,7 @@ class Application extends Component {
         <PageTransition>
           <Switch location={this.props.location}>
             <Route exact path='/' component={Main} />
-            <Route path='/onboard' component={OnBoarding} />
+            <Route path='/onboarding' component={OnBoarding} />
             <Route path='/feed' component={Feed} />
             <Route path='/places' component={Places} />
             <Route path='/map' component={Map} />

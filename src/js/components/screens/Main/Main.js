@@ -10,7 +10,7 @@ const mapStateToProps = store => ({
 const Main = props => (
   <div className='transition-item'>
     {props.firstEnter
-      ? (<Redirect to='/onboard' />)
+      ? (<Redirect to='/onboarding' />)
       : (<Redirect to='/feed' />)
     }
   </div>
