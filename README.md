@@ -21,9 +21,9 @@
 - `cordova prepare` – подготовить билд для сборки
 - `cordova build [platform]` – собрать приложение под требуемую платформу (доступны: `ios`, `android`, `browser`)
 
-<h2 align="center">Команда разработки</h2>
-<table align="center">
-    <tr align="center">
+## Команда разработки
+<table>
+    <tr">
       <td align="center">
         <a href="https://github.com/Tamik">
           <img width="150" height="150" src="https://static.yamblz.ru/events/team/lokyaev.jpg">
