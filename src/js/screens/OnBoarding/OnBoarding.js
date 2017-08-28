@@ -6,9 +6,12 @@ import { Link } from 'react-router-dom'
 import style from './OnBoarding.scss'
 
 const OnBoarding = props => (
-  <div className={`transition-item ${style.onBoard}`}>
-    <h1>This is Welcome Component</h1>
-    <Link to='/feed' onClick={() => props.dispatch({ type: 'FIRST_LOG' })}>Enter (to Feed Component)</Link>
+  <div className={'transition-item screen'}>
+    <div className={style['page-inner']}>
+      <h1>Welcome to NewYear on Yandex.Afisha</h1>
+      <br /><br />
+      <Link to='/feed' style={{ background: '#fff', textDecoration: 'none', color: '#3c70c4' }} onClick={() => props.dispatch({ type: 'FIRST_LOG' })}>Продолжить</Link>
+    </div>
   </div>
 )
 
