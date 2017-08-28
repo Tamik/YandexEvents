@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PageTransition from 'react-router-page-transition'
 
-import { Main, OnBoarding, Feed, Places, Map } from 'components/screens'
+import { Main, OnBoarding, Feed, Places, Map } from 'screens'
 
 class Application extends Component {
   constructor(props) {
