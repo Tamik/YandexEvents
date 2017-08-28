@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import style from './Feed.scss'
 
 const payloadEventsListJSON = [
@@ -41,7 +42,7 @@ const payloadEventsListJSON = [
   },
 ]
 
-const Feed = () => (
+const Feed = props => (
   <div className='transition-item screen'>
     <div className={style['page-inner']}>
       <div className={style['tabs']}>
@@ -77,4 +78,5 @@ const Feed = () => (
     <Link to='/onboarding' style={{ color: '#999', position: 'absolute', bottom: 0 }}>&lt; Goto Screen OnBoarding</Link>
   </div>
 )
-export default Feed
+
+export default connect()(Feed)
