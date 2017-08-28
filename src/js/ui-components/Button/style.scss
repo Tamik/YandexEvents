@@ -1,0 +1,12 @@
+.button {
+  padding: 12px 24px;
+  font-size: 20px;
+  line-height: 24px;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(255, 222, 90);
+
+  &_disabled {
+    background-color: rgb(226, 226, 226);
+  }
+}

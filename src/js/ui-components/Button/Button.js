@@ -1,21 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import style from './Button.scss'
+import style from './style.scss'
 
-const Button = props => (
-  <button
-    className={style.button}
-    onClick={props.onClick}
-    type='button'
-  >
-    {props.inner}
-  </button>
-)
+const Button = (props) => {
+  const styleDisabled = props.disabled ? 'button_disabled' : null
+
+  return (
+    <button
+      className={`${style.button} ${style[styleDisabled]}`}
+      onClick={props.onClick}
+      type='button'
+      disabled={props.disabled}
+    >
+      {props.inner}
+    </button>
+  )
+}
 
 Button.defaultProps = {
   inner: 'Btn',
   primary: false,
-  disabled: false,
+  disabled: true,
   onClick() {},
 }
 
