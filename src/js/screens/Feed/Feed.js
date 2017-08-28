@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import style from './Feed.scss'
 
 const payloadEventsListJSON = [
@@ -41,7 +42,7 @@ const payloadEventsListJSON = [
   },
 ]
 
-const Feed = () => (
+const Feed = props => (
   <div className='transition-item screen'>
     <div className={style['page-inner']}>
       <div className={style['tabs']}>
@@ -56,18 +57,20 @@ const Feed = () => (
           {
             payloadEventsListJSON.map((item, index) => {
               return (
-                <div key={item.id} className={`${style['events-list__item']}`}>
-                  <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                    <img
-                      src={item.image.small.src}
-                      alt=''
-                      className={style['image-fit-wrap__image-fitted']}
-                    />
+                <Link key={item.id} to='/event' onClick={() => props.dispatch({ type: 'SEND_TO_EVENT', payload: item })}>
+                  <div key={item.id} className={`${style['events-list__item']}`}>
+                    <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
+                      <img
+                        src={item.image.small.src}
+                        alt=''
+                        className={style['image-fit-wrap__image-fitted']}
+                      />
+                    </div>
+                    <div className={style['card-small__meta']}>
+                      <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
+                    </div>
                   </div>
-                  <div className={style['card-small__meta']}>
-                    <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                  </div>
-                </div>
+                </Link>
               )
             })
           }
@@ -77,4 +80,5 @@ const Feed = () => (
     <Link to='/onboarding' style={{ color: '#999', position: 'absolute', bottom: 0 }}>&lt; Goto Screen OnBoarding</Link>
   </div>
 )
-export default Feed
+
+export default connect()(Feed)

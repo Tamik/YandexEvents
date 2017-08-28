@@ -1,25 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 import style from './Event.scss'
 
-const data = {
-  title: 'Событие с Басковым',
-  description: 'Lorem ipsum dolor sit amet...',
-  image: {
-    large: 'http://placehold.it/250x250',
-  },
-}
-
-const Event = () => (
+const Event = props => (
   <div className='transition-item screen'>
     <div className={`${style['page-inner']}`}>
       <Link to='/feed'>Back</Link>
       <br />
-      <img src={data.image.large} />
-      <h2>{data.title}</h2>
-      <p>{data.description}</p>
+      <img src={props.event.image.small.src} />
+      <h2>{props.event.title}</h2>
+      {/* <p>{props.event.description}</p> */}
     </div>
   </div>
 )
 
-export default Event
+const mapStateToProps = store => ({
+  event: store.eventStore.event,
+})
+
+export default connect(mapStateToProps)(Event)
