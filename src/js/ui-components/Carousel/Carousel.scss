@@ -1,14 +1,9 @@
 .carousel {
   width: 100%;
-  overflow: hidden;
+  overflow-x: auto;
 
   div {
-    white-space: nowrap;
-    overflow: auto;
-
-    div {
-      display: inline-block;
-      vertical-align: middle;
-    }
+    display: flex;
+    flex-wrap: nowrap;
   }
 }
