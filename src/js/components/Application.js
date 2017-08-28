@@ -6,6 +6,8 @@ import PageTransition from 'react-router-page-transition'
 
 import { Main, OnBoarding, Feed, Places, Map } from 'screens'
 
+import style from './Application.scss'
+
 class Application extends Component {
   constructor(props) {
     super(props)
