@@ -4,7 +4,9 @@ import style from './Feed.scss'
 
 const Feed = () => (
   <div className='transition-item Feed'>
-    <h1>This is Feed Component</h1> <Link to='/onboard' style={{ color: 'white' }}>Back</Link>
+    <h1>This is Feed Component</h1>
+    <Link to='/onboarding' style={{ color: 'white' }}>Back</Link>
+    <br />
     <Link to='/places'>Places</Link>
     <br />
     <Link to='/map'>Map</Link>
