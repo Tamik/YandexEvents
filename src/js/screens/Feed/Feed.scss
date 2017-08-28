@@ -9,8 +9,6 @@
   background-color: #656565;
   &__inner{
     display: flex;
-    flex-direction: row;
-    justify-content: stretch;
   }
   &__tab {
     position: relative;
@@ -31,7 +29,7 @@
 .content{
   flex-grow: 1;
   padding: 0 20px;
-  overflow: auto;
+  overflow-y: auto;
 }
 
 .events-list{
@@ -39,7 +37,6 @@
     margin: 16px 0;
     padding: 16px 0;
     display: flex;
-    flex-direction: row;
     border-bottom: 1px solid #ccc;
     &-title{
       font-weight: bold;
@@ -55,7 +52,7 @@
       height: 120px;
     }
     &__meta{
-      padding:0 0 0 16px;
+      padding-left: 16px;
     }
   }
 }
