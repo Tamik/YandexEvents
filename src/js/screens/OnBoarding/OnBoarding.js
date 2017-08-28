@@ -8,7 +8,7 @@ import style from './OnBoarding.scss'
 const OnBoarding = props => (
   <div className={`transition-item ${style.onBoard}`}>
     <h1>This is Welcome Component</h1>
-    <Link to='/' onClick={() => props.dispatch({ type: 'FIRST_LOG' })}>Enter (to Feed Component)</Link>
+    <Link to='/feed' onClick={() => props.dispatch({ type: 'FIRST_LOG' })}>Enter (to Feed Component)</Link>
   </div>
 )
 
