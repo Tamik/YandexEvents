@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './Carousel.scss'
+import style from './style.scss'
 
 const Carousel = props => (
   <div className={style.carousel}>
