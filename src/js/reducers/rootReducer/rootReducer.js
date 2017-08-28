@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux'
-import { userReducer } from 'reducers'
+import { userReducer, eventReducer } from 'reducers'
 
 const rootReducer = combineReducers({
   userStore: userReducer,
+  eventStore: eventReducer,
 })
 
 export default rootReducer
