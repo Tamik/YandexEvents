@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Image } from 'ui-components'
 import style from './style.scss'
 
-const SmallCard = props => (
+const Card = props => (
   <div
     className={`${style[`card_${props.size}`]}`}
   >
@@ -12,16 +12,16 @@ const SmallCard = props => (
   </div>
 )
 
-SmallCard.defaultProps = {
+Card.defaultProps = {
   size: 'small',
   src: 'http://placehold.it/350x50',
   text: 'PLOTVA',
 }
 
-SmallCard.propTypes = {
+Card.propTypes = {
   size: PropTypes.string,
   src: PropTypes.string,
   text: PropTypes.string,
 }
 
-export default SmallCard
+export default Card
