@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import style from './OnBoarding.scss'
+import style from './style.scss'
 
 const OnBoarding = props => (
   <div className={'transition-item screen'}>
