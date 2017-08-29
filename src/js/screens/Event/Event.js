@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import style from './Event.scss'
+import style from './style.scss'
 
 const Event = props => (
   <div className='transition-item screen'>
