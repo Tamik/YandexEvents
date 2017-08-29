@@ -30,7 +30,7 @@ class Application extends Component {
                 <Route path='/onboarding' component={OnBoarding} />
                 <Route path='/feed' component={Feed} />
                 <Route path='/event' component={Event} />
-                <Route path='/category' component={Category} />
+                <Route path='/category/:id' component={Category} />
                 <Route path='/places' component={Places} />
                 <Route path='/map' component={Map} />
               </Switch>

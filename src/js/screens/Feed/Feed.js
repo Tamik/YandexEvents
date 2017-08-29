@@ -53,6 +53,8 @@ const Feed = props => (
       </div>
 
       <div className={style['content']}>
+
+        {/* Block events */}
         <div className={style['events-list']}>
           {
             payloadEventsListJSON.map((item, index) => {
@@ -75,6 +77,14 @@ const Feed = props => (
             })
           }
         </div>
+
+        {/* Block categories */}
+        <div style={{ display: 'flex' }}>
+          <Link to='/category/1' style={{ display: 'block', width: 56, height: 56 }}>Cat1</Link>
+          <Link to='/category/2' style={{ display: 'block', width: 56, height: 56 }}>Cat2</Link>
+          <Link to='/category/3' style={{ display: 'block', width: 56, height: 56 }}>Cat3</Link>
+        </div>
+        <br /><br /><br />
       </div>
     </div>
     <Link to='/onboarding' style={{ color: '#999', position: 'absolute', bottom: 0 }}>&lt; Goto Screen OnBoarding</Link>
