@@ -1,0 +1,9 @@
+.carousel {
+  width: 100%;
+  overflow-x: auto;
+
+  div {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+}

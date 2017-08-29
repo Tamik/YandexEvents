@@ -1,11 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import style from './Image.scss'
+import style from './style.scss'
 
 const Image = props => (
   <div
     style={{ backgroundImage: `url(${props.src})` }}
-    className={style[props.size]}
+    className={style[`image_${props.size}`]}
   />
 )
 
