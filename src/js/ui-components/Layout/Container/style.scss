@@ -1,0 +1,9 @@
+.container {
+  &_stretch {
+    flex-grow: 1;
+  }
+
+  &_scroll {
+    overflow-y: auto;
+  }
+}
