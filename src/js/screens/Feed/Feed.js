@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { Container, Tabs } from 'ui-components'
 import style from './style.scss'
-import styleTab from 'ui-components/Tabs/style.scss'
+import styleTabs from 'ui-components/Tabs/style.scss'
 
 const payloadEventsListJSON = [
   {
@@ -49,8 +49,8 @@ const Feed = props => (
   <div className='transition-item screen'>
     <Container>
       <Tabs>
-        <div className={`${styleTab['tabs__item']} ${styleTab['tabs__item_active']}`}>Лента</div>
-        <div className={styleTab['tabs__item']}>Карта</div>
+        <div className={`${styleTabs['tabs__item']} ${styleTabs['tabs__item_active']}`}>Лента</div>
+        <div className={styleTabs['tabs__item']}>Карта</div>
       </Tabs>
     </Container>
     <Container scrolling stretching>
