@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+import { Container, Tabs } from 'ui-components'
 import style from './style.scss'
+import styleTab from 'ui-components/Tabs/style.scss'
 
 const payloadEventsListJSON = [
   {
@@ -44,49 +47,45 @@ const payloadEventsListJSON = [
 
 const Feed = props => (
   <div className='transition-item screen'>
-    <div className={style['page-inner']}>
-      <div className={style['tabs']}>
-        <div className={style['tabs__inner']}>
-          <div className={`${style['tabs__tab']} ${style['tabs__tab_active']}`}>Лента</div>
-          <div className={style['tabs__tab']}>Карта</div>
-        </div>
-      </div>
-
-      <div className={style['content']}>
-
-        {/* Block events */}
-        <div className={style['events-list']}>
-          {
-            payloadEventsListJSON.map((item, index) => {
-              return (
-                <Link key={item.id} to='/event' onClick={() => props.dispatch({ type: 'SEND_TO_EVENT', payload: item })}>
-                  <div key={item.id} className={`${style['events-list__item']}`}>
-                    <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                      <img
-                        src={item.image.small.src}
-                        alt=''
-                        className={style['image-fit-wrap__image-fitted']}
-                      />
-                    </div>
-                    <div className={style['card-small__meta']}>
-                      <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                    </div>
+    <Container>
+      <Tabs>
+        <div className={`${styleTab['tabs__item']} ${styleTab['tabs__item_active']}`}>Лента</div>
+        <div className={styleTab['tabs__item']}>Карта</div>
+      </Tabs>
+    </Container>
+    <Container scrolling stretching>
+      {/* Block events */}
+      <div className={style['events-list']}>
+        {
+          payloadEventsListJSON.map((item, index) => {
+            return (
+              <Link key={item.id} to='/event' onClick={() => props.dispatch({ type: 'SEND_TO_EVENT', payload: item })}>
+                <div key={item.id} className={`${style['events-list__item']}`}>
+                  <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
+                    <img
+                      src={item.image.small.src}
+                      alt=''
+                      className={style['image-fit-wrap__image-fitted']}
+                    />
                   </div>
-                </Link>
-              )
-            })
-          }
-        </div>
-
-        {/* Block categories */}
-        <div style={{ display: 'flex' }}>
-          <Link to='/category/1' style={{ display: 'block', width: 56, height: 56 }}>Cat1</Link>
-          <Link to='/category/2' style={{ display: 'block', width: 56, height: 56 }}>Cat2</Link>
-          <Link to='/category/3' style={{ display: 'block', width: 56, height: 56 }}>Cat3</Link>
-        </div>
-        <br /><br /><br />
+                  <div className={style['card-small__meta']}>
+                    <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
+                  </div>
+                </div>
+              </Link>
+            )
+          })
+        }
       </div>
-    </div>
+
+      {/* Block categories */}
+      <div style={{ display: 'flex' }}>
+        <Link to='/category/1' style={{ display: 'block', width: 56, height: 56 }}>Cat1</Link>
+        <Link to='/category/2' style={{ display: 'block', width: 56, height: 56 }}>Cat2</Link>
+        <Link to='/category/3' style={{ display: 'block', width: 56, height: 56 }}>Cat3</Link>
+      </div>
+      <br /><br /><br />
+    </Container>
     <Link to='/onboarding' style={{ color: '#999', position: 'absolute', bottom: 0 }}>&lt; Goto Screen OnBoarding</Link>
   </div>
 )
