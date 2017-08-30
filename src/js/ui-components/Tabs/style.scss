@@ -3,14 +3,12 @@
   background-color: #656565;
 
   &__item {
-    position: relative;
-    height: 56px;
-    line-height: 56px;
     flex-grow: 1;
+    padding: 20px;
     font-size: 0.8rem;
-    color: #D1D1D1;
     text-transform: uppercase;
     text-align: center;
+    color: #D1D1D1;
 
     &_active {
       color: #fff;
