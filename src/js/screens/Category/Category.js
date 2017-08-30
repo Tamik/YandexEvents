@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+import { Container } from 'ui-components'
 import style from './style.scss'
 
 const payloadEventsListJSON = [
@@ -44,7 +46,7 @@ const payloadEventsListJSON = [
 
 const Category = ({ match }) => (
   <div className='transition-item screen'>
-    <div className={`${style['page-inner']}`}>
+    <Container stretching>
       <Link to='/feed'>Back</Link>
       <p>Category Title: Подумать, как передавать</p>
       {/* Возможно будет справочник категорий в store.categories 
@@ -57,32 +59,30 @@ const Category = ({ match }) => (
         - load events by category
         - render
       */}
-      <div>
-        <div className={style['events-list']}>
-          {
-            payloadEventsListJSON.map((item, index) => {
-              return (
-                <Link key={item.id} to='/event' onClick={this.viewEvent}>
-                  <div key={item.id} className={`${style['events-list__item']}`}>
-                    <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                      <img
-                        src={item.image.small.src}
-                        alt=''
-                        className={style['image-fit-wrap__image-fitted']}
-                      />
-                    </div>
-                    <div className={style['card-small__meta']}>
-                      <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                    </div>
+      <Container stretching scrolling>
+        {
+          payloadEventsListJSON.map((item, index) => {
+            return (
+              <Link key={item.id} to='/event' onClick={this.viewEvent}>
+                <div key={item.id} className={`${style['events-list__item']}`}>
+                  <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
+                    <img
+                      src={item.image.small.src}
+                      alt=''
+                      className={style['image-fit-wrap__image-fitted']}
+                    />
                   </div>
-                </Link>
-              )
-            })
-          }
-        </div>
-      </div>
-    </div>
-  </div >
+                  <div className={style['card-small__meta']}>
+                    <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
+                  </div>
+                </div>
+              </Link>
+            )
+          })
+        }
+      </Container>
+    </Container>
+  </div>
 )
 
 const mapStateToProps = store => ({

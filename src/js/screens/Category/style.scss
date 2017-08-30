@@ -1,17 +1,7 @@
-.page-inner {
-  padding: 0 20px;
-  background-color: #fff;
-}
 
 /*
   @todo: refactor, decompose
 */
-
-.content{
-  flex-grow: 1;
-  padding: 0 20px;
-  overflow-y: auto;
-}
 
 .events-list{
   &__item{
