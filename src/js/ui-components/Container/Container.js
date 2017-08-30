@@ -8,8 +8,8 @@ const Container = (props) => {
   const stretchStyle = props.stretching ? 'container_stretch' : null
 
   return (
-    <div className={`${style.container} ${style[scrollStyle]} ${style[stretchStyle]}`}>
-      { React.Children.only(props.children) }
+    <div className={`${style[scrollStyle]} ${style[stretchStyle]}`}>
+      { React.Children.toArray(props.children) }
     </div>
   )
 }
