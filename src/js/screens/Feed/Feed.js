@@ -47,13 +47,18 @@ const payloadEventsListJSON = [
 
 const Feed = props => (
   <div className='transition-item screen'>
-    <Container>
-      <Tabs>
-        <div className={`${styleTabs['tabs__item']} ${styleTabs['tabs__item_active']}`}>Лента</div>
-        <div className={styleTabs['tabs__item']}>Карта</div>
-      </Tabs>
-    </Container>
+    <Tabs>
+      <div className={`${styleTabs['tabs__item']} ${styleTabs['tabs__item_active']}`}>Лента</div>
+      <div className={styleTabs['tabs__item']}>Карта</div>
+    </Tabs>
     <Container scrolling stretching>
+      {/* Block places */}
+      <div style={{ display: 'flex' }}>
+        <Link to='' style={{ display: 'block', width: 56, height: 56 }}>Place1</Link>
+        <Link to='' style={{ display: 'block', width: 56, height: 56 }}>Place2</Link>
+        <Link to='' style={{ display: 'block', width: 56, height: 56 }}>Place3</Link>
+      </div>
+
       {/* Block events */}
       <div className={style['events-list']}>
         {
