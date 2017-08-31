@@ -5,7 +5,7 @@ import style from './style.scss'
 const Image = props => (
   <div
     style={{ backgroundImage: `url(${props.src})` }}
-    className={style[`image_${props.size}`]}
+    className={`${style.image} ${style[`image_${props.size}`]}`}
   />
 )
 
