@@ -18,7 +18,6 @@ const Avatar = props => (
 Avatar.defaultProps = {
   src: 'http://placehold.it/50x50',
   size: 'small',
-  text: 'Baskov privet',
 }
 
 Avatar.propTypes = {
