@@ -1,12 +1,20 @@
-const userReducer = (state = { firstEnter: true }, action) => {
-  if (action.type === 'FIRST_LOG') {
-    const newState = {
-      ...state,
-      firstEnter: false,
+import { USER_ONBOARDING_VIEWED } from 'consts/actionTypes'
+
+const initState = {
+  firstEnter: true,
+}
+const userReducer = (state = initState, action) => {
+  switch (action.type) {
+    case USER_ONBOARDING_VIEWED: {
+      const newState = {
+        ...state,
+        firstEnter: false,
+      }
+      return newState
     }
-    return newState
+    default:
+      return state
   }
-  return state
 }
 
 export default userReducer
