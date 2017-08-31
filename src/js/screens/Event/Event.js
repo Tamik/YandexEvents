@@ -2,14 +2,15 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { Container } from 'ui-components'
+import { Container, TopBar } from 'ui-components'
 import style from './style.scss'
 
 const Event = props => (
   <div className='transition-item screen'>
-    <Container scrolling stretching>
+    <TopBar>
       <Link to='/feed'>Back</Link>
-      <br />
+    </TopBar>
+    <Container scrolling stretching>
       <img src={props.event.image.small.src} />
       <h2>{props.event.title}</h2>
       {/* <p>{props.event.description}</p> */}

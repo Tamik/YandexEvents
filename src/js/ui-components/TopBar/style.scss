@@ -1,0 +1,29 @@
+.topBar {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  padding-top: 44px;
+  background-color: #18a972;
+
+  &_transparent {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), transparent);
+  }
+
+  &__title {
+    flex-grow: 1;
+    padding-right: 20px;
+    padding-left: 4px;
+    font-size: 1.25rem;
+    font-weight: normal;
+    text-align: center;
+    letter-spacing: 0.05rem;
+    color: #fff;
+  }
+
+  &__icon {
+
+  }
+}
