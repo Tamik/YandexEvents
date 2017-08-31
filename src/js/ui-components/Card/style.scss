@@ -23,25 +23,27 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
-    background-color: #3c70c4;
 
     &_small {
-      margin-left: 16px;
-      margin-bottom: 16px;
+      padding-left: 16px;
+      padding-bottom: 16px;
     }
 
     &_medium {
       height: calc(100% - 176px);
       padding: 20px;
+      background-color: #f2f2f2;
     }
   }
 
   &__title {
     margin-bottom: 8px;
     font-weight: normal;
+    text-decoration: none;
 
     &_small {
       font-size: 1.125rem;
+      line-height: 1.25rem;
     }
 
     &_medium {
