@@ -1,12 +1,17 @@
 .avatar {
   margin: 0 auto;
-  border-radius: 50%;
   background-size: cover;
   background-position: center;
 
   &_small {
     width: 64px;
     height: 64px;
+    border-radius: 50%;
+  }
+
+  &_medium {
+    width: 74px;
+    height: 74px;
   }
 
   &__text {
