@@ -6,11 +6,10 @@ const initState = {
 const userReducer = (state = initState, action) => {
   switch (action.type) {
     case USER_ONBOARDING_VIEWED: {
-      const newState = {
+      return {
         ...state,
         firstEnter: false,
       }
-      return newState
     }
     default:
       return state
