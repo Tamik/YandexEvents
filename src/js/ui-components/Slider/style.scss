@@ -102,15 +102,15 @@
       display: inline-block;
       height: 20px;
       width: 20px;
-      margin: 0 5px;
+      margin: 0 4px;
       padding: 0;
       cursor: pointer;
       button {
         border: 0;
         background: transparent;
         display: block;
-        height: 20px;
-        width: 20px;
+        height: 18px;
+        width: 18px;
         outline: none;
         line-height: 0px;
         color: transparent;
@@ -121,8 +121,8 @@
         }
         &:before {
           position: absolute;
-          top: 0;
-          left: 0;
+          top: 5px;
+          left: 5px;
           content: '\2022';
           width: 8px;
           height: 8px;
