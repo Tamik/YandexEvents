@@ -6,8 +6,9 @@ export const NAVIGATION_LOCATION_CHANGE = 'NAVIGATION/LOCATION_CHANGE'
 /* User */
 export const USER_ONBOARDING_VIEWED = 'USER_ONBOARDING_VIEWED'
 
-/* Feed */
+/* Data */
+export const DATA_EVENT = 'DATA_EVENT'
 
 /* Modals */
-export const MODAL_EVENT = 'MODAL_EVENT'
+export const MODAL_EVENT_VIEW = 'MODAL_EVENT_VIEW'
 

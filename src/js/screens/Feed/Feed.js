@@ -42,6 +42,8 @@ const payloadEventsListJSON = [
   },
 ]
 
+/* <Link key={item.id} to='/event' onClick={() => props.dispatch({ type: 'SEND_TO_EVENT', payload: item })}> */
+
 const Feed = props => (
   <div className='transition-item screen'>
     <div className={style['page-inner']}>
@@ -59,35 +61,33 @@ const Feed = props => (
           {
             payloadEventsListJSON.map((item, index) => {
               return (
-                <Link key={item.id} to='/event' onClick={() => props.dispatch({ type: 'SEND_TO_EVENT', payload: item })}>
-                  <div key={item.id} className={`${style['events-list__item']}`}>
-                    <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                      <img
-                        src={item.image.small.src}
-                        alt=''
-                        className={style['image-fit-wrap__image-fitted']}
-                      />
-                    </div>
-                    <div className={style['card-small__meta']}>
-                      <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                    </div>
+                <div key={item.id} className={`${style['events-list__item']}`}>
+                  <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
+                    <img
+                      src={item.image.small.src}
+                      alt=''
+                      className={style['image-fit-wrap__image-fitted']}
+                    />
                   </div>
-                </Link>
+                  <div className={style['card-small__meta']}>
+                    <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
+                  </div>
+                </div>
               )
             })
           }
         </div>
 
         {/* Block categories */}
-        <div style={{ display: 'flex' }}>
+        {/* <div style={{ display: 'flex' }}>
           <Link to='/category/1' style={{ display: 'block', width: 56, height: 56 }}>Cat1</Link>
           <Link to='/category/2' style={{ display: 'block', width: 56, height: 56 }}>Cat2</Link>
           <Link to='/category/3' style={{ display: 'block', width: 56, height: 56 }}>Cat3</Link>
         </div>
-        <br /><br /><br />
+        <br /><br /><br /> */}
       </div>
     </div>
-    <Link to='/onboarding' style={{ color: '#999', position: 'absolute', bottom: 0 }}>&lt; Goto Screen OnBoarding</Link>
+    {/* <Link to='/onboarding' style={{ color: '#999', position: 'absolute', bottom: 0 }}>&lt; Goto Screen OnBoarding</Link> */}
   </div>
 )
 
