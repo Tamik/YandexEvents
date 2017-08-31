@@ -1,49 +1,22 @@
-import React, { Component } from 'react'
-import ReactDom from 'react-dom'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from 'react'
 import PageTransition from 'react-router-page-transition'
-
-import { Main, OnBoarding, Feed, Event, Places, Map, Category } from 'screens'
+import { connect } from 'react-redux'
 
 import style from './Application.scss'
 
-class Application extends Component {
-  constructor(props) {
-    super(props)
+import { Main } from '../screens'
 
-    this.state = {}
-  }
+const Application = (props) => {
+  const route = props.state.router.route
 
-  componentDidMount() {
-    //
+  if (route === '#/main') {
+    return <Main />
   }
-
-  render() {
-    return (
-      <Router>
-        <Route
-          render={({ location }) => (
-            <PageTransition>
-              <Switch location={location}>
-                <Route exact path='/' component={Main} />
-                <Route path='/onboarding' component={OnBoarding} />
-                <Route path='/feed' component={Feed} />
-                <Route path='/event' component={Event} />
-                <Route path='/category/:id' component={Category} />
-                <Route path='/places' component={Places} />
-                <Route path='/map' component={Map} />
-              </Switch>
-            </PageTransition>
-          )}
-        />
-      </Router>
-    )
+  if (route === '#/one') {
+    return <div>One</div>
   }
+  return <div>Not found</div>
 }
 
-const mapStateToProps = store => ({
-  firstEnter: store.userStore.firstEnter,
-})
+export default connect(state => ({ state }))(Application)
 
-export default connect(mapStateToProps)(Application)
