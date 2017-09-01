@@ -5,44 +5,37 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData, sendModalCategoryData, sendModalPlaceData } from 'actions/dataActions'
 
+import { Tabs, Container, Slider, Carousel, Card, Image, Avatar } from 'ui-components'
+
 import style from './style.scss'
 
 const payloadEventsListJSON = [
   {
-    "id": 1,
-    "title": "Event 1",
-    "image": {
-      "small": {
-        "src": "https://img2.goodfon.ru/original/320x400/3/a0/daft-punk-daft-pank-tomas-2560.jpg"
-      }
-    }
+    id: 1,
+    title: 'Event 1',
+    image: {
+      small: {
+        src: 'https://img2.goodfon.ru/original/320x400/3/a0/daft-punk-daft-pank-tomas-2560.jpg',
+      },
+    },
   },
   {
-    "id": 2,
-    "title": "Event 2",
-    "image": {
-      "small": {
-        "src": "http://www.secureworldme.com/asset/images/portfolio/events.jpg"
-      }
-    }
+    id: 2,
+    title: 'Event 2',
+    image: {
+      small: {
+        src: 'http://www.secureworldme.com/asset/images/portfolio/events.jpg',
+      },
+    },
   },
   {
-    "id": 3,
-    "title": "Event 3",
-    "image": {
-      "small": {
-        "src": "http://www.northcobbphotoclub.com/uploads/2/4/2/0/24207577/8109020_orig.jpg"
-      }
-    }
-  },
-  {
-    "id": 4,
-    "title": "Event 4",
-    "image": {
-      "small": {
-        "src": "http://www.northcobbphotoclub.com/uploads/2/4/2/0/24207577/4034355_orig.jpg"
-      }
-    }
+    id: 3,
+    title: 'Event 3',
+    image: {
+      small: {
+        src: 'http://www.northcobbphotoclub.com/uploads/2/4/2/0/24207577/8109020_orig.jpg',
+      },
+    },
   },
 ]
 
