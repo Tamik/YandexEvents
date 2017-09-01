@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+import { push, goBack } from 'actions/navigationActions'
+import { sendModalEventData } from 'actions/dataActions'
+
 import style from './style.scss'
 
 const payloadEventsListJSON = [
@@ -42,50 +46,86 @@ const payloadEventsListJSON = [
   },
 ]
 
-const Category = ({ match }) => (
-  <div className='transition-item screen'>
-    <div className={`${style['page-inner']}`}>
-      <Link to='/feed'>Back</Link>
-      <p>Category Title: Подумать, как передавать</p>
-      {/* Возможно будет справочник категорий в store.categories 
-        а также текущая категория и ее мета-данные были бы доступны 
-        в store.category = { id, title, count, etc }
-      */}
-      <br />
-      <p>CategoryID: {match.params.id}</p>
-      {/*
-        - load events by category
-        - render
-      */}
-      <div>
-        <div className={style['events-list']}>
-          {
-            payloadEventsListJSON.map((item, index) => {
-              return (
-                <Link key={item.id} to='/event' onClick={this.viewEvent}>
-                  <div key={item.id} className={`${style['events-list__item']}`}>
-                    <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                      <img
-                        src={item.image.small.src}
-                        alt=''
-                        className={style['image-fit-wrap__image-fitted']}
-                      />
+class Category extends Component {
+  constructor(props) {
+    super(props)
+
+    if (!props.categoryData) {
+      // load data from server by categoryId
+      console.log('Load events from server by category id: ', props.params.id)
+    }
+    else {
+      console.log('categoryData: ', props.categoryData)
+    }
+
+    this.viewEvent = this.viewEvent.bind(this)
+    this.goBack = this.goBack.bind(this)
+  }
+
+  componentDidMount() {
+    // 
+  }
+
+  viewEvent(eventData) {
+    this.props.onViewEvent(eventData)
+  }
+
+  goBack() {
+    this.props.goBack()
+  }
+
+  render() {
+    return (
+      <div className='transition-item screen'>
+        <div className={`${style['page-inner']}`}>
+          <button onClick={this.goBack}>GoBack</button>
+          <h3>Category</h3>
+          <div>
+            <div className={style['events-list']}>
+              {
+                payloadEventsListJSON.map((item, index) => {
+                  return (
+                    <div
+                      role='button'
+                      key={item.id}
+                      className={`${style['events-list__item']}`}
+                      onClick={() => {
+                        this.viewEvent(item)
+                      }}
+                    >
+                      <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
+                        <img
+                          src={item.image.small.src}
+                          alt=''
+                          className={style['image-fit-wrap__image-fitted']}
+                        />
+                      </div>
+                      <div className={style['card-small__meta']}>
+                        <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
+                      </div>
                     </div>
-                    <div className={style['card-small__meta']}>
-                      <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                    </div>
-                  </div>
-                </Link>
-              )
-            })
-          }
+                  )
+                })
+              }
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div >
-)
+    )
+  }
+}
 
-const mapStateToProps = store => ({
-})
-
-export default connect(mapStateToProps)(Category)
+export default connect(
+  state => ({
+    categoryData: state.categoryData,
+  }),
+  dispatch => ({
+    onViewEvent: (eventData) => {
+      dispatch(sendModalEventData(eventData))
+      dispatch(push(`/event/${eventData.id}`))
+    },
+    goBack: () => {
+      dispatch(goBack())
+    },
+  })
+)(Category)
