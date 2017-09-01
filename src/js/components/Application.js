@@ -2,7 +2,7 @@ import React from 'react'
 import PageTransition from 'react-router-page-transition'
 import { connect } from 'react-redux'
 
-import { Main, Event, Category, Feed, Map, OnBoarding } from '../screens'
+import { Main, Event, Category, Feed, Map, OnBoarding } from 'screens'
 
 import style from './Application.scss'
 
@@ -16,7 +16,6 @@ const Application = (props) => {
 
   // Main -> Screen( OnBoarding | Feed )
   if (!route || route === '#/main' || route === '#/') {
-
     let Fragment = null
 
     if (props.user.firstEnter) {
