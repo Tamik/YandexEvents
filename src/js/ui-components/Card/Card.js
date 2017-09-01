@@ -14,10 +14,7 @@ const Card = props => (
       </h3>
       <p className={style.card__text}>
         31 января <br />
-        11:00
-        <span>
-          11 м
-        </span>
+        11:00 - 22:00
       </p>
     </div>
   </div>
