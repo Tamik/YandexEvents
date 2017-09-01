@@ -5,36 +5,37 @@ import { connect } from 'react-redux'
 
 import { replace } from 'actions/navigationActions'
 
-import { Container } from 'ui-components'
+import { Tabs, Container } from 'ui-components'
 
 import style from 'screens/main/style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
 
 const Main = (props) => {
+  const activeTabName = props.router.route.slice(2)
   const switchToTab = (tabName) => {
     props.onSwitchTab(tabName)
   }
 
+
   return (
     <div className='screen'>
       <Container stretching>
-        <div className={style['tabs']}>
-          <div className={style['tabs__inner']}>
-            <div
-              role='button'
-              onClick={() => {
-                switchToTab('feed')
-              }}
-              className={`${style['tabs__tab']} ${style['tabs__tab_active']}`}
-            >Лента</div>
-            <div
-              role='button'
-              onClick={() => {
-                switchToTab('map')
-              }}
-              className={style['tabs__tab']}>Карта</div>
-          </div>
-        </div>
+        <Tabs>
+          <div
+            role='button'
+            className={`${styleTabs.tabs__item} ${activeTabName === 'feed' ? styleTabs.tabs__item_active : ''}`}
+            onClick={() => {
+              switchToTab('feed')
+            }}
+          >Лента</div>
+          <div
+            role='button'
+            className={`${styleTabs.tabs__item} ${activeTabName === 'map' ? styleTabs.tabs__item_active : ''}`}
+            onClick={() => {
+              switchToTab('map')
+            }}
+          >Карта</div>
+        </Tabs>
         <Container scrolling stretching>
           <props.fragment />
         </Container>
