@@ -6,7 +6,6 @@ import { push } from 'actions/navigationActions'
 import { sendModalEventData, sendModalCategoryData, sendModalPlaceData } from 'actions/dataActions'
 
 import style from './style.scss'
-import styleTabs from 'ui-components/Tabs/style.scss'
 
 const payloadEventsListJSON = [
   {
@@ -47,8 +46,6 @@ const payloadEventsListJSON = [
   },
 ]
 
-/* <Link key={item.id} to='/event' onClick={() => props.dispatch({ type: 'SEND_TO_EVENT', payload: item })}> */
-
 const Feed = (props) => {
   const viewEvent = (eventData) => {
     props.onViewEvent(eventData)
@@ -60,118 +57,97 @@ const Feed = (props) => {
     props.onViewPlace(placeData)
   }
   return (
-    <div className='transition-item screen'>
-      <div className={style['page-inner']}>
-        <div className={style['tabs']}>
-          <div className={style['tabs__inner']}>
-            <div className={`${style['tabs__tab']} ${style['tabs__tab_active']}`}>Лента</div>
-            <div className={style['tabs__tab']}>Карта</div>
-          </div>
-        </div>
-
-        <div className={style['content']}>
-
-          {/* 
-            Block events 
-          */}
-          <div
-            className={style['events-list']}
-          >
-            {
-              payloadEventsListJSON.map((item, index) => {
-                return (
-                  <div
-                    role='button'
-                    key={item.id}
-                    className={`${style['events-list__item']}`}
-                    onClick={() => {
-                      viewEvent(item)
-                    }}
-                  >
-                    <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                      <img
-                        src={item.image.small.src}
-                        alt=''
-                        className={style['image-fit-wrap__image-fitted']}
-                      />
-                    </div>
-                    <div className={style['card-small__meta']}>
-                      <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                    </div>
-                  </div>
-                )
-              })
-            }
-          </div>
-
-          <br /><br />
-
-          {/* 
-            Block categories 
-          */}
-          <div style={{ display: 'flex' }}>
-            <div
-              role='button'
-              onClick={() => {
-                viewCategory({ id: 1, title: 'Category 1' })
-              }}
-              style={{ display: 'block', width: 56, height: 56 }}
-            >Cat1</div>
-            <div
-              role='button'
-              onClick={() => {
-                viewCategory({ id: 2, title: 'Category 2' })
-              }}
-              style={{ display: 'block', width: 56, height: 56 }}
-            >Cat2</div>
-            <div
-              role='button'
-              onClick={() => {
-                viewCategory({ id: 2, title: 'Category 2' })
-              }}
-              style={{ display: 'block', width: 56, height: 56 }}
-            >Cat3</div>
-          </div>
-
-          <br /><br />
-
-          {/* 
-            Block places 
-          */}
-          <div style={{ display: 'flex' }}>
-            <div
-              role='button'
-              onClick={() => {
-                viewPlace({ id: 1, title: 'Place 1' })
-              }}
-              style={{ display: 'block', width: 56, height: 56 }}
-            >Place 1</div>
-            <div
-              role='button'
-              onClick={() => {
-                viewPlace({ id: 2, title: 'Place 2' })
-              }}
-              style={{ display: 'block', width: 56, height: 56 }}
-            >Place 2</div>
-            <div
-              role='button'
-              onClick={() => {
-                viewPlace({ id: 2, title: 'Place 2' })
-              }}
-              style={{ display: 'block', width: 56, height: 56 }}
-            >Place 3</div>
-          </div>
-
-          <br /><br /><br />
-        </div>
+    <div>
+      <div
+        className={style['events-list']}
+      >
+        {
+          payloadEventsListJSON.map((item, index) => {
+            return (
+              <div
+                role='button'
+                key={item.id}
+                className={`${style['events-list__item']}`}
+                onClick={() => {
+                  viewEvent(item)
+                }}
+              >
+                <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
+                  <img
+                    src={item.image.small.src}
+                    alt=''
+                    className={style['image-fit-wrap__image-fitted']}
+                  />
+                </div>
+                <div className={style['card-small__meta']}>
+                  <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
+                </div>
+              </div>
+            )
+          })
+        }
       </div>
+
+      <br /> <br />
+
+      <div style={{ display: 'flex' }}>
+        <div
+          role='button'
+          onClick={() => {
+            viewCategory({ id: 1, title: 'Category 1' })
+          }}
+          style={{ display: 'block', width: 56, height: 56 }}
+        >Cat1</div>
+        <div
+          role='button'
+          onClick={() => {
+            viewCategory({ id: 2, title: 'Category 2' })
+          }}
+          style={{ display: 'block', width: 56, height: 56 }}
+        >Cat2</div>
+        <div
+          role='button'
+          onClick={() => {
+            viewCategory({ id: 2, title: 'Category 2' })
+          }}
+          style={{ display: 'block', width: 56, height: 56 }}
+        >Cat3</div>
+      </div>
+
+      <br /> <br />
+
+      <div style={{ display: 'flex' }}>
+        <div
+          role='button'
+          onClick={() => {
+            viewPlace({ id: 1, title: 'Place 1' })
+          }}
+          style={{ display: 'block', width: 56, height: 56 }}
+        >Place 1</div>
+        <div
+          role='button'
+          onClick={() => {
+            viewPlace({ id: 2, title: 'Place 2' })
+          }}
+          style={{ display: 'block', width: 56, height: 56 }}
+        >Place 2</div>
+        <div
+          role='button'
+          onClick={() => {
+            viewPlace({ id: 2, title: 'Place 2' })
+          }}
+          style={{ display: 'block', width: 56, height: 56 }}
+        >Place 3</div>
+      </div>
+
+      <br /> <br /> <br />
     </div>
   )
 }
 
 export default connect(
   state => ({
-    state, /* contains: user, route. @todo: exclude superfluous */
+    state, /* contains: user, router, data @todo: exclude superfluous */
   }),
   dispatch => ({
     onViewEvent: (eventData) => {
