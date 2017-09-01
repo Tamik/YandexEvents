@@ -51,6 +51,11 @@ const Feed = (props) => {
   }
   return (
     <div>
+      <Slider dots>
+        <div><Image size='large' src='http://krasivye-mesta.ru/img/Night-Moscow.jpg' /></div>
+        <div><Image size='large' src='http://andrive.ru/wp-content/uploads/2016/05/orig-600x386.jpg' /></div>
+        <div><Image size='large' src='http://lifeglobe.net/x/entry/472/2817506_large_3.jpg' /></div>
+      </Slider>
       <div
         className={style['events-list']}
       >
