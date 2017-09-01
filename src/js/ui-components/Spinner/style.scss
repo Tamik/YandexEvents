@@ -1,0 +1,31 @@
+.spinner {
+  position: absolute;
+  top: 35vh;
+  left: 50%;
+  height: 20px;
+  width: 40px;
+  margin-left: -20px;
+  overflow: hidden;
+  transform-origin: 50% 100%;
+  box-sizing: border-box;
+  animation: spinner 1.5s infinite linear;
+
+  &__wrap {
+    position: absolute;
+    right: 0;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    margin: 0 auto;
+    border: 3px solid rgb(255, 204, 0);
+    border-radius: 100%;
+    box-sizing: border-box;
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
