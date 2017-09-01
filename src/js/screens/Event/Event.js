@@ -1,25 +1,57 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { Container, TopBar } from 'ui-components'
+import { push, goBack } from 'actions/navigationActions'
+
 import style from './style.scss'
 
-const Event = props => (
-  <div className='transition-item screen'>
-    <TopBar>
-      <Link to='/feed'>Back</Link>
-    </TopBar>
-    <Container scrolling stretching>
-      <img src={props.event.image.small.src} />
-      <h2>{props.event.title}</h2>
-      {/* <p>{props.event.description}</p> */}
-    </Container>
-  </div>
-)
+class Event extends Component {
+  constructor(props) {
+    super(props)
+    if (!props.eventData) {
+      // Подгружаем данные с сервера
+      // Вот так можно взять eventId
+      // console.log('eventData отсутствует в store')
+      console.log('eventId: ', props.params.id)
+    }
+    else {
+      // Покажем то что есть, а остальное подгрузим
+      // console.log('eventData присутствует в store', props.eventData)
+      console.log('eventId: ', props.params.id, '\n eventData: ', props.eventData)
+    }
+  }
 
-const mapStateToProps = store => ({
-  event: store.eventStore.event,
-})
+  componentDidMount() {
 
-export default connect(mapStateToProps)(Event)
+  }
+
+  goBack = () => {
+    this.props.goBack()
+  }
+
+  render() {
+    return (
+      <div className='transition-item screen'>
+        <div className={`${style['page-inner']}`}>
+          <button onClick={this.goBack}>GoBack</button>
+          <br />
+          <img src={'xxx'} />
+          <h2>event</h2>
+          {/* <p>{props.event.description}</p> */}
+        </div>
+      </div>
+    )
+  }
+}
+
+export default connect(
+  state => ({
+    eventData: state.data.eventData,
+  }),
+  dispatch => ({
+    goBack: () => {
+      dispatch(goBack())
+    },
+  })
+)(Event)

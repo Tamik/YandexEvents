@@ -1,9 +1,16 @@
 import { combineReducers } from 'redux'
-import { userReducer, eventReducer } from 'reducers'
+import {
+  routerReducer,
+  userReducer,
+  modalReducer,
+  dataReducer,
+} from 'reducers'
 
 const rootReducer = combineReducers({
-  userStore: userReducer,
-  eventStore: eventReducer,
+  router: routerReducer,
+  user: userReducer,
+  data: dataReducer,
+  modal: modalReducer,
 })
 
 export default rootReducer

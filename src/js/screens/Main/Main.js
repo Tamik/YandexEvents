@@ -3,21 +3,24 @@ import PropTypes from 'prop-types'
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-const mapStateToProps = store => ({
-  firstEnter: store.userStore.firstEnter,
-})
+import { OnBoarding, Feed } from 'screens'
 
-const Main = props => (
-  <div className='transition-item'>
-    {props.firstEnter
-      ? (<Redirect to='/onboarding' />)
-      : (<Redirect to='/feed' />)
-    }
-  </div>
-)
-
-Main.propTypes = {
-  firstEnter: PropTypes.bool.isRequired,
+const Main = (props) => {
+  return (
+    <div>
+      {props.state.user.firstEnter
+        ? (<OnBoarding />)
+        : (<Feed />)
+      }
+    </div>
+  )
 }
 
-export default connect(mapStateToProps)(Main)
+export default connect(
+  state => ({ 
+    state,
+  }),
+  dispatch => ({
+    
+  })
+)(Main)
