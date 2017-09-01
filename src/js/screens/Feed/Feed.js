@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+
+import { push } from 'actions/navigationActions'
+import { sendModalEventData, sendModalCategoryData, sendModalPlaceData } from 'actions/dataActions'
+
 import style from './style.scss'
 
 const payloadEventsListJSON = [
@@ -44,51 +48,142 @@ const payloadEventsListJSON = [
 
 /* <Link key={item.id} to='/event' onClick={() => props.dispatch({ type: 'SEND_TO_EVENT', payload: item })}> */
 
-const Feed = props => (
-  <div className='transition-item screen'>
-    <div className={style['page-inner']}>
-      <div className={style['tabs']}>
-        <div className={style['tabs__inner']}>
-          <div className={`${style['tabs__tab']} ${style['tabs__tab_active']}`}>Лента</div>
-          <div className={style['tabs__tab']}>Карта</div>
+const Feed = (props) => {
+  const viewEvent = (eventData) => {
+    props.onViewEvent(eventData)
+  }
+  const viewCategory = (categoryData) => {
+    props.onViewCategory(categoryData)
+  }
+  const viewPlace = (placeData) => {
+    props.onViewPlace(placeData)
+  }
+  return (
+    <div className='transition-item screen'>
+      <div className={style['page-inner']}>
+        <div className={style['tabs']}>
+          <div className={style['tabs__inner']}>
+            <div className={`${style['tabs__tab']} ${style['tabs__tab_active']}`}>Лента</div>
+            <div className={style['tabs__tab']}>Карта</div>
+          </div>
         </div>
-      </div>
 
-      <div className={style['content']}>
+        <div className={style['content']}>
 
-        {/* Block events */}
-        <div className={style['events-list']}>
-          {
-            payloadEventsListJSON.map((item, index) => {
-              return (
-                <div key={item.id} className={`${style['events-list__item']}`}>
-                  <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                    <img
-                      src={item.image.small.src}
-                      alt=''
-                      className={style['image-fit-wrap__image-fitted']}
-                    />
+          {/* 
+            Block events 
+          */}
+          <div
+            className={style['events-list']}
+          >
+            {
+              payloadEventsListJSON.map((item, index) => {
+                return (
+                  <div
+                    role='button'
+                    key={item.id}
+                    className={`${style['events-list__item']}`}
+                    onClick={() => {
+                      viewEvent(item)
+                    }}
+                  >
+                    <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
+                      <img
+                        src={item.image.small.src}
+                        alt=''
+                        className={style['image-fit-wrap__image-fitted']}
+                      />
+                    </div>
+                    <div className={style['card-small__meta']}>
+                      <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
+                    </div>
                   </div>
-                  <div className={style['card-small__meta']}>
-                    <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                  </div>
-                </div>
-              )
-            })
-          }
-        </div>
+                )
+              })
+            }
+          </div>
 
-        {/* Block categories */}
-        {/* <div style={{ display: 'flex' }}>
-          <Link to='/category/1' style={{ display: 'block', width: 56, height: 56 }}>Cat1</Link>
-          <Link to='/category/2' style={{ display: 'block', width: 56, height: 56 }}>Cat2</Link>
-          <Link to='/category/3' style={{ display: 'block', width: 56, height: 56 }}>Cat3</Link>
+          <br /><br />
+
+          {/* 
+            Block categories 
+          */}
+          <div style={{ display: 'flex' }}>
+            <div
+              role='button'
+              onClick={() => {
+                viewCategory({ id: 1, title: 'Category 1' })
+              }}
+              style={{ display: 'block', width: 56, height: 56 }}
+            >Cat1</div>
+            <div
+              role='button'
+              onClick={() => {
+                viewCategory({ id: 2, title: 'Category 2' })
+              }}
+              style={{ display: 'block', width: 56, height: 56 }}
+            >Cat2</div>
+            <div
+              role='button'
+              onClick={() => {
+                viewCategory({ id: 2, title: 'Category 2' })
+              }}
+              style={{ display: 'block', width: 56, height: 56 }}
+            >Cat3</div>
+          </div>
+
+          <br /><br />
+
+          {/* 
+            Block places 
+          */}
+          <div style={{ display: 'flex' }}>
+            <div
+              role='button'
+              onClick={() => {
+                viewPlace({ id: 1, title: 'Place 1' })
+              }}
+              style={{ display: 'block', width: 56, height: 56 }}
+            >Place 1</div>
+            <div
+              role='button'
+              onClick={() => {
+                viewPlace({ id: 2, title: 'Place 2' })
+              }}
+              style={{ display: 'block', width: 56, height: 56 }}
+            >Place 2</div>
+            <div
+              role='button'
+              onClick={() => {
+                viewPlace({ id: 2, title: 'Place 2' })
+              }}
+              style={{ display: 'block', width: 56, height: 56 }}
+            >Place 3</div>
+          </div>
+
+          <br /><br /><br />
         </div>
-        <br /><br /><br /> */}
       </div>
     </div>
-    {/* <Link to='/onboarding' style={{ color: '#999', position: 'absolute', bottom: 0 }}>&lt; Goto Screen OnBoarding</Link> */}
-  </div>
-)
+  )
+}
 
-export default connect()(Feed)
+export default connect(
+  state => ({
+    state, /* contains: user, route. @todo: exclude superfluous */
+  }),
+  dispatch => ({
+    onViewEvent: (eventData) => {
+      dispatch(sendModalEventData(eventData))
+      dispatch(push(`/event/${eventData.id}`))
+    },
+    onViewCategory: (categoryData) => {
+      dispatch(sendModalCategoryData(categoryData))
+      dispatch(push(`/category/${categoryData.id}`))
+    },
+    onViewPlace: (placeData) => {
+      dispatch(sendModalPlaceData(placeData))
+      dispatch(push(`/place/${placeData.id}`))
+    },
+  })
+)(Feed)
