@@ -8,6 +8,8 @@ export const USER_ONBOARDING_VIEWED = 'USER_ONBOARDING_VIEWED'
 
 /* Data */
 export const DATA_EVENT = 'DATA_EVENT'
+export const DATA_CATEGORY = 'DATA_CATEGORY'
+export const DATA_PLACE = 'DATA_PLACE'
 
 /* Modals */
 export const MODAL_EVENT_VIEW = 'MODAL_EVENT_VIEW'
