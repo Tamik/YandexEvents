@@ -2,31 +2,18 @@ import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 
-import { combineReducers, applyMiddleware, createStore } from 'redux'
+import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createHashHistory } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
 import routerMiddleware from 'middlewares/routerMiddleware'
 import { locationChange } from 'actions/navigationActions'
-import {
-  routerReducer,
-  userReducer,
-  modalReducer,
-  dataReducer,
-} from 'reducers'
+import rootReducer from 'reducers/rootReducer'
 
 import Application from 'components/Application'
 
 const history = createHashHistory({ hashType: 'slash' })
-
-// @todo: pass to splitted file
-const rootReducer = combineReducers({
-  router: routerReducer,
-  user: userReducer,
-  data: dataReducer,
-  modal: modalReducer,
-})
 
 const middleware = routerMiddleware(history)
 
