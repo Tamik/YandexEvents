@@ -66,11 +66,11 @@ class Category extends Component {
     // 
   }
 
-  viewEvent(eventData) {
+  viewEvent = (eventData) => {
     this.props.onViewEvent(eventData)
   }
 
-  goBack() {
+  goBack = () => {
     this.props.goBack()
   }
 

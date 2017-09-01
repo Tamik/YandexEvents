@@ -21,14 +21,14 @@ class Event extends Component {
       console.log('eventId: ', props.params.id, '\n eventData: ', props.eventData)
     }
 
-    this.goBack = this.goBack.bind(this)
+    // this.goBack = this.goBack.bind(this)
   }
 
   componentDidMount() {
 
   }
 
-  goBack() {
+  goBack = () => {
     this.props.goBack()
   }
 
