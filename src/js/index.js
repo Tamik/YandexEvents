@@ -7,12 +7,16 @@ import { Provider } from 'react-redux'
 import { createHashHistory } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
-import { routerReducer, userReducer } from 'reducers'
 import routerMiddleware from 'middlewares/routerMiddleware'
 import { locationChange } from 'actions/navigationActions'
+import {
+  routerReducer,
+  userReducer,
+  modalReducer,
+  dataReducer,
+} from 'reducers'
 
 import Application from 'components/Application'
-
 
 const history = createHashHistory({ hashType: 'slash' })
 
@@ -20,6 +24,8 @@ const history = createHashHistory({ hashType: 'slash' })
 const rootReducer = combineReducers({
   router: routerReducer,
   user: userReducer,
+  data: dataReducer,
+  modal: modalReducer,
 })
 
 const middleware = routerMiddleware(history)
