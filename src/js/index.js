@@ -38,7 +38,6 @@ const store = createStore(
 )
 
 const renderApp = () => {
-  console.log('Rendered')
   render(
     <AppContainer>
       <Provider store={store}>
@@ -56,7 +55,7 @@ store.dispatch(
 
 // Listen store and render page on storeUpdate
 store.subscribe(() => {
-  console.log('store updated', store.getState())
+  // @todo: improve for chunked rendering
   renderApp()
 })
 
@@ -74,7 +73,6 @@ function onDeviceReady() {
   if (module.hot) {
     module.hot.accept('components/Application', () => {
       const nextApp = require('components/Application').default
-      console.log('nextApp: ', nextApp)
       renderApp(nextApp)
     })
   }
