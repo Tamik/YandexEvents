@@ -1,49 +1,57 @@
-import React, { Component } from 'react'
-import ReactDom from 'react-dom'
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
-import { connect } from 'react-redux'
+import React from 'react'
 import PageTransition from 'react-router-page-transition'
-
-import { Main, OnBoarding, Feed, Event, Places, Map, Category } from 'screens'
+import { connect } from 'react-redux'
 
 import style from './Application.scss'
 
-class Application extends Component {
-  constructor(props) {
-    super(props)
+import { Main, Event, Category } from '../screens'
 
-    this.state = {}
+const Application = (props) => {
+  const route = props.state.router.route
+  const routeChunks = window.location.hash.replace(/^#\/?|\/$/g, '').split('/')
+
+  /*
+    @TODO: Match URLs properly
+  */
+
+  // Main -> Screen( OnBoarding | Feed )
+  if (!route || route === '#/main' || route === '#/' || route.indexOf('#/feed') > -1) {
+    return <Main />
   }
 
-  componentDidMount() {
-    //
+  // Screen Map
+  if (route.indexOf('#/map') > -1) { 
+    // here
   }
 
-  render() {
-    return (
-      <Router>
-        <Route
-          render={({ location }) => (
-            <PageTransition>
-              <Switch location={location}>
-                <Route exact path='/' component={Main} />
-                <Route path='/onboarding' component={OnBoarding} />
-                <Route path='/feed' component={Feed} />
-                <Route path='/event' component={Event} />
-                <Route path='/category/:id' component={Category} />
-                <Route path='/places' component={Places} />
-                <Route path='/map' component={Map} />
-              </Switch>
-            </PageTransition>
-          )}
-        />
-      </Router>
-    )
+  // Screen Category
+  if (route.indexOf('#/category') > -1) {
+    const id = route.split('/')[2]
+    const params = { id }
+    return <Category params={params} />
   }
+
+  // Screen Place
+  if (route.indexOf('#/place') > -1) {
+    const id = route.split('/')[2]
+    const params = { id }
+    /* @todo: change to Place */
+    return <div>PlaceId is {id}, but "screen/Place" not found, implement it here<br /><br /><strong>For going back, press GoBack button in your browser ;)</strong></div>
+  }
+
+  // Screen Event
+  if (route.indexOf('#/event') > -1) {
+    const id = route.split('/')[2]
+    const params = { id }
+    return <Event params={params} />
+  }
+
+  // @todo: redirect to Screen Main
+  return <div>Not found ;)</div>
 }
 
-const mapStateToProps = store => ({
-  firstEnter: store.userStore.firstEnter,
-})
+export default connect(
+  state => ({ state }),
+  dispatch => ({})
+)(Application)
 
-export default connect(mapStateToProps)(Application)
