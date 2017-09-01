@@ -20,8 +20,6 @@ class Event extends Component {
       // console.log('eventData присутствует в store', props.eventData)
       console.log('eventId: ', props.params.id, '\n eventData: ', props.eventData)
     }
-
-    // this.goBack = this.goBack.bind(this)
   }
 
   componentDidMount() {

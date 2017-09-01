@@ -2,7 +2,7 @@
   width: 100%;
   overflow-x: auto;
 
-  div {
+  & > div {
     display: flex;
     flex-wrap: nowrap;
   }

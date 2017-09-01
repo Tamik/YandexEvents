@@ -4,17 +4,18 @@ import style from './style.scss'
 
 const Slider = (props) => {
   const settings = {
-    dots: true,
-    speed: 500,
+    dots: props.dots,
+    infinite: true,
+    speed: 400,
     arrows: false,
     slidesToShow: 1,
-    slidesToScroll: 1,
+    variableWidth: true,
+    swipe: true,
   }
 
   return (
     <SliderLib {...settings}>
-      <div><img src='https://i.ytimg.com/vi/6KzHYkHpkeg/hqdefault.jpg' /></div>
-      <div><img src='https://i.ytimg.com/vi/6KzHYkHpkeg/hqdefault.jpg' /></div>
+      { React.Children.toArray(props.children) }
     </SliderLib>
   )
 }

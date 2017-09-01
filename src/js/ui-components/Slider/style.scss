@@ -42,7 +42,7 @@
     position: relative;
     left: 0;
     top: 0;
-    display: block;
+    display: flex;
 
     &:before,
     &:after {
@@ -124,20 +124,20 @@
           top: 0;
           left: 0;
           content: '\2022';
-          width: 6px;
-          height: 6px;
+          width: 8px;
+          height: 8px;
           line-height: 20px;
           text-align: center;
           background-color: white;
           border-radius: 50%;
-          opacity: 0.25;
+          opacity: 0.5;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
       }
       &.slick-active button:before {
         background-color: white;
-        opacity: 0.75;
+        opacity: 1;
       }
     }
   }

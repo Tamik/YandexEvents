@@ -6,6 +6,7 @@ import { push } from 'actions/navigationActions'
 import { sendModalEventData, sendModalCategoryData, sendModalPlaceData } from 'actions/dataActions'
 
 import style from './style.scss'
+import styleTabs from 'ui-components/Tabs/style.scss'
 
 const payloadEventsListJSON = [
   {

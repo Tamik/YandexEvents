@@ -57,9 +57,6 @@ class Category extends Component {
     else {
       console.log('categoryData: ', props.categoryData)
     }
-
-    this.viewEvent = this.viewEvent.bind(this)
-    this.goBack = this.goBack.bind(this)
   }
 
   componentDidMount() {
