@@ -9,17 +9,16 @@ import style from './style.scss'
 class Event extends Component {
   constructor(props) {
     super(props)
-
     if (!props.eventData) {
       // Подгружаем данные с сервера
       // Вот так можно взять eventId
-      console.log('eventData отсутствует в store')
+      // console.log('eventData отсутствует в store')
       console.log('eventId: ', props.params.id)
     }
     else {
       // Покажем то что есть, а остальное подгрузим
-      console.log('eventData присутствует в store')
-      console.log('eventId: ', props.params.id)
+      // console.log('eventData присутствует в store', props.eventData)
+      console.log('eventId: ', props.params.id, '\n eventData: ', props.eventData)
     }
 
     this.goBack = this.goBack.bind(this)
@@ -50,7 +49,7 @@ class Event extends Component {
 
 export default connect(
   state => ({
-    eventData: state.eventData,
+    eventData: state.data.eventData,
   }),
   dispatch => ({
     goBack: () => {

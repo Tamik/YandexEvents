@@ -117,7 +117,7 @@ class Category extends Component {
 
 export default connect(
   state => ({
-    categoryData: state.categoryData,
+    categoryData: state.data.categoryData,
   }),
   dispatch => ({
     onViewEvent: (eventData) => {

@@ -6,7 +6,6 @@ import { connect } from 'react-redux'
 import { OnBoarding, Feed } from 'screens'
 
 const Main = (props) => {
-  console.log('Main.firstEnter: ', props)
   return (
     <div>
       {props.state.user.firstEnter
