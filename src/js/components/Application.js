@@ -2,12 +2,12 @@ import React from 'react'
 import PageTransition from 'react-router-page-transition'
 import { connect } from 'react-redux'
 
+import { Main, Event, Category, Feed, Map, OnBoarding } from '../screens'
+
 import style from './Application.scss'
 
-import { Main, Event, Category } from '../screens'
-
 const Application = (props) => {
-  const route = props.state.router.route
+  const route = props.router.route
   const routeChunks = window.location.hash.replace(/^#\/?|\/$/g, '').split('/')
 
   /*
@@ -15,13 +15,37 @@ const Application = (props) => {
   */
 
   // Main -> Screen( OnBoarding | Feed )
-  if (!route || route === '#/main' || route === '#/' || route.indexOf('#/feed') > -1) {
-    return <Main />
+  if (!route || route === '#/main' || route === '#/') {
+
+    let Fragment = null
+
+    if (props.user.firstEnter) {
+      Fragment = OnBoarding
+    }
+
+    return (
+      <Main
+        fragment={Fragment}
+      />
+    )
   }
 
-  // Screen Map
-  if (route.indexOf('#/map') > -1) { 
-    // here
+  // Screen Main ---> fragment Feed
+  if (route.indexOf('#/feed') > -1) {
+    return (
+      <Main
+        fragment={Feed}
+      />
+    )
+  }
+  
+  // Screen Main ---> fragment Map
+  if (route.indexOf('#/map') > -1) {
+    return (
+      <Main
+        fragment={Map}
+      />
+    )
   }
 
   // Screen Category
@@ -51,7 +75,11 @@ const Application = (props) => {
 }
 
 export default connect(
-  state => ({ state }),
+  state => ({
+    user: state.user,
+    router: state.router,
+    data: state.data,
+  }),
   dispatch => ({})
 )(Application)
 
