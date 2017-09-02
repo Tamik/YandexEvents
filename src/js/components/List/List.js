@@ -1,15 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import style from './style.scss'
 
-const List = props => (
-  <div className={style.list}>
-    {props.items.map(item => (<div>{item}</div>))}
-  </div>
-)
+import { Card } from 'ui-components'
+
+const List = (props) => {
+  if (props.type === 'events') {
+    return (
+      <div style={{ borderBottom: '1px solid #e5e5e5', marginBottom: 16, paddingBottom: 16 }}>
+        <Card
+          size='small'
+          src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
+          title={props.data.title}
+          description={props.data.description}
+        />
+      </div>
+    )
+  }
+  return (
+    <div style={{ borderBottom: '1px solid #e5e5e5', marginBottom: 16, paddingBottom: 16 }}>
+      <Card
+        size='small'
+        src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
+        title={props.data.title}
+        description={props.data.description}
+      />
+    </div>
+  )
+}
 
 List.defaultProps = {
-  items: ['Выставка', 'Выставка', 'Концерт'],
+  items: ['Выставка', 'Выставка 2', 'Концерт'],
   type: 'events',
 }
 
