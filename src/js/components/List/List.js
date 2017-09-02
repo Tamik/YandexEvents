@@ -16,6 +16,16 @@ const List = (props) => {
       </div>
     )
   }
+  else if (props.type === 'slider_events') {
+    return (
+      <Card
+        size='medium'
+        src={`http://io.yamblz.ru/i/events/${props.data.id}_large.jpg`}
+        title={props.data.title}
+        description={props.data.description}
+      />
+    )
+  }
   return (
     <div style={{ borderBottom: '1px solid #e5e5e5', marginBottom: 16, paddingBottom: 16 }}>
       <Card
