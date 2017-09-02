@@ -4,6 +4,7 @@ import {
   userReducer,
   modalReducer,
   dataReducer,
+  viewReducer,
 } from 'reducers'
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   user: userReducer,
   data: dataReducer,
   modal: modalReducer,
+  view: viewReducer,
 })
 
 export default rootReducer
