@@ -4,4 +4,4 @@ export { default as userReducer } from './userReducer'
 export { default as dataReducer } from './dataReducer'
 export { default as modalReducer } from './modalReducer'
 export { default as eventReducer } from './eventReducer'
-
+export { default as viewReducer } from './viewReducer'
