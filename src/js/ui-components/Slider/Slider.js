@@ -11,6 +11,7 @@ const Slider = (props) => {
     slidesToShow: 1,
     variableWidth: true,
     swipe: true,
+    slickGoTo: props.index,
   }
 
   return (
