@@ -1,0 +1,15 @@
+.button {
+  position: absolute;
+  bottom: 63px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 9px 20px 9px 20px;
+  border-radius: 100px;
+  border: none;
+  color: #1e1367;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
