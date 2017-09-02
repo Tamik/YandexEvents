@@ -5,6 +5,21 @@ import axios from 'axios'
 
 import { MapCard, Slider } from 'ui-components'
 
+import {
+  GEOLOCATION_WATCH_TIMEOUT,
+  CLUSTER_STYLE_PRESET,
+  EVENT_STYLE_PRESET,
+  MYLOCATION_STYLE_PRESET,
+  INIT_ZOOM,
+  MIN_ZOOM,
+  CONTROLS,
+  MAP_ZOOM_TO_MY_LOCATION,
+  POINT_TYPES,
+  EVENT_PLACEMARK_OPTIONS,
+  MYLOCATION_PLACEMARK_OPTIONS,
+  formatDistance,
+  getTimeEpoch,
+} from './settings'
 
 /**
  * @see
