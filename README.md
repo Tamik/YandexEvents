@@ -45,12 +45,5 @@ Pull requests именовать на русском языке, а так же 
         <br>
         <a href="https://github.com/Lunory">Ангелина Белокурая</a>
       </td>
-      <td align="center">
-        <a href="https://github.com/oktava6">
-          <img width="150" height="150" src="https://static.yamblz.ru/events/team/shchedrin.jpg">
-        </a>
-        <br>
-        <a href="https://github.com/oktava6">Иван Щедрин</a>
-      </td>
     <tr>
 </table>
