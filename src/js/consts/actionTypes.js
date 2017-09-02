@@ -14,3 +14,5 @@ export const DATA_PLACE = 'DATA_PLACE'
 /* Modals */
 export const MODAL_EVENT_VIEW = 'MODAL_EVENT_VIEW'
 
+/* View */
+export const VIEW_SET_VIEW_MODE = 'VIEW_SET_VIEW_MODE'
