@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { replace } from 'actions/navigationActions'
+import { sendModalCategoryData } from 'actions/dataActions'
 
 import { Tabs, Container } from 'ui-components'
 
@@ -11,33 +12,64 @@ import style from 'screens/main/style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
 
 const Main = (props) => {
+
   const activeTabName = props.router.route.slice(2)
-  const switchToTab = (tabName) => {
-    props.onSwitchTab(tabName)
+  const activeCategoryId = parseInt(props.params.categoryId, 10)
+
+  const viewMainTab = () => {
+    props.onViewMainTab()
   }
 
+  const viewCategory = (categoryData) => {
+    props.onViewCategory(categoryData)
+  }
+
+  // @TODO: get from api middleware
+  const payloadCategoriesJSON = [
+    {
+      "id": 1,
+      "title": "Category 1"
+    },
+    {
+      "id": 2,
+      "title": "Category 2"
+    },
+    {
+      "id": 3,
+      "title": "Category 3"
+    }
+  ]
 
   return (
     <div className='screen'>
       <Container stretching>
         <Tabs>
+          { /* Main tab */ }
           <div
             role='button'
             className={`${styleTabs.tabs__item} ${activeTabName === 'feed' ? styleTabs.tabs__item_active : ''}`}
             onClick={() => {
-              switchToTab('feed')
+              viewMainTab()
             }}
-          >Лента</div>
-          <div
-            role='button'
-            className={`${styleTabs.tabs__item} ${activeTabName === 'map' ? styleTabs.tabs__item_active : ''}`}
-            onClick={() => {
-              switchToTab('map')
-            }}
-          >Карта</div>
+          >Подборки</div>
+          {
+            /* Print categories tabs */
+            payloadCategoriesJSON.map((item, idx) => {
+              return (
+                <div
+                  key={item.id}
+                  role='button'
+                  className={`${styleTabs.tabs__item} ${activeCategoryId == item.id ? styleTabs.tabs__item_active : ''}`}
+                  onClick={() => {
+                    viewCategory(item)
+                  }}
+                >{item.title}</div>
+              )
+            })
+          }
         </Tabs>
         <Container scrolling stretching>
-          <props.fragment />
+          <props.fragment params={props.params} view={props.view} />
         </Container>
       </Container>
     </div>
@@ -49,10 +81,15 @@ export default connect(
     router: state.router,
     user: state.user,
     data: state.data,
+    view: state.view,
   }),
   dispatch => ({
-    onSwitchTab: (tabName) => {
-      dispatch(replace(`/${tabName}`))
+    onViewMainTab: () => {
+      dispatch(replace('/feed'))
+    },
+    onViewCategory: (categoryData) => {
+      dispatch(sendModalCategoryData(categoryData))
+      dispatch(replace(`/category/${categoryData.id}/list`))
     },
   })
 )(Main)

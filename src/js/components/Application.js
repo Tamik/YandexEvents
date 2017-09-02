@@ -4,68 +4,47 @@ import { connect } from 'react-redux'
 
 import { Main, Event, Category, Feed, Map, OnBoarding } from 'screens'
 
-import style from './Application.scss'
-
 const Application = (props) => {
   const route = props.router.route
   const routeChunks = window.location.hash.replace(/^#\/?|\/$/g, '').split('/')
 
   /*
-    @TODO: Match URLs properly
+    @TODO: Match URLs properly with regexp ;)
   */
 
-  // Main -> Screen( OnBoarding | Feed )
-  if (!route || route === '#/main' || route === '#/') {
-    let Fragment = null
-
-    if (props.user.firstEnter) {
-      Fragment = OnBoarding
-    }
-
-    return (
-      <Main
-        fragment={Fragment}
-      />
-    )
+  // Если пользователь впервые у нас, 
+  // то покажем OnBoarding
+  if (props.user.firstEnter) {
+    return (<OnBoarding />)
   }
 
-  // Screen Main ---> fragment Feed
-  if (route.indexOf('#/feed') > -1) {
+  // Main -> fragment -> Feed 
+  if (!route || route === '#/main' || route === '#/' || route.indexOf('#/feed') > -1) {
+    const params = {}
     return (
       <Main
         fragment={Feed}
-      />
-    )
-  }
-  
-  // Screen Main ---> fragment Map
-  if (route.indexOf('#/map') > -1) {
-    return (
-      <Main
-        fragment={Map}
+        params={params}
       />
     )
   }
 
-  // Screen Category
+  // Main -> fragment -> Category
   if (route.indexOf('#/category') > -1) {
-    const id = route.split('/')[2]
-    const params = { id }
-    return <Category params={params} />
-  }
-
-  // Screen Place
-  if (route.indexOf('#/place') > -1) {
-    const id = route.split('/')[2]
-    const params = { id }
-    /* @todo: change to Place */
-    return <div>PlaceId is {id}, but "screen/Place" not found, implement it here<br /><br /><strong>For going back, press GoBack button in your browser ;)</strong></div>
+    const chunks = route.split('/') // #/category/([0-9])/(map|list)
+    const categoryId = chunks[2]
+    const viewMode = chunks[3]
+    const params = { categoryId, viewMode }
+    return (<Main
+      fragment={Category}
+      params={params}
+    />)
   }
 
   // Screen Event
   if (route.indexOf('#/event') > -1) {
-    const id = route.split('/')[2]
-    const params = { id }
+    const eventId = route.split('/')[2]
+    const params = { eventId }
     return <Event params={params} />
   }
 
@@ -78,6 +57,7 @@ export default connect(
     user: state.user,
     router: state.router,
     data: state.data,
+    view: state.view,
   }),
   dispatch => ({})
 )(Application)

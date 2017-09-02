@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux'
 
 import { push } from 'actions/navigationActions'
@@ -9,7 +10,6 @@ import { Card } from 'ui-components'
 
 const List = (props) => {
   const viewEvent = (eventData) => {
-    console.log('events', eventData)
     props.onViewEvent(eventData)
   }
   if (props.type === 'events') {

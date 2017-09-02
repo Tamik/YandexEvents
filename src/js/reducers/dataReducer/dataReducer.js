@@ -17,13 +17,13 @@ const dataReducer = (state = initialState, action) => {
     case DATA_CATEGORY: {
       return {
         ...state,
-        categoryData: action.eventData,
+        categoryData: action.categoryData,
       }
     }
     case DATA_PLACE: {
       return {
         ...state,
-        placeData: action.eventData,
+        placeData: action.placeData,
       }
     }
     default:

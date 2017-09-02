@@ -3,8 +3,12 @@ import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
-import { push, goBack } from 'actions/navigationActions'
+import { push, replace } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
+import { setViewMode } from 'actions/viewActions'
+import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
+
+import { FloatingButton } from 'ui-components'
 
 import { EventsList } from 'containers'
 import style from './style.scss'
@@ -17,9 +21,11 @@ class Category extends Component {
       data: [],
     }
 
+    this.viewMode = this.props.params.viewMode.toUpperCase()
+
     if (!props.categoryData) {
       // load data from server by categoryId
-      console.log('Load events from server by category id: ', props.params.id)
+      console.log('Load events from server by category id: ', props)
     }
     else {
       console.log('categoryData: ', props.categoryData)
@@ -33,17 +39,27 @@ class Category extends Component {
       .then(response => this.setState({ sliderData: response.data.data }))
   }
 
-  viewEvent = (eventData) => {
-    this.props.onViewEvent(eventData)
-  }
-
-  goBack = () => {
-    this.props.goBack()
+  toggleViewMode = () => {
+    this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
+    this.props.onViewModeChanged(
+      this.props.params.categoryId,
+      this.viewMode
+    )
   }
 
   render() {
     return (
-      <EventsList payload={this.state.data} />
+      <div>
+        {
+          this.viewMode === VIEW_MODE_LIST
+            ? <EventsList payload={this.state.data} />
+            : <div>Map</div>
+        }
+        <FloatingButton
+          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          onClick={this.toggleViewMode}
+        />
+      </div>
     )
   }
 }
@@ -51,14 +67,12 @@ class Category extends Component {
 export default connect(
   state => ({
     categoryData: state.data.categoryData,
+    view: state.view,
   }),
   dispatch => ({
-    onViewEvent: (eventData) => {
-      dispatch(sendModalEventData(eventData))
-      dispatch(push(`/event/${eventData.id}`))
-    },
-    goBack: () => {
-      dispatch(goBack())
+    onViewModeChanged: (currCategoryId, newViewMode) => {
+      dispatch(setViewMode(newViewMode))
+      dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
     },
   })
 )(Category)
