@@ -20,6 +20,23 @@ import {
   formatDistance,
   getTimeEpoch,
 } from './settings'
+import {
+  YMapsWrap,
+  Pane,
+  PaneInner,
+  BalloonLayout,
+  BalloonInner,
+  BalloonTopBar,
+  BtnClose,
+  BalloonItemsWrap,
+  BalloonEventItem,
+  BalloonEventTitle,
+  BalloonEventMeta,
+  DistanceLabel,
+  BtnGoToMyLocation,
+} from './styles'
+
+var initialIndexer = 0
 
 /**
  * @see
