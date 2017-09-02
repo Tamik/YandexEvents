@@ -12,14 +12,25 @@ const OnBoarding = (props) => {
   }
   return (
     <div className={'transition-item screen'}>
-      <div className={style['page-inner']}>
-        <h1>Welcome to NewYear on Yandex.Afisha</h1>
-        <br /><br />
+      <div
+        className={style['page-inner']}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          padding: '46px 22px 16px',
+          backgroundColor: '#1e1367',
+          backgroundImage: 'url(onboarding.png)',
+          fontSize: '1.5rem',
+        }}
+      >
+        <h1 style={{ fontWeight: 'normal', fontSize: '1.5rem', marginBottom: 16 }}>Юбилей Москвы!</h1>
+        <p>Мы выбрали самое интересное.</p>
+
         <button
-          style={{ background: '#fff', textDecoration: 'none', color: '#3c70c4' }}
+          style={{ marginTop: 'auto', background: '#fff', textDecoration: 'none', padding: 16, fontSize: '1.25rem', color: '#2a3034', border: 'none' }}
           onClick={goNext}
         >
-          Продолжить
+          Далее
         </button>
       </div>
     </div>
