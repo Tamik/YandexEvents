@@ -11,6 +11,8 @@ import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 import { FloatingButton } from 'ui-components'
 
 import { EventsList } from 'containers'
+import { Map } from 'screens'
+
 import style from './style.scss'
 
 class Category extends Component {
@@ -53,7 +55,7 @@ class Category extends Component {
         {
           this.viewMode === VIEW_MODE_LIST
             ? <EventsList payload={this.state.data} />
-            : <div>Map</div>
+            : <Map />
         }
         <FloatingButton
           title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
