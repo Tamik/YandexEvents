@@ -15,12 +15,12 @@ class Event extends Component {
       // Подгружаем данные с сервера
       // Вот так можно взять eventId
       // console.log('eventData отсутствует в store')
-      console.log('eventId: ', props.params.id)
+      console.log('eventId: ', props.params.eventId)
     }
     else {
       // Покажем то что есть, а остальное подгрузим
       // console.log('eventData присутствует в store', props.eventData)
-      console.log('eventId: ', props.params.id, '\n eventData: ', props.eventData)
+      console.log('eventId: ', props.params.eventId, '\n eventData: ', props.eventData)
     }
   }
 
