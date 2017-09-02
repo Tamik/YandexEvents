@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { onBoardingViewed } from 'actions/userActions'
 import { replace } from 'actions/navigationActions'
+
+import { Container } from 'ui-components'
 import style from './style.scss'
 
 const OnBoarding = (props) => {
@@ -11,17 +13,15 @@ const OnBoarding = (props) => {
     props.onGoNext()
   }
   return (
-    <div className={'transition-item screen'}>
-      <div
-        className={style['page-inner']}
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          padding: '46px 22px 16px',
-          backgroundColor: '#1e1367',
-          backgroundImage: 'url(onboarding.png)',
-          fontSize: '1.5rem',
-        }}
+    <div className={'transition-item screen'} style={{
+      padding: '46px 22px 16px',
+      backgroundColor: '#1e1367',
+      fontSize: '1.5rem',
+      color: '#fff',
+    }}
+    >
+      <Container
+        stretching
       >
         <h1 style={{ fontWeight: 'normal', fontSize: '1.5rem', marginBottom: 16 }}>Юбилей Москвы!</h1>
         <p>Мы выбрали самое интересное.</p>
@@ -32,7 +32,7 @@ const OnBoarding = (props) => {
         >
           Далее
         </button>
-      </div>
+      </Container>
     </div>
   )
 }

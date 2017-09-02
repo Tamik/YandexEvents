@@ -3,6 +3,7 @@ import PageTransition from 'react-router-page-transition'
 import { connect } from 'react-redux'
 
 import { Main, Event, Category, Feed, Map, OnBoarding } from 'screens'
+import style from './Application.scss'
 
 const Application = (props) => {
   const route = props.router.route
