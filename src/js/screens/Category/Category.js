@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import { push, goBack } from 'actions/navigationActions'
+import { push, replace } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
+import { setViewMode } from 'actions/viewActions'
+import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
 import style from './style.scss'
 
@@ -50,9 +52,11 @@ class Category extends Component {
   constructor(props) {
     super(props)
 
+    this.viewMode = this.props.params.viewMode.toUpperCase()
+
     if (!props.categoryData) {
       // load data from server by categoryId
-      console.log('Load events from server by category id: ', props.params.id)
+      console.log('Load events from server by category id: ', props)
     }
     else {
       console.log('categoryData: ', props.categoryData)
@@ -60,25 +64,32 @@ class Category extends Component {
   }
 
   componentDidMount() {
-    // 
   }
 
   viewEvent = (eventData) => {
     this.props.onViewEvent(eventData)
   }
 
-  goBack = () => {
-    this.props.goBack()
+  toggleViewMode = () => {
+    this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
+    this.props.onViewModeChanged(
+      this.props.params.categoryId,
+      this.viewMode
+    )
   }
 
   render() {
     return (
-      <div className='transition-item screen'>
-        <div className={`${style['page-inner']}`}>
-          <button onClick={this.goBack}>GoBack</button>
-          <h3>Category</h3>
-          <div>
-            <div className={style['events-list']}>
+      <div>
+        <button
+          onClick={() => {
+            this.toggleViewMode()
+          }}
+          style={{ fontSize: 14, padding: 10 }}
+        >Map/List toggle</button>
+        {
+          this.viewMode === VIEW_MODE_LIST
+            ? <div className={style['events-list']}>
               {
                 payloadEventsListJSON.map((item, index) => {
                   return (
@@ -105,8 +116,8 @@ class Category extends Component {
                 })
               }
             </div>
-          </div>
-        </div>
+            : <div>Map</div>
+        }
       </div>
     )
   }
@@ -115,14 +126,16 @@ class Category extends Component {
 export default connect(
   state => ({
     categoryData: state.data.categoryData,
+    view: state.view,
   }),
   dispatch => ({
     onViewEvent: (eventData) => {
       dispatch(sendModalEventData(eventData))
       dispatch(push(`/event/${eventData.id}`))
     },
-    goBack: () => {
-      dispatch(goBack())
+    onViewModeChanged: (currCategoryId, newViewMode) => {
+      dispatch(setViewMode(newViewMode))
+      dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
     },
   })
 )(Category)
