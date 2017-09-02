@@ -1,11 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+
+import { Map as YandexMaps } from 'components'
+import { Container } from 'ui-components'
 
 const Map = () => (
-  <div>
-    <h1>This is Map Component</h1>
-    <br />
-  </div>
+  <Container stretching>
+    <YandexMaps />
+  </Container>
 )
 
 export default Map
