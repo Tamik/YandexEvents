@@ -1,56 +1,25 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
 import { push, replace } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 import { setViewMode } from 'actions/viewActions'
 import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
-import style from './style.scss'
+import { FloatingButton } from 'ui-components'
 
-const payloadEventsListJSON = [
-  {
-    "id": 1,
-    "title": "Event 1",
-    "image": {
-      "small": {
-        "src": "https://img2.goodfon.ru/original/320x400/3/a0/daft-punk-daft-pank-tomas-2560.jpg"
-      }
-    }
-  },
-  {
-    "id": 2,
-    "title": "Event 2",
-    "image": {
-      "small": {
-        "src": "http://www.secureworldme.com/asset/images/portfolio/events.jpg"
-      }
-    }
-  },
-  {
-    "id": 3,
-    "title": "Event 3",
-    "image": {
-      "small": {
-        "src": "http://www.northcobbphotoclub.com/uploads/2/4/2/0/24207577/8109020_orig.jpg"
-      }
-    }
-  },
-  {
-    "id": 4,
-    "title": "Event 4",
-    "image": {
-      "small": {
-        "src": "http://www.northcobbphotoclub.com/uploads/2/4/2/0/24207577/4034355_orig.jpg"
-      }
-    }
-  },
-]
+import { EventsList } from 'containers'
+import style from './style.scss'
 
 class Category extends Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      data: [],
+    }
 
     this.viewMode = this.props.params.viewMode.toUpperCase()
 
@@ -64,10 +33,10 @@ class Category extends Component {
   }
 
   componentDidMount() {
-  }
-
-  viewEvent = (eventData) => {
-    this.props.onViewEvent(eventData)
+    axios.get('http://io.yamblz.ru/events', { params: { items_per_page: 3 } })
+      .then(response => this.setState({ data: response.data.data }))
+    axios.get('http://io.yamblz.ru/events', { params: { items_per_page: 3, page: 2 } })
+      .then(response => this.setState({ sliderData: response.data.data }))
   }
 
   toggleViewMode = () => {
@@ -81,43 +50,15 @@ class Category extends Component {
   render() {
     return (
       <div>
-        <button
-          onClick={() => {
-            this.toggleViewMode()
-          }}
-          style={{ fontSize: 14, padding: 10 }}
-        >Map/List toggle</button>
         {
           this.viewMode === VIEW_MODE_LIST
-            ? <div className={style['events-list']}>
-              {
-                payloadEventsListJSON.map((item, index) => {
-                  return (
-                    <div
-                      role='button'
-                      key={item.id}
-                      className={`${style['events-list__item']}`}
-                      onClick={() => {
-                        this.viewEvent(item)
-                      }}
-                    >
-                      <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                        <img
-                          src={item.image.small.src}
-                          alt=''
-                          className={style['image-fit-wrap__image-fitted']}
-                        />
-                      </div>
-                      <div className={style['card-small__meta']}>
-                        <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                      </div>
-                    </div>
-                  )
-                })
-              }
-            </div>
+            ? <EventsList payload={this.state.data} />
             : <div>Map</div>
         }
+        <FloatingButton
+          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          onClick={this.toggleViewMode}
+        />
       </div>
     )
   }
@@ -129,10 +70,6 @@ export default connect(
     view: state.view,
   }),
   dispatch => ({
-    onViewEvent: (eventData) => {
-      dispatch(sendModalEventData(eventData))
-      dispatch(push(`/event/${eventData.id}`))
-    },
     onViewModeChanged: (currCategoryId, newViewMode) => {
       dispatch(setViewMode(newViewMode))
       dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
