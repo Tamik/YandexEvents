@@ -23,8 +23,10 @@
     flex-direction: column;
     justify-content: space-between;
     flex-grow: 1;
+    padding: 16px;
 
     &_small {
+      padding: 0;
       padding-left: 16px;
       padding-bottom: 16px;
     }

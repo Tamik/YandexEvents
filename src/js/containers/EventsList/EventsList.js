@@ -1,11 +1,15 @@
 import React from 'react'
+
 import { List } from 'components'
-import { Carousel } from 'ui-components'
 
 const EventsList = props => (
-  <Carousel>
-    <List type='events' />
-  </Carousel>
+  <div style={{ marginLeft: 16 }}>
+    {
+      props.payload.map(item => (
+        <List key={item.id} type='events' data={item} />
+      ))
+    }
+  </div>
 )
 
 export default EventsList
