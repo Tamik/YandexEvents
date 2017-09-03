@@ -1,7 +1,7 @@
 .tabs {
   display: flex;
   flex-shrink: 0;
-  padding-top: 24px;
+  padding-top: 48px;
   background-color: #1e1367;
   overflow-y: auto;
 
@@ -12,8 +12,8 @@
 
   &__item {
     flex-grow: 1;
-    padding: 20px;
-    text-transform: uppercase;
+    margin: 0 16px;
+    padding-bottom: 16px;
     text-align: center;
     font-size: 0.87rem;
     letter-spacing: 0.05rem;

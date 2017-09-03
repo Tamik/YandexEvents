@@ -29,6 +29,20 @@ module.exports = {
         loader: 'babel-loader',
       },
       {
+        test: /\.(js|jsx)$/,
+        enforce: 'pre',
+        exclude: /(node_modules|\.spec\.js)/,
+        use: [
+          {
+            loader: 'webpack-strip-block',
+            options: {
+              start: 'dev:start',
+              end: 'dev:end',
+            },
+          },
+        ],
+      },
+      {
         test: /\.(scss|sass)$/,
         use: [
           {

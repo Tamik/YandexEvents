@@ -1,58 +1,32 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import axios from 'axios'
 
-import { push, goBack } from 'actions/navigationActions'
+import { push, replace } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
+import { setViewMode } from 'actions/viewActions'
+import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
+import { FloatingButton } from 'ui-components'
+
+import { EventsList } from 'containers'
+import { Map } from 'screens'
 import style from './style.scss'
-
-const payloadEventsListJSON = [
-  {
-    "id": 1,
-    "title": "Event 1",
-    "image": {
-      "small": {
-        "src": "https://img2.goodfon.ru/original/320x400/3/a0/daft-punk-daft-pank-tomas-2560.jpg"
-      }
-    }
-  },
-  {
-    "id": 2,
-    "title": "Event 2",
-    "image": {
-      "small": {
-        "src": "http://www.secureworldme.com/asset/images/portfolio/events.jpg"
-      }
-    }
-  },
-  {
-    "id": 3,
-    "title": "Event 3",
-    "image": {
-      "small": {
-        "src": "http://www.northcobbphotoclub.com/uploads/2/4/2/0/24207577/8109020_orig.jpg"
-      }
-    }
-  },
-  {
-    "id": 4,
-    "title": "Event 4",
-    "image": {
-      "small": {
-        "src": "http://www.northcobbphotoclub.com/uploads/2/4/2/0/24207577/4034355_orig.jpg"
-      }
-    }
-  },
-]
 
 class Category extends Component {
   constructor(props) {
     super(props)
 
+    this.state = {
+      data: [],
+    }
+
+    this.viewMode = this.props.params.viewMode.toUpperCase()
+
     if (!props.categoryData) {
       // load data from server by categoryId
-      console.log('Load events from server by category id: ', props.params.id)
+      console.log('Load events from server by category id: ', props)
     }
     else {
       console.log('categoryData: ', props.categoryData)
@@ -60,53 +34,32 @@ class Category extends Component {
   }
 
   componentDidMount() {
-    // 
+    axios.get('http://io.yamblz.ru/events', { params: { items_per_page: 3 } })
+      .then(response => this.setState({ data: response.data.data }))
+    axios.get('http://io.yamblz.ru/events', { params: { items_per_page: 3, page: 2 } })
+      .then(response => this.setState({ sliderData: response.data.data }))
   }
 
-  viewEvent = (eventData) => {
-    this.props.onViewEvent(eventData)
-  }
-
-  goBack = () => {
-    this.props.goBack()
+  toggleViewMode = () => {
+    this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
+    this.props.onViewModeChanged(
+      this.props.params.categoryId,
+      this.viewMode
+    )
   }
 
   render() {
     return (
-      <div className='transition-item screen'>
-        <div className={`${style['page-inner']}`}>
-          <button onClick={this.goBack}>GoBack</button>
-          <h3>Category</h3>
-          <div>
-            <div className={style['events-list']}>
-              {
-                payloadEventsListJSON.map((item, index) => {
-                  return (
-                    <div
-                      role='button'
-                      key={item.id}
-                      className={`${style['events-list__item']}`}
-                      onClick={() => {
-                        this.viewEvent(item)
-                      }}
-                    >
-                      <div className={`${style['card-small__image-wrap']} ${style['image-fit-wrap']}`}>
-                        <img
-                          src={item.image.small.src}
-                          alt=''
-                          className={style['image-fit-wrap__image-fitted']}
-                        />
-                      </div>
-                      <div className={style['card-small__meta']}>
-                        <h3 className={`${style['events-list__item-title']}`}>{item.title}</h3>
-                      </div>
-                    </div>
-                  )
-                })
-              }
-            </div>
-          </div>
-        </div>
+      <div>
+        {
+          this.viewMode === VIEW_MODE_LIST
+            ? <EventsList payload={this.state.data} />
+            : <Map />
+        }
+        <FloatingButton
+          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          onClick={this.toggleViewMode}
+        />
       </div>
     )
   }
@@ -115,14 +68,12 @@ class Category extends Component {
 export default connect(
   state => ({
     categoryData: state.data.categoryData,
+    view: state.view,
   }),
   dispatch => ({
-    onViewEvent: (eventData) => {
-      dispatch(sendModalEventData(eventData))
-      dispatch(push(`/event/${eventData.id}`))
-    },
-    goBack: () => {
-      dispatch(goBack())
+    onViewModeChanged: (currCategoryId, newViewMode) => {
+      dispatch(setViewMode(newViewMode))
+      dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
     },
   })
 )(Category)

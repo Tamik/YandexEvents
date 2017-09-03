@@ -21,17 +21,16 @@
   &__info {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     flex-grow: 1;
     padding: 16px;
 
     &_small {
       padding: 0;
       padding-left: 16px;
-      padding-bottom: 16px;
     }
 
     &_medium {
+      justify-content: space-between;
       height: calc(100% - 176px);
       padding: 20px;
       background-color: #f2f2f2;
@@ -53,12 +52,17 @@
     }
 
     &_large {
-
+      margin-bottom: 16px;
+      font-size: 1.5rem;
+      line-height: 1.75rem;
     }
   }
 
   &__text {
-    margin-top: auto;
+    &_bottom {
+      margin-top: auto;
+
+    }
 
     &_time {
 
