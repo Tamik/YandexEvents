@@ -19,12 +19,15 @@ const List = (props) => {
         onClick={() => {
           viewEvent(props.data)
         }}
-        style={{ marginBottom: 20, }}
+        style={{ marginBottom: 16 }}
       >
         <Card
           size='medium'
           src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
           title={props.data.title}
+          dateInfo={`${props.data.dateFormatted.day} - ${props.data.dateEndFormatted.day}
+           ${props.data.dateEndFormatted.month}, ${props.data.dateFormatted.time}
+            - ${props.data.dateEndFormatted.time}`}
           description={props.data.description}
         />
       </div>
@@ -33,7 +36,7 @@ const List = (props) => {
   else if (props.type === 'slider_events') {
     return (
       <Card
-        size='medium'
+        size='small'
         src={`http://io.yamblz.ru/i/events/${props.data.id}_large.jpg`}
         title={props.data.title}
         description={props.data.description}
