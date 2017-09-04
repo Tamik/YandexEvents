@@ -6,10 +6,11 @@ import { connect } from 'react-redux'
 import { replace } from 'actions/navigationActions'
 import { sendModalCategoryData } from 'actions/dataActions'
 
-import { Tabs, Container } from 'ui-components'
+import { Tabs, Container, BottomNavigation, Icon } from 'ui-components'
 
 import style from 'screens/main/style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
+import styleBotNav from 'ui-components/BottomNavigation/style.scss'
 
 const Main = (props) => {
 
@@ -62,7 +63,7 @@ const Main = (props) => {
           onClick={() => {
             viewMainTab()
           }}
-        >Подборки</div>
+        >Лучшее</div>
         {
           /* Print categories tabs */
           payloadCategoriesJSON.map((item, idx) => {
@@ -79,9 +80,31 @@ const Main = (props) => {
           })
         }
       </Tabs>
-      <Container scrolling stretching>
+      <Container scrolling stretching background>
         <props.fragment params={props.params} view={props.view} />
       </Container>
+      <BottomNavigation>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='star' height='20' />
+          Лучшее
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='ticket' height='20' />
+          Мои билеты
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='moscowDayActive' height='20' />
+          День Города
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='search' height='20' />
+          Поиск
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='profile' height='20' />
+          Профиль
+        </div>
+      </BottomNavigation>
     </div>
   )
 }
