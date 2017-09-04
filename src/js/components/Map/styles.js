@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 flex-grow: 1;
 position: relative;
-height: 90vh !important;
+height: 90vh;
 `
 const Pane = styled.div`
 position: absolute;

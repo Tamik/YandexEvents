@@ -12,7 +12,6 @@ import { FloatingButton } from 'ui-components'
 
 import { EventsList } from 'containers'
 import { Map } from 'screens'
-
 import style from './style.scss'
 
 class Category extends Component {
