@@ -1,23 +1,35 @@
 .avatar {
-  margin: 0 auto;
-  background-size: cover;
-  background-position: center;
+  width: 65vw;
+  min-height: 100%;
+  background-color: #fff;
 
-  &_small {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
+  &__img {
+    height: 166px;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
   }
 
-  &_medium {
-    width: 74px;
-    height: 74px;
+  &__description {
+    padding: 12px;
+    background-color: #fff;
+    color: #333;
+  }
+
+  &__title {
+    font-size: 1.125rem;
+    line-height: 1.5rem;
+    margin-bottom: 8px;
   }
 
   &__text {
-    margin-top: 8px;
-    color: #000;
-    font-size: 0.75rem;
-    text-align: center;
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 0.875rem;
+    line-height: 1.5rem;
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 }
