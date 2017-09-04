@@ -32,8 +32,8 @@ const Icon = (props) => {
 
 Icon.propTypes = {
   type: PropTypes.string.isRequired,
-  width: PropTypes.number,
-  height: PropTypes.number,
+  width: PropTypes.string,
+  height: PropTypes.string,
   color: PropTypes.string,
 }
 export default Icon
