@@ -1,4 +1,8 @@
 .list {
-  &__item {
+  &__title {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: #333333;
+    margin-bottom: 12px;
   }
 }

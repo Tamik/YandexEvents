@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { Card } from 'ui-components'
+import { Card, Avatar } from 'ui-components'
 
 const List = (props) => {
   const viewEvent = (eventData) => {
@@ -40,6 +40,14 @@ const List = (props) => {
         src={`http://io.yamblz.ru/i/events/${props.data.id}_large.jpg`}
         title={props.data.title}
         description={props.data.description}
+      />
+    )
+  }
+  else if (props.type === 'slider_avatars') {
+    return (
+      <Avatar
+        src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
+        title={props.data.title}
       />
     )
   }
