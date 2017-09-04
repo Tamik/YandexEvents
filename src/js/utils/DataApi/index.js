@@ -1,1 +1,1 @@
-export { default as DataApi } from './DataApi.js'
+export { default as DataApi } from './DataApi'
