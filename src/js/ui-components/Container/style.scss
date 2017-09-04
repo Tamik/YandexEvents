@@ -13,4 +13,12 @@
       height: 0;
     }
   }
+
+  &_image {
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: 150px 210px;
+    background-size: 283px 382px;
+    background-image: url('./md.svg');
+  }
 }
