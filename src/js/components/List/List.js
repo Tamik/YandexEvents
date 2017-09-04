@@ -19,10 +19,10 @@ const List = (props) => {
         onClick={() => {
           viewEvent(props.data)
         }}
-        style={{ borderBottom: '1px solid #e5e5e5', marginBottom: 16, paddingBottom: 16 }}
+        style={{ marginBottom: 20, }}
       >
         <Card
-          size='small'
+          size='medium'
           src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
           title={props.data.title}
           description={props.data.description}
