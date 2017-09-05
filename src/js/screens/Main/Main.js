@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { replace } from 'actions/navigationActions'
@@ -13,7 +12,6 @@ import styleTabs from 'ui-components/Tabs/style.scss'
 import styleBotNav from 'ui-components/BottomNavigation/style.scss'
 
 const Main = (props) => {
-
   const activeTabName = props.router.route.slice(2)
   const activeCategoryId = parseInt(props.params.categoryId, 10)
 
