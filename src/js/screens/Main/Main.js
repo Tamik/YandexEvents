@@ -53,7 +53,7 @@ const Main = (props) => {
 
   return (
     <div className='screen'>
-      <Tabs>
+      <Tabs style={props.data.configData.params.style.topBar}>
         { /* Main tab */ }
         <div
           role='button'
@@ -61,6 +61,7 @@ const Main = (props) => {
           onClick={() => {
             viewMainTab()
           }}
+          style={props.data.configData.params.style.topBar}
         >Лучшее</div>
         {
           /* Print categories tabs */
@@ -73,6 +74,7 @@ const Main = (props) => {
                 onClick={() => {
                   viewCategory(item)
                 }}
+                style={props.data.configData.params.style.topBar}
               >{item.title}</div>
             )
           })
