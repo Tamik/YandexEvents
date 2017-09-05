@@ -12,6 +12,7 @@ class Constructor extends Component {
   renderListContainer = props => (
     <ListContainer
       key={props.id}
+      params={props.data}
       title={props.params.title}
       style={props.style}
       cardStyle={props.cardStyle}
@@ -21,6 +22,7 @@ class Constructor extends Component {
   renderSliderContainer = props => (
     <SliderContainer
       key={props.id}
+      params={props.data}
       title={props.params.title}
       style={props.style}
       cardStyle={props.cardStyle}
@@ -30,6 +32,7 @@ class Constructor extends Component {
   renderCarouselContainer = props => (
     <CarouselContainer
       key={props.id}
+      params={props.data}
       title={props.params.title}
       style={props.style}
       cardStyle={props.cardStyle}
@@ -39,6 +42,7 @@ class Constructor extends Component {
   renderHintContainer = props => (
     <HintContainer
       key={props.id}
+      params={props.data}
       title={props.params.title}
       style={props.style}
       cardStyle={props.cardStyle}
@@ -57,6 +61,7 @@ class Constructor extends Component {
         case 'list': return this.renderListContainer({
           id: container.id,
           type: container.type,
+          data: container.data,
           params: {
             title: container.params.title,
           },
@@ -66,6 +71,7 @@ class Constructor extends Component {
         case 'carousel': return this.renderCarouselContainer({
           id: container.id,
           type: container.type,
+          data: container.data,
           params: {
             title: container.params.title,
           },
@@ -75,6 +81,7 @@ class Constructor extends Component {
         case 'slider': return this.renderSliderContainer({
           id: container.id,
           type: container.type,
+          data: container.data,
           params: {
             title: container.params.title,
           },
@@ -84,6 +91,7 @@ class Constructor extends Component {
         case 'hint': return this.renderHintContainer({
           id: container.id,
           type: container.type,
+          data: container.data,
           params: {
             // title: container.params.title,
           },
