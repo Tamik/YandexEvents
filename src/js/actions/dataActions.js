@@ -1,4 +1,4 @@
-import { DATA_EVENT, DATA_CATEGORY, DATA_PLACE } from 'consts/actionTypes'
+import { DATA_EVENT, DATA_CATEGORY, DATA_PLACE, DATA_CONFIG } from 'consts/actionTypes'
 
 export const sendModalEventData = payload => ({
   type: DATA_EVENT,
@@ -15,3 +15,7 @@ export const sendModalPlaceData = payload => ({
   placeData: payload,
 })
 
+export const sendApplicationConfig = payload => ({
+  type: DATA_CONFIG,
+  configData: payload,
+})

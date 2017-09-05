@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { replace } from 'actions/navigationActions'
@@ -13,7 +12,6 @@ import styleTabs from 'ui-components/Tabs/style.scss'
 import styleBotNav from 'ui-components/BottomNavigation/style.scss'
 
 const Main = (props) => {
-
   const activeTabName = props.router.route.slice(2)
   const activeCategoryId = parseInt(props.params.categoryId, 10)
 
@@ -55,7 +53,7 @@ const Main = (props) => {
 
   return (
     <div className='screen'>
-      <Tabs>
+      <Tabs style={props.data.configData.params.style.topBar}>
         { /* Main tab */ }
         <div
           role='button'
@@ -63,6 +61,7 @@ const Main = (props) => {
           onClick={() => {
             viewMainTab()
           }}
+          style={props.data.configData.params.style.topBar}
         >Лучшее</div>
         {
           /* Print categories tabs */
@@ -75,6 +74,7 @@ const Main = (props) => {
                 onClick={() => {
                   viewCategory(item)
                 }}
+                style={props.data.configData.params.style.topBar}
               >{item.title}</div>
             )
           })
