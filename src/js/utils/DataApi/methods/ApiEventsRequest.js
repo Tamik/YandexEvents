@@ -6,8 +6,20 @@ class ApiEventsRequest extends ApiRequest {
     return this
   }
   byDate = (date) => {
-    this.params.add('date', date)
+    // @todo: refactoring params to array
+    let index = 0
+    Object.keys(this.params.params).map((key) => {
+      if (key.toString().indexOf('date') > -1) {
+        index += 1
+      }
+      return index
+    })
+    
+    this.params.add(`date[${index}]`, date)
     return this
+  }
+  orderByBeginTime = () => {
+    this.params.add('order_col', 'begin_time')
   }
   byPlace = (id) => {
     this.params.add('place', id)
