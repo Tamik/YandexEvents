@@ -107,9 +107,9 @@ const DataApi = {
 //     console.log('Events: ', response.data)
 //   })
 
-// /**
-//  * @example Get categories list
-//  */
+/**
+ * @example Get categories list
+ */
 // DataApi.getCategories()
 //   .byHoliday(1)
 //   .perform()
@@ -129,9 +129,9 @@ const DataApi = {
 //     console.log('Places: ', response.data)
 //   })
 
-// /**
-//  * @example Get all dates with events
-//  */
+/**
+ * @example Get all dates with events
+ */
 // DataApi.getDatesWithEvents()
 //   .byHoliday(1)
 //   .byCategory(9)
