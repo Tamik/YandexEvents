@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+
+import { DataApi } from 'utils/DataApi'
 
 import { Card, Carousel } from 'ui-components'
 
@@ -13,11 +14,9 @@ export default class CarouselContainer extends Component {
   }
 
   componentWillMount() {
-    axios.get('http://io.yamblz.ru/events', {
-      params: {
-        items_per_page: 10,
-      },
-    })
+    DataApi
+      .prepareQuery(this.props.params)
+      .perform()
       .then(response => this.setState({
         elements: response.data.data,
       }))
