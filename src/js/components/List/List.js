@@ -19,7 +19,7 @@ const List = (props) => {
         onClick={() => {
           viewEvent(props.data)
         }}
-        style={{ marginBottom: 16 }}
+        style={{ marginBottom: 20 }}
       >
         <Card
           size='medium'

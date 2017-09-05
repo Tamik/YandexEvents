@@ -5,7 +5,7 @@ import { Slider } from 'ui-components'
 import style from 'components/List/style.scss'
 
 const SliderList = props => (
-  <div>
+  <div className={style.list__wrap}>
     <h3 className={style.list__title}>{props.title}</h3>
     <Slider>
       {

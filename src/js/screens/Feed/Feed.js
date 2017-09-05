@@ -28,7 +28,7 @@ class Feed extends Component {
 
   render() {
     return (
-      <div style={{ marginLeft: 16, marginBottom: 16 }}>
+      <div style={{ paddingBottom: 68 }}>
         <EventsList payload={this.state.data} />
         <SliderList title='Любимые места москвичей' payload={this.state.data} />
         <EventsList payload={this.state.data} />
