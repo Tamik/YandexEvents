@@ -61,7 +61,8 @@ const DataApi = {
 //   method: 'places',
 //   holiday: 2,
 //   page: 1,
-//   items_per_page: 5,
+//   items_per_page: 10,
+//   order_col: 'rating',
 // }
 
 // DataApi
@@ -122,8 +123,8 @@ const DataApi = {
  */
 // DataApi.getPlaces()
 //  .byHoliday(1)
-//   // .limit(10) // @todo: back-end
-//   // .orderBy('column', 'desc') // @todo: back-end
+//   .itemsPerPage(10)
+//   .orderByRating()
 //   .perform()
 //   .then((response) => {
 //     console.log('Places: ', response.data)
