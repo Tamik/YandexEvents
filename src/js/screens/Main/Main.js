@@ -23,38 +23,10 @@ const Main = (props) => {
     props.onViewCategory(categoryData)
   }
 
-  // @TODO: get from api middleware
-  const payloadCategoriesJSON = [
-    {
-      "id": 1,
-      "title": "Выставки"
-    },
-    {
-      "id": 2,
-      "title": "Фестивали"
-    },
-    {
-      "id": 3,
-      "title": "Спорт"
-    },
-    {
-      "id": 4,
-      "title": "Концерты"
-    },
-    {
-      "id": 5,
-      "title": "Парки"
-    },
-    {
-      "id": 6,
-      "title": "Экскурсии"
-    }
-  ]
-
   return (
     <div className='screen'>
       <Tabs style={props.data.configData.params.style.topBar}>
-        { /* Main tab */ }
+        { /* Main tab */}
         <div
           role='button'
           className={`${styleTabs.tabs__item} ${activeTabName === 'feed' ? styleTabs.tabs__item_active : ''}`}
@@ -62,22 +34,19 @@ const Main = (props) => {
             viewMainTab()
           }}
           style={props.data.configData.params.style.topBar}
-        >Лучшее</div>
+        >{props.data.configData.params.mainTabTitle}</div>
         {
           /* Print categories tabs */
-          payloadCategoriesJSON.map((item, idx) => {
-            return (
-              <div
-                key={item.id}
-                role='button'
-                className={`${styleTabs.tabs__item} ${activeCategoryId == item.id ? styleTabs.tabs__item_active : ''}`}
-                onClick={() => {
-                  viewCategory(item)
-                }}
-                style={props.data.configData.params.style.topBar}
-              >{item.title}</div>
-            )
-          })
+          props.data.configData.params.categories.map(item => (
+            <div
+              key={item.id}
+              role='button'
+              className={`${styleTabs.tabs__item} ${activeCategoryId === item.id ? styleTabs.tabs__item_active : ''}`}
+              onClick={() => viewCategory(item)}
+              style={props.data.configData.params.style.topBar}
+            >{item.title}</div>
+          )
+          )
         }
       </Tabs>
       <Container scrolling stretching background>
