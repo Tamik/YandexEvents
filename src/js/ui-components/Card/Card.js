@@ -6,6 +6,7 @@ import style from './style.scss'
 const Card = props => (
   <div
     className={`${style.card} ${style[`card_${props.size}`]}`}
+    style={props.style}
   >
     <Image src={props.src} size={props.size} />
     <div
