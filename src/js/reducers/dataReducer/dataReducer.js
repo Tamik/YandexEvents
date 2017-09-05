@@ -1,9 +1,10 @@
-import { DATA_EVENT, DATA_CATEGORY, DATA_PLACE } from 'consts/actionTypes'
+import { DATA_EVENT, DATA_CATEGORY, DATA_PLACE, DATA_CONFIG } from 'consts/actionTypes'
 
 const initialState = {
   eventData: null,
   categoryData: null,
   placeData: null,
+  configData: null,
 }
 
 const dataReducer = (state = initialState, action) => {
@@ -24,6 +25,12 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         placeData: action.placeData,
+      }
+    }
+    case DATA_CONFIG: {
+      return {
+        ...state,
+        configData: action.configData,
       }
     }
     default:
