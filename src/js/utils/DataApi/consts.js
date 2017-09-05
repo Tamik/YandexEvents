@@ -1,9 +1,11 @@
-export const API_HOST = 'http://io.yamblz.ru'
+export const API_HOST = 'http://185.125.219.104:7777'
 
 export const API_METHODS = {
+  GET_HOLIDAY_CONFIG: 'holiconfig',
   GET_EVENTS: 'events',
   GET_EVENT: 'event',
-  GET_CATEGORIES: 'countevents',
-  GET_PLACES: 'countevents',
-  GET_DATES_WITH_EVENTS: 'daysevents',
+  GET_CATEGORIES: 'categories',
+  GET_PLACES: 'places',
+  GET_PLACE: 'place',
+  GET_DATES_WITH_EVENTS: 'dates',
 }
