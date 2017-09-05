@@ -1,17 +1,21 @@
 .card {
+  flex-shrink: 0;
   color: #000;
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
 
   &_small {
-    display: flex;
-    font-size: 0.75rem;
+    position: relative;
+    margin: 13px 10px;
+
+    &:first-child {
+      margin-left: 16px;
+    }
   }
 
   &_medium {
-    flex-shrink: 0;
     flex-grow: 1;
-    width: 85vw;
-    margin-right: 16px;
-    font-size: 1.125rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 
   &_large {
@@ -22,53 +26,58 @@
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 16px;
+    padding: 12px 14px;
+    color: #6e6e6e;
+    background-color: #fff;
+    z-index: 2;
 
     &_small {
+      position: absolute;
+      bottom: 14px;
+      left: 14px;
+      right: 14px;
       padding: 0;
-      padding-left: 16px;
+      background-color: transparent;
+      color: #fff;
     }
 
     &_medium {
       justify-content: space-between;
       height: calc(100% - 176px);
-      padding: 20px;
-      background-color: #f2f2f2;
+    }
+
+    &_large {
+      padding: 16px;
     }
   }
 
   &__title {
     margin-bottom: 8px;
-    font-weight: normal;
+    font-weight: 500;
     text-decoration: none;
 
     &_small {
-      font-size: 1.125rem;
-      line-height: 1.25rem;
+      margin-bottom: 4px;
+      font-size: 1.5rem;
+      line-height: 1.6rem;
+      color: #fff;
     }
 
     &_medium {
-      font-size: 1.5rem;
+      font-size: 1.125rem;
+      color: #333333;
     }
 
     &_large {
-      margin-bottom: 16px;
       font-size: 1.5rem;
       line-height: 1.75rem;
+      color: #000;
     }
   }
 
   &__text {
     &_bottom {
       margin-top: auto;
-
-    }
-
-    &_time {
-
-    }
-
-    &_place {
 
     }
   }

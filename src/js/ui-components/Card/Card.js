@@ -9,13 +9,14 @@ const Card = props => (
     style={props.style}
   >
     <Image src={props.src} size={props.size} />
-    <div className={`${style.card__info} ${style[`card__info_${props.size}`]}`}>
+    <div
+      className={`${style.card__info} ${style[`card__info_${props.size}`]}`}
+    >
       <h3 className={`${style.card__title} ${style[`card__title_${props.size}`]}`}>
         {props.title}
       </h3>
       <p className={style.card__text}>
-        31 января <br />
-        11:00 - 22:00
+        {props.dateInfo}
       </p>
     </div>
   </div>
@@ -24,7 +25,7 @@ const Card = props => (
 Card.defaultProps = {
   size: 'small',
   src: 'http://placehold.it/350x50',
-  text: 'PLOTVA',
+  text: 'some text',
 }
 
 Card.propTypes = {

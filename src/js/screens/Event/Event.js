@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { push, goBack } from 'actions/navigationActions'
 
-import { TopBar, Image } from 'ui-components'
+import { TopBar, Image, Icon } from 'ui-components'
 import style from './style.scss'
 import styleCard from 'ui-components/Card/style.scss'
 
@@ -38,31 +38,20 @@ class Event extends Component {
         <TopBar
           isTransparent
           icon={<button onClick={this.goBack}>
-            <svg
-              version='1.1'
-              id='Ebene_1'
-              x='0px'
-              y='0px'
-              height='24px'
-              width='24px'
-              viewBox='0 0 24 24'
-            >
-              <polygon id='Shape' fill='#fff' points='20,11 7.8,11 13.4,5.4 12,4 4,12 12,20 13.4,18.6 7.8,13 20,13 ' />
-            </svg>
+            <Icon type='arrowBack' width='24' height='24' color='#fff' />
           </button>}
         />
         <Image size='large' src={`http://io.yamblz.ru/i/events/${this.props.eventData.id}_large.jpg`} />
-        <div className={styleCard.card__info}>
+        <div className={`${styleCard.card__info} ${style.card__info_large}`}>
           <h2 className={`${styleCard.card__title} ${styleCard.card__title_large}`}>
-            {console.log(this.props.eventData)}
             {this.props.eventData.title}
           </h2>
-          <div style={{ marginBottom: 16, fontSize: '1.25rem', lineHeight: '1.75rem' }}>
-            <p>2 сентября</p>
-            <p>20:00</p>
+          <div style={{ marginBottom: 16, fontSize: '1.25rem', lineHeight: '1.75rem', color: '#000', }}>
+            <p>{`${this.props.eventData.dateFormatted.day} - ${this.props.eventData.dateEndFormatted.day}, ${this.props.eventData.dateEndFormatted.month} `}</p>
+            <p>{`${this.props.eventData.dateFormatted.time} - ${this.props.eventData.dateEndFormatted.time}`}</p>
           </div>
           <p
-            style={{ fontSize: '1rem', lineHeight: '1.375rem' }}
+            style={{ fontSize: '1rem', lineHeight: '1.375rem', color: '#000' }}
             dangerouslySetInnerHTML={{ __html: this.props.eventData.description }}
           />
         </div>

@@ -1,4 +1,19 @@
 .list {
-  &__item {
+  &__wrap {
+    margin-top: 32px;
+    margin-bottom: 32px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__title {
+    font-size: 1rem;
+    line-height: 1.25rem;
+    color: #333333;
+    margin-left: 16px;
+    margin-bottom: 12px;
+    font-weight: 600;
   }
 }

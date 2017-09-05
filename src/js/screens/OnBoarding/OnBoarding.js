@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 import { onBoardingViewed } from 'actions/userActions'
 import { replace } from 'actions/navigationActions'
 
-import { Container } from 'ui-components'
-
+import { Container, BottomNavigation, Icon } from 'ui-components'
 import style from './style.scss'
+import styleBotNav from 'ui-components/BottomNavigation/style.scss'
 
 const OnBoarding = (props) => {
   const goNext = () => {
@@ -15,28 +15,45 @@ const OnBoarding = (props) => {
   }
 
   return (
-    <div
-      className='transition-item screen'
-      style={{
-        padding: '46px 22px 16px',
-        backgroundColor: '#1e1367',
-        fontSize: '1.5rem',
-        color: '#fff',
-      }}
-    >
+    <div className='screen transition-item'>
       <Container
         stretching
+        background
       >
-        <h1 style={{ fontWeight: 'normal', fontSize: '1.5rem', marginBottom: 16 }}>Юбилей Москвы!</h1>
-        <p>Мы выбрали самое интересное.</p>
+        <div className={style.board__wrap}>
+          <h1 className={style.board__title}>Сегодня День Города!</h1>
+          <p className={style.board__title}>Мы собрали все события и выбрали самое лучшее.</p>
 
-        <button
-          style={{ marginTop: 'auto', background: '#fff', textDecoration: 'none', padding: 16, fontSize: '1.25rem', color: '#2a3034', border: 'none' }}
-          onClick={goNext}
-        >
-          Далее
-        </button>
+          <button
+            className={style.board__btn}
+            onClick={goNext}
+          >
+            Далее
+          </button>
+        </div>
       </Container>
+      <BottomNavigation>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='star' height='20' />
+          Лучшее
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='ticket' height='20' />
+          Мои билеты
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='moscowDayActive' height='20' />
+          День Города
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='search' height='20' />
+          Поиск
+        </div>
+        <div className={`${styleBotNav.botNav__item}`}>
+          <Icon type='profile' height='20' />
+          Профиль
+        </div>
+      </BottomNavigation>
     </div>
   )
 }

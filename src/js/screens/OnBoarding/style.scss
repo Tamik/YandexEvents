@@ -1,6 +1,28 @@
-.page-inner{
-  height:100vh;
-  padding: 20px;
-  background: #3c70c4;
-  color: #fff;
+.board {
+  &__wrap {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    padding: 109px 16px 16px;
+    text-align: center;
+  }
+
+  &__title {
+    margin-bottom: 16px;
+    font-size: 1.25rem;
+    font-weight: normal;
+    line-height: 1.375rem;
+  }
+
+  &__btn {
+    margin-top: auto;
+    padding: 14px;
+    color: #2a3034;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+    text-align: center;
+    background-color: #ffde5a;
+    border: none;
+    border-radius: 2px;
+  }
 }
