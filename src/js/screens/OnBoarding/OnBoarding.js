@@ -13,8 +13,17 @@ const OnBoarding = (props) => {
   const goNext = () => {
     props.onGoNext()
   }
+
   return (
-    <div className='screen transition-item'>
+    <div
+      className='transition-item screen'
+      style={{
+        padding: '46px 22px 16px',
+        backgroundColor: '#1e1367',
+        fontSize: '1.5rem',
+        color: '#fff',
+      }}
+    >
       <Container
         stretching
         background
