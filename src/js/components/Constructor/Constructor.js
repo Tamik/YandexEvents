@@ -51,7 +51,7 @@ class Constructor extends Component {
     </div>
   )
 
-  renderTree = (payload, styles, rootStyles) => (
+  renderFactory = (payload, styles, rootStyles) => (
     payload.map((container) => {
       switch (container.type) {
         case 'list': return this.renderListContainer({
@@ -106,7 +106,7 @@ class Constructor extends Component {
   render() {
     return (
       <div style={this.props.config.params.style.body}>
-        {this.renderTree(
+        {this.renderFactory(
           this.props.config.containers,
           this.props.config.style,
           this.props.config.params.style,
