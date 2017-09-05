@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import axios from 'axios'
 
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
@@ -12,6 +13,8 @@ import { locationChange } from 'actions/navigationActions'
 import rootReducer from 'reducers/rootReducer'
 
 import Application from 'components/Application'
+
+import { sendApplicationConfig } from 'actions/dataActions'
 
 const history = createHashHistory({ hashType: 'slash' })
 
@@ -56,6 +59,8 @@ history.listen((location) => {
 
 
 function onDeviceReady() {
+  axios.get('http://185.125.219.104:7777/holiconfig?holiday=1')
+    .then(response => store.dispatch(sendApplicationConfig(response.data.data)))
   renderApp()
   if (module.hot) {
     module.hot.accept('components/Application', () => {
