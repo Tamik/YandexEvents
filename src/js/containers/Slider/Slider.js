@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+
+import { DataApi } from 'utils/DataApi'
 
 import { Card, Slider } from 'ui-components'
 
@@ -13,11 +14,9 @@ export default class SliderContainer extends Component {
   }
 
   componentWillMount() {
-    axios.get('http://io.yamblz.ru/events', {
-      params: {
-        items_per_page: 5,
-      },
-    })
+    DataApi
+      .prepareQuery(this.props.params)
+      .perform()
       .then(response => this.setState({
         elements: response.data.data,
       }))
@@ -34,7 +33,7 @@ export default class SliderContainer extends Component {
               title={element.title}
               src={`http://io.yamblz.ru/i/events/${element.id}_large.jpg`}
               location={element.location_title}
-              size='large'
+              size='medium'
               style={this.props.cardStyle}
             />
           ))}
