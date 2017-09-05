@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios'
 
-import { EventsList, SliderList } from 'containers'
+import { EventsList, SliderList, AvatarsList } from 'containers'
 
 import { Tabs, Container, Slider, Carousel, Card, Image, Avatar } from 'ui-components'
 import styleTabs from 'ui-components/Tabs/style.scss'
@@ -28,13 +28,11 @@ class Feed extends Component {
 
   render() {
     return (
-      <div>
-        <Slider dots title='Концерт на Красной площади'>
-          <div><Image size='large' src='http://krasivye-mesta.ru/img/Night-Moscow.jpg' /></div>
-          <div><Image size='large' src='http://andrive.ru/wp-content/uploads/2016/05/orig-600x386.jpg' /></div>
-          <div><Image size='large' src='http://lifeglobe.net/x/entry/472/2817506_large_3.jpg' /></div>
-        </Slider>
+      <div style={{ paddingBottom: 68 }}>
         <EventsList payload={this.state.data} />
+        <SliderList title='Любимые места москвичей' payload={this.state.data} />
+        <EventsList payload={this.state.data} />
+        <AvatarsList payload={this.state.data} />
       </div>
     )
   }

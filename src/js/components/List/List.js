@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { Card } from 'ui-components'
+import { Card, Avatar } from 'ui-components'
 
 const List = (props) => {
   const viewEvent = (eventData) => {
@@ -19,12 +19,15 @@ const List = (props) => {
         onClick={() => {
           viewEvent(props.data)
         }}
-        style={{ borderBottom: '1px solid #e5e5e5', marginBottom: 16, paddingBottom: 16 }}
+        style={{ marginBottom: 20 }}
       >
         <Card
-          size='small'
+          size='medium'
           src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
           title={props.data.title}
+          dateInfo={`${props.data.dateFormatted.day} - ${props.data.dateEndFormatted.day}
+           ${props.data.dateEndFormatted.month}, ${props.data.dateFormatted.time}
+            - ${props.data.dateEndFormatted.time}`}
           description={props.data.description}
         />
       </div>
@@ -33,10 +36,18 @@ const List = (props) => {
   else if (props.type === 'slider_events') {
     return (
       <Card
-        size='medium'
+        size='small'
         src={`http://io.yamblz.ru/i/events/${props.data.id}_large.jpg`}
         title={props.data.title}
         description={props.data.description}
+      />
+    )
+  }
+  else if (props.type === 'slider_avatars') {
+    return (
+      <Avatar
+        src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
+        title={props.data.title}
       />
     )
   }
