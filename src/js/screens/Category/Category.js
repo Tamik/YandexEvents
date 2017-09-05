@@ -14,6 +14,8 @@ import { EventsList } from 'containers'
 import { Map } from 'screens'
 import style from './style.scss'
 
+import { List as ListContainer } from 'containers'
+
 class Category extends Component {
   constructor(props) {
     super(props)
@@ -53,7 +55,7 @@ class Category extends Component {
       <div>
         {
           this.viewMode === VIEW_MODE_LIST
-            ? <EventsList payload={this.state.data} />
+            ? <ListContainer />
             : <Map />
         }
         <FloatingButton
