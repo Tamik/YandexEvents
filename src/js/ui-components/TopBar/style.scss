@@ -3,7 +3,8 @@
   justify-content: center;
   padding: 20px;
   padding-top: 30px;
-  background-color: #18a972;
+  background-color: #fff;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 
   &_transparent {
     position: fixed;
@@ -21,7 +22,7 @@
     font-weight: 600;
     text-align: center;
     letter-spacing: 0.05rem;
-    color: #fff;
+    color: #000;
   }
 
   &__icon {
