@@ -18,6 +18,9 @@ export default class Params {
     })
     return this
   }
+  fill = (paramsMap) => {
+    this.params = paramsMap
+  }
   getComputedParams = () => {
     return this.computeParams().computedParams
   }

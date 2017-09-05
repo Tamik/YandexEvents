@@ -19,6 +19,10 @@ export default class ApiRequest {
     this.params.add(param, value)
     return this
   }
+  fillParams = (params) => {
+    this.params.fill(params)
+    return this
+  }
   perform = () => {
     const queryString = this.params.getQueryString()
     const uri = queryString
