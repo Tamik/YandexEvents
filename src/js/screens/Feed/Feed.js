@@ -1,12 +1,7 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import axios from 'axios'
+import React from 'react'
 
 import { EventsList, SliderList, AvatarsList } from 'containers'
 
-import { Tabs, Container, Slider, Carousel, Card, Image, Avatar } from 'ui-components'
-import styleTabs from 'ui-components/Tabs/style.scss'
-import style from './style.scss'
 
 class Feed extends Component {
   constructor(props) {
