@@ -16,7 +16,7 @@ const Place = (props) => {
     console.log('placeData присутствует в store')
     console.log('placeId: ', props.params.placeId, '\n placeData: ', props.placeData)
   }
-  const goBack = () => {
+  const naviGoBack = () => {
     props.onGoBack()
   }
   return (
@@ -25,7 +25,7 @@ const Place = (props) => {
         <h1>This is Place: {props.params.placeId}</h1>
       </TopBar>
       <Container stretching scrolling>
-        <button onClick={goBack}>Go Back</button>
+        <button onClick={naviGoBack}>Go Back</button>
         <p>Тут будет список событий по месту</p>
       </Container>
     </div>
