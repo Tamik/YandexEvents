@@ -36,7 +36,10 @@ export default class ListContainer extends Component {
   render() {
     return (
       <div style={this.props.style}>
-        {this.props.title ? <h3>{this.props.title}</h3> : ''}
+        {this.props.title
+          ? <h3>{this.props.title}</h3>
+          : null
+        }
         {this.state.elements.map(element => (
           <Card
             key={element.id}
