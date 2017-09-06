@@ -14,6 +14,10 @@ const DataApi = {
     this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAYS)
     return this.request
   },
+  getHint: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_HINT)
+    return this.request
+  },
   getEntities: () => {
     this.request = new ApiRequestFabric(API_METHODS.GET_ENTITIES)
     return this.request
@@ -54,14 +58,25 @@ const DataApi = {
   },
 }
 
-/**
- * @example: get holidays
- */
-DataApi.getHolidays()
-  .perform()
-  .then((response) => {
-    console.log('Holidays: ', response.data)
-  })
+
+// /**
+//  * @example: get hint
+//  */
+// DataApi.getHint()
+//   .byHoliday(1)
+//   .perform()
+//   .then((response) => {
+//     console.log('Hint: ', response.data)
+//   })
+
+// /**
+//  * @example: get holidays
+//  */
+// DataApi.getHolidays()
+//   .perform()
+//   .then((response) => {
+//     console.log('Holidays: ', response.data)
+//   })
 
 /**
  * @example: get block data

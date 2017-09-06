@@ -5,4 +5,4 @@ export { default as ApiPlacesRequest } from './ApiPlacesRequest'
 export { default as ApiDatesWithEventsRequest } from './ApiDatesWithEventsRequest'
 export { default as ApiHolidayConfigRequest } from './ApiHolidayConfigRequest'
 export { default as ApiHolidaysRequest } from './ApiHolidaysRequest'
-
+export { default as ApiHintRequest } from './ApiHintRequest'

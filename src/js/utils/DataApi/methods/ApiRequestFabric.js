@@ -6,12 +6,15 @@ import {
   ApiDatesWithEventsRequest,
   ApiHolidayConfigRequest,
   ApiHolidaysRequest,
+  ApiHintRequest,
 } from './'
 
 const ApiRequestFabric = (methodId) => {
   switch (methodId) {
     case API_METHODS.GET_HOLIDAYS:
       return new ApiHolidaysRequest(API_METHODS.GET_HOLIDAYS)
+    case API_METHODS.GET_HINT:
+      return new ApiHintRequest(API_METHODS.GET_HINT)
     case API_METHODS.GET_EVENTS:
       return new ApiEventsRequest(API_METHODS.GET_EVENTS)
     case API_METHODS.GET_CATEGORIES:
