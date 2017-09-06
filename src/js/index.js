@@ -1,6 +1,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import localforage from 'localforage'
 import axios from 'axios'
 
 import { applyMiddleware, createStore } from 'redux'
@@ -9,12 +10,13 @@ import { createHashHistory } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
 import routerMiddleware from 'middlewares/routerMiddleware'
+import storageMiddleware from 'middlewares/storageMiddleware'
+import { sendApplicationConfig } from 'actions/dataActions'
 import { locationChange } from 'actions/navigationActions'
+import { onBoardingViewed } from 'actions/userActions'
 import rootReducer from 'reducers/rootReducer'
 
 import Application from 'components/Application'
-
-import { sendApplicationConfig } from 'actions/dataActions'
 
 const history = createHashHistory({ hashType: 'slash' })
 
