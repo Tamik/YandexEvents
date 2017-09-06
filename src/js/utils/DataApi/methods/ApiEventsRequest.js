@@ -14,7 +14,7 @@ class ApiEventsRequest extends ApiRequest {
       }
       return index
     })
-    
+
     this.params.add(`date[${index}]`, date)
     return this
   }
