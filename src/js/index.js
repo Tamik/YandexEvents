@@ -62,6 +62,10 @@ history.listen((location) => {
 function onDeviceReady() {
   axios.get('http://static.yamblz.ru/response.json')
     .then(response => store.dispatch(sendApplicationConfig(response.data.data)))
+    .then(() => {
+      localforage.getItem('user')
+        .then(response => response.firstEnter ? null : store.dispatch(onBoardingViewed()))
+    })
   renderApp()
   if (module.hot) {
     module.hot.accept('components/Application', () => {
