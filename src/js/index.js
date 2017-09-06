@@ -20,12 +20,13 @@ import Application from 'components/Application'
 
 const history = createHashHistory({ hashType: 'slash' })
 
-const middleware = routerMiddleware(history)
-
 const store = createStore(
   rootReducer,
   composeWithDevTools(
-    applyMiddleware(middleware)
+    applyMiddleware(
+      routerMiddleware(history),
+      storageMiddleware(localforage),
+    )
   )
 )
 
