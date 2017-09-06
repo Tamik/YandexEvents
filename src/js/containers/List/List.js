@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import axios from 'axios'
+
+import { DataApi } from 'utils/DataApi'
 
 import { Card } from 'ui-components'
 
@@ -13,20 +14,32 @@ export default class ListContainer extends Component {
   }
 
   componentWillMount() {
-    axios.get('http://io.yamblz.ru/events', {
-      params: {
-        items_per_page: 3,
-      },
-    })
-      .then(response => this.setState({
-        elements: response.data.data,
-      }))
+    if (this.props.params) {
+      DataApi
+        .prepareQuery(this.props.params)
+        .perform()
+        .then(response => this.setState({
+          elements: response.data.data,
+        }))
+    }
+    else {
+      DataApi.getEvents()
+        .byHoliday(1)
+        .byCategory(this.props.categoryId)
+        .perform()
+        .then(response => this.setState({
+          elements: response.data.data,
+        }))
+    }
   }
 
   render() {
     return (
       <div style={this.props.style}>
-        {this.props.title ? <h3>{this.props.title}</h3> : ''}
+        {this.props.title
+          ? <h3>{this.props.title}</h3>
+          : null
+        }
         {this.state.elements.map(element => (
           <Card
             key={element.id}

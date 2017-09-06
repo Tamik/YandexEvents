@@ -56,7 +56,7 @@ class Category extends Component {
       <div>
         {
           this.viewMode === VIEW_MODE_LIST
-            ? <ListContainer />
+            ? <ListContainer categoryId={this.props.params.categoryId} />
             : <Map />
         }
         <FloatingButton

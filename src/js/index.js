@@ -56,10 +56,8 @@ history.listen((location) => {
   )
 })
 
-
-
 function onDeviceReady() {
-  axios.get('http://185.125.219.104:7777/holiconfig?holiday=1')
+  axios.get('http://static.yamblz.ru/response.json')
     .then(response => store.dispatch(sendApplicationConfig(response.data.data)))
   renderApp()
   if (module.hot) {
