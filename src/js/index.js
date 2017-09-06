@@ -64,7 +64,7 @@ function onDeviceReady() {
     .then(response => store.dispatch(sendApplicationConfig(response.data.data)))
     .then(() => {
       localforage.getItem('user')
-        .then(response => response.firstEnter ? null : store.dispatch(onBoardingViewed()))
+        .then(response => !response.firstEnter && store.dispatch(onBoardingViewed()))
     })
   renderApp()
   if (module.hot) {
