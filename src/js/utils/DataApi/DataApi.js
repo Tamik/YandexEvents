@@ -10,6 +10,19 @@ import ApiRequestFabric from './methods/ApiRequestFabric'
  * - setting holidayId by default for all requests?
  */
 const DataApi = {
+  getHolidays: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAYS)
+    return this.request
+  },
+  getEntities: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_ENTITIES)
+    return this.request
+  },
+  getHolidayConfig: (holidayId) => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAY_CONFIG)
+    this.request.params.add('holiday', holidayId)
+    return this.request
+  },
   getEvents: () => {
     this.request = new ApiRequestFabric(API_METHODS.GET_EVENTS)
     return this.request
@@ -26,13 +39,6 @@ const DataApi = {
     this.request = new ApiRequestFabric(API_METHODS.GET_DATES_WITH_EVENTS)
     return this.request
   },
-  getHolidayConfig: (testHoliday) => {
-    this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAY_CONFIG)
-    // start hardcode: 1 - Moscow Day, else 2 = Museums Night
-    this.request.params.add('holiday', testHoliday === 'md' ? 1 : 2)
-    // end hardcode
-    return this.request
-  },
   prepareQuery: (blockData) => {
     const params = {}
     Object.keys(blockData).map((key) => {
@@ -47,6 +53,15 @@ const DataApi = {
     return this.request
   },
 }
+
+/**
+ * @example: get holidays
+ */
+DataApi.getHolidays()
+  .perform()
+  .then((response) => {
+    console.log('Holidays: ', response.data)
+  })
 
 /**
  * @example: get block data
