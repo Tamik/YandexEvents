@@ -715,10 +715,7 @@ class Map extends Component {
           </BalloonInner>
         </BalloonLayout>
         {this.state.loading
-          ? <div className='simple-spinner'>
-            <div className='simple-spinner__bounce1' />
-            <div className='simple-spinner__bounce2' />
-          </div>
+          ? <Spinner />
           : ''
         }
       </YMapsWrap>
