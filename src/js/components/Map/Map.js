@@ -42,7 +42,7 @@ import {
 
 /**
  * @see
- * Map
+ * @module Map
  * Provider: yandex maps 2.1
  * Coords in yandex placemarks: [lat, lng]
  * Cluster docs: https://api.yandex.ru/maps/doc/jsapi/2.1/ref/reference/ClusterPlacemark.xml
@@ -89,6 +89,9 @@ class Map extends Component {
     this.isComponentMounted = true
   }
 
+  /**
+   * @description При unmount'е компонента перестаем "слушать" геопозицию пользователя
+   */
   componentWillUnmount() {
     this.isComponentMounted = false
     this.stopWatchingMyLocation()
@@ -97,14 +100,15 @@ class Map extends Component {
   }
 
   /**
-   * @description Обработчик выполнится после успешно определенного текущего местоположения
+   * @method onGeolocationSuccess
+   * @description Обработчик выполнится после успешно определенного текущего местоположения пользователя
    * @param {Object} pos 
    * @see https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/
    */
   onGeolocationSuccess = (pos) => {
     const position = [pos.coords.latitude, pos.coords.longitude]
     /**
-     * @description Добавляем метку с моим местоположением
+     * @description Добавляем метку с местоположением пользователя
      */
     if (this.isComponentMounted && this.map) {
       this.setState({
@@ -117,7 +121,7 @@ class Map extends Component {
     }
 
     /**
-     * @description Не будем центрировать карту на мое местоположение,
+     * @description Не центрировать карту на местоположение пользователя
      */
     if (this.props.panToLocation !== undefined) {
       return
@@ -125,29 +129,37 @@ class Map extends Component {
 
     /**
      * @description Центрируем карту на мое местоположение, если разрешено
-     * @todo Подумать, как сделать через {state}
+     * @todo Сделать через {state}
      */
     if (this.props.panToMyLocation
       && this.map
-      && this.doAutoPan /* юзер еще не двигал карту */
+      && this.doAutoPan /* пользователь еще не двигал карту */
       && this.isComponentMounted) {
       this.map.panTo(position, {
         duration: 1000,
         flying: false,
         safe: true,
       }).then(() => {
-        // Если не задан zoom, то ставим зум сами
+        /**
+         * @description Если не задан zoom, то устанавливаем zoom автоматически
+         */
         if (!this.props.zoom) {
           this.setZoom(MAP_ZOOM_TO_MY_LOCATION)
         }
       })
     }
 
+    /**
+     * @description Кешируем местоположение пользователя
+     */
     this.cachedMyLocation = {
       time: getTimeEpoch(),
       pos: position,
     }
 
+    /**
+     * @description Отключаем компонент загрузки, включаем карту
+     */
     this.setState({
       isMyLocationLoading: false,
     })
@@ -160,11 +172,12 @@ class Map extends Component {
   }
 
   /**
-   * @description Выполнится, как только API Яндекс карт загрузился и готов к использованию
+   * @method onMapApiReady
+   * @description Обработчик выполнится как только API Яндекс.Карт загружено и готово к использованию
    * @param {Object} api - ref на статичный объект API Яндекс карт 
    */
   onMapsApiReady = (api) => {
-    yMapsApi = api // Не вносим в контекст компонента, т.к api - это статичный объект
+    yMapsApi = api // Не вносим в контекст компонента, т.к api – это статичный объект
 
     const topBarHeight = 76
     const screenHeight = window.innerHeight
@@ -172,7 +185,8 @@ class Map extends Component {
   }
 
   /**
-   * @description Выполнится, как только контейнер карты будет готов к загрузке тайлов
+   * @method onMapInited
+   * @description Обработчик выполнится как только контейнер карты будет готов к загрузке тайлов
    * @param {Object} mapInstance 
    */
   onMapInited = (refMapInstance) => {
@@ -205,7 +219,8 @@ class Map extends Component {
   }
 
   /**
-   * @description Выполнится, сразу полсе того, как кластерер меток событий будет создан 
+   * @method onClustererInited
+   * @description Обработчик выполнится сразу после того как кластерер из меток будет создан
    * @param {Object} refClusterer 
    */
   onClustererInited = (refClusterer) => {
@@ -247,6 +262,11 @@ class Map extends Component {
     }
   }
 
+  /**
+   * @method setZoom
+   * @description Задает масштабирование карты 
+   * @param {numbers} newZoom [1..23]
+   */
   setZoom = (newZoom) => {
     if (this.isComponentMounted) {
       this.setState({
@@ -260,6 +280,11 @@ class Map extends Component {
     this.doAutoPan = false
   }
 
+  /**
+   * @method setCenter
+   * @description Центрирует карту к заданным координатам
+   * @param {Array} coords
+   */
   setCenter = (coords) => {
     this.setState({
       mapState: {
@@ -271,16 +296,27 @@ class Map extends Component {
     this.doAutoPan = false
   }
 
+  /**
+   * @method getEventById
+   * @description Метод получает событие по id из коллекции меток на карте
+   * @param {numbers} eventId
+   */
   getEventById = eventId => (this.points[this.eventsToPointsMap[eventId]])
 
+  /**
+   * @method afterEventsLoaded
+   * @description Обработчик, которые срабатывает при вызове после загрузки данных о событиях
+   */
   afterEventsLoaded = () => {
     this.addPlacemarks()
     this.bindEventsOnClusterer()
 
+    /* dev:start */
     // Кнопка Вернуться к событию
-    if (this.props.panToLocation !== undefined) {
-      this.map.controls.add(this.makeBtnGotoEventLocation(), { float: 'right' })
-    }
+    // if (this.props.panToLocation !== undefined) {
+    //   this.map.controls.add(this.makeBtnGotoEventLocation(), { float: 'right' })
+    // }
+    /* dev:end */
 
     this.bindMapEvents()
     this.startWatchingMyLocation()
@@ -290,6 +326,10 @@ class Map extends Component {
   }
 
   /* dev:start */
+  /**
+   * @method sortEventsByDistance
+   * @description Метод сортировки данных (в данном случае событий) по расстоянию от пользователя
+   */
   sortEventsByDistance = () => {
     let distance
     /**
@@ -311,41 +351,51 @@ class Map extends Component {
   }
   /* dev:end */
 
+  /**
+   * @method bindEventsOnClusterer
+   * @description Обработчик пользовательского взаимодействия с кластером
+   */
   bindEventsOnClusterer = () => {
     /**
      * @description При клике по метке в кластере – открывается кастомный баллун
-     * со список событий, свернутых в этот кластер
+     * со списком событий, свернутых в этот кластер
      */
-    this.clusterer.events.add('click', (e) => {
+    this.clusterer.events.add('click', (event) => {
       const items = []
 
-      // One event?
-      if (e.get('target').getGeoObjects === undefined) {
-        const placemark = e.get('target')
+      /**
+       * @description Одно событие (маркер)
+       */
+      if (event.get('target').getGeoObjects === undefined) {
+        const placemark = event.get('target')
         const eventId = placemark.properties.get('eventId')
         items.push(this.getEventById(eventId))
       }
+      /* dev:start */
+      /**
+       * @description Несколько событий (кластер)
+       */
       // else {
-      //   // Clustered events?
-      //   const objects = e.get('target').getGeoObjects()
+      //   const objects = event.get('target').getGeoObjects()
       //   objects.map((item) => {
       //     const eventId = item.properties.get('eventId')
       //     items.push(this.getEventById(eventId))
       //   })
       // }
+      /* dev:end */
 
       this.openBalloon(items)
     })
   }
 
   /**
-   * @method Скрыть карточки (баллун)
+   * @method bindMapEvents
+   * @description Обработчик пользовательского взаимодействия с картой
    */
   bindMapEvents = () => {
     /**
-     * @description Метод скрытия карточки (баллуна), если пользователь сдвинул карту
+     * @description Скрываем карточки (баллун), если пользователь сдвинул карту
      */
-    // Закрываем открытый балун, если карту сдвинули
     this.map.events.add('multitouchstart', (event) => {
       this.doAutoPan = false
       if (this.isBalloonOpened()) {
@@ -353,9 +403,8 @@ class Map extends Component {
       }
     })
 
-    // Закрываем открытый балун если к карте прикоснулись
     /**
-     * @description Вызывается скрытие карточки (баллуна), если пользователь коснулся карты
+     * @description Скрываем карточки (баллун), если пользователь тапнул по карте
      */
     this.map.events.add('mousedown', (event) => {
       this.doAutoPan = false
@@ -365,52 +414,75 @@ class Map extends Component {
     })
   }
 
-  makeBtnGotoEventLocation = () => {
-    const btnGoToEventLocation = new yMapsApi.control.Button(
-      {
-        data: {
-          content: '<strong>Событие</strong>',
-        },
-        options: {
-          selectOnClick: false,
-        },
-      }
-    )
+  /* dev:start */
+  /**
+   * @method makeBtnGotoEventLocation
+   * @description "Конструктор" кнопки, при нажатии на которую карта спозиционируется к метке события
+   * @returns {Object}
+   */
+  // makeBtnGotoEventLocation = () => {
+  //   const btnGoToEventLocation = new yMapsApi.control.Button(
+  //     {
+  //       data: {
+  //         content: '<strong>Событие</strong>',
+  //       },
+  //       options: {
+  //         selectOnClick: false,
+  //       },
+  //     }
+  //   )
 
-    btnGoToEventLocation.events.add('click', (event) => {
-      this.map.panTo(this.props.panToLocation, {
-        duration: 1000,
-        flying: true,
-        safe: true,
-      }).then(() => {
-        this.map.setZoom(this.props.zoom || MAP_ZOOM_TO_MY_LOCATION, { duration: 800 })
-      })
-    })
+  //   btnGoToEventLocation.events.add('click', (event) => {
+  //     this.map.panTo(this.props.panToLocation, {
+  //       duration: 1000,
+  //       flying: true,
+  //       safe: true,
+  //     }).then(() => {
+  //       this.map.setZoom(this.props.zoom || MAP_ZOOM_TO_MY_LOCATION, { duration: 800 })
+  //     })
+  //   })
 
-    return btnGoToEventLocation
-  }
+  //   return btnGoToEventLocation
+  // }
+  /* dev:end */
 
+  /**
+   * @method addPlacemarks
+   * @description Добавляет маркеры на карту
+   * @return
+   */
   addPlacemarks = () => {
     const geoObjects = []
 
-    // Creating placemarks
+    /**
+     * @description Создание маркеров
+     */
     this.points.map((eventData) => {
       geoObjects.push(this.createPlacemark(eventData, eventData.id))
       return eventData
     })
 
-    // Если Просмотр множества событий, 
-    // то множество меток помещаем на карту через кластерер
+    /**
+     * @description Если плотность маркеров на сектор большая, помещаем маркеры в кластер
+     */
     if (!this.props.isOneEvent) {
       this.clusterer.add(geoObjects)
       this.map.geoObjects.add(this.clusterer)
       return
     }
 
-    // Иначе, отобразим лишь одну метку, без кластерера
+    /**
+     * @description Отобразить метку, без кластера
+     */
     this.map.geoObjects.add(geoObjects[0])
   }
 
+  /**
+   * @method createPlacemark
+   * @description Создает объект метки на основе полученных данных
+   * @param {Object} event
+   * @returns {Object}
+   */
   createPlacemark = (event) => {
     const placemark = new yMapsApi.Placemark(
       [event.lat, event.lng],
@@ -423,6 +495,11 @@ class Map extends Component {
     return placemark
   }
 
+  /**
+   * @method showMyPosition
+   * @description Показывает пользователю его местоположение
+   * @return
+   */
   showMyPosition = () => {
     if (!this.map) {
       return
@@ -502,7 +579,7 @@ class Map extends Component {
           position: 'bottom',
           styling: {
             opacity: 0.75,
-            backgroundColor: 'rgb(96, 125, 139)',
+            backgroundColor: 'rgba(96, 125, 139, 1)',
             textColor: '#ffffff',
             textSize: 20.5,
             cornerRadius: 16,
@@ -513,6 +590,10 @@ class Map extends Component {
       }, { enableHighAccuracy: false })
   }
 
+  /**
+   * @method startWatchingMyLocation
+   * @description Начать отслеживать местоположение пользователя
+   */
   startWatchingMyLocation = () => {
     setTimeout(() => {
       this.watchLocationID = navigator.geolocation.watchPosition(
@@ -525,33 +606,63 @@ class Map extends Component {
       )
     }, 10)
   }
+
+  /**
+   * @method stopWatchingMyLocation
+   * @description Прекратить отслеживать местоположение пользователя
+   */
   stopWatchingMyLocation = () => {
     if (this.watchLocationID) {
       navigator.geolocation.clearWatch(this.watchLocationID)
     }
   }
 
+  /* dev:start */
+  /**
+   * @method changeZoomToCity
+   * @description Изменить масштабирование карты на город
+   */
   changeZoomToCity = () => {
     this.map.setZoom(10)
     if (this.points.length > 0) {
       this.openBalloon(this.points)
     }
   }
+  /* dev:end */
 
+  /**
+   * @method isBalloonOpened
+   * @description Проверка, открыт ли баллун
+   * @returns {bool}
+   */
   isBalloonOpened = () => (this.state.balloonItemsPreview !== null)
 
+  /**
+   * @method openBallon
+   * @description Открыть баллун с входящими данными
+   * @param {Array} items
+   */
   openBalloon = (items) => {
     this.setState({
       balloonItemsPreview: items,
     })
   }
 
+  /**
+   * @method closeBalloon
+   * @description Закрыть баллун
+   */
   closeBalloon = () => {
     this.setState({
       balloonItemsPreview: null,
     })
   }
 
+  /**
+   * @method viewEvent
+   * @description Открыть экран события
+   * @param {Object} event
+   */
   viewEvent = (event) => {
     this.props.onViewEvent(event)
   }
