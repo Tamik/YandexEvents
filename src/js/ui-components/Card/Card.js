@@ -7,6 +7,8 @@ const Card = props => (
   <div
     className={`${style.card} ${style[`card_${props.size}`]}`}
     style={props.style}
+    onClick={props.onClick}
+    role='note'
   >
     <Image src={props.src} size={props.size} />
     <div
@@ -36,6 +38,7 @@ Card.propTypes = {
   title: PropTypes.string,
   date: PropTypes.string,
   style: PropTypes.object,
+  onClick: PropTypes.func,
 }
 
 export default Card
