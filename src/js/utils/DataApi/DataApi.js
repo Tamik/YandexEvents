@@ -31,6 +31,10 @@ const DataApi = {
     this.request = new ApiRequestFabric(API_METHODS.GET_EVENTS)
     return this.request
   },
+  getEvent: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_EVENT)
+    return this.request
+  },
   getCategories: () => {
     this.request = new ApiRequestFabric(API_METHODS.GET_CATEGORIES)
     return this.request
@@ -58,6 +62,17 @@ const DataApi = {
   },
 }
 
+
+// /**
+//  * @example: get event extra
+//  */
+// DataApi.getEvent()
+//   .byHoliday(1)
+//   .byId(34867088)
+//   .perform()
+//   .then((response) => {
+//     console.log('Event: ', response.data)
+//   })
 
 // /**
 //  * @example: get hint

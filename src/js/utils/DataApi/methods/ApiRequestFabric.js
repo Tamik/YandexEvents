@@ -1,6 +1,7 @@
 import { API_METHODS } from '../consts'
 import {
   ApiEventsRequest,
+  ApiEventRequest,
   ApiCategoriesRequest,
   ApiPlacesRequest,
   ApiDatesWithEventsRequest,
@@ -17,6 +18,8 @@ const ApiRequestFabric = (methodId) => {
       return new ApiHintRequest(API_METHODS.GET_HINT)
     case API_METHODS.GET_EVENTS:
       return new ApiEventsRequest(API_METHODS.GET_EVENTS)
+    case API_METHODS.GET_EVENT:
+      return new ApiEventRequest(API_METHODS.GET_EVENT)
     case API_METHODS.GET_CATEGORIES:
       return new ApiCategoriesRequest(API_METHODS.GET_CATEGORIES)
     case API_METHODS.GET_PLACES:
