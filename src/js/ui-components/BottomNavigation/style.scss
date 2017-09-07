@@ -1,21 +1,25 @@
 .botNav {
   display: flex;
   flex-shrink: 0;
-  padding: 10px 0px 7px;
+  padding: 8px 10px;
   box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.7);
   z-index: 2;
 
   &__item {
     flex-grow: 1;
-    color: #333333;
-    font-size: 0.6875rem;
-    line-height: 0.8125rem;
+    flex-basis: 77px;
+    color: #777777;
+    font-size: 0.75rem;
     text-align: center;
 
     & > svg {
       display: block;
       margin: auto;
       margin-bottom: 6px;
+    }
+
+    &_active {
+      color: #333333;
     }
   }
 }

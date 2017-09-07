@@ -1,13 +1,13 @@
 .button {
-  font-size: 18px;
-  border: 1px solid rgba(0, 0, 0, .1);
-  border-radius: 5px;
-  padding: 12px 16px;
-  line-height: 24px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  line-height: 1.125rem;
+  color: #000;
+  background-color: #ededed;
+  border-radius: 100px;
 
   &_primary {
-    background-color: rgba(255, 222, 90, 1);
-    border: none;
+    background-color: #ffde5a;
   }
 
   &_disabled {
