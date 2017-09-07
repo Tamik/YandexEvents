@@ -11,20 +11,18 @@ const Icon = (props) => {
       return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.map }} />
     case 'list':
       return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.list }} />
+    case 'event':
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.event }} />
+    case 'eventFill':
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.eventFill }} />
     case 'star':
-      return <svg viewBox='0 0 22 21' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.star }} />
-    case 'starActive':
-      return <svg viewBox='0 0 22 21' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.starActive }} />
-    case 'profile':
-      return <svg viewBox='0 0 22 20' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.profile }} />
-    case 'search':
-      return <svg viewBox='0 0 18 18' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.search }} />
-    case 'ticket':
-      return <svg viewBox='0 0 16 20' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.ticket }} />
-    case 'moscowDay':
-      return <svg viewBox='0 0 22 22' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.moscowDay }} />
-    case 'moscowDayActive':
-      return <svg viewBox='0 0 20 20' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.moscowDayActive }} />
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.star }} />
+    case 'starFill':
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.starFill }} />
+    case 'bookmark':
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.bookmark }} />
+    case 'bookmarkFill':
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.bookmarkFill }} />
     default:
       return <p>Нет такой иконки</p>
   }
