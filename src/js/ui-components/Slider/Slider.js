@@ -1,5 +1,6 @@
 import React from 'react'
 import SliderLib from 'react-slick'
+
 import style from './style.scss'
 
 const Slider = (props) => {
