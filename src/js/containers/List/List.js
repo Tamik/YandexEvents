@@ -15,20 +15,30 @@ class ListContainer extends Component {
     route: {},
   }
 
-  componentWillMount() {
-    if (this.props.params) {
+  componentDidMount() {
+    this.getData(this.props)
+  }
+
+  componentWillUpdate(nextProps) {
+    if (this.props.categoryId !== nextProps.categoryId) {
+      this.getData(nextProps)
+    }
+  }
+
+  getData = (props) => {
+    if (props.params) {
       DataApi
-        .prepareQuery(this.props.params)
+        .prepareQuery(props.params)
         .perform()
         .then(response => this.setState({
           elements: response.data.data,
-          route: this.props.route,
+          route: props.route,
         }))
     }
     else {
       DataApi.getEvents()
         .byHoliday(1)
-        .byCategory(this.props.categoryId)
+        .byCategory(props.categoryId)
         .perform()
         .then(response => this.setState({
           elements: response.data.data,
