@@ -654,12 +654,14 @@ class Map extends Component {
         >
           {this.state.isMyLocationLoading
             ? <div className='radar-spinner' />
-            : ''}
-          icon
-          {/* <Icon path={IconsUIPack.NAVIARROW} size='25px' color='#ffffff' viewBox='0 0 54 50' /> */}
+            : ''
+          }
+          <Icon type='mylocation' width='24' height='24' />
         </BtnGoToMyLocation>
         <BalloonLayout
-          style={{ display: this.state.balloonItemsPreview ? 'block' : 'none' }}
+          style={{
+            display: this.state.balloonItemsPreview ? 'block' : 'none',
+          }}
         >
           <BalloonInner>
             <BalloonTopBar onClick={this.closeBalloon}>
