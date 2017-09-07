@@ -12,6 +12,7 @@ import { DataApi } from 'utils/DataApi'
 class SliderContainer extends Component {
   state = {
     elements: [],
+    route: {},
   }
 
   componentWillMount() {
@@ -20,6 +21,7 @@ class SliderContainer extends Component {
       .perform()
       .then(response => this.setState({
         elements: response.data.data,
+        route: this.props.route,
       }))
   }
 
@@ -58,7 +60,7 @@ class SliderContainer extends Component {
                 margin: '8px 16px',
                 marginLeft: 0,
               }}
-              onClick={() => this.viewEvent(this.props.route, element)}
+              onClick={() => this.viewEvent(this.state.route.url, element)}
             />
           ))}
         </Slider>
@@ -78,9 +80,9 @@ SliderContainer.propTypes = {
 export default connect(
   state => ({}),
   dispatch => ({
-    onViewEvent: (route, eventData) => {
-      dispatch(sendModalEventData(eventData))
-      dispatch(push(route.url.replace('%', eventData.id)))
+    onViewEvent: (route, element) => {
+      dispatch(sendModalEventData(element))
+      dispatch(push(route.replace('%', element.id)))
     },
   })
 )(SliderContainer)
