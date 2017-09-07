@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { DataApi } from 'utils/DataApi'
+import { push } from 'actions/navigationActions'
+import { sendModalEventData } from 'actions/dataActions'
 
 import { SlideCard, Slider } from 'ui-components'
 
-export default class SliderContainer extends Component {
+import { DataApi } from 'utils/DataApi'
+
+class SliderContainer extends Component {
   state = {
     elements: [],
+    route: {},
   }
 
   componentWillMount() {
@@ -16,7 +21,12 @@ export default class SliderContainer extends Component {
       .perform()
       .then(response => this.setState({
         elements: response.data.data,
+        route: this.props.route,
       }))
+  }
+
+  viewEvent = (route, eventData) => {
+    this.props.onViewEvent(route, eventData)
   }
 
   render() {
@@ -50,6 +60,7 @@ export default class SliderContainer extends Component {
                 margin: '8px 16px',
                 marginLeft: 0,
               }}
+              onClick={() => this.viewEvent(this.state.route.url, element)}
             />
           ))}
         </Slider>
@@ -65,3 +76,13 @@ SliderContainer.propTypes = {
   cardStyle: PropTypes.object,
   params: PropTypes.object,
 }
+
+export default connect(
+  state => ({}),
+  dispatch => ({
+    onViewEvent: (route, element) => {
+      dispatch(sendModalEventData(element))
+      dispatch(push(route.replace('%', element.id)))
+    },
+  })
+)(SliderContainer)

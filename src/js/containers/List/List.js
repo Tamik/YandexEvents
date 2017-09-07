@@ -1,13 +1,18 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { DataApi } from 'utils/DataApi'
+import { push } from 'actions/navigationActions'
+import { sendModalEventData } from 'actions/dataActions'
 
 import { Card } from 'ui-components'
 
-export default class ListContainer extends Component {
+import { DataApi } from 'utils/DataApi'
+
+class ListContainer extends Component {
   state = {
     elements: [],
+    route: {},
   }
 
   componentWillMount() {
@@ -17,6 +22,7 @@ export default class ListContainer extends Component {
         .perform()
         .then(response => this.setState({
           elements: response.data.data,
+          route: this.props.route,
         }))
     }
     else {
@@ -26,8 +32,13 @@ export default class ListContainer extends Component {
         .perform()
         .then(response => this.setState({
           elements: response.data.data,
+          route: { url: '/events/%' },
         }))
     }
+  }
+
+  viewEvent = (route, eventData) => {
+    this.props.onViewEvent(route, eventData)
   }
 
   render() {
@@ -59,6 +70,7 @@ export default class ListContainer extends Component {
               ...this.props.cardStyle,
               marginBottom: 20,
             }}
+            onClick={() => this.viewEvent(this.state.route.url, element)}
             date='11 сентября в 22:00'
           />
         ))}
@@ -75,3 +87,13 @@ ListContainer.propTypes = {
   params: PropTypes.object,
   categoryId: PropTypes.string,
 }
+
+export default connect(
+  state => ({}),
+  dispatch => ({
+    onViewEvent: (route, element) => {
+      dispatch(sendModalEventData(element))
+      dispatch(push(route.replace('%', element.id)))
+    },
+  })
+)(ListContainer)
