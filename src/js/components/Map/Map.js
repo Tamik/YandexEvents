@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
+import { connect } from 'react-redux'
 import { YMaps, Map as YMap, Clusterer, Placemark } from 'react-yandex-maps'
-import axios from 'axios'
 
-import { MapCard, Slider } from 'ui-components'
+import { push } from 'actions/navigationActions'
+import { sendModalEventData } from 'actions/dataActions'
+
+import { MapCard, Icon, Spinner } from 'ui-components'
+
+import { DataApi } from 'utils/DataApi'
 
 import {
   GEOLOCATION_WATCH_TIMEOUT,
