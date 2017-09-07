@@ -1,7 +1,7 @@
 export const GEOLOCATION_WATCH_TIMEOUT = 60000 // seconds
 
-export const CLUSTER_STYLE_PRESET = 'islands#invertedDarkBlueClusterIcons'
-export const EVENT_STYLE_PRESET = 'islands#redDotIcon'
+export const CLUSTER_STYLE_PRESET = 'islands#blueClusterIcons'
+export const EVENT_STYLE_PRESET = 'islands#blueCircleDotIcon'
 export const MYLOCATION_STYLE_PRESET = 'islands#geolocationIcon'
 
 export const INIT_ZOOM = 13 // zoom: 1..23
