@@ -90,7 +90,7 @@ export default connect(
   dispatch => ({
     onViewEvent: (route, eventData) => {
       dispatch(sendModalEventData(eventData))
-      dispatch(push(route.replace('%', eventData.id)))
+      dispatch(push(route.url.replace('%', eventData.id)))
     },
   })
 )(ListContainer)
