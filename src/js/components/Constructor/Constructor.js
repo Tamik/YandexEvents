@@ -16,6 +16,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      route={props.route}
       cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
@@ -27,6 +28,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      route={props.route}
       cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
@@ -38,6 +40,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      route={props.route}
       cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
@@ -49,6 +52,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      route={props.route}
       cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
@@ -71,6 +75,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          route: container.route,
           cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
@@ -82,6 +87,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          route: container.route,
           cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
@@ -93,6 +99,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          route: container.route,
           cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
@@ -104,6 +111,7 @@ class Constructor extends Component {
             // title: container.params.title,
           },
           style: styles[container.name],
+          route: container.route,
           cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
@@ -114,6 +122,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          route: container.route,
           cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
