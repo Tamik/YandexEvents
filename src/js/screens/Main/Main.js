@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
@@ -11,50 +11,56 @@ import { Tabs, Container } from 'ui-components'
 import style from 'screens/main/style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
 
-const Main = (props) => {
-  const activeTabName = props.router.route.slice(2)
-  const activeCategoryId = parseInt(props.params.categoryId, 10)
+class Main extends Component {
+  activeTabName = this.props.router.route.slice(2)
+  activeCategoryId = parseInt(this.props.params.categoryId, 10)
 
-  const viewMainTab = () => {
-    props.onViewMainTab()
+  viewMainTab = () => {
+    this.props.onViewMainTab()
+    this.activeTabName = 'feed'
+    this.activeCategoryId = null
   }
 
-  const viewCategory = (categoryData) => {
-    props.onViewCategory(categoryData)
+  viewCategory = (categoryData) => {
+    this.props.onViewCategory(categoryData)
+    this.activeTabName = null
+    this.activeCategoryId = categoryData.id
   }
 
-  return (
-    <div className='screen'>
-      <Tabs style={{ ...props.data.configData.params.style.topBar }}>
-        { /* Main tab */}
-        <div
-          role='button'
-          className={`${styleTabs.tabs__item} ${activeTabName === 'feed' ? styleTabs.tabs__item_active : ''}`}
-          onClick={() => {
-            viewMainTab()
-          }}
-          style={props.data.configData.params.style.topBar}
-        >{props.data.configData.params.mainTabTitle}</div>
-        {
-          /* Print categories tabs */
-          props.data.configData.params.categories.map(item => (
-            <div
-              key={item.id}
-              role='button'
-              className={`${styleTabs.tabs__item} ${activeCategoryId === item.id ? styleTabs.tabs__item_active : ''}`}
-              onClick={() => viewCategory(item)}
-              style={props.data.configData.params.style.topBar}
-            >{item.title}</div>
-          )
-          )
-        }
-      </Tabs>
-      <Container scrolling stretching background>
-        <props.fragment params={props.params} view={props.view} />
-      </Container>
-      <BottomNav />
-    </div>
-  )
+  render() {
+    return (
+      <div className='screen'>
+        <Tabs style={{ ...this.props.data.configData.params.style.topBar }}>
+          { /* Main tab */}
+          <div
+            role='button'
+            className={`${styleTabs.tabs__item} ${this.activeTabName === 'feed' ? styleTabs.tabs__item_active : ''}`}
+            onClick={() => {
+              this.viewMainTab()
+            }}
+            style={this.props.data.configData.params.style.topBar}
+          >{this.props.data.configData.params.mainTabTitle}</div>
+          {
+            /* Print categories tabs */
+            this.props.data.configData.params.categories.map(item => (
+              <div
+                key={item.id}
+                role='button'
+                className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.tabs__item_active : ''}`}
+                onClick={() => this.viewCategory(item)}
+                style={this.props.data.configData.params.style.topBar}
+              >{item.title}</div>
+            )
+            )
+          }
+        </Tabs>
+        <Container scrolling stretching background>
+          <this.props.fragment params={this.props.params} view={this.props.view} />
+        </Container>
+        <BottomNav />
+      </div>
+    )
+  }
 }
 
 export default connect(
