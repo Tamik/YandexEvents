@@ -64,17 +64,10 @@ class Map extends Component {
     this.isComponentMounted = false
     this.watchLocationID = null
     this.doAutoPan = true
-
     this.eventsToPointsMap = {}
-
     this.lastOpenedBalloon = null
-
     this.cachedMyLocation = null
-
-    this.initialIndexer = 1
-
     this.points = props.points || []
-
     this.state = {
       myLocationPoint: {
         lat: 0,
@@ -100,7 +93,6 @@ class Map extends Component {
     this.isComponentMounted = false
     this.stopWatchingMyLocation()
     this.watchLocationID = 0
-
     this.state.balloonItemsPreview = null
   }
 
@@ -174,7 +166,7 @@ class Map extends Component {
   onMapsApiReady = (api) => {
     yMapsApi = api // Не вносим в контекст компонента, т.к api - это статичный объект
 
-    const topBarHeight = 0
+    const topBarHeight = 76
     const screenHeight = window.innerHeight
     this.mapHeight = Math.abs(topBarHeight - screenHeight)
   }
@@ -222,9 +214,7 @@ class Map extends Component {
     }
 
     this.clusterer = refClusterer
-
     this.eventsToPointsMap = {}
-    this.initialIndex = {}
 
     /**
      * @todo: Refactoring required: improve async code
@@ -234,6 +224,7 @@ class Map extends Component {
       this.points.forEach((item, idx) => {
         this.eventsToPointsMap[item.id] = idx
       })
+
       this.afterEventsLoaded()
     }
     else {
@@ -248,11 +239,9 @@ class Map extends Component {
           }
 
           this.points = response.data.data
-
           this.points.forEach((item, idx) => {
             this.eventsToPointsMap[item.id] = idx
           })
-
           this.afterEventsLoaded()
         })
     }
@@ -267,6 +256,7 @@ class Map extends Component {
         },
       })
     }
+
     this.doAutoPan = false
   }
 
@@ -277,6 +267,7 @@ class Map extends Component {
         center: coords,
       },
     })
+
     this.doAutoPan = false
   }
 
@@ -292,9 +283,7 @@ class Map extends Component {
     }
 
     this.bindMapEvents()
-
     this.startWatchingMyLocation()
-
     this.setState({
       loading: false,
     })
