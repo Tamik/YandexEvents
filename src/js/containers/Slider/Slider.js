@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { DataApi } from 'utils/DataApi'
 
-import { Card, Slider } from 'ui-components'
+import { SlideCard, Slider } from 'ui-components'
 
 export default class SliderContainer extends Component {
   state = {
@@ -25,21 +25,21 @@ export default class SliderContainer extends Component {
         style={{
           ...this.props.style,
           margin: '16px 0',
+          marginLeft: '16px',
         }}
       >
         {this.props.title
           ? <h3
             style={{
               fontSize: '1.25rem',
-              margin: 16,
-              marginLeft: 16,
+              margin: '16px',
             }}
           >{this.props.title}</h3>
           : null
         }
         <Slider>
           {this.state.elements.map(element => (
-            <Card
+            <SlideCard
               key={element.id}
               title={element.title}
               src={`http://io.yamblz.ru/i/events/${element.id}_large.jpg`}
@@ -47,8 +47,8 @@ export default class SliderContainer extends Component {
               size={this.props.cardSize}
               style={{
                 ...this.props.cardStyle,
-                maxWidth: 300,
                 margin: '8px 16px',
+                marginLeft: 0,
               }}
             />
           ))}
