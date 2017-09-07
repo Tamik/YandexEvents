@@ -1,15 +1,10 @@
 .card {
   flex-shrink: 0;
   color: #000;
-  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
 
   &_small {
     position: relative;
-    margin: 13px 10px;
-
-    &:first-child {
-      margin-left: 16px;
-    }
   }
 
   &_medium {
@@ -18,17 +13,15 @@
     line-height: 1.25rem;
   }
 
-  &_large {
-
-  }
+  &_large {}
 
   &__info {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    background-color: rgba(255, 255, 255, 1);
     padding: 12px 14px;
     color: #6e6e6e;
-    background-color: #fff;
     z-index: 2;
 
     &_small {
@@ -36,14 +29,14 @@
       bottom: 14px;
       left: 14px;
       right: 14px;
-      padding: 0;
       background-color: transparent;
-      color: #fff;
+      padding: 0;
+      color: rgba(255, 255, 255, 1);
     }
 
     &_medium {
       justify-content: space-between;
-      height: calc(100% - 176px);
+      // height: calc(100% - 176px);
     }
 
     &_large {
@@ -52,15 +45,15 @@
   }
 
   &__title {
-    margin-bottom: 8px;
     font-weight: 500;
+    margin-bottom: 8px;
     text-decoration: none;
 
     &_small {
+      font-size: 1.2rem;
       margin-bottom: 4px;
-      font-size: 1.5rem;
-      line-height: 1.6rem;
-      color: #fff;
+      line-height: 1.25rem;
+      color: rgba(255, 255, 255, 1);
     }
 
     &_medium {
@@ -71,14 +64,16 @@
     &_large {
       font-size: 1.5rem;
       line-height: 1.75rem;
-      color: #000;
+      color: rgba(0, 0, 0, 1);
     }
   }
 
   &__text {
+    font-size: .9rem;
+    opacity: .8;
+
     &_bottom {
       margin-top: auto;
-
     }
   }
 }
