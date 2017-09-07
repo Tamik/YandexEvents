@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import { DataApi } from 'utils/DataApi'
 
 import { Card } from 'ui-components'
 
 export default class ListContainer extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      elements: [],
-    }
+  state = {
+    elements: [],
   }
 
   componentWillMount() {
@@ -35,9 +32,20 @@ export default class ListContainer extends Component {
 
   render() {
     return (
-      <div style={this.props.style}>
+      <div
+        style={{
+          ...this.props.style,
+          margin: 16,
+          marginBottom: this.props.categoryId ? 16 * 4 : 16,
+        }}
+      >
         {this.props.title
-          ? <h3>{this.props.title}</h3>
+          ? <h3
+            style={{
+              fontSize: '1.25rem',
+              margin: '16px 0',
+            }}
+          >{this.props.title}</h3>
           : null
         }
         {this.state.elements.map(element => (
@@ -46,10 +54,24 @@ export default class ListContainer extends Component {
             title={element.title}
             src={`http://io.yamblz.ru/i/events/${element.id}_small.jpg`}
             location={element.location_title}
-            style={this.props.cardStyle}
+            size='medium'
+            style={{
+              ...this.props.cardStyle,
+              marginBottom: 16,
+            }}
+            date='11 сентября в 22:00'
           />
         ))}
       </div>
     )
   }
+}
+
+ListContainer.propTypes = {
+  title: PropTypes.string,
+  style: PropTypes.object,
+  cardSize: PropTypes.string,
+  cardStyle: PropTypes.object,
+  params: PropTypes.object,
+  categoryId: PropTypes.string,
 }
