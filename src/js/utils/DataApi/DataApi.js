@@ -62,6 +62,16 @@ const DataApi = {
   },
 }
 
+// /**
+//  * @example: get entities
+//  */
+// DataApi.getEntities()
+//   .byHoliday(1)
+//   .byCategory('artists')
+//   .perform()
+//   .then((response) => {
+//     console.log('Get artists: ', response.data)
+//   })
 
 // /**
 //  * @example: get event extra
