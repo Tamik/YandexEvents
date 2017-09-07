@@ -2,13 +2,9 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 export default class HintContainer extends Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      title: null,
-      description: null,
-    }
+  state = {
+    title: null,
+    subtitle: null,
   }
 
   componentWillMount() {
@@ -19,7 +15,7 @@ export default class HintContainer extends Component {
     })
       .then(response => this.setState({
         title: response.data.data[0].title,
-        description: response.data.data[0].location_title,
+        subtitle: response.data.data[0].location_title,
       }))
   }
 
@@ -27,7 +23,7 @@ export default class HintContainer extends Component {
     return (
       <div style={this.props.style}>
         <h3>{this.state.title}</h3>
-        <span>{this.state.description}</span>
+        <span>{this.state.subtitle}</span>
       </div>
     )
   }
