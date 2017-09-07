@@ -43,6 +43,10 @@ const DataApi = {
     this.request = new ApiRequestFabric(API_METHODS.GET_PLACES)
     return this.request
   },
+  getPlace: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_PLACE)
+    return this.request
+  },
   getDatesWithEvents: () => {
     this.request = new ApiRequestFabric(API_METHODS.GET_DATES_WITH_EVENTS)
     return this.request
@@ -65,7 +69,7 @@ const DataApi = {
 // /**
 //  * @example: Get events by entity
 //  */
-// const getEvents = DataApi.getEvents()
+// DataApi.getEvents()
 //   .byHoliday(1)
 //   .byEntity(1)
 //   .perform()
@@ -206,6 +210,17 @@ const DataApi = {
 //   .perform()
 //   .then((response) => {
 //     console.log('Dates with planned events: ', response.data)
+//   })
+
+// /**
+//  * @example: Get place
+//  */
+// DataApi.getPlace()
+//   .byHoliday(1)
+//   .byId(1)
+//   .perform()
+//   .then((response) => {
+//     console.log('Get place: ', response.data)
 //   })
 
 export default DataApi
