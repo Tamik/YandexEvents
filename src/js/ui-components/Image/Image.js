@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import style from './style.scss'
 
 const Image = props => (
@@ -10,7 +11,7 @@ const Image = props => (
 )
 
 Image.defaultProps = {
-  src: 'http://placehold.it/350x50',
+  src: 'https://placehold.it/350x50',
   size: 'small',
 }
 

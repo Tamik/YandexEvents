@@ -16,7 +16,7 @@ const Card = props => (
         {props.title}
       </h3>
       <p className={style.card__text}>
-        {props.dateInfo}
+        {props.date}
       </p>
     </div>
   </div>
@@ -24,14 +24,18 @@ const Card = props => (
 
 Card.defaultProps = {
   size: 'small',
-  src: 'http://placehold.it/350x50',
-  text: 'some text',
+  src: 'https://placehold.it/350x50',
+  title: null,
+  date: null,
+  style: null,
 }
 
 Card.propTypes = {
   size: PropTypes.string,
   src: PropTypes.string,
-  text: PropTypes.string,
+  title: PropTypes.string,
+  date: PropTypes.string,
+  style: PropTypes.object,
 }
 
 export default Card
