@@ -63,6 +63,17 @@ const DataApi = {
 }
 
 // /**
+//  * @example: Get events by entity
+//  */
+// const getEvents = DataApi.getEvents()
+//   .byHoliday(1)
+//   .byEntity(1)
+//   .perform()
+//   .then((response) => {
+//     console.log('Get events by entity: ', response.data)
+//   })
+
+// /**
 //  * @example: get entities
 //  */
 // DataApi.getEntities()
