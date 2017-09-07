@@ -2,7 +2,7 @@ import React from 'react'
 import PageTransition from 'react-router-page-transition'
 import { connect } from 'react-redux'
 
-import { OnBoarding, Main, Event, Place, Category, Feed, Map } from 'screens'
+import { OnBoarding, Main, Event, Place, Category, Feed, Map, Entity } from 'screens'
 import style from './Application.scss'
 
 const Application = (props) => {
@@ -18,6 +18,21 @@ const Application = (props) => {
   if (props.user.firstEnter) {
     return (<OnBoarding />)
   }
+
+  // /
+  // /feed
+  //    /feed/list
+  //    /feed/map
+  // /category/999
+  //    /category/999/list
+  //    /category/999/map
+  // /place/999
+  // /entity/999
+  // /holidays - tab two
+  // /favorites - tab three
+  //    /list
+  //    /map
+  // /event
 
   // Main -> fragment -> Feed 
   if (!route || route === '#/main' || route === '#/' || route.indexOf('#/feed') > -1) {
@@ -40,6 +55,16 @@ const Application = (props) => {
       fragment={Category}
       params={params}
     />)
+  }
+
+  /**
+   * General screens
+   */
+  // Screen Event
+  if (route.indexOf('#/entity') > -1) {
+    const entityId = route.split('/')[2]
+    const params = { entityId }
+    return <Entity params={params} />
   }
 
   // Screen Event
