@@ -4,6 +4,7 @@ import { Container, TopBar, Icon, Image } from 'ui-components'
 
 import { goBack } from 'actions/navigationActions'
 import { EventsList } from 'containers'
+import { BottomNav } from 'components'
 
 import styleCard from 'ui-components/Card/style.scss'
 
@@ -31,7 +32,7 @@ const Place = (props) => {
     props.onGoBack()
   }
   return (
-    <div className='screen transition-item'>
+    <div className='screen'>
       <TopBar
         title={place.title}
         icon={<button onClick={naviGoBack}>
@@ -52,6 +53,7 @@ const Place = (props) => {
           <EventsList payload={response.data} />
         </div>
       </Container>
+      <BottomNav />
     </div>
   )
 }
