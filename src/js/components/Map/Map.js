@@ -60,7 +60,7 @@ var initialIndexer = 0
  */
 let yMapsApi = null
 
-export default class Map extends Component {
+class Map extends Component {
   constructor(props) {
     super(props)
     this.isComponentMounted = false
@@ -725,3 +725,13 @@ export default class Map extends Component {
     )
   }
 }
+
+export default connect(
+  state => ({}),
+  dispatch => ({
+    onViewEvent: (event) => {
+      dispatch(sendModalEventData(event))
+      dispatch(push(`/event/${event.id}`))
+    },
+  })
+)(Map)
