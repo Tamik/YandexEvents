@@ -57,7 +57,7 @@ export default class ListContainer extends Component {
             size='medium'
             style={{
               ...this.props.cardStyle,
-              marginBottom: 16,
+              marginBottom: 20,
             }}
             date='11 сентября в 22:00'
           />
