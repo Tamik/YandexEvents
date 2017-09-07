@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   display: flex;
   font-size: 0.75rem;
   background-color: white;
@@ -6,6 +7,18 @@
   padding: 16px;
   margin-right: 16px;
   vertical-align: bottom;
+
+  &__label {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 4px 8px;
+    background-color: #ffde5a;
+    color: #000;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    z-index: 3;
+  }
 
   &__info {
     display: flex;

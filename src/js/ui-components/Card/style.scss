@@ -3,6 +3,7 @@
   flex-grow: 1;
   color: #000;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+  position: relative;
 
   &_small {
     width: 75vw;
@@ -17,6 +18,18 @@
   }
 
   &_large {}
+
+  &__label {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    padding: 4px 8px;
+    background-color: #ffde5a;
+    color: #000;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    z-index: 3;
+  }
 
   &__info {
     display: flex;
