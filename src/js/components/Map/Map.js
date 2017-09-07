@@ -295,8 +295,6 @@ class Map extends Component {
 
     this.startWatchingMyLocation()
 
-    this.openBalloon(this.points)
-
     this.setState({
       loading: false,
     })
@@ -305,14 +303,18 @@ class Map extends Component {
   /* dev:start */
   sortEventsByDistance = () => {
     let distance
-
-    // И сортируем список точек так: Ближайшие выше
-    this.points.forEach((eventData, idx) => {
+    /**
+     * @description Вычисляем дистанцию между пользователем и каждым событием,
+     * и сортируем список по расстоянию
+     */
+    this.points.forEach((eventData) => {
       distance = yMapsApi.coordSystem.geo.getDistance(
         [eventData.lat, eventData.lng],
         [this.state.myLocationPoint.lat, this.state.myLocationPoint.lng]
       )
-      // Populate distance to points collection 
+      /**
+       * @description Populate distance to points collection
+       */
       this.points[this.eventsToPointsMap[eventData.id]].distance = distance
     })
 
@@ -320,9 +322,11 @@ class Map extends Component {
   }
   /* dev:end */
 
-  bindEventsOnClusterer() {
-    // Клик по метке в кластере - открывает кастомнй балун 
-    // со списком событий свернутых в этот в кластер
+  bindEventsOnClusterer = () => {
+    /**
+     * @description При клике по метке в кластере – открывается кастомный баллун
+     * со список событий, свернутых в этот кластер
+     */
     this.clusterer.events.add('click', (e) => {
       const items = []
 
@@ -332,23 +336,28 @@ class Map extends Component {
         const eventId = placemark.properties.get('eventId')
         items.push(this.getEventById(eventId))
       }
-      else {
-        // Clustered events?
-        const objects = e.get('target').getGeoObjects()
-        objects.map((item) => {
-          const eventId = item.properties.get('eventId')
-          items.push(this.getEventById(eventId))
-        })
-      }
+      // else {
+      //   // Clustered events?
+      //   const objects = e.get('target').getGeoObjects()
+      //   objects.map((item) => {
+      //     const eventId = item.properties.get('eventId')
+      //     items.push(this.getEventById(eventId))
+      //   })
+      // }
 
-        this.openBalloon(this.points)
-        this.initialIndexer = this.initialIndex[e.get('target').properties.get('eventId')]
+      this.openBalloon(items)
     })
   }
 
+  /**
+   * @method Скрыть карточки (баллун)
+   */
   bindMapEvents = () => {
+    /**
+     * @description Метод скрытия карточки (баллуна), если пользователь сдвинул карту
+     */
     // Закрываем открытый балун, если карту сдвинули
-    this.map.events.add('multitouchstart', (e) => {
+    this.map.events.add('multitouchstart', (event) => {
       this.doAutoPan = false
       if (this.isBalloonOpened()) {
         this.closeBalloon()
@@ -356,7 +365,10 @@ class Map extends Component {
     })
 
     // Закрываем открытый балун если к карте прикоснулись
-    this.map.events.add('mousedown', (e) => {
+    /**
+     * @description Вызывается скрытие карточки (баллуна), если пользователь коснулся карты
+     */
+    this.map.events.add('mousedown', (event) => {
       this.doAutoPan = false
       if (this.isBalloonOpened()) {
         this.closeBalloon()
@@ -376,7 +388,7 @@ class Map extends Component {
       }
     )
 
-    btnGoToEventLocation.events.add('click', (e) => {
+    btnGoToEventLocation.events.add('click', (event) => {
       this.map.panTo(this.props.panToLocation, {
         duration: 1000,
         flying: true,
