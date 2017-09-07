@@ -4,7 +4,7 @@ import style from './style.scss'
 
 const Spinner = () => (
   <div className={style.spinner}>
-    <div className={style['spinner__wrap']} />
+    <div className={style.spinner__wrap} />
   </div>
 )
 
