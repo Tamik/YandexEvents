@@ -40,8 +40,6 @@ import {
   BtnGoToMyLocation,
 } from './styles'
 
-var initialIndexer = 0
-
 /**
  * @see
  * Map
@@ -92,23 +90,10 @@ class Map extends Component {
       },
       loading: true,
     }
-
-    this.onMapsApiReady = this.onMapsApiReady.bind(this)
-    this.onGeolocationSuccess = this.onGeolocationSuccess.bind(this)
-    this.onGeolocationError = this.onGeolocationError.bind(this)
-
-    this.closeBalloon = this.closeBalloon.bind(this)
-    this.openEventModal = this.openEventModal.bind(this)
-    this.changeZoomToCity = this.changeZoomToCity.bind(this)
-
-    this.showMyPosition = this.showMyPosition.bind(this)
   }
 
   componentDidMount() {
     this.isComponentMounted = true
-
-    if (this.props.panToLocation === undefined) {
-    }
   }
 
   componentWillUnmount() {
@@ -175,16 +160,11 @@ class Map extends Component {
       isMyLocationLoading: false,
     })
 
-    if (!this.isOneEvent) {
-      this.sortEventsByDistance()
-    }
-  }
-
-  /**
-   * @description Обработчик ошибки определения текущего местоположения
-   * @param {*} error 
-   */
-  onGeolocationError(error) {
+    /* dev:start */
+    // if (!this.isOneEvent) {
+    //   this.sortEventsByDistance()
+    // }
+    /* dev:end */
   }
 
   /**
@@ -227,9 +207,6 @@ class Map extends Component {
       }
     }
 
-    if (this.doAutoPan) {
-    }
-
     this.setState({
       loading: false,
     })
@@ -249,7 +226,6 @@ class Map extends Component {
     this.eventsToPointsMap = {}
     this.initialIndex = {}
 
-
     /**
      * @todo: Refactoring required: improve async code
      */
@@ -261,9 +237,11 @@ class Map extends Component {
       this.afterEventsLoaded()
     }
     else {
-      const today = new Date().getDay()
-
-      axios.get('http://io.yamblz.ru/events')
+      DataApi.getEvents()
+        .byHoliday(1)
+        .byCategory(this.props.categoryId)
+        .itemsPerPage(100)
+        .perform()
         .then((response) => {
           if (!this.isComponentMounted) {
             return
@@ -273,7 +251,6 @@ class Map extends Component {
 
           this.points.forEach((item, idx) => {
             this.eventsToPointsMap[item.id] = idx
-            this.initialIndex[item.id] = idx
           })
 
           this.afterEventsLoaded()
@@ -327,23 +304,23 @@ class Map extends Component {
     })
   }
 
+  /* dev:start */
   sortEventsByDistance = () => {
     let distance
 
-    // Вычисляем дистанцию между мной и каждым событием
     // И сортируем список точек так: Ближайшие выше
     this.points.forEach((eventData, idx) => {
       distance = yMapsApi.coordSystem.geo.getDistance(
         [eventData.lat, eventData.lng],
         [this.state.myLocationPoint.lat, this.state.myLocationPoint.lng]
       )
-
       // Populate distance to points collection 
       this.points[this.eventsToPointsMap[eventData.id]].distance = distance
     })
 
     this.points.sort((a, b) => a.distance - b.distance)
   }
+  /* dev:end */
 
   bindEventsOnClusterer() {
     // Клик по метке в кластере - открывает кастомнй балун 
@@ -508,9 +485,11 @@ class Map extends Component {
           pos: position,
         }
 
-        if (!this.isOneEvent) {
-          this.sortEventsByDistance()
-        }
+        /* dev:start */
+        // if (!this.isOneEvent) {
+        //   this.sortEventsByDistance()
+        // }
+        /* dev:end */
 
         this.startWatchingMyLocation()
       },
@@ -542,7 +521,6 @@ class Map extends Component {
         this.onGeolocationError,
         {
           timeout: GEOLOCATION_WATCH_TIMEOUT,
-          // enableHighAccuracy: true,
           maximumAge: 3000,
         }
       )
@@ -576,28 +554,11 @@ class Map extends Component {
     })
   }
 
-  openEventModal(eventId) {
-    // @todo: исключить линейный поиск, заменить на hash map
-    // const eventData = this.points.filter((item) => {
-    //   return eventId === item.id
-    // })
-
-    // after refactoring - we have search in eventsIDsToPoints hash map O(1) ;)
-    const eventData = this.getEventById(eventId)
-
-    if (eventData) {
-      this.props.parent.setState({
-        payload: eventData,
-        isModalVisible: true,
-        modalTitle: eventData.title,
-      })
-    }
-    return false
+  viewEvent = (event) => {
+    this.props.onViewEvent(event)
   }
 
   render() {
-    // const postfix = MDApi.getDeclineOfNumber(this.points.length, ['событие', 'события', 'событий'])
-    const postfix = 'событий'
     return (
       <YMapsWrap className='maps-wrap'>
         <YMaps onApiAvaliable={this.onMapsApiReady}>
@@ -622,7 +583,7 @@ class Map extends Component {
                 preset: CLUSTER_STYLE_PRESET,
                 groupByCoordinates: false,
                 hasBalloon: false,
-                clusterDisableClickZoom: true,
+                clusterDisableClickZoom: false,
                 clusterHideIconOnBalloonOpen: false,
                 geoObjectHideIconOnBalloonOpen: false,
               }}
@@ -639,15 +600,6 @@ class Map extends Component {
             ) : ''}
           </YMap>
         </YMaps>
-        <Pane
-          style={{ display: this.props.isOneEvent ? 'none' : 'block' }}
-        >
-          {this.points.length
-            ? <PaneInner onClick={this.changeZoomToCity}>
-              {'Сегодня '.concat(this.points.length).concat(' ').concat(postfix)}
-            </PaneInner>
-            : ''}
-        </Pane>
         <BtnGoToMyLocation
           className={this.state.isMyLocationLoading ? 'btn-goto-mylocation btn-goto-mylocation__loading' : 'btn-goto-mylocation'}
           onClick={this.showMyPosition}
@@ -668,51 +620,20 @@ class Map extends Component {
               <BtnClose>Закрыть</BtnClose>
             </BalloonTopBar>
             <BalloonItemsWrap>
-              <Slider index={this.initialIndexer}>
-                {this.state.balloonItemsPreview
-                  ? this.state.balloonItemsPreview.map((item, idx) => {
-                    {/* const beautyDatesRange = MDApi.beautifyEventDatesRange(
-                    item.dateFormatted,
-                    item.dateEndFormatted
-                  ) */}
-                    const beautyDatesRange = 0
-                    return (
-                      <div key={item.id} style={{ display: 'inline-block', verticalAlign: 'bottom', bottom: 0 }}>
-                        {/* <Card size='small' src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`} title={item.title} /> */}
-                        <MapCard src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`} title={item.title} location={item.location_title} />
-                        {/* <BalloonEventItem
-                        key={item.id}
-                        data-event-id={item.id}
-                        onClick={() => {
-                          this.openEventModal(item.id)
-                        }}
-                      >
-                        <BalloonEventTitle>{item.title}</BalloonEventTitle>
-                        <BalloonEventMeta>
-                          <p>{beautyDatesRange.dates} ({beautyDatesRange.time})</p>
-                          <div style={{ marginRight: 60 }}>
-                            <p style={{ marginTop: 6 }}>
-                              {item.location_title}
-                            </p>
-                            <p style={{ color: '#888' }}>
-                              {
-                                item.location_title !== item.address
-                                  ? item.address
-                                  : ''
-                              }
-                            </p>
-                          </div>
-                          {item.distance
-                            ? <DistanceLabel>{formatDistance(item.distance)}</DistanceLabel>
-                            : ''}
-                        </BalloonEventMeta>
-                      </BalloonEventItem> */}
-                      </div>
-                    )
-                  })
-                  : ''
-                }
-              </Slider>
+              {this.state.balloonItemsPreview
+                ? this.state.balloonItemsPreview.map(item => (
+                  <div key={item.id}>
+                    <MapCard
+                      src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
+                      title={item.title}
+                      location={item.location_title}
+                      onClick={() => this.viewEvent(item)}
+                    />
+                  </div>
+                )
+                )
+                : ''
+              }
             </BalloonItemsWrap>
           </BalloonInner>
         </BalloonLayout>
