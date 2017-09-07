@@ -5,17 +5,17 @@ import style from './style.scss'
 
 const SlideCard = props => (
   <div
-    className={`${style.card} ${style[`card_${props.size}`]}`}
+    className={`${style.slideCard} ${style[`slideCard_${props.size}`]}`}
     style={props.style}
   >
     <Image src={props.src} size={props.size} />
     <div
-      className={`${style.card__info} ${style[`card__info_${props.size}`]}`}
+      className={`${style.slideCard__info} ${style[`slideCard__info_${props.size}`]}`}
     >
-      <h3 className={`${style.card__title} ${style[`card__title_${props.size}`]}`}>
+      <h3 className={`${style.slideCard__title} ${style[`slideCard__title_${props.size}`]}`}>
         {props.title}
       </h3>
-      <p className={style.card__text}>
+      <p className={style.slideCard__text}>
         {props.date}
       </p>
     </div>
