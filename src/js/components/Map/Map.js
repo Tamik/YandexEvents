@@ -109,7 +109,7 @@ class Map extends Component {
    * @param {Object} pos 
    * @see https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/
    */
-  onGeolocationSuccess(pos) {
+  onGeolocationSuccess = (pos) => {
     const position = [pos.coords.latitude, pos.coords.longitude]
     /**
      * @description Добавляем метку с моим местоположением
@@ -171,7 +171,7 @@ class Map extends Component {
    * @description Выполнится, как только API Яндекс карт загрузился и готов к использованию
    * @param {Object} api - ref на статичный объект API Яндекс карт 
    */
-  onMapsApiReady(api) {
+  onMapsApiReady = (api) => {
     yMapsApi = api // Не вносим в контекст компонента, т.к api - это статичный объект
 
     const topBarHeight = 0
@@ -183,7 +183,7 @@ class Map extends Component {
    * @description Выполнится, как только контейнер карты будет готов к загрузке тайлов
    * @param {Object} mapInstance 
    */
-  onMapInited(refMapInstance) {
+  onMapInited = (refMapInstance) => {
     this.map = refMapInstance
 
     if (!this.isComponentMounted) {
@@ -216,7 +216,7 @@ class Map extends Component {
    * @description Выполнится, сразу полсе того, как кластерер меток событий будет создан 
    * @param {Object} refClusterer 
    */
-  onClustererInited(refClusterer) {
+  onClustererInited = (refClusterer) => {
     if (!this.isComponentMounted) {
       return
     }
@@ -258,7 +258,7 @@ class Map extends Component {
     }
   }
 
-  setZoom(newZoom) {
+  setZoom = (newZoom) => {
     if (this.isComponentMounted) {
       this.setState({
         mapState: {
@@ -270,7 +270,7 @@ class Map extends Component {
     this.doAutoPan = false
   }
 
-  setCenter(coords) {
+  setCenter = (coords) => {
     this.setState({
       mapState: {
         ...this.state.mapState,
@@ -280,11 +280,9 @@ class Map extends Component {
     this.doAutoPan = false
   }
 
-  getEventById(eventId) {
-    return this.points[this.eventsToPointsMap[eventId]]
-  }
+  getEventById = eventId => (this.points[this.eventsToPointsMap[eventId]])
 
-  afterEventsLoaded() {
+  afterEventsLoaded = () => {
     this.addPlacemarks()
     this.bindEventsOnClusterer()
 
@@ -348,7 +346,7 @@ class Map extends Component {
     })
   }
 
-  bindMapEvents() {
+  bindMapEvents = () => {
     // Закрываем открытый балун, если карту сдвинули
     this.map.events.add('multitouchstart', (e) => {
       this.doAutoPan = false
@@ -366,7 +364,7 @@ class Map extends Component {
     })
   }
 
-  makeBtnGotoEventLocation() {
+  makeBtnGotoEventLocation = () => {
     const btnGoToEventLocation = new yMapsApi.control.Button(
       {
         data: {
@@ -391,7 +389,7 @@ class Map extends Component {
     return btnGoToEventLocation
   }
 
-  addPlacemarks() {
+  addPlacemarks = () => {
     const geoObjects = []
 
     // Creating placemarks
@@ -412,11 +410,11 @@ class Map extends Component {
     this.map.geoObjects.add(geoObjects[0])
   }
 
-  createPlacemark(eventData, eventId) {
+  createPlacemark = (event) => {
     const placemark = new yMapsApi.Placemark(
-      [eventData.lat, eventData.lng],
+      [event.lat, event.lng],
       {
-        eventId: eventData.id,
+        eventId: event.id,
       }, // for empty balloon
       this.props.placemarkOptions || EVENT_PLACEMARK_OPTIONS,
     )
@@ -424,7 +422,7 @@ class Map extends Component {
     return placemark
   }
 
-  showMyPosition() {
+  showMyPosition = () => {
     if (!this.map) {
       return
     }
@@ -493,7 +491,7 @@ class Map extends Component {
 
         this.startWatchingMyLocation()
       },
-      (err) => {
+      (error) => {
         /**
          * @todo: PositionError.POSITION_UNAVAILABLE
          */
@@ -514,7 +512,7 @@ class Map extends Component {
       }, { enableHighAccuracy: false })
   }
 
-  startWatchingMyLocation() {
+  startWatchingMyLocation = () => {
     setTimeout(() => {
       this.watchLocationID = navigator.geolocation.watchPosition(
         this.onGeolocationSuccess,
@@ -526,29 +524,28 @@ class Map extends Component {
       )
     }, 10)
   }
-  stopWatchingMyLocation() {
+  stopWatchingMyLocation = () => {
     if (this.watchLocationID) {
       navigator.geolocation.clearWatch(this.watchLocationID)
     }
   }
 
-  changeZoomToCity() {
+  changeZoomToCity = () => {
     this.map.setZoom(10)
     if (this.points.length > 0) {
       this.openBalloon(this.points)
     }
   }
 
-  isBalloonOpened() {
-    return this.state.balloonItemsPreview !== null
-  }
-  openBalloon(items) {
+  isBalloonOpened = () => (this.state.balloonItemsPreview !== null)
+
+  openBalloon = (items) => {
     this.setState({
       balloonItemsPreview: items,
     })
   }
 
-  closeBalloon() {
+  closeBalloon = () => {
     this.setState({
       balloonItemsPreview: null,
     })
