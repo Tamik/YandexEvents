@@ -4,32 +4,16 @@
     padding: 0;
     outline: 0;
     box-sizing: border-box;
-    font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-    "Fira Sans", "Droid Sans", "Helvetica Neue", 
-    sans-serif;
   }
 
-  html, body{
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
+  html, body {
+    font-family: "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-size: 16px;
     height: 100vh;
   }
 
   a {
     text-decoration: none;
-  }
-
-  .transition-wrapper {
-    position: relative;
-    z-index: 1;
-  }
-
-  .transition-item {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
   }
 
   .screen {
@@ -39,26 +23,5 @@
     overflow-y: hidden;
     box-sizing: border-box;
     width: 100%;
-    transition: transform 0.5s, opacity 0.5s;
-    // transform: translate3d(100%, 0, 0);
-  
-    &.transition-appear {
-      opacity: 1;
-      transform: translate3d(100%, 0, 0);
-    }
-  
-    &.transition-appear.transition-appear-active {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-    &.transition-leave {
-      opacity: 1;
-      transform: translate3d(0, 0, 0);
-    }
-  
-    &.transition-leave.transition-leave-active {
-      opacity: 1;
-      transform: translate3d(100%, 0, 0);
-    }
   }
 }

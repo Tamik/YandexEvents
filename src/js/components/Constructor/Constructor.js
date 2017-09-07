@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
@@ -15,6 +16,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
   )
@@ -25,6 +27,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
   )
@@ -35,6 +38,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
   )
@@ -45,6 +49,7 @@ class Constructor extends Component {
       params={props.data}
       title={props.params.title}
       style={props.style}
+      cardSize={props.cardSize}
       cardStyle={props.cardStyle}
     />
   )
@@ -66,6 +71,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
         case 'carousel': return this.renderCarouselContainer({
@@ -76,6 +82,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
         case 'slider': return this.renderSliderContainer({
@@ -86,6 +93,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
         case 'hint': return this.renderHintContainer({
@@ -96,6 +104,7 @@ class Constructor extends Component {
             // title: container.params.title,
           },
           style: styles[container.name],
+          cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
         default: return this.renderBlankContainer({
@@ -105,6 +114,7 @@ class Constructor extends Component {
             title: container.params.title,
           },
           style: styles[container.name],
+          cardSize: container.params.cardSize,
           cardStyle: rootStyles.card,
         })
       }
@@ -122,6 +132,10 @@ class Constructor extends Component {
       </div>
     )
   }
+}
+
+Constructor.propTypes = {
+  config: PropTypes.object.isRequired,
 }
 
 export default connect(

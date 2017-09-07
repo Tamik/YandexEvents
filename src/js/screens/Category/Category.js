@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import axios from 'axios'
 
 import { push, replace } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
@@ -10,12 +8,10 @@ import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
 import { FloatingButton } from 'ui-components'
 
-import { EventsList } from 'containers'
+import { List as ListContainer } from 'containers'
 import { Map } from 'screens'
 
 import style from './style.scss'
-
-import { List as ListContainer } from 'containers'
 
 class Category extends Component {
   constructor(props) {
@@ -36,13 +32,6 @@ class Category extends Component {
     }
   }
 
-  componentDidMount() {
-    axios.get('http://io.yamblz.ru/events', { params: { items_per_page: 3 } })
-      .then(response => this.setState({ data: response.data.data }))
-    axios.get('http://io.yamblz.ru/events', { params: { items_per_page: 3, page: 2 } })
-      .then(response => this.setState({ sliderData: response.data.data }))
-  }
-
   toggleViewMode = () => {
     this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
     this.props.onViewModeChanged(
@@ -60,7 +49,7 @@ class Category extends Component {
             : <Map />
         }
         <FloatingButton
-          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          label={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
           onClick={this.toggleViewMode}
         />
       </div>

@@ -316,6 +316,8 @@ export default class Map extends Component {
 
     this.startWatchingMyLocation()
 
+    this.openBalloon(this.points)
+
     this.setState({
       loading: false,
     })
