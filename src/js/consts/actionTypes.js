@@ -19,3 +19,6 @@ export const MODAL_EVENT_VIEW = 'MODAL_EVENT_VIEW'
 
 /* View */
 export const VIEW_SET_VIEW_MODE = 'VIEW_SET_VIEW_MODE'
+
+/* Favorites */
+export const USER_ADD_TO_FAVS = 'USER_ADD_TO_FAVS'
