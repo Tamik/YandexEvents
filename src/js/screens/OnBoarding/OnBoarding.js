@@ -40,7 +40,6 @@ const OnBoarding = (props) => {
           </button>
         </div>
       </Container>
-      <BottomNav />
     </div>
   )
 }
