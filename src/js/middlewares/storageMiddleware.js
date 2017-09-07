@@ -1,4 +1,4 @@
-import { USER_ONBOARDING_VIEWED } from 'consts/actionTypes'
+import { USER_ONBOARDING_VIEWED, USER_ADD_TO_FAVS } from 'consts/actionTypes'
 
 const storageMiddleware = ls => () => next => (action) => {
   // switch (action.type) {
@@ -14,6 +14,9 @@ const storageMiddleware = ls => () => next => (action) => {
   switch (action.type) {
     case USER_ONBOARDING_VIEWED:
       ls.setItem('user', { firstEnter: false })
+      return next(action)
+    case USER_ADD_TO_FAVS:
+      ls.setItem('favs', { ...action.payload })
       return next(action)
     default:
       return next(action)
