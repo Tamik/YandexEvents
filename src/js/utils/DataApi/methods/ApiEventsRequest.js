@@ -5,6 +5,10 @@ class ApiEventsRequest extends ApiRequest {
     this.params.add('category', id)
     return this
   }
+  byEntity = (id) => {
+    this.params.add('entity', id)
+    return this
+  }
   byDate = (date) => {
     // @todo: refactoring params to array
     let index = 0

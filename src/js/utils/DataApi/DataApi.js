@@ -10,8 +10,29 @@ import ApiRequestFabric from './methods/ApiRequestFabric'
  * - setting holidayId by default for all requests?
  */
 const DataApi = {
+  getHolidays: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAYS)
+    return this.request
+  },
+  getHint: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_HINT)
+    return this.request
+  },
+  getEntities: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_ENTITIES)
+    return this.request
+  },
+  getHolidayConfig: (holidayId) => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAY_CONFIG)
+    this.request.params.add('holiday', holidayId)
+    return this.request
+  },
   getEvents: () => {
     this.request = new ApiRequestFabric(API_METHODS.GET_EVENTS)
+    return this.request
+  },
+  getEvent: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_EVENT)
     return this.request
   },
   getCategories: () => {
@@ -22,15 +43,12 @@ const DataApi = {
     this.request = new ApiRequestFabric(API_METHODS.GET_PLACES)
     return this.request
   },
-  getDatesWithEvents: () => {
-    this.request = new ApiRequestFabric(API_METHODS.GET_DATES_WITH_EVENTS)
+  getPlace: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_PLACE)
     return this.request
   },
-  getHolidayConfig: (testHoliday) => {
-    this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAY_CONFIG)
-    // start hardcode: 1 - Moscow Day, else 2 = Museums Night
-    this.request.params.add('holiday', testHoliday === 'md' ? 1 : 2)
-    // end hardcode
+  getDatesWithEvents: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_DATES_WITH_EVENTS)
     return this.request
   },
   prepareQuery: (blockData) => {
@@ -47,6 +65,58 @@ const DataApi = {
     return this.request
   },
 }
+
+// /**
+//  * @example: Get events by entity
+//  */
+// DataApi.getEvents()
+//   .byHoliday(1)
+//   .byEntity(1)
+//   .perform()
+//   .then((response) => {
+//     console.log('Get events by entity: ', response.data)
+//   })
+
+// /**
+//  * @example: get entities
+//  */
+// DataApi.getEntities()
+//   .byHoliday(1)
+//   .byCategory('artists')
+//   .perform()
+//   .then((response) => {
+//     console.log('Get artists: ', response.data)
+//   })
+
+// /**
+//  * @example: get event extra
+//  */
+// DataApi.getEvent()
+//   .byHoliday(1)
+//   .byId(34867088)
+//   .perform()
+//   .then((response) => {
+//     console.log('Event: ', response.data)
+//   })
+
+// /**
+//  * @example: get hint
+//  */
+// DataApi.getHint()
+//   .byHoliday(1)
+//   .perform()
+//   .then((response) => {
+//     console.log('Hint: ', response.data)
+//   })
+
+// /**
+//  * @example: get holidays
+//  */
+// DataApi.getHolidays()
+//   .perform()
+//   .then((response) => {
+//     console.log('Holidays: ', response.data)
+//   })
 
 /**
  * @example: get block data
@@ -140,6 +210,17 @@ const DataApi = {
 //   .perform()
 //   .then((response) => {
 //     console.log('Dates with planned events: ', response.data)
+//   })
+
+// /**
+//  * @example: Get place
+//  */
+// DataApi.getPlace()
+//   .byHoliday(1)
+//   .byId(1)
+//   .perform()
+//   .then((response) => {
+//     console.log('Get place: ', response.data)
 //   })
 
 export default DataApi
