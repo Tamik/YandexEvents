@@ -4,6 +4,8 @@ import { AppContainer } from 'react-hot-loader'
 import localforage from 'localforage'
 import axios from 'axios'
 
+import { DataApi } from 'utils/DataApi'
+
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createHashHistory } from 'history'
@@ -60,7 +62,9 @@ history.listen((location) => {
 })
 
 function onDeviceReady() {
-  axios.get('http://static.yamblz.ru/response.json')
+  DataApi.getHolidayConfig()
+    .byHoliday(1)
+    .perform()
     .then(response => store.dispatch(sendApplicationConfig(response.data.data)))
     .then(() => {
       localforage.getItem('user')
