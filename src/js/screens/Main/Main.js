@@ -25,7 +25,7 @@ const Main = (props) => {
 
   return (
     <div className='screen'>
-      <Tabs style={props.data.configData.params.style.topBar}>
+      <Tabs style={{ ...props.data.configData.params.style.topBar }}>
         { /* Main tab */}
         <div
           role='button'
