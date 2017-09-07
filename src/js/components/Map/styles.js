@@ -84,16 +84,15 @@ color: rgba(38, 50, 56, 1);
 const BtnGoToMyLocation = styled.div`
 position: absolute;
 right: 16px;
-bottom: 24px;
-background: rgba(96, 125, 139, 1);
-border-radius: 100%;
+top: 24px;
+background-color: rgba(255, 255, 255, .85);
+border-radius: 50%;
 width: 56px;
 height: 56px;
 text-align: center;
-line-height: 56px;
-box-shadow: 0 2px 6px -0.6px rgba(0 ,0 ,0 , 0.3);
+line-height: 72px;
+box-shadow: 0 2px 6px -0.6px rgba(0, 0, 0, .25);
 z-index: 100;
-opacity: 0;
 `
 
 export {
