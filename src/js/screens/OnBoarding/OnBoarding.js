@@ -5,9 +5,9 @@ import { connect } from 'react-redux'
 import { onBoardingViewed } from 'actions/userActions'
 import { replace } from 'actions/navigationActions'
 
-import { Container, BottomNavigation, Icon } from 'ui-components'
+import { BottomNav } from 'components'
+import { Container } from 'ui-components'
 import style from './style.scss'
-import styleBotNav from 'ui-components/BottomNavigation/style.scss'
 
 const OnBoarding = (props) => {
   const goNext = () => {
@@ -40,28 +40,7 @@ const OnBoarding = (props) => {
           </button>
         </div>
       </Container>
-      <BottomNavigation>
-        <div className={`${styleBotNav.botNav__item}`}>
-          <Icon type='star' height='20' />
-          Лучшее
-        </div>
-        <div className={`${styleBotNav.botNav__item}`}>
-          <Icon type='ticket' height='20' />
-          Мои билеты
-        </div>
-        <div className={`${styleBotNav.botNav__item}`}>
-          <Icon type='moscowDayActive' height='20' />
-          День Города
-        </div>
-        <div className={`${styleBotNav.botNav__item}`}>
-          <Icon type='search' height='20' />
-          Поиск
-        </div>
-        <div className={`${styleBotNav.botNav__item}`}>
-          <Icon type='profile' height='20' />
-          Профиль
-        </div>
-      </BottomNavigation>
+      <BottomNav />
     </div>
   )
 }
