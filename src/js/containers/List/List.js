@@ -15,7 +15,7 @@ class ListContainer extends Component {
     route: {},
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.getData(this.props)
   }
 
