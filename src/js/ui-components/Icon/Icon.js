@@ -24,7 +24,7 @@ const Icon = (props) => {
     case 'bookmarkFill':
       return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.bookmarkFill }} />
     default:
-      return <p>Нет такой иконки</p>
+      return ''
   }
 }
 
