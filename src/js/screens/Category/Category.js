@@ -46,7 +46,7 @@ class Category extends Component {
         {
           this.viewMode === VIEW_MODE_LIST
             ? <ListContainer categoryId={this.props.params.categoryId} />
-            : <Map />
+            : <Map categoryId={this.props.params.categoryId} />
         }
         <FloatingButton
           label={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
