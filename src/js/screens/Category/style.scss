@@ -1,7 +1,20 @@
-
 /*
-  @todo: refactor, decompose
+  @todo: Лина, удалить, если не используются эти стили
 */
+
+.filter_date{
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 36px;
+  padding: 8px 16px;
+  margin-right: 12px;
+  background: #ededed;
+  &__active{
+    background: #ffde5a;
+    color: #000;
+  }
+}
+
 
 .events-list{
   &__item{
