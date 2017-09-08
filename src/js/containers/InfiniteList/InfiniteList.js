@@ -18,7 +18,7 @@ class InfiniteListContainer extends Component {
   }
 
   componentWillMount() {
-    this.getData(this.props, this.state.page)
+    this.getData(this.props)
   }
 
   componentWillUpdate(nextProps) {
@@ -26,7 +26,7 @@ class InfiniteListContainer extends Component {
     const isFilterByDateEqual = this.props.filterByDate === nextProps.filterByDate
 
     if (!isCategoryEqual || !isFilterByDateEqual) {
-      this.getData(nextProps, this.state.page)
+      this.getData(nextProps)
     }
   }
 
