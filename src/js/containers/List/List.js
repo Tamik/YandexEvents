@@ -20,7 +20,10 @@ class ListContainer extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    if (this.props.categoryId !== nextProps.categoryId) {
+    const isCategoryEqual = this.props.categoryId === nextProps.categoryId
+    const isFilterByDateEqual = this.props.filterByDate === nextProps.filterByDate
+
+    if (!isCategoryEqual || !isFilterByDateEqual) {
       this.getData(nextProps)
     }
   }
@@ -36,9 +39,13 @@ class ListContainer extends Component {
         }))
     }
     else {
-      DataApi.getEvents()
-        .byHoliday(1)
-        .byCategory(props.categoryId)
+      const getEventsRequest = DataApi.getEvents().byHoliday(1)
+
+      if (props.filterByDate) {
+        getEventsRequest.byDate(props.filterByDate)
+      }
+
+      getEventsRequest.byCategory(props.categoryId)
         .perform()
         .then(response => this.setState({
           elements: response.data.data,
@@ -81,7 +88,7 @@ class ListContainer extends Component {
               marginBottom: 20,
             }}
             onClick={() => this.viewEvent(this.state.route.url, element)}
-            date='11 сентября в 22:00'
+            date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
           />
         ))}
       </div>
