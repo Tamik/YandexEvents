@@ -30,6 +30,8 @@ const Application = (props) => {
     return (<OnBoarding />)
   }
 
+  // All routes
+  // @todo: pass to routes config
   // /
   // /feed
   //    /feed/list
@@ -46,7 +48,7 @@ const Application = (props) => {
   // /event
 
   // Main -> fragment -> Feed 
-  if (!route || route === '#/main' || route === '#/' || route.indexOf('#/feed') > -1) {
+  if (!route || route === '#/' || /main/.test(route) || /feed/.test(route)) {
     const params = {}
     return (
       <Main
@@ -57,7 +59,7 @@ const Application = (props) => {
   }
 
   // Main -> fragment -> Category
-  if (route.indexOf('#/category') > -1) {
+  if (/category/.test(route)) {
     const chunks = route.split('/') // #/category/([0-9])/(map|list)
     const categoryId = chunks[2]
     const viewMode = chunks[3]
@@ -69,12 +71,12 @@ const Application = (props) => {
   }
 
   // Screen Holidays
-  if (route === '#/holidays') {
+  if (/holidays/.test(route)) {
     return <Holidays />
   }
 
   // Screen Favs
-  if (route === '#/favs') {
+  if (/favs/.test(route)) {
     return <Favs />
   }
 
@@ -82,21 +84,21 @@ const Application = (props) => {
    * General screens
    */
   // Screen Event
-  if (route.indexOf('#/entity') > -1) {
+  if (/entity/.test(route)) {
     const entityId = route.split('/')[2]
     const params = { entityId }
     return <Entity params={params} />
   }
 
   // Screen Event
-  if (route.indexOf('#/event') > -1) {
+  if (/event/.test(route)) {
     const eventId = route.split('/')[2]
     const params = { eventId }
     return <Event params={params} />
   }
 
   // Screen Place
-  if (route.indexOf('#/place') > -1) {
+  if (/place/.test(route)) {
     const placeId = route.split('/')[2]
     const params = { placeId }
     return <Place params={params} />
