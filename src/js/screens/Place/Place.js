@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { goBack } from 'actions/navigationActions'
 
-import { BottomNav } from 'components'
+import { BottomNav, StaticMap } from 'components'
 
 import { List as ListContainer } from 'containers'
 
@@ -72,7 +72,25 @@ class Place extends Component {
                     </p>
                     <h2>Расписание</h2>
                   </div>
-                  <ListContainer />
+                  <ListContainer
+                    params={{
+                      method: 'events',
+                      holiday: 1,
+                      placeId: this.props.params.placeId,
+                    }}
+                  />
+                  <div style={{ margin: '16px 0' }}>
+                    <hr style={{ backgroundColor: '#e5e5e5', border: 'none', height: 1 }} />
+                    <StaticMap coords={[place.lng, place.lat]} zoom={15} width={410} height={215} />
+                    <p
+                      style={{
+                        fontSize: '0.875rem',
+                        marginTop: 8,
+                        color: '#000',
+                        lineHeight: '1.25rem',
+                      }}
+                    >{place.address}</p>
+                  </div>
                 </div>
               </Container>
               <BottomNav />

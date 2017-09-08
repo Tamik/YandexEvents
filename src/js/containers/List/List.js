@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { Card } from 'ui-components'
+import { Card, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -13,6 +13,7 @@ class ListContainer extends Component {
   state = {
     elements: [],
     route: {},
+    loading: true,
   }
 
   componentWillMount() {
@@ -29,29 +30,25 @@ class ListContainer extends Component {
   }
 
   getData = (props) => {
-    if (props.params) {
-      DataApi
-        .prepareQuery(props.params)
-        .perform()
-        .then(response => this.setState({
-          elements: response.data.data,
-          route: props.route,
-        }))
-    }
-    else {
-      const getEventsRequest = DataApi.getEvents().byHoliday(1)
+    let routePath
 
-      if (props.filterByDate) {
-        getEventsRequest.byDate(props.filterByDate)
-      }
-
-      getEventsRequest.byCategory(props.categoryId)
-        .perform()
-        .then(response => this.setState({
-          elements: response.data.data,
-          route: { url: '/events/%' },
-        }))
+    switch (props.params.method) {
+      case 'places': routePath = '/place/%'
+        break
+      case 'entities': routePath = '/entity/%'
+        break
+      default: routePath = '/event/%'
+        break
     }
+
+    DataApi
+      .prepareQuery(props.params)
+      .perform()
+      .then(response => this.setState({
+        elements: response.data.data,
+        route: routePath,
+        loading: false,
+      }))
   }
 
   viewEvent = (route, eventData) => {
@@ -67,30 +64,37 @@ class ListContainer extends Component {
           marginBottom: this.props.categoryId ? 16 * 4 : 16,
         }}
       >
-        {this.props.title
-          ? <h3
-            style={{
-              fontSize: '1.25rem',
-              margin: '16px 0',
-            }}
-          >{this.props.title}</h3>
-          : null
+        {this.state.loading
+          ? (<Spinner />)
+          : (
+            <div>
+              {this.props.title
+                ? <h3
+                  style={{
+                    fontSize: '1.25rem',
+                    margin: '16px 0',
+                  }}
+                >{this.props.title}</h3>
+                : null
+              }
+              {this.state.elements.map(element => (
+                <Card
+                  key={element.id}
+                  title={element.title}
+                  src={`http://io.yamblz.ru/i/events/${element.id}_small.jpg`}
+                  location={element.location_title}
+                  size='medium'
+                  style={{
+                    ...this.props.cardStyle,
+                    marginBottom: 20,
+                  }}
+                  onClick={() => this.viewEvent(this.state.route, element)}
+                  date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
+                />
+              ))}
+            </div>
+          )
         }
-        {this.state.elements.map(element => (
-          <Card
-            key={element.id}
-            title={element.title}
-            src={`http://io.yamblz.ru/i/events/${element.id}_small.jpg`}
-            location={element.location_title}
-            size='medium'
-            style={{
-              ...this.props.cardStyle,
-              marginBottom: 20,
-            }}
-            onClick={() => this.viewEvent(this.state.route.url, element)}
-            date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
-          />
-        ))}
       </div>
     )
   }

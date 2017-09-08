@@ -35,7 +35,6 @@ class Entity extends Component {
 
   render() {
     const entity = this.state.entity
-
     return (
       <div>
         {this.state.loading
@@ -51,7 +50,13 @@ class Entity extends Component {
                 }
               />
               <Container scrolling stretching>
-                <ListContainer />
+                <ListContainer
+                  params={{
+                    method: 'events',
+                    holiday: 1,
+                    entityId: this.props.params.entityId,
+                  }}
+                />
               </Container>
               <BottomNav />
             </div>
