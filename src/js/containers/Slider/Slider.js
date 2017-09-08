@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { SlideCard, Slider } from 'ui-components'
+import { SlideCard, Slider, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -13,6 +13,7 @@ class SliderContainer extends Component {
   state = {
     elements: [],
     route: {},
+    loading: true,
   }
 
   componentWillMount() {
@@ -22,6 +23,7 @@ class SliderContainer extends Component {
       .then(response => this.setState({
         elements: response.data.data,
         route: this.props.route,
+        loading: false,
       }))
   }
 
@@ -38,32 +40,39 @@ class SliderContainer extends Component {
           marginLeft: '16px',
         }}
       >
-        {this.props.title
-          ? <h3
-            style={{
-              fontSize: '1.25rem',
-              margin: '16px',
-            }}
-          >{this.props.title}</h3>
-          : null
+        {this.state.loading
+          ? (<Spinner />)
+          : (
+            <div>
+              {this.props.title
+                ? <h3
+                  style={{
+                    fontSize: '1.25rem',
+                    margin: '16px',
+                  }}
+                >{this.props.title}</h3>
+                : null
+              }
+              <Slider>
+                {this.state.elements.map(element => (
+                  <SlideCard
+                    key={element.id}
+                    title={element.title}
+                    src={`http://io.yamblz.ru/i/events/${element.id}_large.jpg`}
+                    location={element.location_title}
+                    size={this.props.cardSize}
+                    style={{
+                      ...this.props.cardStyle,
+                      margin: '8px 16px',
+                      marginLeft: 0,
+                    }}
+                    onClick={() => this.viewEvent(this.state.route.url, element)}
+                  />
+                ))}
+              </Slider>
+            </div>
+          )
         }
-        <Slider>
-          {this.state.elements.map(element => (
-            <SlideCard
-              key={element.id}
-              title={element.title}
-              src={`http://io.yamblz.ru/i/events/${element.id}_large.jpg`}
-              location={element.location_title}
-              size={this.props.cardSize}
-              style={{
-                ...this.props.cardStyle,
-                margin: '8px 16px',
-                marginLeft: 0,
-              }}
-              onClick={() => this.viewEvent(this.state.route.url, element)}
-            />
-          ))}
-        </Slider>
       </div>
     )
   }
