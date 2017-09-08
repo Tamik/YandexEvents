@@ -1,31 +1,30 @@
 .topBar {
   display: flex;
   justify-content: center;
-  padding: 20px;
-  padding-top: 30px;
-  background-color: #fff;
-  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 1);
+  padding: 30px 20px 40px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
 
   &_transparent {
     position: fixed;
     left: 0;
     right: 0;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+    background: linear-gradient(to bottom, rgba(0, 0, 0, .5), transparent);
+    padding-bottom: 20px;
+    box-shadow: none;
     z-index: 3;
   }
 
   &__title {
     flex-grow: 1;
-    padding-right: 20px;
-    padding-left: 4px;
     font-size: 1.25rem;
     font-weight: 600;
+    padding-right: 20px;
+    padding-left: 4px;
+    color: rgba(0, 0, 0, 1);
     text-align: center;
     letter-spacing: 0.05rem;
-    color: #000;
   }
 
-  &__icon {
-
-  }
+  &__icon {}
 }
