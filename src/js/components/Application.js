@@ -2,7 +2,18 @@ import React from 'react'
 import PageTransition from 'react-router-page-transition'
 import { connect } from 'react-redux'
 
-import { OnBoarding, Main, Event, Place, Category, Feed, Map, Entity } from 'screens'
+import {
+  OnBoarding,
+  Main,
+  Event,
+  Place,
+  Category,
+  Feed,
+  Map,
+  Entity,
+  Holidays,
+  Favs,
+} from 'screens'
 import style from './Application.scss'
 
 const Application = (props) => {
@@ -55,6 +66,16 @@ const Application = (props) => {
       fragment={Category}
       params={params}
     />)
+  }
+
+  // Screen Holidays
+  if (route === '#/holidays') {
+    return <Holidays />
+  }
+
+  // Screen Favs
+  if (route === '#/favs') {
+    return <Favs />
   }
 
   /**
