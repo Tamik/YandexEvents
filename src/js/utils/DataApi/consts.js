@@ -9,6 +9,7 @@ export const API_METHODS = {
   GET_PLACES: 'places',
   GET_PLACE: 'place',
   GET_ENTITIES: 'entities',
+  GET_ENTITY: 'entity',
   GET_HINT: 'hint',
   GET_DATES_WITH_EVENTS: 'dates',
 }
