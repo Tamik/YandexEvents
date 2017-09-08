@@ -22,6 +22,10 @@ const DataApi = {
     this.request = new ApiRequestFabric(API_METHODS.GET_ENTITIES)
     return this.request
   },
+  getEntity: () => {
+    this.request = new ApiRequestFabric(API_METHODS.GET_ENTITY)
+    return this.request
+  },
   getHolidayConfig: (holidayId) => {
     this.request = new ApiRequestFabric(API_METHODS.GET_HOLIDAY_CONFIG)
     this.request.params.add('holiday', holidayId)
@@ -65,6 +69,17 @@ const DataApi = {
     return this.request
   },
 }
+
+// /**
+//  * @example: get entity
+//  */
+// DataApi.getEntity()
+//   .byHoliday(1)
+//   .byId(2)
+//   .perform()
+//   .then((response) => {
+//     console.log('Entity: ', response.data)
+//   })
 
 // /**
 //  * @example: Get events by entity

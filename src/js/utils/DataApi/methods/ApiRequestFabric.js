@@ -10,12 +10,15 @@ import {
   ApiHintRequest,
   ApiEntitiesRequest,
   ApiPlaceRequest,
+  ApiEntityRequest,
 } from './'
 
 const ApiRequestFabric = (methodId) => {
   switch (methodId) {
     case API_METHODS.GET_ENTITIES:
       return new ApiEntitiesRequest(API_METHODS.GET_ENTITIES)
+    case API_METHODS.GET_ENTITY:
+      return new ApiEntityRequest(API_METHODS.GET_ENTITY)
     case API_METHODS.GET_HOLIDAYS:
       return new ApiHolidaysRequest(API_METHODS.GET_HOLIDAYS)
     case API_METHODS.GET_HINT:
