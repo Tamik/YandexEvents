@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { push, replace } from 'actions/navigationActions'
-import { sendModalEventData } from 'actions/dataActions'
+import { replace } from 'actions/navigationActions'
 import { setViewMode } from 'actions/viewActions'
 import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
-import { FloatingButton } from 'ui-components'
-import { DataApi } from 'utils/DataApi'
+import { Map } from 'components'
 
 import { List as ListContainer } from 'containers'
-import { Map } from 'screens'
 
-import style from './style.scss'
+import { FloatingButton } from 'ui-components'
+
+import { DataApi } from 'utils/DataApi'
 
 class Category extends Component {
   constructor(props) {
@@ -49,6 +49,8 @@ class Category extends Component {
         })
       })
   }
+
+  viewMode = this.props.params.viewMode.toUpperCase()
 
   toggleViewMode = () => {
     this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
@@ -109,6 +111,11 @@ class Category extends Component {
       </div>
     )
   }
+}
+
+Category.propTypes = {
+  params: PropTypes.object.isRequired,
+  onViewModeChanged: PropTypes.func.isRequired,
 }
 
 export default connect(
