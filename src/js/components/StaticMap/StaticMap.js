@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const StaticMap = props => (
   <div
@@ -12,5 +13,18 @@ const StaticMap = props => (
     }}
   />
 )
+
+StaticMap.defaultProps = {
+  zoom: 13,
+  width: 300,
+  height: 300,
+}
+
+StaticMap.propTypes = {
+  coords: PropTypes.array.isRequired,
+  zoom: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+}
 
 export default StaticMap
