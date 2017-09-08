@@ -11,6 +11,7 @@ export const USER_ONBOARDING_VIEWED = 'USER_ONBOARDING_VIEWED'
 export const DATA_EVENT = 'DATA_EVENT'
 export const DATA_CATEGORY = 'DATA_CATEGORY'
 export const DATA_PLACE = 'DATA_PLACE'
+export const DATA_ENTITY = 'DATA_ENTITY'
 export const DATA_CONFIG = 'DATA_CONFIG'
 
 /* Modal */
