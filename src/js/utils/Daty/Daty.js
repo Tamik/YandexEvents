@@ -21,10 +21,36 @@ const Daty = {
 
   /**
    * Метод вернет красивую дату начала и дату завершения события
-   * @todo: implement it and Расписать критерии
+   *@params {Number} dateStart/dateEnd (ms)
+   *@return {Object}
+   * {
+   *  dates: '1 - 2 сентября' || '1 сентября - 2 октября',
+   *  time: '15:00',
+   * }
    */
   beautifyDatesRange: (dateStart, dateEnd) => {
-    // @todo: implement
+    const begin = moment(new Date(dateStart))
+    const end = moment(new Date(dateEnd))
+    let range = ''
+    // Одинаковые месяцы начала и конца события
+    if (begin.month() === end.month()) {
+      if (begin.day() === end.day()) {
+        // 2 ноября
+        range = begin.lang('ru').format('D MMMM')
+      }
+      else {
+        // 2 - 3 ноября
+        range = `${begin.format('D')} - ${end.lang('ru').format('D MMMM')}`
+      }
+    }
+    else {
+      // 2 сентября - 2 декабря
+      range = `${begin.lang('ru').format('D MMMM')} - ${end.lang('ru').format('D MMMM')}`
+    }
+    return ({
+      dates: range,
+      time: begin.format('hh:mm'),
+    })
   },
   getDeclineOfNumber: (number, titlesArray) => {
     const cases = [2, 0, 1, 1, 1, 2]
