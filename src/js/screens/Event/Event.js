@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { goBack } from 'actions/navigationActions'
 
-import { BottomNav } from 'components'
+import { BottomNav, StaticMap } from 'components'
 
 import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
 
@@ -82,6 +82,38 @@ class Event extends Component {
                     }}
                     dangerouslySetInnerHTML={{ __html: event.description }}
                   />
+                  <div style={{ margin: '16px 0' }}>
+                    <hr style={{ backgroundColor: '#e5e5e5', border: 'none', height: 1 }} />
+                    <div style={{ margin: '16px 0 12px' }}>
+                      <div
+                        style={{
+                          display: 'inline-block',
+                          border: '1px solid #e5e5e5',
+                          width: 48,
+                          height: 48,
+                          marginRight: 16,
+                          verticalAlign: 'middle',
+                        }}
+                      >ICON</div>
+                      <h3
+                        style={{
+                          display: 'inline-block',
+                          fontSize: 16,
+                          color: '#000',
+                          verticalAlign: 'middle',
+                        }}
+                      >{event.location_title}</h3>
+                    </div>
+                    <StaticMap coords={[event.lng, event.lat]} zoom={15} width={410} height={215} />
+                    <p
+                      style={{
+                        fontSize: '0.875rem',
+                        marginTop: 8,
+                        color: '#000',
+                        lineHeight: '1.25rem',
+                      }}
+                    >{event.address}</p>
+                  </div>
                 </div>
               </Container>
               <BottomNav />
