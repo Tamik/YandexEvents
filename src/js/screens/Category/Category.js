@@ -17,19 +17,17 @@ class Category extends Component {
   constructor(props) {
     super(props)
 
-    this.state = {
-      data: [],
-    }
+    this.state = {}
 
     this.viewMode = this.props.params.viewMode.toUpperCase()
 
-    if (!props.categoryData) {
-      // load data from server by categoryId
-      console.log('Load events from server by category id: ', props)
-    }
-    else {
-      console.log('categoryData: ', props.categoryData)
-    }
+    // if (!props.categoryData) {
+    //   // load data from server by categoryId
+    //   console.log('Load events from server by category id: ', props)
+    // }
+    // else {
+    //   console.log('categoryData: ', props.categoryData)
+    // }
   }
 
   toggleViewMode = () => {
