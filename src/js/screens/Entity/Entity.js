@@ -1,34 +1,32 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { push, goBack } from 'actions/navigationActions'
+import { goBack } from 'actions/navigationActions'
 
-import { TopBar, Image, Icon, Container } from 'ui-components'
 import { BottomNav } from 'components'
-import styleCard from 'ui-components/Card/style.scss'
 
-import styleBotNav from 'ui-components/BottomNavigation/style.scss'
-import style from './style.scss'
+import { List as ListContainer } from 'containers'
+
+import { TopBar, Icon, Container, Spinner } from 'ui-components'
+
+import { DataApi } from 'utils/DataApi'
 
 class Entity extends Component {
-  constructor(props) {
-    super(props)
-    if (!props.entityData) {
-      // Подгружаем данные с сервера
-      // Вот так можно взять entityId
-      // console.log('entityData отсутствует в store')
-      // console.log('entityId: ', props.params.entityId)
-    }
-    else {
-      // Покажем то что есть, а остальное подгрузим
-      // console.log('entityData присутствует в store', props.entityData)
-      // console.log('entityId: ', props.params.entityId, '\n entityData: ', props.entityData)
-    }
+  state = {
+    entity: {},
+    loading: true,
   }
 
-  componentDidMount() {
-
+  componentWillMount() {
+    DataApi.getEntity()
+      .byHoliday(1)
+      .byId(this.props.params.entityId)
+      .perform()
+      .then(response => this.setState({
+        entity: response.data.data,
+        loading: false,
+      }))
   }
 
   goBack = () => {
@@ -36,21 +34,37 @@ class Entity extends Component {
   }
 
   render() {
+    const entity = this.state.entity
+
     return (
-      <div className='screen'>
-        <TopBar
-          title='Entity title'
-          icon={<button onClick={this.goBack}>
-            <Icon type='arrowBack' width='24' height='24' color='#000' />
-          </button>}
-        />
-        <Container scrolling stretching>
-          Events list by entity
-        </Container>
-        <BottomNav />
+      <div>
+        {this.state.loading
+          ? (<Spinner />)
+          : (
+            <div className='screen'>
+              <TopBar
+                title={entity.title}
+                icon={
+                  <button onClick={this.goBack}>
+                    <Icon type='arrowBack' width='24' height='24' color='#000' />
+                  </button>
+                }
+              />
+              <Container scrolling stretching>
+                <ListContainer />
+              </Container>
+              <BottomNav />
+            </div>
+          )
+        }
       </div>
     )
   }
+}
+
+Entity.propTypes = {
+  params: PropTypes.object.isRequired,
+  goBack: PropTypes.func.isRequired,
 }
 
 export default connect(

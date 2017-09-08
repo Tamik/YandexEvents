@@ -1,4 +1,4 @@
-export const API_HOST = 'http://185.125.219.104:7777'
+export const API_HOST = process.env.HOST
 
 export const API_METHODS = {
   GET_HOLIDAYS: 'holidays',
