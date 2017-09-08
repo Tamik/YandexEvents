@@ -1,16 +1,17 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 
-import { DataApi } from 'utils/DataApi'
+import { push } from 'actions/navigationActions'
+import { sendModalEventData } from 'actions/dataActions'
 
 import { Card, Carousel } from 'ui-components'
 
-export default class CarouselContainer extends Component {
-  constructor(props) {
-    super(props)
+import { DataApi } from 'utils/DataApi'
 
-    this.state = {
-      elements: [],
-    }
+class CarouselContainer extends Component {
+  state = {
+    elements: [],
   }
 
   componentWillMount() {
@@ -20,6 +21,10 @@ export default class CarouselContainer extends Component {
       .then(response => this.setState({
         elements: response.data.data,
       }))
+  }
+
+  viewEvent = (route, element) => {
+    this.props.onViewEvent(route, element)
   }
 
   render() {
@@ -36,6 +41,7 @@ export default class CarouselContainer extends Component {
                 location={element.location_title}
                 size='medium'
                 style={this.props.cardStyle}
+                onClick={() => this.viewEvent(this.props.route.url, element)}
               />
             ))}
           </div>
@@ -44,3 +50,21 @@ export default class CarouselContainer extends Component {
     )
   }
 }
+
+CarouselContainer.propTypes = {
+  title: PropTypes.string,
+  style: PropTypes.object,
+  cardSize: PropTypes.string,
+  cardStyle: PropTypes.object,
+  params: PropTypes.object,
+}
+
+export default connect(
+  state => ({}),
+  dispatch => ({
+    onViewEvent: (route, element) => {
+      dispatch(sendModalEventData(element))
+      dispatch(push(route.replace('%', element.id)))
+    },
+  })
+)(CarouselContainer)
