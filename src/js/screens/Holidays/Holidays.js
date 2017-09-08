@@ -19,7 +19,7 @@ class Holidays extends Component {
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     DataApi.getHolidays()
       .perform()
       .then((response) => {
