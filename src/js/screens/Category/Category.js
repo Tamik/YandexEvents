@@ -8,11 +8,13 @@ import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
 import { Map } from 'components'
 
-import { List as ListContainer } from 'containers'
+import { InfiniteList as InfiniteListContainer } from 'containers'
 
 import { FloatingButton } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
+
+import style from './style.scss'
 
 class Category extends Component {
   constructor(props) {
@@ -96,8 +98,7 @@ class Category extends Component {
                   </p>
                   : ''
               }
-
-              <ListContainer
+              <InfiniteListContainer
                 categoryId={this.props.params.categoryId}
                 filterByDate={this.state.filterByDate}
               />
