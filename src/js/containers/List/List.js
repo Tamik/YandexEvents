@@ -30,31 +30,25 @@ class ListContainer extends Component {
   }
 
   getData = (props) => {
-    if (props.params) {
-      DataApi
-        .prepareQuery(props.params)
-        .perform()
-        .then(response => this.setState({
-          elements: response.data.data,
-          route: props.route,
-          loading: false,
-        }))
-    }
-    else {
-      const getEventsRequest = DataApi.getEvents().byHoliday(1)
+    let routePath
 
-      if (props.filterByDate) {
-        getEventsRequest.byDate(props.filterByDate)
-      }
-
-      getEventsRequest.byCategory(props.categoryId)
-        .perform()
-        .then(response => this.setState({
-          elements: response.data.data,
-          route: { url: '/events/%' },
-          loading: false,
-        }))
+    switch (props.params.method) {
+      case 'places': routePath = '/place/%'
+        break
+      case 'entities': routePath = '/entity/%'
+        break
+      default: routePath = '/event/%'
+        break
     }
+
+    DataApi
+      .prepareQuery(props.params)
+      .perform()
+      .then(response => this.setState({
+        elements: response.data.data,
+        route: routePath,
+        loading: false,
+      }))
   }
 
   viewEvent = (route, eventData) => {
@@ -94,7 +88,7 @@ class ListContainer extends Component {
                     ...this.props.cardStyle,
                     marginBottom: 20,
                   }}
-                  onClick={() => this.viewEvent(this.state.route.url, element)}
+                  onClick={() => this.viewEvent(this.state.route, element)}
                   date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
                 />
               ))}
