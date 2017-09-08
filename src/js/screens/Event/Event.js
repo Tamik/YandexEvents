@@ -36,7 +36,6 @@ class Event extends Component {
 
   render() {
     const event = this.state.event
-
     return (
       <div>
         {this.state.loading
@@ -62,10 +61,10 @@ class Event extends Component {
                   </h2>
                   <div
                     style={{
-                      marginBottom: 16,
                       fontSize: '1.25rem',
-                      lineHeight: '1.75rem',
+                      marginBottom: 16,
                       color: '#000',
+                      lineHeight: '1.75rem',
                     }}
                   >
                     <p>
@@ -78,8 +77,8 @@ class Event extends Component {
                   <p
                     style={{
                       fontSize: '1rem',
-                      lineHeight: '1.375rem',
                       color: '#000',
+                      lineHeight: '1.375rem',
                     }}
                     dangerouslySetInnerHTML={{ __html: event.description }}
                   />
