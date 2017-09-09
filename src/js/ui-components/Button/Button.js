@@ -13,6 +13,7 @@ const Button = (props) => {
       className={`${style.button} ${style[stylePrimary]} ${style[styleDisabled]}`}
       disabled={props.disabled}
       onClick={props.onClick}
+      style={props.style}
     >
       {props.label}
     </button>
