@@ -71,8 +71,9 @@ class ListContainer extends Component {
               {this.props.title
                 ? <h3
                   style={{
-                    fontSize: '1.25rem',
-                    margin: '16px 0',
+                    fontSize: '1rem',
+                    margin: '36px 0 10px',
+                    lineHeight: '1.25rem',
                   }}
                 >{this.props.title}</h3>
                 : null
