@@ -58,7 +58,7 @@ class SliderContainer extends Component {
                   <SlideCard
                     key={element.id}
                     title={element.title}
-                    src={`http://io.yamblz.ru/i/events/${element.id}_large.jpg`}
+                    src={`${element.photo_small}`}
                     location={element.location_title}
                     size={this.props.cardSize}
                     style={{

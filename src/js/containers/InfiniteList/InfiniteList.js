@@ -72,7 +72,7 @@ class InfiniteListContainer extends Component {
           <Card
             key={element.id}
             title={element.title}
-            src={`http://io.yamblz.ru/i/events/${element.id}_small.jpg`}
+            src={`${element.photo_small}`}
             location={element.location_title}
             size='medium'
             style={{

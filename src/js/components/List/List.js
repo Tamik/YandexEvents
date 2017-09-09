@@ -57,7 +57,7 @@ const List = (props) => {
   else if (props.type === 'slider_avatars') {
     return (
       <Avatar
-        src={`http://io.yamblz.ru/i/events/${props.data.id}_small.jpg`}
+        src={props.data.photo_small}
         title={props.data.title}
       />
     )

@@ -50,7 +50,7 @@ class Place extends Component {
               <Container stretching scrolling>
                 <Image
                   size='large'
-                  src={`${process.env.HOST}/i/places/${place.id}_large.jpg`}
+                  src={place.photo_large}
                 />
                 <div>
                   <div
