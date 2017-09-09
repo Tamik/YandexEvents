@@ -10,7 +10,7 @@ import { Map } from 'components'
 
 import { InfiniteList as InfiniteListContainer } from 'containers'
 
-import { FloatingButton } from 'ui-components'
+import { FloatingButton, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -21,7 +21,6 @@ class Category extends Component {
     super(props)
 
     this.viewMode = this.props.params.viewMode.toUpperCase()
-
     this.state = {
       filterByDate: null,
       holiDates: [],
@@ -82,7 +81,7 @@ class Category extends Component {
             ? <div>
               {
                 this.state.holiDates.length > 1
-                  ? <div style={{ padding: '16px 16px 24px 16px', display: 'flex' }}>
+                  ? <div style={{ padding: '16px 16px 16px 16px', display: 'flex' }}>
                     {this.state.holiDates.map((item) => {
                       return (
                         <button
