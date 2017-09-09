@@ -9,7 +9,7 @@ const MapCard = props => (
     onClick={props.onClick}
     role='button'
   >
-    <Image src={props.src} size={props.size} style={{ height: 128 - 32 }} />
+    <Image src={props.src} size={props.size} style={{ height: 128 - 32, width: 192, borderRadius: 4 }} />
     <div className={` ${style.card__info} ${style[`card__info_${props.size}`]}`}>
       <h3 className={` ${style.card__title} ${style[`card__title_${props.size}`]}`}>
         {props.title}
