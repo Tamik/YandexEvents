@@ -43,9 +43,9 @@
 
     &_small {
       position: absolute;
-      bottom: 14px;
-      left: 14px;
-      right: 14px;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
       background-color: transparent;
       padding: 0;
       color: rgba(255, 255, 255, 1);
@@ -67,9 +67,9 @@
     text-decoration: none;
 
     &_small {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       margin-bottom: 4px;
-      line-height: 1.25rem;
+      line-height: 1.5rem;
       color: rgba(255, 255, 255, 1);
     }
 
@@ -86,8 +86,9 @@
   }
 
   &__text {
-    font-size: .9rem;
-    opacity: .8;
+    font-size: .875rem;
+    line-height: 1.25rem;
+    opacity: .7;
 
     &_bottom {
       margin-top: auto;
