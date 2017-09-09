@@ -1,5 +1,5 @@
 .carousel {
-  width: 100%;
+  width: calc(100% - 16px);
   margin-left: 16px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
