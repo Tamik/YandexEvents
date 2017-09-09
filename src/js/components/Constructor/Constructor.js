@@ -132,7 +132,12 @@ class Constructor extends Component {
 
   render() {
     return (
-      <div style={this.props.config.params.style.body}>
+      <div
+        style={{
+          ...this.props.config.params.style.body,
+          marginBottom: 32,
+        }}
+      >
         {this.renderFactory(
           this.props.config.containers,
           this.props.config.style,
