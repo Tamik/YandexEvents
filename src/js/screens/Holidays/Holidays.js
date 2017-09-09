@@ -32,6 +32,9 @@ class Holidays extends Component {
   render() {
     return (
       <div className='screen'>
+        <TopBar
+          title='Все праздники'
+        />
         <Container scrolling stretching>
           <div>
             <div style={{ margin: 10 }}>
