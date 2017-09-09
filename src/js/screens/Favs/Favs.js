@@ -26,18 +26,18 @@ const Favs = (props) => {
         <div style={{ margin: 16 }}>
           {
             Object.keys(props.favs).length
-              ? props.favs.map(item => (
+              ? Object.keys(props.favs).map(key => (
                 <Card
-                  key={item.id}
-                  title={item.title}
-                  src={`${item.photo_small}`}
-                  location={item.location_title}
+                  key={props.favs[key].id}
+                  title={props.favs[key].title}
+                  src={`${props.favs[key].photo_small}`}
+                  location={props.favs[key].location_title}
                   size='medium'
                   style={{
                     marginBottom: 20,
                   }}
-                  onClick={() => viewEvent(item)}
-                  date={`${item.dateFormatted.day} ${item.dateFormatted.month} ${item.dateFormatted.time} `}
+                  onClick={() => viewEvent(props.favs[key])}
+                  date={`${props.favs[key].dateFormatted.day} ${props.favs[key].dateFormatted.month} ${props.favs[key].dateFormatted.time} `}
                 />
               ))
               : <p style={{ textAlign: 'center', fontSize: 14 }}>Здесь будут ваши закладки</p>}

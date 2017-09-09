@@ -9,13 +9,13 @@ const TopBar = (props) => {
 
   return (
     <div className={`${style.topBar} ${style[transparent]}`}>
-      <button className={style.topBar__icon} onClick={props.onClick.back}>
+      <button className={style.topBar__icon} onClick={props.onClick ? props.onClick.back : null}>
         {props.iconLeft}
       </button>
       <h2 className={style.topBar__title}>
         {props.title}
       </h2>
-      <button className={style.topBar__icon} onClick={props.onClick.addFav}>
+      <button className={style.topBar__icon} onClick={props.onClick ? props.onClick.addFav : null}>
         {props.iconRight}
       </button>
     </div>
