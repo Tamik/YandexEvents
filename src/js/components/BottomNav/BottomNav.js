@@ -27,7 +27,10 @@ const BottomNav = (props) => {
         }}
         className={`${styleBotNav.botNav__item} ${isActiiveTabNow ? styleBotNav.botNav__item_active : ''}`}
       >
-        <Icon type={isActiiveTabNow ? 'eventFill' : 'event'} height='20' />
+        <Icon
+          type={isActiiveTabNow ? 'eventFill' : 'event'}
+          height='20'
+        />
         День Города
       </div>
       <div
@@ -37,7 +40,10 @@ const BottomNav = (props) => {
         }}
         className={`${styleBotNav.botNav__item} ${isActiiveTabHolidays ? styleBotNav.botNav__item_active : ''}`}
       >
-        <Icon type={isActiiveTabHolidays ? 'starFill' : 'star'} height='20' />
+        <Icon
+          type={isActiiveTabHolidays ? 'starFill' : 'star'}
+          height='20'
+        />
         Все праздники
       </div>
       <div
@@ -47,7 +53,11 @@ const BottomNav = (props) => {
         }}
         className={`${styleBotNav.botNav__item} ${isActiiveTabFavs ? styleBotNav.botNav__item_active : ''}`}
       >
-        <Icon type={isActiiveTabFavs ? 'bookmarkFill' : 'bookmark'} height='20' color='#777' />
+        <Icon
+          type={isActiiveTabFavs ? 'bookmarkFill' : 'bookmark'}
+          height='20'
+          color={isActiiveTabFavs ? '#333' : '#777'}
+        />
         Закладки
       </div>
     </BottomNavigation>
