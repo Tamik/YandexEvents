@@ -9,6 +9,7 @@
   transform-origin: 50% 100%;
   box-sizing: border-box;
   animation: spinner 1.5s infinite linear;
+  z-index: 3;
 
   &__wrap {
     position: absolute;
