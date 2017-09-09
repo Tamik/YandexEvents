@@ -2,7 +2,7 @@
   display: flex;
   flex-shrink: 0;
   background-color: rgba(255, 255, 255, 1);
-  padding: 46px 10px 0;
+  padding-top: 46px;
   overflow-y: auto;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
   z-index: 2;
@@ -33,7 +33,7 @@
         right: 10px;
         left: 10px;
         bottom: 0;
-        height: 3px;
+        height: 2px;
         background-color: #1e1367;
       }
     }

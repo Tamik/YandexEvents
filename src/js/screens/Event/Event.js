@@ -44,10 +44,12 @@ class Event extends Component {
             <div className='screen'>
               <TopBar
                 isTransparent
-                icon={
-                  <button onClick={this.goBack}>
-                    <Icon type='arrowBack' width='24' height='24' color='#fff' />
-                  </button>
+                onClick={this.goBack}
+                iconLeft={
+                  <Icon type='arrowBack' width='24' height='24' color='#fff' />
+                }
+                iconRight={
+                  <Icon type='bookmark' width='24' height='24' color='#fff' />
                 }
               />
               <Container stretching scrolling>

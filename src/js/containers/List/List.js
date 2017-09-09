@@ -88,6 +88,7 @@ class ListContainer extends Component {
                     ...this.props.cardStyle,
                     marginBottom: 20,
                   }}
+
                   onClick={() => this.viewEvent(this.state.route, element)}
                   date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
                 />

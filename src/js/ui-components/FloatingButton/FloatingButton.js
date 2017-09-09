@@ -6,8 +6,8 @@ import style from './style.scss'
 
 const FloatingButton = props => (
   <button className={style.button} onClick={props.onClick}>
-    {/* <Icon type={props.typeIcon} height='24' color='#1e1367' /> */}
-    {props.title}
+    <Icon type={props.typeIcon} height='24' color='#1e1367' />
+    <span style={{ marginLeft: 8 }}>{props.title}</span>
   </button>
 )
 
