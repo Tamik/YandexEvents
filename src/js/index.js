@@ -2,7 +2,6 @@ import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import localforage from 'localforage'
-import axios from 'axios'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -15,7 +14,7 @@ import routerMiddleware from 'middlewares/routerMiddleware'
 import storageMiddleware from 'middlewares/storageMiddleware'
 import { sendApplicationConfig } from 'actions/dataActions'
 import { locationChange } from 'actions/navigationActions'
-import { onBoardingViewed } from 'actions/userActions'
+import { onBoardingViewed, addFavs } from 'actions/userActions'
 import rootReducer from 'reducers/rootReducer'
 
 import Application from 'components/Application'
@@ -69,6 +68,10 @@ function onDeviceReady() {
     .then(() => {
       localforage.getItem('user')
         .then(response => !response.firstEnter && store.dispatch(onBoardingViewed()))
+      localforage.getItem('favs')
+        .then((response) => {
+          store.dispatch(addFavs(response))
+        })
     })
   renderApp()
   if (module.hot) {
