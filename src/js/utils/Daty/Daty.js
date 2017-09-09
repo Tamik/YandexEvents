@@ -36,20 +36,20 @@ const Daty = {
     if (begin.month() === end.month()) {
       if (begin.day() === end.day()) {
         // 2 ноября
-        range = begin.lang('ru').format('D MMMM')
+        range = begin.locale('ru').format('D MMMM')
       }
       else {
         // 2 - 3 ноября
-        range = `${begin.format('D')} - ${end.lang('ru').format('D MMMM')}`
+        range = `${begin.format('D')} - ${end.locale('ru').format('D MMMM')}`
       }
     }
     else {
       // 2 сентября - 2 декабря
-      range = `${begin.lang('ru').format('D MMMM')} - ${end.lang('ru').format('D MMMM')}`
+      range = `${begin.locale('ru').format('D MMMM')} - ${end.locale('ru').format('D MMMM')}`
     }
     return ({
       dates: range,
-      time: begin.format('hh:mm'),
+      time: begin.locale('ru').format('HH:mm'),
     })
   },
   getDeclineOfNumber: (number, titlesArray) => {

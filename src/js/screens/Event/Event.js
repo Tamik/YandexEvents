@@ -9,6 +9,7 @@ import { BottomNav, StaticMap } from 'components'
 import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
+import { Daty } from 'utils'
 
 import style from './style.scss'
 import styleCard from 'ui-components/Card/style.scss'
@@ -46,6 +47,7 @@ class Event extends Component {
 
   render() {
     const event = this.state.event
+    const formattedDate = Daty.beautifyDatesRange(this.state.event.begin_time, this.state.event.end_time)
     return (
       <div>
         {this.state.loading
@@ -83,10 +85,10 @@ class Event extends Component {
                     }}
                   >
                     <p>
-                      {event.dateFormatted.day} - {event.dateEndFormatted.day}, {event.dateEndFormatted.month}
+                      {formattedDate.dates}
                     </p>
                     <p>
-                      {event.dateFormatted.time} - {event.dateEndFormatted.time}
+                      {formattedDate.time}
                     </p>
                   </div>
                   <p
