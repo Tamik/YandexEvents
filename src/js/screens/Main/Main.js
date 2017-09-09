@@ -54,7 +54,10 @@ class Main extends Component {
             )
           }
         </Tabs>
-        <Container scrolling stretching>
+        <Container
+          scrolling
+          stretching
+        >
           <this.props.fragment params={this.props.params} view={this.props.view} />
         </Container>
         <BottomNav />

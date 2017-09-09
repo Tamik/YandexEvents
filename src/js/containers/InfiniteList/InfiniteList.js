@@ -9,16 +9,20 @@ import { Button, Card, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
+// @todo: pass to contants
+const EVENTS_PER_PAGE = 10
+
 class InfiniteListContainer extends Component {
   state = {
     elements: [],
     route: {},
     page: 1,
     loadingMoreEvents: false,
+    hideBtnMore: false,
   }
 
   componentWillMount() {
-    this.getData(this.props)
+    this.getData(this.props, 1)
   }
 
   componentWillUpdate(nextProps) {
@@ -30,20 +34,47 @@ class InfiniteListContainer extends Component {
     }
   }
 
-  getData = (props) => {
+  getData = (props, page, newPage) => {
     const getEventsRequest = DataApi.getEvents().byHoliday(1)
 
     if (props.filterByDate) {
       getEventsRequest.byDate(props.filterByDate)
     }
 
+    if (page) {
+      getEventsRequest.page(page)
+    }
+
     getEventsRequest
       .byCategory(props.categoryId)
       .perform()
-      .then(response => this.setState({
-        elements: response.data.data,
-        route: { url: '/events/%' },
-      }))
+      .then((response) => {
+
+        let newStateArray = response.data.data
+
+        if (newPage) {
+          newStateArray = [
+            ...this.state.elements.slice(),
+            ...response.data.data,
+          ]
+        }
+
+        this.setState({
+          elements: newStateArray,
+          route: { url: '/events/%' },
+          hideBtnMore: response.data.data.length < EVENTS_PER_PAGE,
+        })
+      }
+      )
+
+    this.prevPage = page
+  }
+
+  loadMore = () => {
+    this.setState({
+      page: this.state.page + 1,
+    })
+    this.getData(this.props, this.state.page + 1, true)
   }
 
   viewEvent = (route, eventData) => {
@@ -60,6 +91,18 @@ class InfiniteListContainer extends Component {
           marginBottom: this.props.categoryId ? 16 * 4 : 16,
         }}
       >
+        {this.props.title
+          ? <h3
+            style={{
+              fontSize: '1.25rem',
+              margin: '16px 0',
+            }}
+          >{this.props.title}</h3>
+          : null
+        }
+        {this.state.elements.length === 0
+          ? <p style={{ fontSize: 14 }}>Нет событий</p>
+          : ''}
         {this.state.elements.map(element => (
           <Card
             key={element.id}
@@ -75,25 +118,25 @@ class InfiniteListContainer extends Component {
             date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
           />
         ))}
-        {this.state.loadingMoreEvents
-          ? (<Spinner />)
-          : (
-            <Button
-              label='Показать ещё'
-              onClick={() => this.getData(this.props, this.state.page)}
-              style={{
-                display: 'block',
-                borderRadius: 2,
-                padding: 16,
-                fontSize: '1rem',
-                fontWeight: 500,
-                width: '100%',
-                backgroundColor: 'rgba(255, 255, 255, 1)',
-                lineHeight: '1.25rem',
-                boxShadow: '0 2px 12px rgba(0, 0, 0, .2)',
-              }}
-            />
-          )
+        {
+          this.state.loadingMoreEvents
+            ? <Spinner />
+            : this.state.elements.length === EVENTS_PER_PAGE && !this.state.hideBtnMore
+              ? <Button
+                label='Показать ещё'
+                onClick={() => this.loadMore()}
+                style={{
+                  display: 'block',
+                  borderRadius: 2,
+                  padding: 16,
+                  fontSize: '1rem',
+                  fontWeight: 500,
+                  width: '100%',
+                  backgroundColor: 'rgba(255, 255, 255, 1)',
+                  lineHeight: '1.25rem',
+                  boxShadow: '0 2px 12px rgba(0, 0, 0, .2)',
+                }}
+              /> : ''
         }
       </div>
     )
