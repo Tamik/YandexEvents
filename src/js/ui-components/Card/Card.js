@@ -12,12 +12,9 @@ const Card = props => (
     role='note'
   >
     <Image src={props.src} size={props.size} />
-    {console.log(props)}
     {
       props.isLeft
-        ? <span className={style.card__label}>
-              завершено
-        </span>
+        ? <span className={style.card__label}>завершено</span>
         : null
     }
     <div
