@@ -46,7 +46,7 @@ class Place extends Component {
                   back: this.goBack,
                 }}
                 iconLeft={
-                  <Icon type='arrowBack' width='24' height='24' color='#fff' />
+                  <Icon type='arrowBack' width='24' height='24' color='#000' />
                 }
               />
               <Container stretching scrolling>
