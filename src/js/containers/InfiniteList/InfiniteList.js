@@ -56,18 +56,10 @@ class InfiniteListContainer extends Component {
         style={{
           ...this.props.style,
           margin: 16,
+          marginTop: 0,
           marginBottom: this.props.categoryId ? 16 * 4 : 16,
         }}
       >
-        {this.props.title
-          ? <h3
-            style={{
-              fontSize: '1.25rem',
-              margin: '16px 0',
-            }}
-          >{this.props.title}</h3>
-          : null
-        }
         {this.state.elements.map(element => (
           <Card
             key={element.id}
@@ -85,7 +77,23 @@ class InfiniteListContainer extends Component {
         ))}
         {this.state.loadingMoreEvents
           ? (<Spinner />)
-          : (<Button label='Показать ещё' primary onClick={() => this.getData(this.props, this.state.page)} />)
+          : (
+            <Button
+              label='Показать ещё'
+              onClick={() => this.getData(this.props, this.state.page)}
+              style={{
+                display: 'block',
+                borderRadius: 2,
+                padding: 16,
+                fontSize: '1rem',
+                fontWeight: 500,
+                width: '100%',
+                backgroundColor: 'rgba(255, 255, 255, 1)',
+                lineHeight: '1.25rem',
+                boxShadow: '0 2px 12px rgba(0, 0, 0, .2)',
+              }}
+            />
+          )
         }
       </div>
     )

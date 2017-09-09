@@ -6,18 +6,17 @@
   margin-right: 20px;
 
   &__img {
-    height: 128px;
-    width: 128px;
-    border-radius: 50%;
     background-color: #cecece;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    height: 128px;
+    width: 128px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
   }
 
   &__description {
-    margin-top: 8px;
-    padding: 12px;
+    margin-top: 4px;
     color: #333;
   }
 
@@ -27,10 +26,10 @@
   }
 
   &__text {
-    color: rgba(0, 0, 0, 0.7);
     font-size: 0.875rem;
-    line-height: 1.5rem;
     margin-bottom: 8px;
+    color: rgba(0, 0, 0, .7);
+    line-height: 1.5rem;
 
     &:last-child {
       margin-bottom: 0;

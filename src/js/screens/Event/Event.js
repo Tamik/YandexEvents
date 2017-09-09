@@ -109,7 +109,12 @@ class Event extends Component {
                         }}
                       >{event.location_title}</h3>
                     </div>
-                    <StaticMap coords={[event.lng, event.lat]} zoom={15} width={410} height={215} />
+                    <StaticMap
+                      coords={[event.lng, event.lat]}
+                      zoom={15}
+                      width={410}
+                      height={215}
+                    />
                     <p
                       style={{
                         fontSize: '0.875rem',

@@ -47,8 +47,9 @@ class SliderContainer extends Component {
               {this.props.title
                 ? <h3
                   style={{
-                    fontSize: '1.25rem',
-                    margin: '16px',
+                    fontSize: '1rem',
+                    margin: '40px 0 6px',
+                    lineHeight: '1.25rem',
                   }}
                 >{this.props.title}</h3>
                 : null

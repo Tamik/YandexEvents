@@ -38,7 +38,16 @@ class CarouselContainer extends Component {
           ? (<Spinner />)
           : (
             <div className={style.list__wrap}>
-              <h3 className={style.list__title}>{this.props.title}</h3>
+              {this.props.title
+                ? <h3
+                  style={{
+                    fontSize: '1rem',
+                    margin: '40px 16px 10px',
+                    lineHeight: '1.25rem',
+                  }}
+                >{this.props.title}</h3>
+                : null
+              }
               <Carousel>
                 <div>
                   {this.state.elements.map(element => (
