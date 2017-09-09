@@ -1,14 +1,22 @@
 .button {
-  padding: 8px 16px;
-  font-size: 0.875rem;
-  line-height: 1.125rem;
+  width: 100%;
+  padding: 16px;
   color: #000;
-  background-color: #ededed;
-  border-radius: 4px; // 100px
+  background-color: #fff;
+  border-radius: 2px;
   border: none;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1.25rem;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .2);
 
   &_primary {
+    padding: 8px 16px;
     background-color: #ffde5a;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    line-height: 1.125rem;
+    box-shadow: none;
   }
 
   &_disabled {

@@ -6,6 +6,7 @@ import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
 import { Button, Card, Spinner } from 'ui-components'
+import styleBtn from 'ui-components/Button/style.scss'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -126,17 +127,7 @@ class InfiniteListContainer extends Component {
               ? <Button
                 label='Показать ещё'
                 onClick={() => this.loadMore()}
-                style={{
-                  display: 'block',
-                  borderRadius: 2,
-                  padding: 16,
-                  fontSize: '1rem',
-                  fontWeight: 500,
-                  width: '100%',
-                  backgroundColor: 'rgba(255, 255, 255, 1)',
-                  lineHeight: '1.25rem',
-                  boxShadow: '0 2px 12px rgba(0, 0, 0, .2)',
-                }}
+                className={styleBtn.button}
               /> : ''
         }
       </div>
