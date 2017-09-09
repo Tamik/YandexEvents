@@ -56,18 +56,10 @@ class InfiniteListContainer extends Component {
         style={{
           ...this.props.style,
           margin: 16,
+          marginTop: 0,
           marginBottom: this.props.categoryId ? 16 * 4 : 16,
         }}
       >
-        {this.props.title
-          ? <h3
-            style={{
-              fontSize: '1.25rem',
-              margin: '16px 0',
-            }}
-          >{this.props.title}</h3>
-          : null
-        }
         {this.state.elements.map(element => (
           <Card
             key={element.id}
