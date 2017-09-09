@@ -55,7 +55,7 @@ class Event extends Component {
               <Container stretching scrolling>
                 <Image
                   size='large'
-                  src={`http://io.yamblz.ru/i/events/${event.id}_large.jpg`}
+                  src={event.photo_large}
                 />
                 <div className={`${styleCard.card__info} ${style.card__info_large}`}>
                   <h2 className={`${styleCard.card__title} ${styleCard.card__title_large}`}>
