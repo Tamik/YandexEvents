@@ -110,6 +110,7 @@ class InfiniteListContainer extends Component {
             src={`${element.photo_small}`}
             location={element.location_title}
             size='medium'
+            isLeft={element.is_left}
             style={{
               ...this.props.cardStyle,
               marginBottom: 20,

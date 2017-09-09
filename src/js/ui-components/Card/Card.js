@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { Image } from 'ui-components'
 import style from './style.scss'
 
@@ -11,6 +12,14 @@ const Card = props => (
     role='note'
   >
     <Image src={props.src} size={props.size} />
+    {console.log(props)}
+    {
+      props.isLeft
+        ? <span className={style.card__label}>
+              завершено
+        </span>
+        : null
+    }
     <div
       className={`${style.card__info} ${style[`card__info_${props.size}`]}`}
     >
