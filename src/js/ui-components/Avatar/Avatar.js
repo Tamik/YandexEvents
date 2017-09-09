@@ -8,6 +8,8 @@ const Avatar = props => (
     <div
       className={style.avatar__img}
       style={{ backgroundImage: `url(${props.src})` }}
+      onClick={props.onClick}
+      role='button'
     />
     <div className={style.avatar__description}>
       <p className={style.avatar__title}>{props.title}</p>
