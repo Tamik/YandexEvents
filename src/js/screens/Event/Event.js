@@ -86,17 +86,7 @@ class Event extends Component {
                   />
                   <div style={{ margin: '16px 0' }}>
                     <hr style={{ backgroundColor: '#e5e5e5', border: 'none', height: 1 }} />
-                    <div style={{ margin: '16px 0 12px' }}>
-                      <div
-                        style={{
-                          display: 'inline-block',
-                          border: '1px solid #e5e5e5',
-                          width: 48,
-                          height: 48,
-                          marginRight: 16,
-                          verticalAlign: 'middle',
-                        }}
-                      >ICON</div>
+                    <div style={{ margin: '12px 0 16px' }}>
                       <h3
                         style={{
                           display: 'inline-block',
