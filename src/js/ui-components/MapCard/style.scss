@@ -1,12 +1,15 @@
 .card {
-  position: relative;
   display: flex;
-  font-size: 0.75rem;
-  background-color: white;
-  color: #000;
-  padding: 16px;
+  position: absolute;
+  bottom: 58px + 56px;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 4px;
+  height: 128px;
   margin-right: 16px;
-  vertical-align: bottom;
+  padding: 16px;
+  color: rgba(0, 0, 0, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
+  z-index: 5;
 
   &__label {
     position: absolute;
