@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-
-import { goBack } from 'actions/navigationActions'
+import { push, goBack } from 'actions/navigationActions'
+import { addToFavs, delToFavs } from 'actions/userActions'
 
 import { BottomNav, StaticMap } from 'components'
 
@@ -10,8 +10,8 @@ import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
-import styleCard from 'ui-components/Card/style.scss'
 import style from './style.scss'
+import styleCard from 'ui-components/Card/style.scss'
 
 class Event extends Component {
   state = {
@@ -34,6 +34,16 @@ class Event extends Component {
     this.props.goBack()
   }
 
+  isInFavs = () => {
+    return this.props.favs && !!this.props.favs[this.props.params.eventId]
+  }
+
+  addToFavs = () => {
+    this.isInFavs()
+      ? this.props.delToFavs(this.state.event)
+      : this.props.addToFavs(this.state.event)
+  }
+
   render() {
     const event = this.state.event
     return (
@@ -44,12 +54,15 @@ class Event extends Component {
             <div className='screen'>
               <TopBar
                 isTransparent
-                onClick={this.goBack}
+                onClick={{
+                  back: this.goBack,
+                  addFav: this.addToFavs,
+                }}
                 iconLeft={
                   <Icon type='arrowBack' width='24' height='24' color='#fff' />
                 }
                 iconRight={
-                  <Icon type='bookmark' width='24' height='24' color='#fff' />
+                  <Icon type={this.isInFavs() ? 'bookmarkFill' : 'bookmark'} width='24' height='24' color='#fff' />
                 }
               />
               <Container stretching scrolling>
@@ -125,10 +138,17 @@ Event.propTypes = {
 export default connect(
   state => ({
     eventData: state.data.eventData,
+    favs: state.user.favs,
   }),
   dispatch => ({
     goBack: () => {
       dispatch(goBack())
     },
+    addToFavs: (event) => {
+      dispatch(addToFavs(event))
+    },
+    delToFavs: (event) => {
+      dispatch(delToFavs(event))
+    }
   })
 )(Event)

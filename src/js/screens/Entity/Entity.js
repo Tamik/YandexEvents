@@ -43,7 +43,9 @@ class Entity extends Component {
             <div className='screen'>
               <TopBar
                 title={entity.title}
-                onClick={this.goBack}
+                onClick={{
+                  back: this.goBack,
+                }}
                 iconLeft={
                   <Icon type='arrowBack' width='24' height='24' color='#fff' />
                 }
