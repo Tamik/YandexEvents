@@ -22,3 +22,5 @@ export const VIEW_SET_VIEW_MODE = 'VIEW_SET_VIEW_MODE'
 
 /* Favorites */
 export const USER_ADD_TO_FAVS = 'USER_ADD_TO_FAVS'
+export const USER_DEL_TO_FAVS = 'USER_DEL_TO_FAVS'
+export const USER_ADD_FAVS = 'USER_ADD_FAVS'
