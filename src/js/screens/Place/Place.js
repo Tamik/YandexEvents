@@ -80,9 +80,23 @@ class Place extends Component {
                       placeId: this.props.params.placeId,
                     }}
                   />
-                  <div style={{ margin: '16px 0' }}>
-                    <hr style={{ backgroundColor: '#e5e5e5', border: 'none', height: 1 }} />
-                    <StaticMap coords={[place.lng, place.lat]} zoom={15} width={410} height={215} />
+                  <div
+                    style={{
+                      margin: '16px',
+                    }}
+                  >
+                    <hr style={{
+                      backgroundColor: '#e5e5e5',
+                      border: 'none',
+                      height: 1,
+                    }}
+                    />
+                    <StaticMap
+                      coords={[place.lng, place.lat]}
+                      zoom={15}
+                      width={410}
+                      height={215}
+                    />
                     <p
                       style={{
                         fontSize: '0.875rem',
