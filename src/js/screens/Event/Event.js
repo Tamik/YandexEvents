@@ -35,7 +35,7 @@ class Event extends Component {
   }
 
   isInFavs = () => {
-    return this.props.favs && !!this.props.favs[this.props.params.eventId]
+    return !!this.props.favs[this.props.params.eventId]
   }
 
   addToFavs = () => {
