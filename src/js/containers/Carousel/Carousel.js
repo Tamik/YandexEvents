@@ -5,7 +5,9 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { Card, Carousel, Spinner } from 'ui-components'
+import { Carousel, Spinner } from 'ui-components'
+import { List } from 'components'
+import style from 'components/List/style.scss'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -35,20 +37,13 @@ class CarouselContainer extends Component {
         {this.state.loading
           ? (<Spinner />)
           : (
-            <div>
-              <h3>{this.props.title}</h3>
+            <div className={style.list__wrap}>
+              <h3 className={style.list__title}>{this.props.title}</h3>
               <Carousel>
                 <div>
                   {this.state.elements.map(element => (
-                    <Card
-                      key={element.id}
-                      title={element.title}
-                      src={`http://io.yamblz.ru/i/events/${element.id}_large.jpg`}
-                      location={element.location_title}
-                      size='medium'
-                      style={this.props.cardStyle}
-                      onClick={() => this.viewEvent(this.props.route.url, element)}
-                    />
+                    // <AvatarsList key={element.id} title={element.title} />
+                    <List key={element.id} type='slider_avatars' data={element} />
                   ))}
                 </div>
               </Carousel>
