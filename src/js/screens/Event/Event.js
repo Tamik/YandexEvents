@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { push, goBack } from 'actions/navigationActions'
-import { addToFavs, delToFavs } from 'actions/userActions'
+import { addToFavs, delFromFavs } from 'actions/userActions'
 
 import { BottomNav, StaticMap } from 'components'
 
@@ -40,7 +40,7 @@ class Event extends Component {
 
   addToFavs = () => {
     this.isInFavs()
-      ? this.props.delToFavs(this.state.event)
+      ? this.props.delFromFavs(this.state.event)
       : this.props.addToFavs(this.state.event)
   }
 
@@ -147,8 +147,8 @@ export default connect(
     addToFavs: (event) => {
       dispatch(addToFavs(event))
     },
-    delToFavs: (event) => {
-      dispatch(delToFavs(event))
+    delFromFavs: (event) => {
+      dispatch(delFromFavs(event))
     }
   })
 )(Event)

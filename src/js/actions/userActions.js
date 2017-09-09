@@ -1,4 +1,4 @@
-import { USER_ONBOARDING_VIEWED, USER_ADD_TO_FAVS, USER_DEL_TO_FAVS, USER_ADD_FAVS } from 'consts/actionTypes'
+import { USER_ONBOARDING_VIEWED, USER_ADD_TO_FAVS, USER_DEL_FROM_FAVS, USER_ADD_FAVS } from 'consts/actionTypes'
 
 export const onBoardingViewed = () => ({
   type: USER_ONBOARDING_VIEWED,
@@ -14,7 +14,7 @@ export const addFavs = payload => ({
   favs: payload,
 })
 
-export const delToFavs = payload => ({
-  type: USER_DEL_TO_FAVS,
+export const delFromFavs = payload => ({
+  type: USER_DEL_FROM_FAVS,
   event: payload,
 })
