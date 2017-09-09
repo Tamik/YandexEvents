@@ -6,7 +6,7 @@ import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
 import { Carousel, Spinner } from 'ui-components'
-import { List } from 'components'
+import { AvatarsList } from 'containers'
 import style from 'components/List/style.scss'
 
 import { DataApi } from 'utils/DataApi'
@@ -50,10 +50,11 @@ class CarouselContainer extends Component {
               }
               <Carousel>
                 <div>
-                  {this.state.elements.map(element => (
-                    // <AvatarsList key={element.id} title={element.title} />
-                    <List key={element.id} type='slider_avatars' data={element} />
-                  ))}
+                  {/* {this.state.elements.map(element => (
+                    <AvatarsList key={element.id} title={element.title} />
+                    {/* <List key={element.id} type='slider_avatars' data={element} />
+                  ))} */}
+                  <AvatarsList payload={this.state.elements} />
                 </div>
               </Carousel>
             </div>
