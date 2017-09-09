@@ -27,7 +27,6 @@ const userReducer = (state = initState, action) => {
       }
     }
     case USER_ADD_FAVS: {
-      console.log('action.favs: ', action.favs)
       return {
         ...state,
         favs: action.favs || {},
