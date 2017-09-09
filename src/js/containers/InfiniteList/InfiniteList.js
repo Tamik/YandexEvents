@@ -77,7 +77,23 @@ class InfiniteListContainer extends Component {
         ))}
         {this.state.loadingMoreEvents
           ? (<Spinner />)
-          : (<Button label='Показать ещё' primary onClick={() => this.getData(this.props, this.state.page)} />)
+          : (
+            <Button
+              label='Показать ещё'
+              onClick={() => this.getData(this.props, this.state.page)}
+              style={{
+                display: 'block',
+                borderRadius: 2,
+                padding: 16,
+                fontSize: '1rem',
+                fontWeight: 500,
+                width: '100%',
+                backgroundColor: 'rgba(255, 255, 255, 1)',
+                lineHeight: '1.25rem',
+                boxShadow: '0 2px 12px rgba(0, 0, 0, .2)',
+              }}
+            />
+          )
         }
       </div>
     )
