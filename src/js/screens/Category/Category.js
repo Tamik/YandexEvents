@@ -106,7 +106,8 @@ class Category extends Component {
             : <Map categoryId={this.props.params.categoryId} />
         }
         <FloatingButton
-          label={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          typeIcon={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
+          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
           onClick={this.toggleViewMode}
         />
       </div>

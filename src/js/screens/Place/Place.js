@@ -42,10 +42,9 @@ class Place extends Component {
             <div className='screen'>
               <TopBar
                 title={place.title}
-                icon={
-                  <button onClick={this.goBack}>
-                    <Icon type='arrowBack' width='24' height='24' color='#000' />
-                  </button>
+                onClick={this.goBack}
+                iconLeft={
+                  <Icon type='arrowBack' width='24' height='24' color='#fff' />
                 }
               />
               <Container stretching scrolling>
