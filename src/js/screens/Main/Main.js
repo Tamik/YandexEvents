@@ -8,7 +8,7 @@ import { sendModalCategoryData } from 'actions/dataActions'
 import { BottomNav } from 'components'
 import { Tabs, Container } from 'ui-components'
 
-import style from 'screens/main/style.scss'
+import style from './style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
 
 class Main extends Component {
