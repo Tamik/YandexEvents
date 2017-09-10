@@ -76,6 +76,24 @@ class InfiniteListContainer extends Component {
     this.getData(this.props, this.state.page + 1, true)
   }
 
+  loadMoreEvents = () => {
+    if (this.state.loadingMoreEvents) {
+      return (
+        <Spinner />
+      )
+    }
+    else if (this.state.elements.length === EVENTS_PER_PAGE && !this.state.hideBtnMore) {
+      return (
+        <Button
+          label='Показать ещё'
+          onClick={() => this.loadMore()}
+          className={styleBtn.button}
+        />
+      )
+    }
+    return (null)
+  }
+
   viewEvent = (route, eventData) => {
     this.props.onViewEvent(route, eventData)
   }
@@ -118,16 +136,7 @@ class InfiniteListContainer extends Component {
             date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
           />
         ))}
-        {
-          this.state.loadingMoreEvents
-            ? <Spinner />
-            : this.state.elements.length === EVENTS_PER_PAGE && !this.state.hideBtnMore
-              ? <Button
-                label='Показать ещё'
-                onClick={() => this.loadMore()}
-                className={styleBtn.button}
-              /> : ''
-        }
+        {this.loadMoreEvents}
       </div>
     )
   }
