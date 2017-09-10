@@ -21,7 +21,7 @@ StaticMap.defaultProps = {
 }
 
 StaticMap.propTypes = {
-  coords: PropTypes.array.isRequired,
+  coords: PropTypes.shape().isRequired,
   zoom: PropTypes.number,
   width: PropTypes.number,
   height: PropTypes.number,

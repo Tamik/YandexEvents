@@ -21,6 +21,7 @@ Image.defaultProps = {
 Image.propTypes = {
   src: PropTypes.string,
   size: PropTypes.string,
+  style: PropTypes.shape(),
 }
 
 export default Image

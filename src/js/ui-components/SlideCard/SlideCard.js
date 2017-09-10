@@ -37,8 +37,8 @@ SlideCard.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
-  style: PropTypes.object,
-  onClick: PropTypes.func,
+  style: PropTypes.shape(),
+  onClick: PropTypes.func.isRequired,
 }
 
 export default SlideCard

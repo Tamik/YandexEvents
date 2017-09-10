@@ -23,6 +23,7 @@ Container.propTypes = {
   scrolling: PropTypes.bool,
   stretching: PropTypes.bool,
   background: PropTypes.bool,
+  children: PropTypes.element.isRequired,
 }
 
 export default Container

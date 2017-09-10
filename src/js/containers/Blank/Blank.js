@@ -1,6 +1,7 @@
 /* dev:start */
 import React, { Component } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
 export default class BlankContainer extends Component {
   constructor(props) {
@@ -20,5 +21,8 @@ export default class BlankContainer extends Component {
       </div>
     )
   }
+}
+BlankContainer.propTypes = {
+  item: PropTypes.shape().isRequired,
 }
 /* dev:end */

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 
 import { Spinner } from 'ui-components'
@@ -38,4 +39,7 @@ export default class HintContainer extends Component {
       </div>
     )
   }
+}
+HintContainer.propTypes = {
+  style: PropTypes.shape(),
 }

@@ -138,8 +138,11 @@ class Event extends Component {
 }
 
 Event.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape().isRequired,
   goBack: PropTypes.func.isRequired,
+  favs: PropTypes.shape().isRequired,
+  addToFavs: PropTypes.func.isRequired,
+  delFromFavs: PropTypes.func.isRequired,
 }
 
 export default connect(

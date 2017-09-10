@@ -23,8 +23,9 @@ Avatar.defaultProps = {
 }
 
 Avatar.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.string.isRequired,
   title: PropTypes.string,
+  onClick: PropTypes.func,
 }
 
 export default Avatar

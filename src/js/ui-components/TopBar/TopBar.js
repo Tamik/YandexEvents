@@ -29,7 +29,7 @@ TopBar.defaultProps = {
 TopBar.propTypes = {
   iconRight: PropTypes.element,
   iconLeft: PropTypes.element,
-  onCLick: PropTypes.func,
+  onClick: PropTypes.func,
   title: PropTypes.string,
   isTransparent: PropTypes.bool,
 }

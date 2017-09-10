@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { List } from 'components'
 import { Slider } from 'ui-components'
@@ -19,4 +20,8 @@ const SliderList = props => (
   </div>
 )
 
+SliderList.propTypes = {
+  title: PropTypes.string,
+  payload: PropTypes.shape().isRequired,
+}
 export default SliderList

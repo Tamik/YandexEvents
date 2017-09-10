@@ -48,6 +48,11 @@ const Favs = (props) => {
   )
 }
 
+Favs.propTypes = {
+  onViewEvent: PropTypes.func.isRequired,
+  favs: PropTypes.shape().isRequired,
+}
+
 export default connect(
   state => ({
     favs: state.user.favs || {},

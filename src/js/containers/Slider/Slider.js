@@ -80,11 +80,13 @@ class SliderContainer extends Component {
 }
 
 SliderContainer.propTypes = {
+  onViewEvent: PropTypes.func.isRequired,
+  route: PropTypes.shape(),
   title: PropTypes.string,
-  style: PropTypes.object,
+  style: PropTypes.shape(),
   cardSize: PropTypes.string,
-  cardStyle: PropTypes.object,
-  params: PropTypes.object,
+  cardStyle: PropTypes.shape(),
+  params: PropTypes.shape(),
 }
 
 export default connect(

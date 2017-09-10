@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import SliderLib from 'react-slick'
 
 import style from './style.scss'
@@ -22,4 +23,8 @@ const Slider = (props) => {
   )
 }
 
+Slider.propTypes = {
+  dots: PropTypes.bool,
+  children: PropTypes.element.isRequired,
+}
 export default Slider

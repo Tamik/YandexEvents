@@ -26,7 +26,8 @@ MapCard.defaultProps = {
 MapCard.propTypes = {
   size: PropTypes.string,
   src: PropTypes.string,
-  onClick: PropTypes.func,
+  title: PropTypes.string,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default MapCard

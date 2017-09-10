@@ -115,7 +115,7 @@ class Category extends Component {
 }
 
 Category.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape().isRequired,
   onViewModeChanged: PropTypes.func.isRequired,
 }
 

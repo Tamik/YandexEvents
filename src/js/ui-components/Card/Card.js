@@ -43,8 +43,9 @@ Card.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
-  style: PropTypes.object,
-  onClick: PropTypes.func,
+  style: PropTypes.shape(),
+  onClick: PropTypes.func.isRequired,
+  isLeft: PropTypes.bool,
 }
 
 export default Card

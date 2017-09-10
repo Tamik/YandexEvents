@@ -8,4 +8,8 @@ const BottomNavigation = props => (
   </div>
 )
 
+BottomNavigation.propTypes = {
+  children: PropTypes.element.isRequired,
+}
+
 export default BottomNavigation
