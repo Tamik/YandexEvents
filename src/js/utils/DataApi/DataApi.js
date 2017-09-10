@@ -63,6 +63,7 @@ const DataApi = {
         return this.request
       }
       params[key] = blockData[key]
+      return key
     })
 
     this.request.fillParams(params)

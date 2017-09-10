@@ -15,18 +15,16 @@ export default class Params {
   }
 
   computeParams = () => {
-    Object.keys(this.params).map((key) => {
-      this.computedParams.push([key, this.params[key]].join('='))
-    })
+    Object.keys(this.params).map(key => this.computedParams.push([key, this.params[key]].join('=')))
     return this
   }
 
   fill = (paramsMap) => {
     this.params = paramsMap
   }
-  getComputedParams = () => {
-    return this.computeParams().computedParams
-  }
+
+  getComputedParams = () => this.computeParams().computedParams
+
   getQueryString = () => {
     /**
      * @todo cache

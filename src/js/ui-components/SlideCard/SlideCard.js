@@ -7,7 +7,7 @@ const SlideCard = props => (
   <div
     className={`${style.slideCard} ${style[`slideCard_${props.size}`]}`}
     style={props.style}
-    role='note'
+    role='button'
     onClick={props.onClick}
   >
     <Image src={props.src} size={props.size} />

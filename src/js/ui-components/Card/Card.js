@@ -9,7 +9,7 @@ const Card = props => (
     className={`${style.card} ${style[`card_${props.size}`]}`}
     style={props.style}
     onClick={props.onClick}
-    role='note'
+    role='button'
   >
     <Image src={props.src} size={props.size} />
     {

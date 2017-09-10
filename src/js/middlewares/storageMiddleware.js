@@ -14,8 +14,9 @@ const storageMiddleware = ls => () => next => (action) => {
       return next(action)
     case USER_DEL_FROM_FAVS:
       ls.getItem('favs').then((favs) => {
-        delete favs[action.event.id]
-        ls.setItem('favs', favs)
+        const newFavs = favs
+        delete newFavs[action.event.id]
+        ls.setItem('favs', newFavs)
       })
       return next(action)
     default:

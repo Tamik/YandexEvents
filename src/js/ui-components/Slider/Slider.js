@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import SliderLib from 'react-slick'
 
-import style from './style.scss'
+import './style.scss'
 
 const Slider = (props) => {
   const settings = {
@@ -13,7 +13,6 @@ const Slider = (props) => {
     slidesToShow: 1,
     variableWidth: true,
     swipe: true,
-    slickGoTo: props.index,
   }
 
   return (
