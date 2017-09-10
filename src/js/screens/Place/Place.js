@@ -117,7 +117,7 @@ class Place extends Component {
 }
 
 Place.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape().isRequired,
   onGoBack: PropTypes.func.isRequired,
 }
 

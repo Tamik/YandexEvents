@@ -65,12 +65,20 @@ class CarouselContainer extends Component {
   }
 }
 
+CarouselContainer.defaultProps = {
+  title: null,
+  style: {},
+  // cardSize: 'small',
+  // cardStyle: {},
+}
+
 CarouselContainer.propTypes = {
+  onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,
-  style: PropTypes.object,
-  cardSize: PropTypes.string,
-  cardStyle: PropTypes.object,
-  params: PropTypes.object,
+  style: PropTypes.shape(),
+  // cardSize: PropTypes.string,
+  // cardStyle: PropTypes.shape(),
+  params: PropTypes.shape().isRequired,
 }
 
 export default connect(

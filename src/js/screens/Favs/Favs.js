@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import { push, goBack } from 'actions/navigationActions'
+import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { TopBar, Image, Icon, Container, Card } from 'ui-components'
+import { TopBar, Container, Card } from 'ui-components'
 import { BottomNav } from 'components'
 
-import { DataApi } from 'utils/DataApi'
+// import { DataApi } from 'utils/DataApi'
 
-import styleBotNav from 'ui-components/BottomNavigation/style.scss'
-import style from './style.scss'
+// import styleBotNav from 'ui-components/BottomNavigation/style.scss'
+// import style from './style.scss'
 
 const Favs = (props) => {
   const viewEvent = (eventData) => {
@@ -46,6 +46,11 @@ const Favs = (props) => {
       <BottomNav />
     </div>
   )
+}
+
+Favs.propTypes = {
+  onViewEvent: PropTypes.func.isRequired,
+  favs: PropTypes.shape().isRequired,
 }
 
 export default connect(

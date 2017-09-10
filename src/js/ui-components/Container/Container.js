@@ -17,12 +17,15 @@ const Container = (props) => {
 
 Container.defaultProps = {
   scrolling: false,
+  stretching: false,
+  background: false,
 }
 
 Container.propTypes = {
   scrolling: PropTypes.bool,
   stretching: PropTypes.bool,
   background: PropTypes.bool,
+  children: PropTypes.element.isRequired,
 }
 
 export default Container

@@ -8,8 +8,8 @@ import { sendModalCategoryData } from 'actions/dataActions'
 import { BottomNav } from 'components'
 import { Tabs, Container } from 'ui-components'
 
-import style from 'screens/main/style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
+import style from './style.scss'
 
 class Main extends Component {
   activeTabName = this.props.router.route.slice(2)
@@ -46,7 +46,7 @@ class Main extends Component {
               <div
                 key={item.id}
                 role='button'
-                className={`${styleTabs.tabs__item} ${this.activeCategoryId == item.id ? styleTabs.tabs__item_active : ''}`}
+                className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.tabs__item_active : ''}`}
                 onClick={() => this.viewCategory(item)}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>

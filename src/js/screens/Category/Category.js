@@ -10,7 +10,7 @@ import { Map } from 'components'
 
 import { InfiniteList as InfiniteListContainer } from 'containers'
 
-import { FloatingButton, Spinner } from 'ui-components'
+import { FloatingButton } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -82,18 +82,17 @@ class Category extends Component {
               {
                 this.state.holiDates.length > 1
                   ? <div style={{ padding: '16px 16px 16px 16px', display: 'flex' }}>
-                    {this.state.holiDates.map((item) => {
-                      return (
-                        <button
-                          key={item.date}
-                          type='button'
-                          className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
-                          onClick={() => {
-                            this.filterByDate(item.date)
-                          }}
-                        >{item.dateFormatted.day} {item.dateFormatted.month}</button>
-                      )
-                    })}
+                    {this.state.holiDates.map(item => (
+                      <button
+                        key={item.date}
+                        type='button'
+                        className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
+                        onClick={() => {
+                          this.filterByDate(item.date)
+                        }}
+                      >{item.dateFormatted.day} {item.dateFormatted.month}</button>
+                    )
+                    )}
                   </div>
                   : ''
               }
@@ -115,7 +114,7 @@ class Category extends Component {
 }
 
 Category.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape().isRequired,
   onViewModeChanged: PropTypes.func.isRequired,
 }
 

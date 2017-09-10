@@ -69,7 +69,7 @@ class Entity extends Component {
 }
 
 Entity.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape().isRequired,
   goBack: PropTypes.func.isRequired,
 }
 

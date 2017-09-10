@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { push } from 'actions/navigationActions'
@@ -45,6 +46,16 @@ class AvatarsList extends Component {
       </div>
     )
   }
+}
+
+AvatarsList.defaultProps = {
+  title: null,
+}
+
+AvatarsList.propTypes = {
+  onViewEvent: PropTypes.func.isRequired,
+  title: PropTypes.string,
+  payload: PropTypes.shape().isRequired,
 }
 
 export default connect(

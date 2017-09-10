@@ -5,14 +5,14 @@ import { replace } from 'actions/navigationActions'
 
 import { BottomNavigation, Icon } from 'ui-components'
 
-import styleBotNav from 'ui-components/BottomNavigation/style.scss'
+import styleBottomNavigation from 'ui-components/BottomNavigation/style.scss'
 
 const BottomNav = (props) => {
   const route = props.route || ''
 
-  const isActiiveTabNow = /feed/.test(route) || /category/.test(route) || route === '#/' || !route
-  const isActiiveTabHolidays = /holidays/.test(route)
-  const isActiiveTabFavs = /favs/.test(route)
+  const isActiveTabNow = /feed/.test(route) || /category/.test(route) || route === '#/' || !route
+  const isActiveTabHolidays = /holidays/.test(route)
+  const isActiveTabFavs = /favs/.test(route)
 
   const tabSwitch = (tab) => {
     props.onTabSwitch(`/${tab}`)
@@ -25,10 +25,10 @@ const BottomNav = (props) => {
         onClick={() => {
           tabSwitch('feed')
         }}
-        className={`${styleBotNav.botNav__item} ${isActiiveTabNow ? styleBotNav.botNav__item_active : ''}`}
+        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabNow ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
       >
         <Icon
-          type={isActiiveTabNow ? 'eventFill' : 'event'}
+          type={isActiveTabNow ? 'eventFill' : 'event'}
           height='20'
         />
         День Города
@@ -38,10 +38,10 @@ const BottomNav = (props) => {
         onClick={() => {
           tabSwitch('holidays')
         }}
-        className={`${styleBotNav.botNav__item} ${isActiiveTabHolidays ? styleBotNav.botNav__item_active : ''}`}
+        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabHolidays ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
       >
         <Icon
-          type={isActiiveTabHolidays ? 'starFill' : 'star'}
+          type={isActiveTabHolidays ? 'starFill' : 'star'}
           height='20'
         />
         Все праздники
@@ -51,12 +51,12 @@ const BottomNav = (props) => {
         onClick={() => {
           tabSwitch('favs')
         }}
-        className={`${styleBotNav.botNav__item} ${isActiiveTabFavs ? styleBotNav.botNav__item_active : ''}`}
+        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabFavs ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
       >
         <Icon
-          type={isActiiveTabFavs ? 'bookmarkFill' : 'bookmark'}
+          type={isActiveTabFavs ? 'bookmarkFill' : 'bookmark'}
           height='20'
-          color={isActiiveTabFavs ? '#333' : '#777'}
+          color={isActiveTabFavs ? '#333' : '#777'}
         />
         Закладки
       </div>

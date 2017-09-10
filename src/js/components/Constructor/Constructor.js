@@ -149,7 +149,7 @@ class Constructor extends Component {
 }
 
 Constructor.propTypes = {
-  config: PropTypes.object.isRequired,
+  config: PropTypes.shape().isRequired,
 }
 
 export default connect(

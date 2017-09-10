@@ -9,7 +9,7 @@ const Card = props => (
     className={`${style.card} ${style[`card_${props.size}`]}`}
     style={props.style}
     onClick={props.onClick}
-    role='note'
+    role='button'
   >
     <Image src={props.src} size={props.size} />
     {
@@ -36,6 +36,7 @@ Card.defaultProps = {
   title: null,
   date: null,
   style: null,
+  isLeft: false,
 }
 
 Card.propTypes = {
@@ -43,8 +44,9 @@ Card.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
-  style: PropTypes.object,
-  onClick: PropTypes.func,
+  style: PropTypes.shape(),
+  onClick: PropTypes.func.isRequired,
+  isLeft: PropTypes.bool,
 }
 
 export default Card

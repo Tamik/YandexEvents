@@ -101,7 +101,8 @@ class Map extends Component {
 
   /**
    * @method onGeolocationSuccess
-   * @description Обработчик выполнится после успешно определенного текущего местоположения пользователя
+   * @description Обработчик выполнится после успешно определенного
+   * текущего местоположения пользователя
    * @param {Object} pos 
    * @see https://cordova.apache.org/docs/en/latest/reference/cordova-plugin-geolocation/
    */
@@ -173,7 +174,8 @@ class Map extends Component {
 
   /**
    * @method onMapApiReady
-   * @description Обработчик выполнится как только API Яндекс.Карт загружено и готово к использованию
+   * @description Обработчик выполнится как только API Яндекс.Карт
+   * загружено и готово к использованию
    * @param {Object} api - ref на статичный объект API Яндекс карт 
    */
   onMapsApiReady = (api) => {
@@ -417,7 +419,8 @@ class Map extends Component {
   /* dev:start */
   /**
    * @method makeBtnGotoEventLocation
-   * @description "Конструктор" кнопки, при нажатии на которую карта спозиционируется к метке события
+   * @description "Конструктор" кнопки, при нажатии на которую карта
+   * спозиционируется к метке события
    * @returns {Object}
    */
   // makeBtnGotoEventLocation = () => {
