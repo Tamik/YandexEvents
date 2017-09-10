@@ -21,10 +21,9 @@ const Button = (props) => {
 }
 
 Button.defaultProps = {
-  label: 'Кнопка',
   primary: false,
   disabled: false,
-  onClick() { },
+  style: {},
 }
 
 Button.propTypes = {

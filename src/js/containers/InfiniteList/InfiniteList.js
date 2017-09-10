@@ -135,6 +135,14 @@ class InfiniteListContainer extends Component {
   }
 }
 
+InfiniteListContainer.defaultProps = {
+  title: null,
+  style: {},
+  // cardSize: {},
+  cardStyle: {},
+  // params: {},
+  categoryId: null,
+}
 InfiniteListContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,

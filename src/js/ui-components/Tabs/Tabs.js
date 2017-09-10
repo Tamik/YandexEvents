@@ -9,6 +9,9 @@ const Tabs = props => (
   </div>
 )
 
+Tabs.defaultProps = {
+  style: {},
+}
 Tabs.propTypes = {
   style: PropTypes.shape(),
   children: PropTypes.element.isRequired,

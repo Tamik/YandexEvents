@@ -18,8 +18,8 @@ const Avatar = props => (
 )
 
 Avatar.defaultProps = {
-  src: 'https://placehold.it/128x128',
   title: null,
+  onClick: null,
 }
 
 Avatar.propTypes = {

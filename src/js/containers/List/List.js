@@ -102,6 +102,14 @@ class ListContainer extends Component {
   }
 }
 
+ListContainer.defaultProps = {
+  title: null,
+  style: {},
+  // cardSize: 'small',
+  cardStyle: {},
+  // params: {},
+  categoryId: null,
+}
 ListContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,

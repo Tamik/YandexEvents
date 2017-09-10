@@ -21,6 +21,7 @@ const MapCard = props => (
 MapCard.defaultProps = {
   size: 'small',
   src: 'http://placehold.it/350x50',
+  title: null,
 }
 
 MapCard.propTypes = {

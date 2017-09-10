@@ -22,6 +22,9 @@ export default class BlankContainer extends Component {
     )
   }
 }
+BlankContainer.defaultProps = {
+  item: {},
+}
 BlankContainer.propTypes = {
   item: PropTypes.shape().isRequired,
 }

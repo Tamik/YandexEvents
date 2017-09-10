@@ -40,6 +40,9 @@ export default class HintContainer extends Component {
     )
   }
 }
+HintContainer.defaultProps = {
+  style: {},
+}
 HintContainer.propTypes = {
   style: PropTypes.shape(),
 }

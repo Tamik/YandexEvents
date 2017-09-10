@@ -23,6 +23,9 @@ const Slider = (props) => {
   )
 }
 
+Slider.defaultProps = {
+  dots: false,
+}
 Slider.propTypes = {
   dots: PropTypes.bool,
   children: PropTypes.element.isRequired,

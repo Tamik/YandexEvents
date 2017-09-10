@@ -24,6 +24,11 @@ const TopBar = (props) => {
 
 TopBar.defaultProps = {
   isVisible: true,
+  isTransparent: false,
+  iconRight: null,
+  iconLeft: null,
+  title: null,
+  onClick: () => {},
 }
 
 TopBar.propTypes = {

@@ -36,6 +36,7 @@ Card.defaultProps = {
   title: null,
   date: null,
   style: null,
+  isLeft: false,
 }
 
 Card.propTypes = {

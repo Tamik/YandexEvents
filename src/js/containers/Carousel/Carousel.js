@@ -65,6 +65,12 @@ class CarouselContainer extends Component {
   }
 }
 
+CarouselContainer.defaultProps = {
+  title: null,
+  style: {},
+  // cardSize: 'small',
+  // cardStyle: {},
+}
 CarouselContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,

@@ -17,6 +17,8 @@ const Container = (props) => {
 
 Container.defaultProps = {
   scrolling: false,
+  stretching: false,
+  background: false,
 }
 
 Container.propTypes = {

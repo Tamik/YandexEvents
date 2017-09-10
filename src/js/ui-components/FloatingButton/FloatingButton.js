@@ -11,6 +11,9 @@ const FloatingButton = props => (
   </button>
 )
 
+FloatingButton.defaultProps = {
+  title: null,
+}
 FloatingButton.propTypes = {
   title: PropTypes.string,
   typeIcon: PropTypes.string.isRequired,

@@ -79,6 +79,14 @@ class SliderContainer extends Component {
   }
 }
 
+SliderContainer.defaultProps = {
+  route: {},
+  title: null,
+  style: {},
+  cardSize: 'small',
+  cardStyle: {},
+  params: {},
+}
 SliderContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   route: PropTypes.shape(),

@@ -48,6 +48,9 @@ class AvatarsList extends Component {
   }
 }
 
+AvatarsList.defaultProps = {
+  title: null,
+}
 AvatarsList.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,

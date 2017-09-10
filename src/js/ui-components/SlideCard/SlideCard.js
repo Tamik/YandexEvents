@@ -29,7 +29,7 @@ SlideCard.defaultProps = {
   src: 'https://placehold.it/350x50',
   title: null,
   date: null,
-  style: null,
+  style: {},
 }
 
 SlideCard.propTypes = {
