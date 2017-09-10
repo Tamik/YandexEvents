@@ -8,8 +8,8 @@ import { sendModalCategoryData } from 'actions/dataActions'
 import { BottomNav } from 'components'
 import { Tabs, Container } from 'ui-components'
 
-import style from './style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
+import style from './style.scss'
 
 class Main extends Component {
   activeTabName = this.props.router.route.slice(2)
