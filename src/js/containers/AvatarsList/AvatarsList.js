@@ -51,11 +51,13 @@ class AvatarsList extends Component {
 AvatarsList.defaultProps = {
   title: null,
 }
+
 AvatarsList.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,
   payload: PropTypes.shape().isRequired,
 }
+
 export default connect(
   state => ({}),
   dispatch => ({

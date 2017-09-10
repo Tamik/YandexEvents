@@ -23,8 +23,10 @@ const SliderList = props => (
 SliderList.defaultProps = {
   title: null,
 }
+
 SliderList.propTypes = {
   title: PropTypes.string,
   payload: PropTypes.shape().isRequired,
 }
+
 export default SliderList

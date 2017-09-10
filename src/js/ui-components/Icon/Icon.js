@@ -47,6 +47,7 @@ Icon.defaultProps = {
   height: '24',
   color: '#000',
 }
+
 Icon.propTypes = {
   type: PropTypes.string.isRequired,
   width: PropTypes.string,

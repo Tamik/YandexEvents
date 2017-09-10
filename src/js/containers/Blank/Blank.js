@@ -1,7 +1,7 @@
 /* dev:start */
 import React, { Component } from 'react'
-import axios from 'axios'
 import PropTypes from 'prop-types'
+// import axios from 'axios'
 
 export default class BlankContainer extends Component {
   constructor(props) {
@@ -11,7 +11,8 @@ export default class BlankContainer extends Component {
   }
 
   componentWillMount() {
-    axios.get()
+    // axios.get()
+    console.warn('Component BlankContainer could not to use.')
   }
 
   render() {
@@ -22,9 +23,11 @@ export default class BlankContainer extends Component {
     )
   }
 }
+
 BlankContainer.defaultProps = {
   item: {},
 }
+
 BlankContainer.propTypes = {
   item: PropTypes.shape().isRequired,
 }

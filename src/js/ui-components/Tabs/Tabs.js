@@ -12,8 +12,10 @@ const Tabs = props => (
 Tabs.defaultProps = {
   style: {},
 }
+
 Tabs.propTypes = {
   style: PropTypes.shape(),
   children: PropTypes.element.isRequired,
 }
+
 export default Tabs

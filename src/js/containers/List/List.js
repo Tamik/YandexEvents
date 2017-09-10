@@ -110,6 +110,7 @@ ListContainer.defaultProps = {
   // params: {},
   categoryId: null,
 }
+
 ListContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,

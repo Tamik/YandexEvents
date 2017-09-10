@@ -159,6 +159,6 @@ export default connect(
     },
     delFromFavs: (event) => {
       dispatch(delFromFavs(event))
-    }
+    },
   })
 )(Event)

@@ -16,4 +16,5 @@ const EventsList = props => (
 EventsList.propTypes = {
   payload: PropTypes.shape().isRequired,
 }
+
 export default EventsList

@@ -50,7 +50,6 @@ class InfiniteListContainer extends Component {
       .byCategory(props.categoryId)
       .perform()
       .then((response) => {
-
         let newStateArray = response.data.data
 
         if (newPage) {
@@ -65,8 +64,7 @@ class InfiniteListContainer extends Component {
           route: { url: '/events/%' },
           hideBtnMore: response.data.data.length < EVENTS_PER_PAGE,
         })
-      }
-      )
+      })
 
     this.prevPage = page
   }
@@ -143,6 +141,7 @@ InfiniteListContainer.defaultProps = {
   // params: {},
   categoryId: null,
 }
+
 InfiniteListContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,

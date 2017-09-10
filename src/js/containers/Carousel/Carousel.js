@@ -71,6 +71,7 @@ CarouselContainer.defaultProps = {
   // cardSize: 'small',
   // cardStyle: {},
 }
+
 CarouselContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,

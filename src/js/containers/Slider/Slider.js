@@ -87,6 +87,7 @@ SliderContainer.defaultProps = {
   cardStyle: {},
   params: {},
 }
+
 SliderContainer.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
   route: PropTypes.shape(),
