@@ -6,7 +6,7 @@ import style from './style.scss'
 
 const FloatingButton = props => (
   <button className={style.button} onClick={props.onClick}>
-    <Icon type={props.typeIcon} height='24' color='#1e1367' />
+    {props.icon}
     <span style={{ marginLeft: 8 }}>{props.title}</span>
   </button>
 )
@@ -17,7 +17,7 @@ FloatingButton.defaultProps = {
 
 FloatingButton.propTypes = {
   title: PropTypes.string,
-  typeIcon: PropTypes.string.isRequired,
+  icon: PropTypes.node,
   onClick: PropTypes.func.isRequired,
 }
 
