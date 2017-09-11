@@ -59,7 +59,6 @@ class Entity extends Component {
                   }}
                 />
               </Container>
-              <BottomNav />
             </div>
           )
         }

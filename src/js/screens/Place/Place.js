@@ -108,7 +108,6 @@ class Place extends Component {
                   </div>
                 </div>
               </Container>
-              <BottomNav />
             </div>
           )}
       </div>
