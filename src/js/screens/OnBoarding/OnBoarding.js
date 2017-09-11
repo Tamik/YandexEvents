@@ -18,11 +18,11 @@ const OnBoarding = (props) => {
     <div
       className='transition-item screen'
       style={{
-        padding: '46px 22px 16px',
-        backgroundColor: '#1e1367',
         fontSize: '1.5rem',
         color: '#fff',
       }}
+      // {/* padding: '46px 22px 16px', */}
+      // {/* backgroundColor: '#1e1367', */}
     >
       <Container
         stretching
