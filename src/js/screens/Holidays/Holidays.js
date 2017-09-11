@@ -3,12 +3,11 @@ import { connect } from 'react-redux'
 
 import { push, goBack } from 'actions/navigationActions'
 
-import { TopBar, Image, Icon, Container } from 'ui-components'
+import { TopBar, Container, HolidayCard } from 'ui-components'
 import { BottomNav } from 'components'
 
 import { DataApi } from 'utils/DataApi'
 
-import styleBotNav from 'ui-components/BottomNavigation/style.scss'
 import style from './style.scss'
 
 class Holidays extends Component {
@@ -37,25 +36,16 @@ class Holidays extends Component {
         />
         <Container scrolling stretching>
           <div>
-            <div style={{ margin: 10 }}>
-              Блок с включалкой напоминаний
+            <div style={{ margin: '24px 16px', color: '#333', fontSize: 16 }}>
+              Мы собираем всю информацию о крупных городских праздниках.
+              Здесь представлен анонс будущих мероприятий.
             </div>
-            <br />
             {this.state.holidays.map(item => (
-              <div key={item.id} style={{ margin: 10 }}>
-                <h4>{item.title}</h4>
-                <p>Дата празднования:<br />
-                  {item.holiDates[0].date}
-                  {item.holiDates.length > 1
-                    ? ` - ${item.holiDates[1].date}`
-                    : ''}
-                </p>
-                <p>Проверить, активный праздник или нет, можно по:<br />
-                  {item.enabledBetweenDates.from} - {item.enabledBetweenDates.to}</p>
-                <div>Описание: {item.description}</div>
-              </div>
-            )
-            )}
+              <HolidayCard
+                key={item.id}
+                content={item}
+              />
+            ))}
           </div>
         </Container>
         <BottomNav />

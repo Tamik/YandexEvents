@@ -34,7 +34,7 @@ const Daty = {
     let range = ''
     // Одинаковые месяцы начала и конца события
     if (begin.month() === end.month()) {
-      if (begin.day() === end.day()) {
+      if (begin.date() === end.date()) {
         // 2 ноября
         range = begin.locale('ru').format('D MMMM')
       }
