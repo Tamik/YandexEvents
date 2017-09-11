@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { Avatar, Slider } from 'ui-components'
+import { Avatar, Carousel } from 'ui-components'
 
 import style from 'components/List/style.scss'
 
@@ -31,18 +31,20 @@ class AvatarsList extends Component {
           >{this.props.title}</h3>
           : null
         }
-        <Slider>
-          {
-            this.props.payload.map(item => (
-              <Avatar
-                key={item.id}
-                src={item.photo_small}
-                title={item.title}
-                onClick={() => this.viewEvent('/entity/%', item)}
-              />
-            ))
-          }
-        </Slider>
+        <Carousel>
+          <div>
+            {
+              this.props.payload.map(item => (
+                <Avatar
+                  key={item.id}
+                  src={item.photo_small}
+                  title={item.title}
+                  onClick={() => this.viewEvent('/entity/%', item)}
+                />
+              ))
+            }
+          </div>
+        </Carousel>
       </div>
     )
   }

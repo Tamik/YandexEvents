@@ -10,8 +10,7 @@
   z-index: 3;
 
   &::-webkit-scrollbar {
-    width: 0;
-    height: 0;
+    display: none;
   }
 
   &__item {
@@ -43,6 +42,12 @@
         background-color: #1e1367;
         height: 2px;
         content: "";
+      }
+
+      &:last-child {
+        &::after {
+          right: 16px;
+        }
       }
     }
   }

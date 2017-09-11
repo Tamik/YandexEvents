@@ -8,7 +8,7 @@ import { setViewMode } from 'actions/viewActions'
 import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
 import { BottomNav, Map } from 'components'
-import { Tabs, Container, FloatingButton } from 'ui-components'
+import { Tabs, Container, FloatingButton, Icon } from 'ui-components'
 
 import styleTabs from 'ui-components/Tabs/style.scss'
 import style from './style.scss'
@@ -41,7 +41,10 @@ class Main extends Component {
   render() {
     return (
       <div className='screen'>
-        <Tabs style={{ ...this.props.data.configData.params.style.tabs }}>
+        <Tabs
+          className={styleTabs.tabs}
+          style={{ ...this.props.data.configData.params.style.tabs }}
+        >
           { /* Main tab */}
           <div
             role='button'
@@ -76,7 +79,13 @@ class Main extends Component {
         </Container>
         {this.props.params.categoryId
           ? <FloatingButton
-            typeIcon={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
+            icon={
+              <Icon
+                type={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
+                height='24'
+                color='#1e1367'
+              />
+            }
             title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
             onClick={this.toggleViewMode}
           />
