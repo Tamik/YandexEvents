@@ -18,6 +18,7 @@ class Event extends Component {
   state = {
     event: {},
     loading: true,
+    hideText: true,
   }
 
   componentWillMount() {
@@ -46,12 +47,28 @@ class Event extends Component {
     }
   }
 
+  toggleDescription = () => {
+    this.state.hideText
+      ? this.setState({
+        hideText: false,
+      })
+      : this.setState({
+        hideText: true,
+      })
+  }
+
   render() {
     const event = this.state.event
     const formattedDate = Daty.beautifyDatesRange(
-      this.state.event.begin_time,
-      this.state.event.end_time
+      event.begin_time,
+      event.end_time
     )
+    const description = event.description
+      ? {
+        start: event.description.slice(0, 150).concat('...'),
+        full: event.description,
+      }
+      : null
     return (
       <div>
         {this.state.loading
@@ -101,8 +118,23 @@ class Event extends Component {
                       color: '#000',
                       lineHeight: '1.375rem',
                     }}
-                    dangerouslySetInnerHTML={{ __html: event.description }}
+                    dangerouslySetInnerHTML={
+                      this.state.hideText
+                        ? { __html: description.start }
+                        : { __html: description.full }
+                    }
+
                   />
+                  <button
+                    className={style.button}
+                    onClick={this.toggleDescription}
+                  >
+                    {
+                      this.state.hideText
+                        ? 'Полное описание'
+                        : 'Скрыть описание'
+                    }
+                  </button>
                   <div style={{ margin: '16px 0' }}>
                     <hr style={{ backgroundColor: '#e5e5e5', border: 'none', height: 1 }} />
                     <div style={{ margin: '12px 0 16px' }}>
