@@ -36,7 +36,6 @@ class Place extends Component {
   }
 
   render() {
-    console.log('this.props.eventData: ', this.props.eventData)
     const place = this.state.place
     return (
       <div>

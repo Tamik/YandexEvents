@@ -24,30 +24,28 @@ class Application extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    if (nextProps.data.eventData && typeof nextProps.data.eventData !== 'string') {
-      return false
-    }
-    if (nextProps.data.eventData === '__CLEAR__') {
-      setTimeout(() => {
-        this.props.onCloseEventModal()
-      }, 100)
-      return false
-    }
-
-    if (nextProps.data.placeData && typeof nextProps.data.placeData !== 'string') {
-      return false
-    }
-    if (nextProps.data.placeData === '__CLEAR__') {
-      setTimeout(() => {
-        this.props.onClosePlaceModal()
-      }, 100)
-      return false
-    }
-    return true
+    return this.shouldUpdateWhenModal(nextProps)
   }
 
   componentWillUpdate(nextProps) {
     this.route = nextProps.router ? nextProps.router.route : ''
+  }
+
+  shouldUpdateWhenModal = (nextProps) => {
+    const MODALS = ['event', 'place', 'entity']
+
+    for (let i = 0; i < MODALS.length; i += 1) {
+      if (nextProps.data[`${MODALS[i]}Data`] && typeof nextProps.data[`${MODALS[i]}Data`] !== 'string') {
+        return false
+      }
+      if (nextProps.data[`${MODALS[i]}Data`] === '__CLEAR__') {
+        setTimeout(() => {
+          this.props.onCloseModal(MODALS[i])
+        }, 100)
+        return false
+      }
+    }
+    return true
   }
 
   /*
@@ -148,14 +146,12 @@ export default connect(
     view: state.view,
   }),
   dispatch => ({
-    onCloseEventModal: () => {
-      dispatch(sendModalEventData(null))
-    },
-    onClosePlaceModal: () => {
-      dispatch(sendModalPlaceData(null))
-    },
-    onCloseEntityModal: () => {
-      dispatch(sendModalEntityData(null))
+    onCloseModal: (modal) => {
+      dispatch({
+        event: sendModalEventData(null),
+        place: sendModalPlaceData(null),
+        entity: sendModalEntityData(null),
+      }[modal])
     },
   })
 )(Application)

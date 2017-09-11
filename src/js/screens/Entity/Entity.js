@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { goBack } from 'actions/navigationActions'
+import { clearModalEntityData } from 'actions/dataActions'
+
+import { Event } from 'screens'
 
 import { BottomNav } from 'components'
 
@@ -59,6 +62,20 @@ class Entity extends Component {
                   }}
                 />
               </Container>
+              {this.props.eventData && this.props.eventData !== '__CLOSE__'
+                ? <div style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  zIndex: 2000,
+                  background: '#fff',
+                  width: '100vw',
+                  height: '100vh',
+                }}
+                >
+                  <Event params={{ eventId: this.props.eventData.id }} />
+                </div>
+                : ''}
             </div>
           )
         }
@@ -75,10 +92,12 @@ Entity.propTypes = {
 export default connect(
   state => ({
     entityData: state.data.entityData,
+    eventData: state.data.eventData,
   }),
   dispatch => ({
     goBack: () => {
       dispatch(goBack())
+      dispatch(clearModalEntityData())
     },
   })
 )(Entity)

@@ -7,7 +7,7 @@ import { sendModalCategoryData } from 'actions/dataActions'
 import { setViewMode } from 'actions/viewActions'
 import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
-import { Event, Place } from 'screens'
+import { Event, Place, Entity } from 'screens'
 
 import { BottomNav, Map } from 'components'
 import { Tabs, Container, FloatingButton, Icon } from 'ui-components'
@@ -95,6 +95,7 @@ class Main extends Component {
         <BottomNav />
         {this.props.data.eventData && this.props.data.eventData !== '__CLOSE__'
           || this.props.data.placeData && this.props.data.placeData !== '__CLOSE__'
+          || this.props.data.entityData && this.props.data.entityData !== '__CLOSE__'
           ? <div style={{
             position: 'fixed',
             top: 0,
@@ -107,6 +108,7 @@ class Main extends Component {
           >
             {this.props.data.eventData ? <Event params={{ eventId: this.props.data.eventData.id }} /> : ''}
             {this.props.data.placeData ? <Place params={{ placeId: this.props.data.placeData.id }} /> : ''}
+            {this.props.data.entityData ? <Entity params={{ entityId: this.props.data.entityData.id }} /> : ''}
           </div>
           : ''}
       </div>
