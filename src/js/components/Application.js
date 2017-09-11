@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sendModalEventData } from 'actions/dataActions'
+import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
 
 import {
   OnBoarding,
@@ -27,10 +27,19 @@ class Application extends Component {
     if (nextProps.data.eventData && typeof nextProps.data.eventData !== 'string') {
       return false
     }
-
     if (nextProps.data.eventData === '__CLEAR__') {
       setTimeout(() => {
         this.props.onCloseEventModal()
+      }, 100)
+      return false
+    }
+
+    if (nextProps.data.placeData && typeof nextProps.data.placeData !== 'string') {
+      return false
+    }
+    if (nextProps.data.placeData === '__CLEAR__') {
+      setTimeout(() => {
+        this.props.onClosePlaceModal()
       }, 100)
       return false
     }
@@ -141,6 +150,12 @@ export default connect(
   dispatch => ({
     onCloseEventModal: () => {
       dispatch(sendModalEventData(null))
+    },
+    onClosePlaceModal: () => {
+      dispatch(sendModalPlaceData(null))
+    },
+    onCloseEntityModal: () => {
+      dispatch(sendModalEntityData(null))
     },
   })
 )(Application)
