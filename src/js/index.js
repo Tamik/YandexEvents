@@ -61,6 +61,17 @@ history.listen((location) => {
 })
 
 function onDeviceReady() {
+  const config = {
+    AppMetrica: {
+      apiKey: process.env.APPMETRICA,
+      trackLocationEnabled: true,
+      handleFirstActivationAsUpdateEnabled: true,
+      sessionTimeout: 15,
+      appVersion: '1.0.0',
+    },
+  }
+  window.appMetrica.activate(config.AppMetrica)
+
   DataApi.getHolidayConfig()
     .byHoliday(1)
     .perform()
