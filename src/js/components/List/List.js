@@ -80,7 +80,7 @@ List.defaultProps = {
 }
 
 List.propTypes = {
-  items: PropTypes.array,
+  // items: PropTypes.shape(),
   // items: PropTypes.arrayOf(PropTypes.object),
   type: PropTypes.string,
 }

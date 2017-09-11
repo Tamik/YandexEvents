@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { List } from 'components'
 
@@ -11,5 +12,9 @@ const EventsList = props => (
     }
   </div>
 )
+
+EventsList.propTypes = {
+  payload: PropTypes.shape().isRequired,
+}
 
 export default EventsList

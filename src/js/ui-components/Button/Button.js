@@ -21,17 +21,17 @@ const Button = (props) => {
 }
 
 Button.defaultProps = {
-  label: 'Кнопка',
   primary: false,
   disabled: false,
-  onClick() { },
+  style: {},
 }
 
 Button.propTypes = {
-  label: PropTypes.node,
+  label: PropTypes.node.isRequired,
   primary: PropTypes.bool,
   disabled: PropTypes.bool,
-  onClick: PropTypes.func,
+  onClick: PropTypes.func.isRequired,
+  style: PropTypes.shape(),
 }
 
 export default Button

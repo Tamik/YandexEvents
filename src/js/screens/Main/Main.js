@@ -10,8 +10,8 @@ import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 import { BottomNav, Map } from 'components'
 import { Tabs, Container, FloatingButton } from 'ui-components'
 
-import style from 'screens/main/style.scss'
 import styleTabs from 'ui-components/Tabs/style.scss'
+import style from './style.scss'
 
 class Main extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class Main extends Component {
               <div
                 key={item.id}
                 role='button'
-                className={`${styleTabs.tabs__item} ${this.activeCategoryId == item.id ? styleTabs.tabs__item_active : ''}`}
+                className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.tabs__item_active : ''}`}
                 onClick={() => this.viewCategory(item)}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>

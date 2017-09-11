@@ -7,7 +7,7 @@ import { setViewMode } from 'actions/viewActions'
 
 import { InfiniteList as InfiniteListContainer } from 'containers'
 
-import { FloatingButton, Spinner } from 'ui-components'
+import { FloatingButton } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 

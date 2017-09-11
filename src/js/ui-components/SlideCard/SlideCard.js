@@ -7,7 +7,7 @@ const SlideCard = props => (
   <div
     className={`${style.slideCard} ${style[`slideCard_${props.size}`]}`}
     style={props.style}
-    role='note'
+    role='button'
     onClick={props.onClick}
   >
     <Image src={props.src} size={props.size} />
@@ -29,7 +29,7 @@ SlideCard.defaultProps = {
   src: 'https://placehold.it/350x50',
   title: null,
   date: null,
-  style: null,
+  style: {},
 }
 
 SlideCard.propTypes = {
@@ -37,8 +37,8 @@ SlideCard.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string,
   date: PropTypes.string,
-  style: PropTypes.object,
-  onClick: PropTypes.func,
+  style: PropTypes.shape(),
+  onClick: PropTypes.func.isRequired,
 }
 
 export default SlideCard

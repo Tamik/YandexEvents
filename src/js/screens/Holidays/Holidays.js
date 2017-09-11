@@ -41,22 +41,21 @@ class Holidays extends Component {
               Блок с включалкой напоминаний
             </div>
             <br />
-            {this.state.holidays.map((item) => {
-              return (
-                <div key={item.id} style={{ margin: 10 }}>
-                  <h4>{item.title}</h4>
-                  <p>Дата празднования:<br />
-                    {item.holiDates[0].date}
-                    {item.holiDates.length > 1
-                      ? ` - ${item.holiDates[1].date}`
-                      : ''}
-                  </p>
-                  <p>Проверить, активный праздник или нет, можно по:<br />
-                    {item.enabledBetweenDates.from} - {item.enabledBetweenDates.to}</p>
-                  <div>Описание: {item.description}</div>
-                </div>
-              )
-            })}
+            {this.state.holidays.map(item => (
+              <div key={item.id} style={{ margin: 10 }}>
+                <h4>{item.title}</h4>
+                <p>Дата празднования:<br />
+                  {item.holiDates[0].date}
+                  {item.holiDates.length > 1
+                    ? ` - ${item.holiDates[1].date}`
+                    : ''}
+                </p>
+                <p>Проверить, активный праздник или нет, можно по:<br />
+                  {item.enabledBetweenDates.from} - {item.enabledBetweenDates.to}</p>
+                <div>Описание: {item.description}</div>
+              </div>
+            )
+            )}
           </div>
         </Container>
         <BottomNav />

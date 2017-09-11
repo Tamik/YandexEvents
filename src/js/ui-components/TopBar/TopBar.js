@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Icon } from 'ui-components'
+// import { Icon } from 'ui-components'
 import style from './style.scss'
 
 const TopBar = (props) => {
@@ -24,12 +24,17 @@ const TopBar = (props) => {
 
 TopBar.defaultProps = {
   isVisible: true,
+  isTransparent: false,
+  iconRight: null,
+  iconLeft: null,
+  title: null,
+  onClick: () => {},
 }
 
 TopBar.propTypes = {
   iconRight: PropTypes.element,
   iconLeft: PropTypes.element,
-  onCLick: PropTypes.func,
+  onClick: PropTypes.func,
   title: PropTypes.string,
   isTransparent: PropTypes.bool,
 }

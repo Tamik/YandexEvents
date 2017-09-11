@@ -11,10 +11,14 @@ const FloatingButton = props => (
   </button>
 )
 
+FloatingButton.defaultProps = {
+  title: null,
+}
+
 FloatingButton.propTypes = {
   title: PropTypes.string,
-  typeIcon: PropTypes.string,
-  onClick: PropTypes.func,
+  typeIcon: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 }
 
 export default FloatingButton

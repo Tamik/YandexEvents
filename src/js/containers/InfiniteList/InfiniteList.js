@@ -50,7 +50,6 @@ class InfiniteListContainer extends Component {
       .byCategory(props.categoryId)
       .perform()
       .then((response) => {
-
         let newStateArray = response.data.data
 
         if (newPage) {
@@ -65,8 +64,7 @@ class InfiniteListContainer extends Component {
           route: { url: '/events/%' },
           hideBtnMore: response.data.data.length < EVENTS_PER_PAGE,
         })
-      }
-      )
+      })
 
     this.prevPage = page
   }
@@ -76,6 +74,24 @@ class InfiniteListContainer extends Component {
       page: this.state.page + 1,
     })
     this.getData(this.props, this.state.page + 1, true)
+  }
+
+  loadMoreEvents = () => {
+    if (this.state.loadingMoreEvents) {
+      return (
+        <Spinner />
+      )
+    }
+    else if (this.state.elements.length === EVENTS_PER_PAGE && !this.state.hideBtnMore) {
+      return (
+        <Button
+          label='Показать ещё'
+          onClick={() => this.loadMore()}
+          className={styleBtn.button}
+        />
+      )
+    }
+    return (null)
   }
 
   viewEvent = (route, eventData) => {
@@ -120,27 +136,28 @@ class InfiniteListContainer extends Component {
             date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
           />
         ))}
-        {
-          this.state.loadingMoreEvents
-            ? <Spinner />
-            : this.state.elements.length === EVENTS_PER_PAGE && !this.state.hideBtnMore
-              ? <Button
-                label='Показать ещё'
-                onClick={() => this.loadMore()}
-                className={styleBtn.button}
-              /> : ''
-        }
+        {this.loadMoreEvents}
       </div>
     )
   }
 }
 
+InfiniteListContainer.defaultProps = {
+  title: null,
+  style: {},
+  // cardSize: {},
+  cardStyle: {},
+  // params: {},
+  categoryId: null,
+}
+
 InfiniteListContainer.propTypes = {
+  onViewEvent: PropTypes.func.isRequired,
   title: PropTypes.string,
-  style: PropTypes.object,
-  cardSize: PropTypes.string,
-  cardStyle: PropTypes.object,
-  params: PropTypes.object,
+  style: PropTypes.shape(),
+  // cardSize: PropTypes.string,
+  cardStyle: PropTypes.shape(),
+  // params: PropTypes.shape(),
   categoryId: PropTypes.string,
 }
 

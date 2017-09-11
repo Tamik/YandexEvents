@@ -15,6 +15,7 @@
         "browser": "cordova run browser --target Chrome",
         "test": "jest",
         "clear": "rm -rf ./www/assets",
+        "lint": "eslint ./src",
         "lint:fix": "eslint --fix"
     },
     "author": "Yandex.Events Team",

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { push, goBack } from 'actions/navigationActions'
+import { goBack } from 'actions/navigationActions'
 import { addToFavs, delFromFavs } from 'actions/userActions'
 
 import { BottomNav, StaticMap } from 'components'
@@ -11,8 +11,8 @@ import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
 import { DataApi } from 'utils/DataApi'
 import { Daty } from 'utils'
 
-import style from './style.scss'
 import styleCard from 'ui-components/Card/style.scss'
+import style from './style.scss'
 
 class Event extends Component {
   state = {
@@ -35,19 +35,23 @@ class Event extends Component {
     this.props.goBack()
   }
 
-  isInFavs = () => {
-    return !!this.props.favs[this.props.params.eventId]
-  }
+  isInFavs = () => !!this.props.favs[this.props.params.eventId]
 
   addToFavs = () => {
-    this.isInFavs()
-      ? this.props.delFromFavs(this.state.event)
-      : this.props.addToFavs(this.state.event)
+    if (this.isInFavs()) {
+      this.props.delFromFavs(this.state.event)
+    }
+    else {
+      this.props.addToFavs(this.state.event)
+    }
   }
 
   render() {
     const event = this.state.event
-    const formattedDate = Daty.beautifyDatesRange(this.state.event.begin_time, this.state.event.end_time)
+    const formattedDate = Daty.beautifyDatesRange(
+      this.state.event.begin_time,
+      this.state.event.end_time
+    )
     return (
       <div>
         {this.state.loading
@@ -138,8 +142,11 @@ class Event extends Component {
 }
 
 Event.propTypes = {
-  params: PropTypes.object.isRequired,
+  params: PropTypes.shape().isRequired,
   goBack: PropTypes.func.isRequired,
+  favs: PropTypes.shape().isRequired,
+  addToFavs: PropTypes.func.isRequired,
+  delFromFavs: PropTypes.func.isRequired,
 }
 
 export default connect(
@@ -156,6 +163,6 @@ export default connect(
     },
     delFromFavs: (event) => {
       dispatch(delFromFavs(event))
-    }
+    },
   })
 )(Event)

@@ -16,11 +16,13 @@ const Image = props => (
 Image.defaultProps = {
   src: 'https://placehold.it/350x50',
   size: 'small',
+  style: {},
 }
 
 Image.propTypes = {
   src: PropTypes.string,
   size: PropTypes.string,
+  style: PropTypes.shape(),
 }
 
 export default Image
