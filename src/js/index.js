@@ -50,7 +50,7 @@ store.dispatch(
 // Listen store and render page on storeUpdate
 store.subscribe(() => {
   // @todo: improve for chunked rendering
-  renderApp()
+  // renderApp()
 })
 
 history.listen((location) => {
@@ -83,8 +83,8 @@ function onDeviceReady() {
         .then((response) => {
           store.dispatch(addFavs(response))
         })
+      renderApp()
     })
-  renderApp()
   if (module.hot) {
     module.hot.accept('components/Application', () => {
       const nextApp = require('components/Application').default
