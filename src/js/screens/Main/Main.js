@@ -41,7 +41,10 @@ class Main extends Component {
   render() {
     return (
       <div className='screen'>
-        <Tabs style={{ ...this.props.data.configData.params.style.tabs }}>
+        <Tabs
+          className={styleTabs.tabs}
+          style={{ ...this.props.data.configData.params.style.tabs }}
+        >
           { /* Main tab */}
           <div
             role='button'
