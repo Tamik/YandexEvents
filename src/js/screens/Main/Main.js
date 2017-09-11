@@ -16,7 +16,7 @@ import style from './style.scss'
 class Main extends Component {
   activeTabName = this.props.router.route.slice(2)
   activeCategoryId = parseInt(this.props.params.categoryId, 10)
-  viewMode = this.props.params.viewMode.toUpperCase()
+  viewMode = (this.props.params.viewMode || VIEW_MODE_LIST).toUpperCase()
 
   viewMainTab = () => {
     this.props.onViewMainTab()
@@ -74,11 +74,13 @@ class Main extends Component {
               : <Map categoryId={this.props.params.categoryId} />
           }
         </Container>
-        <FloatingButton
-          typeIcon={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
-          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
-          onClick={this.toggleViewMode}
-        />
+        {this.props.params.categoryId
+          ? <FloatingButton
+            typeIcon={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
+            title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+            onClick={this.toggleViewMode}
+          />
+          : ''}
         <BottomNav />
       </div>
     )
