@@ -118,8 +118,8 @@ class Event extends Component {
                     <StaticMap
                       coords={[event.lng, event.lat]}
                       zoom={15}
-                      width={410}
-                      height={215}
+                      width={342}
+                      height={172}
                     />
                     <p
                       style={{

@@ -94,8 +94,8 @@ class Place extends Component {
                     <StaticMap
                       coords={[place.lng, place.lat]}
                       zoom={15}
-                      width={410}
-                      height={215}
+                      width={372}
+                      height={172}
                     />
                     <p
                       style={{

@@ -11,6 +11,23 @@
     "stage-3"
   ],
   "plugins": [
-    "react-hot-loader/babel"
-  ]
+    "react-hot-loader/babel",
+    ["module-resolver", {
+      "root": ["./src/js"],
+      "alias": {
+        "tests": "./tests",
+        "project": "./src/js"
+      }
+    }]
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        "react",
+        "es2015",
+        "stage-2",
+        "stage-3"
+      ]
+    }
+  }
 }
