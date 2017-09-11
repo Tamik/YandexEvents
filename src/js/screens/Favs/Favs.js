@@ -5,13 +5,10 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
+import { Event } from 'screens'
+
 import { TopBar, Container, Card } from 'ui-components'
 import { BottomNav } from 'components'
-
-// import { DataApi } from 'utils/DataApi'
-
-// import styleBotNav from 'ui-components/BottomNavigation/style.scss'
-// import style from './style.scss'
 
 const Favs = (props) => {
   const viewEvent = (eventData) => {
@@ -44,6 +41,20 @@ const Favs = (props) => {
         </div>
       </Container>
       <BottomNav />
+      {props.eventData && props.eventData !== '__CLOSE__'
+        ? <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          zIndex: 2000,
+          background: '#fff',
+          width: '100vw',
+          height: '100vh',
+        }}
+        >
+          <Event params={{ eventId: props.eventData.id }} />
+        </div>
+        : ''}
     </div>
   )
 }
@@ -56,6 +67,7 @@ Favs.propTypes = {
 export default connect(
   state => ({
     favs: state.user.favs || {},
+    eventData: state.data.eventData,
   }),
   dispatch => ({
     onViewEvent: (eventData) => {
