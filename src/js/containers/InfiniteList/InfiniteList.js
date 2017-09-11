@@ -118,7 +118,14 @@ class InfiniteListContainer extends Component {
           : null
         }
         {this.state.elements.length === 0
-          ? <p style={{ fontSize: 14 }}>Нет событий</p>
+          ? <p
+            style={{
+              fontSize: '1rem',
+              marginTop: 8,
+              textAlign: 'center',
+              opacity: 0.8,
+            }}
+          >Нет событий</p>
           : ''}
         {this.state.elements.map(element => (
           <Card
