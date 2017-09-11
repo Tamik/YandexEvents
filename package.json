@@ -14,6 +14,7 @@
         "android:device": "cordova run android --target device",
         "browser": "cordova run browser --target Chrome",
         "test": "jest",
+        "test:update": "jest -u",
         "clear": "rm -rf ./www/assets",
         "lint": "eslint ./src",
         "lint:fix": "eslint --fix"
