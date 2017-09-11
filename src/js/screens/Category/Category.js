@@ -69,17 +69,6 @@ class Category extends Component {
                   }}
                 >{item.dateFormatted.day} {item.dateFormatted.month}</button>
               ))}
-              {this.state.holiDates.map(item => (
-                <button
-                  key={item.date}
-                  type='button'
-                  className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
-                  onClick={() => {
-                    this.filterByDate(item.date)
-                  }}
-                >{item.dateFormatted.day} {item.dateFormatted.month}</button>
-              )
-              )}
             </div>
             : ''
         }
