@@ -21,6 +21,15 @@
     },
     "author": "Yandex.Events Team",
     "license": "Apache-2.0",
+    "jest": {
+        "verbose": true,
+        "setupFiles": [
+            "./test-setup.js"
+        ],
+        "transform": {
+            ".*": "<rootDir>/node_modules/jest-css-modules"
+        }
+    },
     "dependencies": {
         "axios": "^0.16.2",
         "classnames": "^2.2.5",
