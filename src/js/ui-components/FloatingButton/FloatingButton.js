@@ -13,6 +13,7 @@ const FloatingButton = props => (
 
 FloatingButton.defaultProps = {
   title: null,
+  icon: null,
 }
 
 FloatingButton.propTypes = {
