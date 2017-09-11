@@ -4,9 +4,6 @@ import { connect } from 'react-redux'
 
 import { replace } from 'actions/navigationActions'
 import { setViewMode } from 'actions/viewActions'
-import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
-
-import { Map } from 'components'
 
 import { InfiniteList as InfiniteListContainer } from 'containers'
 
@@ -20,7 +17,6 @@ class Category extends Component {
   constructor(props) {
     super(props)
 
-    this.viewMode = this.props.params.viewMode.toUpperCase()
     this.state = {
       filterByDate: null,
       holiDates: [],
@@ -51,16 +47,6 @@ class Category extends Component {
       })
   }
 
-  viewMode = this.props.params.viewMode.toUpperCase()
-
-  toggleViewMode = () => {
-    this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
-    this.props.onViewModeChanged(
-      this.props.params.categoryId,
-      this.viewMode
-    )
-  }
-
   filterByDate = (date) => {
     if (date !== this.state.filterByDate) {
       this.setState({
@@ -77,36 +63,26 @@ class Category extends Component {
     return (
       <div>
         {
-          this.viewMode === VIEW_MODE_LIST
-            ? <div>
-              {
-                this.state.holiDates.length > 1
-                  ? <div style={{ padding: '16px 16px 16px 16px', display: 'flex' }}>
-                    {this.state.holiDates.map(item => (
-                      <button
-                        key={item.date}
-                        type='button'
-                        className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
-                        onClick={() => {
-                          this.filterByDate(item.date)
-                        }}
-                      >{item.dateFormatted.day} {item.dateFormatted.month}</button>
-                    )
-                    )}
-                  </div>
-                  : ''
-              }
-              <InfiniteListContainer
-                categoryId={this.props.params.categoryId}
-                filterByDate={this.state.filterByDate}
-              />
+          this.state.holiDates.length > 1
+            ? <div style={{ padding: '16px 16px 16px 16px', display: 'flex' }}>
+              {this.state.holiDates.map((item) => {
+                return (
+                  <button
+                    key={item.date}
+                    type='button'
+                    className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
+                    onClick={() => {
+                      this.filterByDate(item.date)
+                    }}
+                  >{item.dateFormatted.day} {item.dateFormatted.month}</button>
+                )
+              })}
             </div>
-            : <Map categoryId={this.props.params.categoryId} />
+            : ''
         }
-        <FloatingButton
-          typeIcon={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
-          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
-          onClick={this.toggleViewMode}
+        <InfiniteListContainer
+          categoryId={this.props.params.categoryId}
+          filterByDate={this.state.filterByDate}
         />
       </div>
     )
@@ -114,20 +90,7 @@ class Category extends Component {
 }
 
 Category.propTypes = {
-  params: PropTypes.shape().isRequired,
-  onViewModeChanged: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
 }
 
-export default connect(
-  state => ({
-    categoryData: state.data.categoryData,
-    config: state.data.configData,
-    view: state.view,
-  }),
-  dispatch => ({
-    onViewModeChanged: (currCategoryId, newViewMode) => {
-      dispatch(setViewMode(newViewMode))
-      dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
-    },
-  })
-)(Category)
+export default Category
