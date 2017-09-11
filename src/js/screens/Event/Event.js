@@ -48,13 +48,16 @@ class Event extends Component {
   }
 
   toggleDescription = () => {
-    this.state.hideText
-      ? this.setState({
+    if (this.state.hideText) {
+      this.setState({
         hideText: false,
       })
-      : this.setState({
+    }
+    else {
+      this.setState({
         hideText: true,
       })
+    }
   }
 
   render() {
@@ -127,7 +130,7 @@ class Event extends Component {
                   />
                   <button
                     className={style.button}
-                    onClick={this.toggleDescription}
+                    onClick={this.toggleDescription()}
                   >
                     {
                       this.state.hideText
