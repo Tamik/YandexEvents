@@ -78,7 +78,7 @@ class Main extends Component {
         >
           {
             this.viewMode === VIEW_MODE_LIST
-              ? <this.props.fragment params={this.props.params} view={this.props.view}/>
+              ? <this.props.fragment params={this.props.params} view={this.props.view} />
               : <Map categoryId={this.props.params.categoryId} />
           }
         </Container>
