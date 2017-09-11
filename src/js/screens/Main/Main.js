@@ -14,14 +14,9 @@ import styleTabs from 'ui-components/Tabs/style.scss'
 import style from './style.scss'
 
 class Main extends Component {
-  constructor(props) {
-    super(props)
-
-    this.viewMode = this.props.params.viewMode.toUpperCase()
-  }
-
   activeTabName = this.props.router.route.slice(2)
   activeCategoryId = parseInt(this.props.params.categoryId, 10)
+  viewMode = this.props.params.viewMode.toUpperCase()
 
   viewMainTab = () => {
     this.props.onViewMainTab()
@@ -34,8 +29,6 @@ class Main extends Component {
     this.activeTabName = null
     this.activeCategoryId = categoryData.id
   }
-
-  viewMode = this.props.params.viewMode.toUpperCase()
 
   toggleViewMode = () => {
     this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
@@ -68,8 +61,7 @@ class Main extends Component {
                 onClick={() => this.viewCategory(item)}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>
-            )
-            )
+            ))
           }
         </Tabs>
         <Container
@@ -78,7 +70,7 @@ class Main extends Component {
         >
           {
             this.viewMode === VIEW_MODE_LIST
-              ? <this.props.fragment params={this.props.params} view={this.props.view} />
+              ? <this.props.fragment params={this.props.params} />
               : <Map categoryId={this.props.params.categoryId} />
           }
         </Container>
@@ -89,7 +81,6 @@ class Main extends Component {
         />
         <BottomNav />
       </div>
-
     )
   }
 }
@@ -100,7 +91,6 @@ export default connect(
     user: state.user,
     data: state.data,
     view: state.view,
-
   }),
   dispatch => ({
     onViewMainTab: () => {

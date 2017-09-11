@@ -1,13 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-
-import { replace } from 'actions/navigationActions'
-import { setViewMode } from 'actions/viewActions'
 
 import { InfiniteList as InfiniteListContainer } from 'containers'
-
-import { FloatingButton } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -65,18 +59,16 @@ class Category extends Component {
         {
           this.state.holiDates.length > 1
             ? <div style={{ padding: '16px 16px 16px 16px', display: 'flex' }}>
-              {this.state.holiDates.map((item) => {
-                return (
-                  <button
-                    key={item.date}
-                    type='button'
-                    className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
-                    onClick={() => {
-                      this.filterByDate(item.date)
-                    }}
-                  >{item.dateFormatted.day} {item.dateFormatted.month}</button>
-                )
-              })}
+              {this.state.holiDates.map(item => (
+                <button
+                  key={item.date}
+                  type='button'
+                  className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
+                  onClick={() => {
+                    this.filterByDate(item.date)
+                  }}
+                >{item.dateFormatted.day} {item.dateFormatted.month}</button>
+              ))}
               {this.state.holiDates.map(item => (
                 <button
                   key={item.date}
