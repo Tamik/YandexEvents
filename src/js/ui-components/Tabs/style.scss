@@ -44,6 +44,12 @@
         height: 2px;
         content: "";
       }
+
+      &:last-child {
+        &::after {
+          right: 16px;
+        }
+      }
     }
   }
 }
