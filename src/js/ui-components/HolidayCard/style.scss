@@ -1,0 +1,20 @@
+.card {
+  min-height: 152px;
+  padding: 20px;
+  background-color: #1e1367;
+
+  &:nth-child(2n) {
+    background-color: #233680;
+  }
+
+  &__title {
+    margin-bottom: 4px;
+    font-size: 1.25rem;
+    color: #fff;
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+}
