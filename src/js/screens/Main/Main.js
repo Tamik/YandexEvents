@@ -4,9 +4,11 @@ import { connect } from 'react-redux'
 
 import { replace } from 'actions/navigationActions'
 import { sendModalCategoryData } from 'actions/dataActions'
+import { setViewMode } from 'actions/viewActions'
+import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
-import { BottomNav } from 'components'
-import { Tabs, Container } from 'ui-components'
+import { BottomNav, Map } from 'components'
+import { Tabs, Container, FloatingButton } from 'ui-components'
 
 import styleTabs from 'ui-components/Tabs/style.scss'
 import style from './style.scss'
@@ -14,6 +16,7 @@ import style from './style.scss'
 class Main extends Component {
   activeTabName = this.props.router.route.slice(2)
   activeCategoryId = parseInt(this.props.params.categoryId, 10)
+  viewMode = this.props.params.viewMode.toUpperCase()
 
   viewMainTab = () => {
     this.props.onViewMainTab()
@@ -27,10 +30,18 @@ class Main extends Component {
     this.activeCategoryId = categoryData.id
   }
 
+  toggleViewMode = () => {
+    this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
+    this.props.onViewModeChanged(
+      this.props.params.categoryId,
+      this.viewMode
+    )
+  }
+
   render() {
     return (
       <div className='screen'>
-        <Tabs style={{ ...this.props.data.configData.params.style.topBar }}>
+        <Tabs style={{ ...this.props.data.configData.params.style.tabs }}>
           { /* Main tab */}
           <div
             role='button'
@@ -50,16 +61,24 @@ class Main extends Component {
                 onClick={() => this.viewCategory(item)}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>
-            )
-            )
+            ))
           }
         </Tabs>
         <Container
           scrolling
           stretching
         >
-          <this.props.fragment params={this.props.params} view={this.props.view} />
+          {
+            this.viewMode === VIEW_MODE_LIST
+              ? <this.props.fragment params={this.props.params} />
+              : <Map categoryId={this.props.params.categoryId} />
+          }
         </Container>
+        <FloatingButton
+          typeIcon={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
+          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          onClick={this.toggleViewMode}
+        />
         <BottomNav />
       </div>
     )
@@ -80,6 +99,10 @@ export default connect(
     onViewCategory: (categoryData) => {
       dispatch(sendModalCategoryData(categoryData))
       dispatch(replace(`/category/${categoryData.id}/list`))
+    },
+    onViewModeChanged: (currCategoryId, newViewMode) => {
+      dispatch(setViewMode(newViewMode))
+      dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
     },
   })
 )(Main)
