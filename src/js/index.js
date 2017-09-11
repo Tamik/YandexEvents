@@ -38,7 +38,7 @@ const renderApp = () => {
         <Application />
       </Provider>
     </AppContainer>,
-    document.getElementById('App')
+    document.getElementById('react-root')
   )
 }
 
