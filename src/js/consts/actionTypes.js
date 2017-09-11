@@ -9,13 +9,14 @@ export const USER_ONBOARDING_VIEWED = 'USER_ONBOARDING_VIEWED'
 
 /* Data */
 export const DATA_EVENT = 'DATA_EVENT'
-export const DATA_CATEGORY = 'DATA_CATEGORY'
 export const DATA_PLACE = 'DATA_PLACE'
 export const DATA_ENTITY = 'DATA_ENTITY'
+export const DATA_CATEGORY = 'DATA_CATEGORY'
 export const DATA_CONFIG = 'DATA_CONFIG'
 
-/* Modal */
-export const MODAL_EVENT_VIEW = 'MODAL_EVENT_VIEW'
+export const DATA_EVENT_CLEAR = 'DATA_EVENT_CLEAR'
+export const DATA_PLACE_CLEAR = 'DATA_PLACE_CLEAR'
+export const DATA_ENTITY_CLEAR = 'DATA_ENTITY_CLEAR'
 
 /* View */
 export const VIEW_SET_VIEW_MODE = 'VIEW_SET_VIEW_MODE'
