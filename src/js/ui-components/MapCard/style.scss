@@ -1,20 +1,19 @@
-.card {
-  display: flex;
+.mapCard {
   position: absolute;
-  bottom: 58px + 56px;
+  bottom: 58px;
+  left: 16px;
+  right: 16px;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 4px;
-  // height: 128px;
-  margin: 0 16px;
-  padding: 10px;
+  margin: 0 auto;
   color: rgba(0, 0, 0, 1);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
   z-index: 5;
 
   &__label {
     position: absolute;
-    top: 14px;
-    right: 14px;
+    top: 10px;
+    right: 10px;
     padding: 4px 8px;
     background-color: #ffde5a;
     color: #000;
@@ -22,29 +21,30 @@
     line-height: 1rem;
     z-index: 3;
   }
-
   &__info {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    justify-content: space-between;
-    // padding: 16px;
-    padding: 0;
-    padding-left: 12px;
-    // padding-bottom: 16px;
+    padding: 12px;
   }
 
   &__title {
+    margin-bottom: 8px;
     font-size: 0.875rem;
     font-weight: 500;
-    margin-bottom: 8px;
     text-decoration: none;
     line-height: 1rem;
-    min-width: 120px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   &__text {
-    margin-top: auto;
-    opacity: .5;
+    position: absolute;
+    top: 16px;
+    left: 10px;
+    right: 100px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    z-index: 3;
   }
 }
