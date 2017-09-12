@@ -93,9 +93,9 @@ class Main extends Component {
           />
           : ''}
         <BottomNav />
-        {this.props.data.eventData && this.props.data.eventData !== '__CLOSE__'
-          || this.props.data.placeData && this.props.data.placeData !== '__CLOSE__'
-          || this.props.data.entityData && this.props.data.entityData !== '__CLOSE__'
+        {(this.props.data.eventData && this.props.data.eventData !== '__CLOSE__')
+          || (this.props.data.placeData && this.props.data.placeData !== '__CLOSE__')
+          || (this.props.data.entityData && this.props.data.entityData !== '__CLOSE__')
           ? <div style={{
             position: 'fixed',
             top: 0,
