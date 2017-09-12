@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import cn from 'classnames'
+
 import { replace } from 'actions/navigationActions'
 import { sendModalCategoryData } from 'actions/dataActions'
 import { setViewMode } from 'actions/viewActions'
@@ -16,26 +18,65 @@ import styleTabs from 'ui-components/Tabs/style.scss'
 import style from './style.scss'
 
 class Main extends Component {
+  state = {
+    offset: {},
+  }
+
   componentWillMount() {
     this.activeCategoryId = parseInt(this.props.params.categoryId, 10)
     this.viewMode = (this.props.params.viewMode || VIEW_MODE_LIST).toUpperCase()
   }
 
-  viewMainTab = () => {
+  viewMainTab = (event) => {
     this.props.onViewMainTab()
     this.activeCategoryId = null
+
     this.viewMode = VIEW_MODE_LIST
+
+    const offsetLeft = event.target.offsetLeft
+    const offsetWidth = event.target.offsetWidth
+
+    this.setState({
+      offset: {
+        transform: `translate3d(${offsetLeft}px, 0, 0)`,
+        width: offsetWidth - 16,
+      },
+    })
   }
 
-  viewCategory = (categoryData) => {
+  viewCategory = (categoryData, event, lastChild) => {
     this.props.onViewCategory(categoryData)
     this.activeCategoryId = parseInt(categoryData.id, 10)
+
+    this.activeTabName = null
+
+    const offsetLeft = event.target.offsetLeft
+    let offsetWidth = event.target.offsetWidth
+
+    if (lastChild) {
+      offsetWidth -= 16
+    }
+
+    this.setState({
+      offset: {
+        transform: `translate3d(${offsetLeft}px, 0, 0)`,
+        width: offsetWidth - 16,
+      },
+    })
   }
 
   toggleViewMode = () => {
     this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
+
+    let paramsRoute = null
+    if (this.props.params.categoryId === undefined) {
+      paramsRoute = '/feed'
+    }
+    else {
+      paramsRoute = this.props.params.categoryId
+    }
     this.props.onViewModeChanged(
-      this.props.params.categoryId,
+      paramsRoute,
       this.viewMode
     )
   }
@@ -47,23 +88,43 @@ class Main extends Component {
           className={styleTabs.tabs}
           style={{ ...this.props.data.configData.params.style.tabs }}
         >
+          <div style={{ position: 'relative' }}>
+            <div
+              style={{
+                width: 74,
+                height: 2,
+                position: 'absolute',
+                right: 0,
+                left: 16,
+                bottom: 0,
+                backgroundColor: '#1e1367',
+                transform: 'translate3d(0, 0, 0)',
+                transition: 'transform 250ms, width 100ms ease-in-out',
+                ...this.state.offset,
+              }}
+            />
+          </div>
           { /* Main tab */}
           <div
             role='button'
-            className={`${styleTabs.tabs__item} ${!this.activeCategoryId ? styleTabs.tabs__item_active : ''}`}
-            onClick={() => {
-              this.viewMainTab()
+            className={`${styleTabs.tabs__item} ${this.activeTabName === 'feed' ? styleTabs.ta1bs__item_active : ''}`}
+            onClick={(event) => {
+              this.viewMainTab(event)
             }}
             style={this.props.data.configData.params.style.topBar}
           >{this.props.data.configData.params.mainTabTitle}</div>
           {
             /* Print categories tabs */
-            this.props.data.configData.params.categories.map(item => (
+            this.props.data.configData.params.categories.map((item, index) => (
               <div
                 key={item.id}
                 role='button'
-                className={`${styleTabs.tabs__item} ${this.activeCategoryId === parseInt(item.id, 10) ? styleTabs.tabs__item_active : ''}`}
-                onClick={() => this.viewCategory(item)}
+                className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.ta1bs__item_active : ''}`}
+                onClick={event => this.viewCategory(
+                  item,
+                  event,
+                  this.props.data.configData.params.categories.length === index + 1
+                )}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>
             ))
@@ -79,19 +140,17 @@ class Main extends Component {
               : <Map categoryId={this.props.params.categoryId} />
           }
         </Container>
-        {this.props.params.categoryId
-          ? <FloatingButton
-            icon={
-              <Icon
-                type={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
-                height='24'
-                color='#1e1367'
-              />
-            }
-            title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
-            onClick={this.toggleViewMode}
-          />
-          : ''}
+        <FloatingButton
+          icon={
+            <Icon
+              type={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
+              height='24'
+              color='#1e1367'
+            />
+          }
+          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          onClick={this.toggleViewMode}
+        />
         <BottomNav />
         {(this.props.data.eventData && this.props.data.eventData !== '__CLOSE__')
           || (this.props.data.placeData && this.props.data.placeData !== '__CLOSE__')
@@ -133,7 +192,12 @@ export default connect(
     },
     onViewModeChanged: (currCategoryId, newViewMode) => {
       dispatch(setViewMode(newViewMode))
-      dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
+      if (currCategoryId === '/feed') {
+        dispatch(replace(`/feed/${newViewMode.toLowerCase()}`))
+      }
+      else {
+        dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
+      }
     },
   })
 )(Main)

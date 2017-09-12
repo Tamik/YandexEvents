@@ -5,7 +5,7 @@ import { YMaps, Map as YMap, Clusterer, Placemark } from 'react-yandex-maps'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { MapCard, Icon, Spinner } from 'ui-components'
+import { SlideCard, MapCard, Icon, Slider, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -256,22 +256,23 @@ class Map extends Component {
       this.afterEventsLoaded()
     }
     else {
-      DataApi.getEvents()
-        .byHoliday(1)
-        .byCategory(newCategoryId || this.props.categoryId)
-        .itemsPerPage(100)
-        .perform()
-        .then((response) => {
-          if (!this.isComponentMounted) {
-            return
-          }
+      const getData = DataApi.getEvents().byHoliday(1)
 
-          this.points = response.data.data
-          this.points.forEach((item, idx) => {
-            this.eventsToPointsMap[item.id] = idx
-          })
-          this.afterEventsLoaded()
+      if (this.props.categoryId !== 'undefined') {
+        getData.byCategory(newCategoryId || this.props.categoryId)
+      }
+
+      getData.itemsPerPage(100).perform().then((response) => {
+        if (!this.isComponentMounted) {
+          return
+        }
+
+        this.points = response.data.data
+        this.points.forEach((item, idx) => {
+          this.eventsToPointsMap[item.id] = idx
         })
+        this.afterEventsLoaded()
+      })
     }
   }
 
@@ -401,14 +402,15 @@ class Map extends Component {
       /**
        * @description Несколько событий (кластер)
        */
-      // @TODO: Show swiped items from cluster
-      // else {
-      //   const objects = event.get('target').getGeoObjects()
-      //   objects.map((item) => {
-      //     const eventId = item.properties.get('eventId')
-      //     items.push(this.getEventById(eventId))
-      //   })
-      // }
+      else {
+        const objects = event.get('target').getGeoObjects()
+        objects.map((item) => {
+          const eventId = item.properties.get('eventId')
+          items.push(this.getEventById(eventId))
+          return item
+        })
+      }
+      /* dev:end */
 
       this.openBalloon(items)
     })
@@ -511,13 +513,31 @@ class Map extends Component {
    * @returns {Object}
    */
   createPlacemark = (event) => {
-    const placemark = new yMapsApi.Placemark(
-      [event.lat, event.lng],
-      {
-        eventId: event.id,
-      }, // for empty balloon
-      this.props.placemarkOptions || EVENT_PLACEMARK_OPTIONS,
-    )
+    let placemark = null
+
+    if (this.props.categoryId === '4') {
+      placemark = new yMapsApi.Placemark(
+        [event.lat, event.lng],
+        {
+          eventId: event.id,
+        }, // for empty balloon
+        {
+          iconLayout: 'default#image',
+          iconImageHref: 'https://static.yamblz.ru/fire.svg',
+          iconImageSize: [64, 64],
+          iconImageOffset: [-32, -32],
+        }
+      )
+    }
+    else {
+      placemark = new yMapsApi.Placemark(
+        [event.lat, event.lng],
+        {
+          eventId: event.id,
+        }, // for empty balloon
+        this.props.placemarkOptions || EVENT_PLACEMARK_OPTIONS,
+      )
+    }
 
     return placemark
   }
@@ -709,6 +729,45 @@ class Map extends Component {
     this.props.onViewEvent(event)
   }
 
+  renderEvents = (events) => {
+    if (events.length > 1) {
+      return (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '60',
+          }}
+        >
+          <Slider>
+            {events.map(item => (
+              <MapCard
+                src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
+                title={item.title}
+                location={item.location_title}
+                onClick={() => this.viewEvent(item)}
+              />
+            ))}
+          </Slider>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        {events.map(item => (
+          <div key={item.id} style={{ bottom: 58 }}>
+            <MapCard
+              src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
+              title={item.title}
+              location={item.location_title}
+              onClick={() => this.viewEvent(item)}
+            />
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   render() {
     return (
       <YMapsWrap className='maps-wrap'>
@@ -787,18 +846,8 @@ class Map extends Component {
             </BalloonTopBar>
             <BalloonItemsWrap>
               {this.state.balloonItemsPreview
-                ? this.state.balloonItemsPreview.map(item => (
-                  <div key={item.id}>
-                    <MapCard
-                      src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
-                      title={item.title}
-                      location={item.location_title}
-                      onClick={() => this.viewEvent(item)}
-                    />
-                  </div>
-                )
-                )
-                : ''
+                ? this.renderEvents(this.state.balloonItemsPreview)
+                : null
               }
             </BalloonItemsWrap>
           </BalloonInner>

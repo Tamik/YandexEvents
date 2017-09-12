@@ -6,6 +6,10 @@
   border-radius: 4px;
   overflow: hidden;
   box-shadow: 0 4px 16px rgba(0, 0, 0, .2);
+  animation: showUp 500ms ease-in-out;
+  animation-fill-mode: forwards;
+  transform: translate3d(0, 100px, 0);
+  opacity: 0;
 
   &_medium {
     font-size: 0.875rem;
@@ -85,5 +89,16 @@
     &_bottom {
       margin-top: auto;
     }
+  }
+}
+
+@keyframes showUp {
+  from {
+    transform: translate3d(0, 100px, 0);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }

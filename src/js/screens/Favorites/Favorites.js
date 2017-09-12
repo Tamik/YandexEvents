@@ -28,7 +28,7 @@ const Favorites = (props) => {
         <div style={{ margin: 16 }}>
           {
             Object.keys(props.favorites).length
-              ? Object.keys(props.favorites).map(key => (
+              ? Object.keys(props.favorites).map((key, index) => (
                 <Card
                   key={props.favorites[key].id}
                   title={props.favorites[key].title}
@@ -37,6 +37,7 @@ const Favorites = (props) => {
                   size='medium'
                   style={{
                     marginBottom: 20,
+                    animationDelay: `${index * 200}ms`,
                   }}
                   onClick={() => viewEvent(props.favorites[key])}
                   date={`${props.favorites[key].dateFormatted.day} ${props.favorites[key].dateFormatted.month} ${props.favorites[key].dateFormatted.time} `}
