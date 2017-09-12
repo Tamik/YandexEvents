@@ -23,6 +23,10 @@ class Application extends Component {
     this.routeChunks = window.location.hash.replace(/^#\/?|\/$/g, '').split('/')
   }
 
+  componentWillReceiveProps(props) {
+
+  }
+
   shouldComponentUpdate(nextProps) {
     return this.shouldUpdateWhenModal(nextProps)
   }
@@ -33,19 +37,30 @@ class Application extends Component {
 
   shouldUpdateWhenModal = (nextProps) => {
     const MODALS = ['event', 'place', 'entity']
+    let returns = true
 
-    for (let i = 0; i < MODALS.length; i += 1) {
-      if (nextProps.data[`${MODALS[i]}Data`] && typeof nextProps.data[`${MODALS[i]}Data`] !== 'string') {
-        return false
-      }
-      if (nextProps.data[`${MODALS[i]}Data`] === '__CLEAR__') {
-        setTimeout(() => {
-          this.props.onCloseModal(MODALS[i])
-        }, 100)
-        return false
+    if (/(event|place|entity)/.test(nextProps.router.route)) {
+      for (let i = 0; i < MODALS.length; i += 1) {
+        if (nextProps.data[`${MODALS[i]}Data`] && typeof nextProps.data[`${MODALS[i]}Data`] !== 'string') {
+          returns = false
+        }
+        if (nextProps.data[`${MODALS[i]}Data`] === '__CLEAR__') {
+          setTimeout(() => {
+            this.props.onCloseModal(MODALS[i])
+          }, 100)
+          returns = false
+        }
       }
     }
-    return true
+    else {
+      for (let i = 0; i < MODALS.length; i += 1) {
+        if (nextProps.data[`${MODALS[i]}Data`]) {
+          this.props.onCloseModal(MODALS[i])
+        }
+      }
+    }
+
+    return returns
   }
 
   /*
@@ -144,6 +159,7 @@ export default connect(
     router: state.router,
     data: state.data,
     view: state.view,
+    modalStack: state.modal.stack,
   }),
   dispatch => ({
     onCloseModal: (modal) => {
