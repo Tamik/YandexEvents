@@ -37,6 +37,10 @@ const Icon = (props) => {
       return <svg viewBox='0 0 20 20' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.moscowDayActive }} />
     case 'mylocation':
       return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.mylocation }} />
+    case 'zoomIn':
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.zoomIn }} />
+    case 'zoomOut':
+      return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.zoomOut }} />
     default:
       return ''
   }

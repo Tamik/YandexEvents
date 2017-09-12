@@ -15,6 +15,7 @@ import {
   EVENT_STYLE_PRESET,
   MYLOCATION_STYLE_PRESET,
   INIT_ZOOM,
+  MAX_ZOOM,
   MIN_ZOOM,
   CONTROLS,
   MAP_ZOOM_TO_MY_LOCATION,
@@ -37,7 +38,7 @@ import {
   BalloonEventTitle,
   BalloonEventMeta,
   DistanceLabel,
-  BtnGoToMyLocation,
+  BtnRounded,
 } from './styles'
 
 /**
@@ -87,6 +88,16 @@ class Map extends Component {
 
   componentDidMount() {
     this.isComponentMounted = true
+  }
+
+  componentWillUpdate(nextProps) {
+    const isCategoryEqual = this.props.categoryId === nextProps.categoryId
+
+    if (this.clusterer && !isCategoryEqual) {
+      this.clearMap()
+      this.closeBalloon()
+      this.onClustererInited(this.clusterer, nextProps.categoryId)
+    }
   }
 
   /**
@@ -225,7 +236,7 @@ class Map extends Component {
    * @description Обработчик выполнится сразу после того как кластерер из меток будет создан
    * @param {Object} refClusterer 
    */
-  onClustererInited = (refClusterer) => {
+  onClustererInited = (refClusterer, newCategoryId) => {
     if (!this.isComponentMounted) {
       return
     }
@@ -247,7 +258,7 @@ class Map extends Component {
     else {
       DataApi.getEvents()
         .byHoliday(1)
-        .byCategory(this.props.categoryId)
+        .byCategory(newCategoryId || this.props.categoryId)
         .itemsPerPage(100)
         .perform()
         .then((response) => {
@@ -322,9 +333,23 @@ class Map extends Component {
 
     this.bindMapEvents()
     this.startWatchingMyLocation()
+
+    const centerAndZoom = yMapsApi.util.bounds.getCenterAndZoom(
+      this.clusterer.getBounds(),
+      this.map.container.getSize(),
+      this.map.options.get('projection')
+    )
     this.setState({
       loading: false,
+      mapState: {
+        ...this.state.mapState,
+        center: centerAndZoom.center,
+        zoom: centerAndZoom.zoom,
+      },
     })
+    // this.setState({
+    //   loading: false,
+    // })
   }
 
   /* dev:start */
@@ -373,10 +398,10 @@ class Map extends Component {
         const eventId = placemark.properties.get('eventId')
         items.push(this.getEventById(eventId))
       }
-      /* dev:start */
       /**
        * @description Несколько событий (кластер)
        */
+      // @TODO: Show swiped items from cluster
       // else {
       //   const objects = event.get('target').getGeoObjects()
       //   objects.map((item) => {
@@ -384,7 +409,6 @@ class Map extends Component {
       //     items.push(this.getEventById(eventId))
       //   })
       // }
-      /* dev:end */
 
       this.openBalloon(items)
     })
@@ -498,6 +522,11 @@ class Map extends Component {
     return placemark
   }
 
+  clearMap = () => {
+    this.points = []
+    this.clusterer.removeAll()
+  }
+
   /**
    * @method showMyPosition
    * @description Показывает пользователю его местоположение
@@ -591,6 +620,16 @@ class Map extends Component {
           },
         })
       }, { enableHighAccuracy: false })
+  }
+
+  zoomIn = () => {
+    const zoom = this.state.mapState.zoom < MAX_ZOOM ? this.state.mapState.zoom + 1 : MAX_ZOOM
+    this.setZoom(zoom)
+  }
+
+  zoomOut = () => {
+    const zoom = this.state.mapState.zoom > MIN_ZOOM ? this.state.mapState.zoom - 1 : MIN_ZOOM
+    this.setZoom(zoom)
   }
 
   /**
@@ -712,8 +751,9 @@ class Map extends Component {
             ) : ''}
           </YMap>
         </YMaps>
-        <BtnGoToMyLocation
-          className={this.state.isMyLocationLoading ? 'btn-goto-mylocation btn-goto-mylocation__loading' : 'btn-goto-mylocation'}
+        <BtnRounded
+          style={{ top: 168 }}
+          className={this.state.isMyLocationLoading ? 'btn-map-rounded btn-goto-mylocation btn-goto-mylocation__loading' : 'btn-map-rounded btn-goto-mylocation'}
           onClick={this.showMyPosition}
         >
           {this.state.isMyLocationLoading
@@ -721,7 +761,21 @@ class Map extends Component {
             : ''
           }
           <Icon type='mylocation' width='24' height='24' />
-        </BtnGoToMyLocation>
+        </BtnRounded>
+        <BtnRounded
+          style={{ top: 24 }}
+          className={'btn-map-rounded'}
+          onClick={this.zoomIn}
+        >
+          <Icon type='zoomIn' width='24' height='24' />
+        </BtnRounded>
+        <BtnRounded
+          style={{ top: 96 }}
+          className={'btn-map-rounded'}
+          onClick={this.zoomOut}
+        >
+          <Icon type='zoomOut' width='24' height='24' />
+        </BtnRounded>
         <BalloonLayout
           style={{
             display: this.state.balloonItemsPreview ? 'block' : 'none',

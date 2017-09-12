@@ -15,6 +15,8 @@ const IconsList = {
   moscowDay: '<g fill="#333" fill-rule="evenodd"><path stroke="#FFF" d="M11 1C5.48 1 1 5.48 1 11s4.48 10 10 10 10-4.48 10-10S16.52 1 11 1m0 3.45c3.6 0 6.55 2.94 6.55 6.55 0 3.6-2.94 6.55-6.55 6.55-3.6 0-6.55-2.94-6.55-6.55 0-3.6 2.94-6.55 6.55-6.55"/><path d="M11.34 16.17c-2.85 0-5.17-2.3-5.17-5.17 0-2.86 2.32-5.17 5.17-5.17v10.34z"/></g>',
   moscowDayActive: '<g fill="none" fill-rule="evenodd"><path fill="#201965" d="M10 0C4.48 0 0 4.48 0 10s4.48 10 10 10 10-4.48 10-10S15.52 0 10 0m0 3.45c3.6 0 6.55 2.94 6.55 6.55 0 3.6-2.94 6.55-6.55 6.55-3.6 0-6.55-2.94-6.55-6.55 0-3.6 2.94-6.55 6.55-6.55"/><path fill="#CC1740" d="M10.34 15.17c-2.85 0-5.17-2.3-5.17-5.17 0-2.86 2.32-5.17 5.17-5.17v10.34z"/></g>',
   mylocation: '<path fill="none" fill-rule="evenodd" stroke="#4C4C4D" stroke-linejoin="round" stroke-width="2" d="M22.891 1.047L12.005 21.632l-1.68-8.867-8.727-2.294z" />',
+  zoomIn: '<g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M12 2v20M22 12H2" stroke="#4C4C4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>',
+  zoomOut: '<g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M22 12H2" stroke="#4C4C4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>',
 }
 
 export default IconsList

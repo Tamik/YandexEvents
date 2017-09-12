@@ -6,7 +6,8 @@ export const MYLOCATION_STYLE_PRESET = 'islands#geolocationIcon'
 
 export const INIT_ZOOM = 13 // zoom: 1..23
 export const MIN_ZOOM = 9
-export const CONTROLS = []
+export const MAX_ZOOM = 19
+export const CONTROLS = [/* 'zoomControl' */]
 
 export const MAP_ZOOM_TO_MY_LOCATION = 15
 
@@ -28,7 +29,7 @@ export const MYLOCATION_PLACEMARK_OPTIONS = {
 /* dev:start */
 export const formatDistance = (metters) => {
   if (metters < 1000) {
-    return `${metters} м`
+    return `${metters.toFixed(0)} м`
   }
   const km = (metters / 1000).toFixed(1)
   return `${km} км`
