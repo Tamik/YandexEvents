@@ -33,4 +33,11 @@
     box-sizing: border-box;
     width: 100%;
   }
+
+  .btn-map-rounded {
+    transition: opacity 0.3s;
+  }
+  .btn-map-rounded:active {
+    opacity: 0.6
+  }
 }

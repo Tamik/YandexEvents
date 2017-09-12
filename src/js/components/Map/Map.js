@@ -15,6 +15,7 @@ import {
   EVENT_STYLE_PRESET,
   MYLOCATION_STYLE_PRESET,
   INIT_ZOOM,
+  MAX_ZOOM,
   MIN_ZOOM,
   CONTROLS,
   MAP_ZOOM_TO_MY_LOCATION,
@@ -37,7 +38,7 @@ import {
   BalloonEventTitle,
   BalloonEventMeta,
   DistanceLabel,
-  BtnGoToMyLocation,
+  BtnRounded,
 } from './styles'
 
 /**
@@ -397,10 +398,10 @@ class Map extends Component {
         const eventId = placemark.properties.get('eventId')
         items.push(this.getEventById(eventId))
       }
-      /* dev:start */
       /**
        * @description Несколько событий (кластер)
        */
+      // @TODO: Show swiped items from cluster
       // else {
       //   const objects = event.get('target').getGeoObjects()
       //   objects.map((item) => {
@@ -408,7 +409,6 @@ class Map extends Component {
       //     items.push(this.getEventById(eventId))
       //   })
       // }
-      /* dev:end */
 
       this.openBalloon(items)
     })
@@ -622,6 +622,16 @@ class Map extends Component {
       }, { enableHighAccuracy: false })
   }
 
+  zoomIn = () => {
+    const zoom = this.state.mapState.zoom < MAX_ZOOM ? this.state.mapState.zoom + 1 : MAX_ZOOM
+    this.setZoom(zoom)
+  }
+
+  zoomOut = () => {
+    const zoom = this.state.mapState.zoom > MIN_ZOOM ? this.state.mapState.zoom - 1 : MIN_ZOOM
+    this.setZoom(zoom)
+  }
+
   /**
    * @method startWatchingMyLocation
    * @description Начать отслеживать местоположение пользователя
@@ -741,8 +751,9 @@ class Map extends Component {
             ) : ''}
           </YMap>
         </YMaps>
-        <BtnGoToMyLocation
-          className={this.state.isMyLocationLoading ? 'btn-goto-mylocation btn-goto-mylocation__loading' : 'btn-goto-mylocation'}
+        <BtnRounded
+          style={{ top: 168 }}
+          className={this.state.isMyLocationLoading ? 'btn-map-rounded btn-goto-mylocation btn-goto-mylocation__loading' : 'btn-map-rounded btn-goto-mylocation'}
           onClick={this.showMyPosition}
         >
           {this.state.isMyLocationLoading
@@ -750,7 +761,21 @@ class Map extends Component {
             : ''
           }
           <Icon type='mylocation' width='24' height='24' />
-        </BtnGoToMyLocation>
+        </BtnRounded>
+        <BtnRounded
+          style={{ top: 24 }}
+          className={'btn-map-rounded'}
+          onClick={this.zoomIn}
+        >
+          +
+        </BtnRounded>
+        <BtnRounded
+          style={{ top: 96 }}
+          className={'btn-map-rounded'}
+          onClick={this.zoomOut}
+        >
+          -
+        </BtnRounded>
         <BalloonLayout
           style={{
             display: this.state.balloonItemsPreview ? 'block' : 'none',

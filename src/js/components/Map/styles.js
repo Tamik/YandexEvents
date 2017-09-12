@@ -88,7 +88,7 @@ margin-right: 6px;
 color: rgba(38, 50, 56, 1);
 `
 
-export const BtnGoToMyLocation = styled.div`
+export const BtnRounded = styled.div`
 position: absolute;
 right: 16px;
 top: 24px;
@@ -101,3 +101,4 @@ line-height: 72px;
 box-shadow: 0 2px 6px -0.6px rgba(0, 0, 0, .25);
 z-index: 100;
 `
+// 24 - 96 - 168
