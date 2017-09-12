@@ -38,24 +38,28 @@ class Main extends Component {
 
     this.setState({
       offset: {
-        left: offsetLeft + 16,
+        transform: `translate3d(${offsetLeft}px, 0, 0)`,
         width: offsetWidth - 16,
       },
     })
   }
 
-  viewCategory = (categoryData, event) => {
+  viewCategory = (categoryData, event, lastChild) => {
     this.props.onViewCategory(categoryData)
     this.activeCategoryId = parseInt(categoryData.id, 10)
 
     this.activeTabName = null
 
     const offsetLeft = event.target.offsetLeft
-    const offsetWidth = event.target.offsetWidth
+    let offsetWidth = event.target.offsetWidth
+
+    if (lastChild) {
+      offsetWidth -= 16
+    }
 
     this.setState({
       offset: {
-        left: offsetLeft + 16,
+        transform: `translate3d(${offsetLeft}px, 0, 0)`,
         width: offsetWidth - 16,
       },
     })
@@ -94,7 +98,8 @@ class Main extends Component {
                 left: 16,
                 bottom: 0,
                 backgroundColor: '#1e1367',
-                transition: 'left 250ms, width 250ms ease-in-out',
+                transform: 'translate3d(0, 0, 0)',
+                transition: 'transform 250ms, width 100ms ease-in-out',
                 ...this.state.offset,
               }}
             />
@@ -110,12 +115,12 @@ class Main extends Component {
           >{this.props.data.configData.params.mainTabTitle}</div>
           {
             /* Print categories tabs */
-            this.props.data.configData.params.categories.map(item => (
+            this.props.data.configData.params.categories.map((item, index) => (
               <div
                 key={item.id}
                 role='button'
                 className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.ta1bs__item_active : ''}`}
-                onClick={(event) => this.viewCategory(item, event)}
+                onClick={event => this.viewCategory(item, event, this.props.data.configData.params.categories.length === index + 1)}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>
             ))

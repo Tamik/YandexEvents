@@ -91,7 +91,6 @@ class ListContainer extends Component {
                     marginBottom: 20,
                     animationDelay: `${index * 200}ms`,
                   }}
-
                   onClick={() => this.viewEvent(this.state.route, element)}
                   date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
                 />

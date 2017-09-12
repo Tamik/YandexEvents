@@ -127,7 +127,7 @@ class InfiniteListContainer extends Component {
             }}
           >Нет событий</p>
           : ''}
-        {this.state.elements.map(element => (
+        {this.state.elements.map((element, index) => (
           <Card
             key={element.id}
             title={element.title}
@@ -138,6 +138,7 @@ class InfiniteListContainer extends Component {
             style={{
               ...this.props.cardStyle,
               marginBottom: 20,
+              animationDelay: `${index * 200}ms`,
             }}
             onClick={() => this.viewEvent(this.state.route.url, element)}
             date={`${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time} `}
