@@ -729,6 +729,45 @@ class Map extends Component {
     this.props.onViewEvent(event)
   }
 
+  renderEvents = (events) => {
+    if (events.length > 1) {
+      return (
+        <div
+          style={{
+            position: 'absolute',
+            bottom: '60',
+          }}
+        >
+          <Slider>
+            {events.map(item => (
+              <MapCard
+                src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
+                title={item.title}
+                location={item.location_title}
+                onClick={() => this.viewEvent(item)}
+              />
+            ))}
+          </Slider>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+        {events.map(item => (
+          <div key={item.id} style={{ bottom: 58 }}>
+            <MapCard
+              src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
+              title={item.title}
+              location={item.location_title}
+              onClick={() => this.viewEvent(item)}
+            />
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   render() {
     return (
       <YMapsWrap className='maps-wrap'>
@@ -807,31 +846,7 @@ class Map extends Component {
             </BalloonTopBar>
             <BalloonItemsWrap>
               {this.state.balloonItemsPreview
-                ? this.state.balloonItemsPreview.length > 1
-                  ? (<div style={{ position: 'absolute', bottom: 60 }}>
-                    <Slider>
-                      {this.state.balloonItemsPreview.map(item => (
-                          <MapCard
-                            src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
-                            title={item.title}
-                            location={item.location_title}
-                            onClick={() => this.viewEvent(item)}
-                          />
-                      ))}
-                    </Slider>
-                  </div>
-                  )
-                  : this.state.balloonItemsPreview.map(item => (
-                    <div key={item.id} style={{ bottom: 58 }}>
-                      <MapCard
-                        src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
-                        title={item.title}
-                        location={item.location_title}
-                        onClick={() => this.viewEvent(item)}
-                      />
-                    </div>
-                  )
-                  )
+                ? this.renderEvents(this.state.balloonItemsPreview)
                 : null
               }
             </BalloonItemsWrap>
