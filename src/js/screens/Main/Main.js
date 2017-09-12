@@ -61,10 +61,18 @@ class Main extends Component {
     })
   }
 
-  toggleViewMode = () => {
+  toggleViewMode = (event) => {
     this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
+    // const paramsRoute
+    let paramsRoute = null
+    if (this.props.categoryId === 'undefined') {
+      paramsRoute = this.props.params.categoryId
+    }
+    else {
+      paramsRoute = '/feed'
+    }
     this.props.onViewModeChanged(
-      this.props.params.categoryId,
+      paramsRoute,
       this.viewMode
     )
   }
@@ -123,19 +131,17 @@ class Main extends Component {
               : <Map categoryId={this.props.params.categoryId} />
           }
         </Container>
-        {this.props.params.categoryId
-          ? <FloatingButton
-            icon={
-              <Icon
-                type={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
-                height='24'
-                color='#1e1367'
-              />
-            }
-            title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
-            onClick={this.toggleViewMode}
-          />
-          : ''}
+        <FloatingButton
+          icon={
+            <Icon
+              type={this.viewMode === VIEW_MODE_LIST ? 'map' : 'list'}
+              height='24'
+              color='#1e1367'
+            />
+          }
+          title={this.viewMode === VIEW_MODE_LIST ? 'Карта' : 'Список'}
+          onClick={this.toggleViewMode}
+        />
         <BottomNav />
         {(this.props.data.eventData && this.props.data.eventData !== '__CLOSE__')
           || (this.props.data.placeData && this.props.data.placeData !== '__CLOSE__')
