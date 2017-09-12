@@ -58,7 +58,7 @@ class Entity extends Component {
                   params={{
                     method: 'events',
                     holiday: 1,
-                    entityId: this.props.params.entityId,
+                    entity: this.props.params.entityId,
                   }}
                 />
               </Container>
