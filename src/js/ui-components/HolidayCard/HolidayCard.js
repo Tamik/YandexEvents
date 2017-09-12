@@ -25,9 +25,6 @@ const HolidayCard = (props) => {
       data-id={props.content.id}
       style={{
         backgroundImage: `url(${props.content.photo})`,
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'right bottom',
-        backgroundSize: '70%',
       }}
     >
       <h4 className={style.card__title}>{props.content.title}</h4>
