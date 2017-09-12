@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
@@ -8,8 +7,6 @@ import { TopBar, Container, HolidayCard } from 'ui-components'
 import { BottomNav } from 'components'
 
 import { DataApi } from 'utils/DataApi'
-
-import style from './style.scss'
 
 class Holidays extends Component {
   constructor(props) {
@@ -27,17 +24,19 @@ class Holidays extends Component {
       }))
       .then(response => (
         this.state.holidays.map((day) => {
-          day.open = false
-          return day
+          const holiday = day
+          holiday.open = false
+          return holiday
         })))
   }
 
   openDescription = (holidayId) => {
-    const newHolidays = this.state.holidays.map((item) => {
-      if (item.id === holidayId) {
-        item.open = !item.open
+    const newHolidays = this.state.holidays.map((day) => {
+      const holiday = day
+      if (holiday.id === holidayId) {
+        holiday.open = !holiday.open
       }
-      return item
+      return holiday
     })
 
     this.setState({

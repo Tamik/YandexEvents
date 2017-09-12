@@ -3,9 +3,10 @@ import ReactDom from 'react-dom'
 
 import PropTypes from 'prop-types'
 
+import { Icon } from 'ui-components'
+
 import { Daty } from 'utils'
 
-import { Icon } from 'ui-components'
 import style from './style.scss'
 
 const handleOpen = (props) => {
@@ -28,13 +29,11 @@ const HolidayCard = (props) => {
         {formattedDate.dates}
       </p>
       <button
-        className={`${props.content.open ? style.card__button_top : ''} ${style.card__button}`}
-        onClick={() => {
-          handleOpen(props)
-        }}
+        className={`${props.content.open ? style.card__button_up : ''} ${style.card__button}`}
+        onClick={() => handleOpen(props)}
       >
         <Icon
-          type='arrowTop'
+          type='arrowUp'
           width='12px'
           height='8px'
         />

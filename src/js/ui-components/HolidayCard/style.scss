@@ -6,7 +6,7 @@
   color: #fff;
   margin-bottom: 1px;
 
-  &:nth-child(2n + 1) {
+  &:nth-child(odd) {
     background-color: #233680;
   }
 
@@ -41,7 +41,7 @@
     background-color: transparent;
     transform: rotateX(180deg);
 
-    &_top {
+    &_up {
       transform: rotateX(0deg);
     }
 
