@@ -12,7 +12,7 @@ import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
 import routerMiddleware from 'middlewares/routerMiddleware'
 import storageMiddleware from 'middlewares/storageMiddleware'
-import { sendApplicationConfig } from 'actions/dataActions'
+import { sendApplicationConfig, sendModalEventData } from 'actions/dataActions'
 import { locationChange } from 'actions/navigationActions'
 import { onBoardingViewed, addFavs } from 'actions/userActions'
 import rootReducer from 'reducers/rootReducer'
@@ -53,11 +53,20 @@ store.subscribe(() => {
   // renderApp()
 })
 
+let prevHash = window.location.hash
+
 history.listen((location) => {
   const hash = `#${location.pathname}`
+
+  if (/(place|entity)/.test(hash) && /event/.test(prevHash)) {
+    store.dispatch(sendModalEventData(null))
+  }
+
   store.dispatch(
     locationChange(hash)
   )
+
+  prevHash = hash
 })
 
 function onDeviceReady() {
