@@ -1,11 +1,17 @@
 .card {
+  position: relative;
   padding: 20px;
   padding-bottom: 118px;
   background-color: #1e1367;
   color: #fff;
+  margin-bottom: 1px;
 
-  &:nth-child(2n) {
+  &:nth-child(odd) {
     background-color: #233680;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 
   &__title {
@@ -23,6 +29,26 @@
     margin-bottom: 8px;
     font-size: 1rem;
     line-height: 1.375rem;
+  }
+
+  &__button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 24px;
+    height: 24px;
+    border: none;
+    background-color: transparent;
+    transform: rotateX(180deg);
+
+    &_up {
+      transform: rotateX(0deg);
+    }
+
+    & > svg {
+      display: block;
+      margin: 0 auto;
+    }
   }
 
   &__label {

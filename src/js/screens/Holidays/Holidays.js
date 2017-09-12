@@ -8,8 +8,6 @@ import { BottomNav } from 'components'
 
 import { DataApi } from 'utils/DataApi'
 
-import style from './style.scss'
-
 class Holidays extends Component {
   constructor(props) {
     super(props)
@@ -21,11 +19,29 @@ class Holidays extends Component {
   componentWillMount() {
     DataApi.getHolidays()
       .perform()
-      .then((response) => {
-        this.setState({
-          holidays: response.data.data,
-        })
-      })
+      .then(response => this.setState({
+        holidays: response.data.data,
+      }))
+      .then(response => (
+        this.state.holidays.map((day) => {
+          const holiday = day
+          holiday.open = false
+          return holiday
+        })))
+  }
+
+  openDescription = (holidayId) => {
+    const newHolidays = this.state.holidays.map((day) => {
+      const holiday = day
+      if (holiday.id === holidayId) {
+        holiday.open = !holiday.open
+      }
+      return holiday
+    })
+
+    this.setState({
+      holidays: newHolidays,
+    })
   }
 
   render() {
@@ -43,6 +59,7 @@ class Holidays extends Component {
             {this.state.holidays.map(item => (
               <HolidayCard
                 key={item.id}
+                onClick={this.openDescription}
                 content={item}
               />
             ))}
