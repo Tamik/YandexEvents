@@ -79,7 +79,7 @@ class ListContainer extends Component {
                 >{this.props.title}</h3>
                 : null
               }
-              {this.state.elements.map(element => (
+              {this.state.elements.map((element, index) => (
                 <Card
                   key={element.id}
                   title={element.title}
@@ -89,6 +89,7 @@ class ListContainer extends Component {
                   style={{
                     ...this.props.cardStyle,
                     marginBottom: 20,
+                    animationDelay: `${index * 200}ms`,
                   }}
 
                   onClick={() => this.viewEvent(this.state.route, element)}
