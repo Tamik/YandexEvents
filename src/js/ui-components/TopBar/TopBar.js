@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-// import { Icon } from 'ui-components'
 import style from './style.scss'
 
 const TopBar = (props) => {
@@ -15,7 +14,10 @@ const TopBar = (props) => {
       <h2 className={style.topBar__title}>
         {props.title}
       </h2>
-      <button className={style.topBar__icon} onClick={props.onClick ? props.onClick.addFav : null}>
+      <button
+        className={style.topBar__icon}
+        onClick={props.onClick ? props.onClick.favorites : null}
+      >
         {props.iconRight}
       </button>
     </div>

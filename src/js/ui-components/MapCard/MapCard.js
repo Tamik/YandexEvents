@@ -1,11 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { Image } from 'ui-components'
 import style from './style.scss'
+// eslint-disable-next-line import/first
+import styleCard from 'ui-components/Card/style.scss'
 
 const MapCard = props => (
   <div
-    className={`${style.card} ${style[`card_${props.size}`]}`}
+    className={`${styleCard.card} ${style.mapCard}`}
     onClick={props.onClick}
     role='button'
   >
@@ -13,13 +16,18 @@ const MapCard = props => (
       src={props.src}
       size={props.size}
       style={{
-        height: 128 - 32,
-        width: 192,
+        height: 88,
         borderRadius: 4,
       }}
     />
-    <div className={` ${style.card__info} ${style[`card__info_${props.size}`]}`}>
-      <h3 className={` ${style.card__title} ${style[`card__title_${props.size}`]}`}>
+    {
+      props.isLeft
+        ? <span className={styleCard.card__label}>завершено</span>
+        : null
+    }
+    <p className={style.mapCard__text}>ежедневно, 11:00 — 19:00</p>
+    <div className={style.mapCard__info}>
+      <h3 className={style.mapCard__title}>
         {props.title}
       </h3>
     </div>

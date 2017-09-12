@@ -10,7 +10,12 @@ import { Event } from 'screens'
 import { TopBar, Container, Card } from 'ui-components'
 import { BottomNav } from 'components'
 
-const Favs = (props) => {
+// import { DataApi } from 'utils/DataApi'
+
+// import styleBotNav from 'ui-components/BottomNavigation/style.scss'
+// import style from './style.scss'
+
+const Favorites = (props) => {
   const viewEvent = (eventData) => {
     props.onViewEvent(eventData)
   }
@@ -22,19 +27,19 @@ const Favs = (props) => {
       <Container scrolling stretching>
         <div style={{ margin: 16 }}>
           {
-            Object.keys(props.favs).length
-              ? Object.keys(props.favs).map(key => (
+            Object.keys(props.favorites).length
+              ? Object.keys(props.favorites).map(key => (
                 <Card
-                  key={props.favs[key].id}
-                  title={props.favs[key].title}
-                  src={`${props.favs[key].photo_small}`}
-                  location={props.favs[key].location_title}
+                  key={props.favorites[key].id}
+                  title={props.favorites[key].title}
+                  src={`${props.favorites[key].photo_small}`}
+                  location={props.favorites[key].location_title}
                   size='medium'
                   style={{
                     marginBottom: 20,
                   }}
-                  onClick={() => viewEvent(props.favs[key])}
-                  date={`${props.favs[key].dateFormatted.day} ${props.favs[key].dateFormatted.month} ${props.favs[key].dateFormatted.time} `}
+                  onClick={() => viewEvent(props.favorites[key])}
+                  date={`${props.favorites[key].dateFormatted.day} ${props.favorites[key].dateFormatted.month} ${props.favorites[key].dateFormatted.time} `}
                 />
               ))
               : <p style={{ textAlign: 'center', fontSize: 14 }}>Здесь будут ваши закладки</p>}
@@ -59,14 +64,14 @@ const Favs = (props) => {
   )
 }
 
-Favs.propTypes = {
+Favorites.propTypes = {
   onViewEvent: PropTypes.func.isRequired,
-  favs: PropTypes.shape().isRequired,
+  favorites: PropTypes.shape().isRequired,
 }
 
 export default connect(
   state => ({
-    favs: state.user.favs || {},
+    favorites: state.user.favorites || {},
     eventData: state.data.eventData,
   }),
   dispatch => ({
@@ -75,4 +80,4 @@ export default connect(
       dispatch(push(`/event/${eventData.id}`))
     },
   })
-)(Favs)
+)(Favorites)
