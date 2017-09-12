@@ -8,7 +8,7 @@ import { sendModalEventData } from 'actions/dataActions'
 import { Button, Card, Spinner } from 'ui-components'
 import styleBtn from 'ui-components/Button/style.scss'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 // @todo: pass to contants
 const EVENTS_PER_PAGE = 10

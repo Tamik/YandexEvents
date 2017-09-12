@@ -5,9 +5,9 @@ import { YMaps, Map as YMap, Clusterer, Placemark } from 'react-yandex-maps'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { SlideCard, MapCard, Icon, Slider, Spinner } from 'ui-components'
+import { MapCard, Icon, Slider, Spinner } from 'ui-components'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 import {
   GEOLOCATION_WATCH_TIMEOUT,

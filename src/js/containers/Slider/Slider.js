@@ -7,7 +7,7 @@ import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'act
 
 import { SlideCard, Slider, Spinner } from 'ui-components'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 class SliderContainer extends Component {
   state = {
