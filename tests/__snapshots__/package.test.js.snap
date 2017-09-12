@@ -11,7 +11,7 @@ Object {
     ],
     "plugins": Object {
       "cordova-plugin-calendar": Object {
-        "CALENDAR_USAGE_DESCRIPTION": "Чтобы вы могли добавлять события к себе в календарь. :)",
+        "CALENDAR_USAGE_DESCRIPTION": "Чтобы вы могли добавлять события в свой календарь. :)",
       },
       "cordova-plugin-geolocation": Object {},
       "cordova-plugin-whitelist": Object {},
