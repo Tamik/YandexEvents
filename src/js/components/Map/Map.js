@@ -94,7 +94,8 @@ class Map extends Component {
 
     if (this.clusterer && !isCategoryEqual) {
       this.clearMap()
-      this.onClustererInited(this.clusterer)
+      this.closeBalloon()
+      this.onClustererInited(this.clusterer, nextProps.categoryId)
     }
   }
 
@@ -234,7 +235,7 @@ class Map extends Component {
    * @description Обработчик выполнится сразу после того как кластерер из меток будет создан
    * @param {Object} refClusterer 
    */
-  onClustererInited = (refClusterer) => {
+  onClustererInited = (refClusterer, newCategoryId) => {
     if (!this.isComponentMounted) {
       return
     }
@@ -256,7 +257,7 @@ class Map extends Component {
     else {
       DataApi.getEvents()
         .byHoliday(1)
-        .byCategory(this.props.categoryId)
+        .byCategory(newCategoryId || this.props.categoryId)
         .itemsPerPage(100)
         .perform()
         .then((response) => {
@@ -331,9 +332,23 @@ class Map extends Component {
 
     this.bindMapEvents()
     this.startWatchingMyLocation()
+
+    const centerAndZoom = yMapsApi.util.bounds.getCenterAndZoom(
+      this.clusterer.getBounds(),
+      this.map.container.getSize(),
+      this.map.options.get('projection')
+    )
     this.setState({
       loading: false,
+      mapState: {
+        ...this.state.mapState,
+        center: centerAndZoom.center,
+        zoom: centerAndZoom.zoom,
+      },
     })
+    // this.setState({
+    //   loading: false,
+    // })
   }
 
   /* dev:start */
@@ -511,7 +526,7 @@ class Map extends Component {
     this.points = []
     this.clusterer.removeAll()
   }
-  
+
   /**
    * @method showMyPosition
    * @description Показывает пользователю его местоположение
