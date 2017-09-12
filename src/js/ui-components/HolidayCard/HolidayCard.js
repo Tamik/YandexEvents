@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import { Icon } from 'ui-components'
 
-import { Daty } from 'utils'
+import { addToCalendar, Daty } from 'utils'
 
 import style from './style.scss'
 
@@ -48,6 +48,10 @@ const HolidayCard = (props) => {
         <p className={style.card__label}>1 000 000 посетителей</p>
         <br />
         <p className={style.card__label}>50 площадок</p>
+        <button
+          type='button'
+          onClick={() => addToCalendar(props.content.title, 'description', 'location')}
+        >add</button>
       </div>
     </div>
   )
