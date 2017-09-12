@@ -39,6 +39,7 @@ import {
   BalloonEventMeta,
   DistanceLabel,
   BtnRounded,
+  CardContainer,
 } from './styles'
 
 /**
@@ -734,15 +735,18 @@ class Map extends Component {
       return (
         <div
           style={{
-            position: 'absolute',
-            bottom: '60',
+            marginLeft: '16px',
+            marginBottom: '30px',
           }}
         >
           <Slider>
             {events.map(item => (
               <MapCard
+                key={item.id}
+                option='slider'
                 src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
                 title={item.title}
+                isLeft={item.is_left}
                 location={item.location_title}
                 onClick={() => this.viewEvent(item)}
               />
@@ -755,14 +759,15 @@ class Map extends Component {
     return (
       <div>
         {events.map(item => (
-          <div key={item.id} style={{ bottom: 58 }}>
+          <CardContainer key={item.id}>
             <MapCard
               src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
               title={item.title}
+              isLeft={item.is_left}
               location={item.location_title}
               onClick={() => this.viewEvent(item)}
             />
-          </div>
+          </CardContainer>
         ))}
       </div>
     )
@@ -793,7 +798,7 @@ class Map extends Component {
                 preset: CLUSTER_STYLE_PRESET,
                 groupByCoordinates: false,
                 hasBalloon: false,
-                clusterDisableClickZoom: false,
+                clusterDisableClickZoom: true,
                 clusterHideIconOnBalloonOpen: false,
                 geoObjectHideIconOnBalloonOpen: false,
               }}

@@ -2,13 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 import { Image } from 'ui-components'
-import style from './style.scss'
-// eslint-disable-next-line import/first
 import styleCard from 'ui-components/Card/style.scss'
+import style from './style.scss'
 
 const MapCard = props => (
   <div
-    className={`${styleCard.card} ${style.mapCard}`}
+    className={`${styleCard.card} ${style.mapCard} ${style[`mapCard_${props.option}`]}`}
     onClick={props.onClick}
     role='button'
   >
@@ -38,6 +37,7 @@ MapCard.defaultProps = {
   size: 'small',
   src: 'http://placehold.it/350x50',
   title: null,
+  option: null,
 }
 
 MapCard.propTypes = {
@@ -45,6 +45,7 @@ MapCard.propTypes = {
   src: PropTypes.string,
   title: PropTypes.string,
   onClick: PropTypes.func.isRequired,
+  option: PropTypes.string,
 }
 
 export default MapCard
