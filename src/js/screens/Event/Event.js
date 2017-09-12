@@ -127,7 +127,6 @@ class Event extends Component {
                         ? { __html: description.start }
                         : { __html: description.full }
                     }
-
                   />
                   <button
                     className={style.button}

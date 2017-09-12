@@ -1,21 +1,30 @@
 .board {
   &__wrap {
+    height: 100vh;
     display: flex;
-    flex-grow: 1;
+    flex-shrink: 0;
     flex-direction: column;
-    padding: 109px 16px 16px;
+    padding: 64px 16px 44px;
     text-align: center;
   }
 
-  &__title {
-    margin-bottom: 16px;
+  &__image {
+    width: 85%;
+    height: 38vh;
+    margin: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  &__text {
+    margin-top: auto;
     font-size: 1.25rem;
-    font-weight: normal;
     line-height: 1.375rem;
+    margin-bottom: 47px;
+    color: #000;
   }
 
   &__btn {
-    margin-top: auto;
     padding: 14px;
     color: #2a3034;
     font-size: 1.25rem;

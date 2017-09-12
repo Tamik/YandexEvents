@@ -90,7 +90,7 @@
 
   .slick-dots {
     position: absolute;
-    bottom: 10px;
+    bottom: 14px;
     list-style: none;
     display: block;
     text-align: center;
@@ -102,7 +102,7 @@
       display: inline-block;
       height: 20px;
       width: 20px;
-      margin: 0 4px;
+      margin: 0 1px;
       padding: 0;
       cursor: pointer;
       button {
@@ -128,16 +128,14 @@
           height: 8px;
           line-height: 20px;
           text-align: center;
-          background-color: white;
+          background-color: #d8d8d8;
           border-radius: 50%;
-          opacity: 0.5;
           -webkit-font-smoothing: antialiased;
           -moz-osx-font-smoothing: grayscale;
         }
       }
       &.slick-active button:before {
-        background-color: white;
-        opacity: 1;
+        background-color: #ffde5a;
       }
     }
   }

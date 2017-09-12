@@ -8,6 +8,13 @@ position: relative;
 height: 90vh;
 `
 
+export const CardContainer = styled.div`
+  position: absolute;
+  bottom: 58px;
+  right: 16px;
+  left: 16px;
+`
+
 export const Pane = styled.div`
 display: none;
 position: absolute;

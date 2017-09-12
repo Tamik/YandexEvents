@@ -1,13 +1,17 @@
 .mapCard {
-  position: relative;
+  width: 100%;
+  margin-right: 20px;
   flex-shrink: 0;
   background-color: rgba(255, 255, 255, 1);
   border-radius: 4px;
-  margin: 16px;
-  width: 80vw;
   color: rgba(0, 0, 0, 1);
   box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
   z-index: 5;
+
+  &_slider {
+    width: 80vw;
+    margin-right: 20px;
+  }
 
   &__label {
     position: absolute;
