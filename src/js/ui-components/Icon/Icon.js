@@ -7,6 +7,8 @@ const Icon = (props) => {
   switch (props.type) {
     case 'arrowBack':
       return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.arrowBack }} />
+    case 'arrowTop':
+      return <svg viewBox='0 0 12 8' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.arrowTop }} />
     case 'map':
       return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.map }} />
     case 'list':
