@@ -53,4 +53,13 @@ const HolidayCard = (props) => {
   )
 }
 
+HolidayCard.defaultProps = {}
+
+HolidayCard.propTypes = {
+  content: PropTypes.shape({
+    title: PropTypes.string,
+    enabledBetweenDates: PropTypes.shape(),
+  }).isRequired,
+}
+
 export default HolidayCard
