@@ -5,7 +5,7 @@ import { YMaps, Map as YMap, Clusterer, Placemark } from 'react-yandex-maps'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
-import { MapCard, Icon, Spinner } from 'ui-components'
+import { SlideCard, MapCard, Icon, Slider, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils/DataApi'
 
@@ -75,7 +75,7 @@ class Map extends Component {
         lng: 0,
       },
       isMyLocationLoading: false,
-      balloonItemsPreview: null,
+      balloonItemsPreview: [],
       mapState: {
         center: props.initCenter || [55.751574, 37.573856],
         zoom: props.zoom || INIT_ZOOM,
@@ -256,7 +256,7 @@ class Map extends Component {
       this.afterEventsLoaded()
     }
     else {
-      const getData = DataApi.getEvents().byHoliday(0)
+      const getData = DataApi.getEvents().byHoliday(1)
 
       if (this.props.categoryId !== 'undefined') {
         getData.byCategory(newCategoryId || this.props.categoryId)
@@ -402,14 +402,15 @@ class Map extends Component {
       /**
        * @description Несколько событий (кластер)
        */
-      // @TODO: Show swiped items from cluster
-      // else {
-      //   const objects = event.get('target').getGeoObjects()
-      //   objects.map((item) => {
-      //     const eventId = item.properties.get('eventId')
-      //     items.push(this.getEventById(eventId))
-      //   })
-      // }
+      else {
+        const objects = event.get('target').getGeoObjects()
+        objects.map((item) => {
+          const eventId = item.properties.get('eventId')
+          items.push(this.getEventById(eventId))
+          return item
+        })
+      }
+      /* dev:end */
 
       this.openBalloon(items)
     })
@@ -788,18 +789,32 @@ class Map extends Component {
             </BalloonTopBar>
             <BalloonItemsWrap>
               {this.state.balloonItemsPreview
-                ? this.state.balloonItemsPreview.map(item => (
-                  <div key={item.id}>
-                    <MapCard
-                      src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
-                      title={item.title}
-                      location={item.location_title}
-                      onClick={() => this.viewEvent(item)}
-                    />
+                ? this.state.balloonItemsPreview.length > 1
+                  ? (<div style={{ position: 'absolute', bottom: 60 }}>
+                    <Slider>
+                      {this.state.balloonItemsPreview.map(item => (
+                          <MapCard
+                            src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
+                            title={item.title}
+                            location={item.location_title}
+                            onClick={() => this.viewEvent(item)}
+                          />
+                      ))}
+                    </Slider>
                   </div>
-                )
-                )
-                : ''
+                  )
+                  : this.state.balloonItemsPreview.map(item => (
+                    <div key={item.id} style={{ bottom: 58 }}>
+                      <MapCard
+                        src={`http://io.yamblz.ru/i/events/${item.id}_small.jpg`}
+                        title={item.title}
+                        location={item.location_title}
+                        onClick={() => this.viewEvent(item)}
+                      />
+                    </div>
+                  )
+                  )
+                : null
               }
             </BalloonItemsWrap>
           </BalloonInner>
