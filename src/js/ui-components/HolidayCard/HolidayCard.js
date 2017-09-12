@@ -46,9 +46,9 @@ const HolidayCard = (props) => {
       </button>
       <div className={props.content.open ? 'textOpen' : 'textClose'}>
         <p className={style.card__text}>{props.content.description}</p>
-        {props.content.facts.map((item) => {
-          return (<div><p className={style.card__label}>{item}</p><br /></div>)
-        })}
+        {props.content.facts.map(item => (
+          <div><p className={style.card__label}>{item}</p><br /></div>
+        ))}
         <button
           type='button'
           onClick={() => addToCalendar(props.content.title, 'description', 'location')}
