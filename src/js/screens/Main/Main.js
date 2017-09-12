@@ -65,15 +65,15 @@ class Main extends Component {
     })
   }
 
-  toggleViewMode = (event) => {
+  toggleViewMode = () => {
     this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
-    // const paramsRoute
+
     let paramsRoute = null
-    if (this.props.categoryId === 'undefined') {
-      paramsRoute = this.props.params.categoryId
+    if (this.props.params.categoryId === undefined) {
+      paramsRoute = '/feed'
     }
     else {
-      paramsRoute = '/feed'
+      paramsRoute = this.props.params.categoryId
     }
     this.props.onViewModeChanged(
       paramsRoute,
@@ -120,7 +120,11 @@ class Main extends Component {
                 key={item.id}
                 role='button'
                 className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.ta1bs__item_active : ''}`}
-                onClick={event => this.viewCategory(item, event, this.props.data.configData.params.categories.length === index + 1)}
+                onClick={event => this.viewCategory(
+                  item,
+                  event,
+                  this.props.data.configData.params.categories.length === index + 1
+                )}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>
             ))
@@ -188,7 +192,12 @@ export default connect(
     },
     onViewModeChanged: (currCategoryId, newViewMode) => {
       dispatch(setViewMode(newViewMode))
-      dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
+      if (currCategoryId === '/feed') {
+        dispatch(replace(`/feed/${newViewMode.toLowerCase()}`))
+      }
+      else {
+        dispatch(replace(`/category/${currCategoryId}/${newViewMode.toLowerCase()}`))
+      }
     },
   })
 )(Main)
