@@ -75,7 +75,7 @@ class Map extends Component {
         lng: 0,
       },
       isMyLocationLoading: false,
-      balloonItemsPreview: [],
+      balloonItemsPreview: null,
       mapState: {
         center: props.initCenter || [55.751574, 37.573856],
         zoom: props.zoom || INIT_ZOOM,

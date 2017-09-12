@@ -9,6 +9,7 @@ height: 90vh;
 `
 
 export const Pane = styled.div`
+display: none;
 position: absolute;
 bottom: 0;
 background-color: rgba(255, 255, 255, .8);
@@ -37,6 +38,7 @@ export const BalloonTopBar = styled.div`
 `
 
 export const BtnClose = styled.div`
+display: none;
 font-size: 11pt;
 background-color: rgba(255, 255, 255, 1);
 border-bottom: 1px solid rgba(207, 216, 220, 1);
