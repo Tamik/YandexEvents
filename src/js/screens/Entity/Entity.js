@@ -13,7 +13,7 @@ import { List as ListContainer } from 'containers'
 
 import { TopBar, Icon, Container, Spinner } from 'ui-components'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 class Entity extends Component {
   state = {

@@ -13,7 +13,7 @@ import { Event } from 'screens'
 
 import { Container, TopBar, Icon, Image, Spinner } from 'ui-components'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 class Place extends Component {
   state = {

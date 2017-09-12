@@ -10,8 +10,7 @@ import { BottomNav, StaticMap } from 'components'
 
 import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
 
-import { DataApi } from 'utils/DataApi'
-import { Daty } from 'utils'
+import { DataApi, Daty } from 'utils'
 
 import styleCard from 'ui-components/Card/style.scss'
 import style from './style.scss'

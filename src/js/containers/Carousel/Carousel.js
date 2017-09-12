@@ -9,7 +9,7 @@ import { Carousel, Spinner } from 'ui-components'
 import { AvatarsList } from 'containers'
 import style from 'components/List/style.scss'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 class CarouselContainer extends Component {
   state = {

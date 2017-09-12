@@ -3,7 +3,7 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import localforage from 'localforage'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'

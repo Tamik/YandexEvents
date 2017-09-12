@@ -8,7 +8,7 @@ import { actionModalPush } from 'actions/modalActions'
 
 import { Card, Spinner } from 'ui-components'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 class ListContainer extends Component {
   state = {

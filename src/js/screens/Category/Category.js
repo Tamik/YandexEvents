@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { InfiniteList as InfiniteListContainer } from 'containers'
 
-import { DataApi } from 'utils/DataApi'
+import { DataApi } from 'utils'
 
 import style from './style.scss'
 

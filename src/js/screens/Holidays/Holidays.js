@@ -3,10 +3,11 @@ import { connect } from 'react-redux'
 
 import { push, goBack } from 'actions/navigationActions'
 
-import { TopBar, Container, HolidayCard } from 'ui-components'
 import { BottomNav } from 'components'
 
-import { DataApi } from 'utils/DataApi'
+import { TopBar, Container, HolidayCard } from 'ui-components'
+
+import { DataApi } from 'utils'
 
 class Holidays extends Component {
   constructor(props) {
