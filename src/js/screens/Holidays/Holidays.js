@@ -32,9 +32,9 @@ class Holidays extends Component {
         })))
   }
 
-  openDescription = (event) => {
+  openDescription = (holidayId) => {
     const newHolidays = this.state.holidays.map((item) => {
-      if (item.id === +event.target.parentNode.getAttribute('data-id')) {
+      if (item.id === holidayId) {
         item.open = !item.open
       }
       return item

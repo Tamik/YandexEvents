@@ -5,7 +5,12 @@ import PropTypes from 'prop-types'
 
 import { Daty } from 'utils'
 
+import { Icon } from 'ui-components'
 import style from './style.scss'
+
+const handleOpen = (props) => {
+  props.onClick(props.content.id)
+}
 
 const HolidayCard = (props) => {
   const formattedDate = Daty.beautifyDatesRange(
@@ -22,7 +27,18 @@ const HolidayCard = (props) => {
       <p className={style.card__time}>
         {formattedDate.dates}
       </p>
-      <button onClick={props.onClick}>Открыть</button>
+      <button
+        className={`${props.content.open ? style.card__button_top : ''} ${style.card__button}`}
+        onClick={() => {
+          handleOpen(props)
+        }}
+      >
+        <Icon
+          type='arrowTop'
+          width='12px'
+          height='8px'
+        />
+      </button>
       <div className={props.content.open ? 'textOpen' : 'textClose'}>
         <p className={style.card__text}>
           Москва отметит 870 лет со дня основания. В этом году День города пройдет
