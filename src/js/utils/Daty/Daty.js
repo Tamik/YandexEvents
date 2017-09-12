@@ -40,12 +40,12 @@ const Daty = {
       }
       else {
         // 2 - 3 ноября
-        range = `${begin.format('D')} - ${end.locale('ru').format('D MMMM')}`
+        range = `${begin.format('D')} — ${end.locale('ru').format('D MMMM')}`
       }
     }
     else {
       // 2 сентября - 2 декабря
-      range = `${begin.locale('ru').format('D MMMM')} - ${end.locale('ru').format('D MMMM')}`
+      range = `${begin.locale('ru').format('D MMMM')} — ${end.locale('ru').format('D MMMM')}`
     }
     return ({
       dates: range,
