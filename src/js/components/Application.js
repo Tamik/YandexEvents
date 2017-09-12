@@ -41,7 +41,9 @@ class Application extends Component {
 
     if (/(event|place|entity)/.test(nextProps.router.route)) {
       for (let i = 0; i < MODALS.length; i += 1) {
-        if (nextProps.data[`${MODALS[i]}Data`] && typeof nextProps.data[`${MODALS[i]}Data`] !== 'string') {
+        if (nextProps.data[`${MODALS[i]}Data`]
+          && typeof nextProps.data[`${MODALS[i]}Data`] !== 'string'
+          && !nextProps.data[`${MODALS[i]}Data`].notModal) {
           returns = false
         }
         if (nextProps.data[`${MODALS[i]}Data`] === '__CLEAR__') {

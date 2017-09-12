@@ -76,7 +76,10 @@ export default connect(
   }),
   dispatch => ({
     onViewEvent: (eventData) => {
-      dispatch(sendModalEventData(eventData))
+      const newEventData = eventData
+      newEventData.notModal = true
+
+      dispatch(sendModalEventData(newEventData))
       dispatch(push(`/event/${eventData.id}`))
     },
   })
