@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import cn from 'classnames'
+
 import { replace } from 'actions/navigationActions'
 import { sendModalCategoryData } from 'actions/dataActions'
 import { setViewMode } from 'actions/viewActions'
@@ -16,20 +18,47 @@ import styleTabs from 'ui-components/Tabs/style.scss'
 import style from './style.scss'
 
 class Main extends Component {
+  state = {
+    offset: {},
+  }
+
   componentWillMount() {
     this.activeCategoryId = parseInt(this.props.params.categoryId, 10)
     this.viewMode = (this.props.params.viewMode || VIEW_MODE_LIST).toUpperCase()
   }
 
-  viewMainTab = () => {
+  viewMainTab = (event) => {
     this.props.onViewMainTab()
     this.activeCategoryId = null
+
     this.viewMode = VIEW_MODE_LIST
+
+    const offsetLeft = event.target.offsetLeft
+    const offsetWidth = event.target.offsetWidth
+
+    this.setState({
+      offset: {
+        left: offsetLeft + 16,
+        width: offsetWidth - 16,
+      },
+    })
   }
 
-  viewCategory = (categoryData) => {
+  viewCategory = (categoryData, event) => {
     this.props.onViewCategory(categoryData)
     this.activeCategoryId = parseInt(categoryData.id, 10)
+
+    this.activeTabName = null
+
+    const offsetLeft = event.target.offsetLeft
+    const offsetWidth = event.target.offsetWidth
+
+    this.setState({
+      offset: {
+        left: offsetLeft + 16,
+        width: offsetWidth - 16,
+      },
+    })
   }
 
   toggleViewMode = () => {
@@ -47,12 +76,27 @@ class Main extends Component {
           className={styleTabs.tabs}
           style={{ ...this.props.data.configData.params.style.tabs }}
         >
+          <div style={{ position: 'relative' }}>
+            <div
+              style={{
+                width: 74,
+                height: 2,
+                position: 'absolute',
+                right: 0,
+                left: 16,
+                bottom: 0,
+                backgroundColor: '#1e1367',
+                transition: 'left 250ms, width 250ms ease-in-out',
+                ...this.state.offset,
+              }}
+            />
+          </div>
           { /* Main tab */}
           <div
             role='button'
-            className={`${styleTabs.tabs__item} ${!this.activeCategoryId ? styleTabs.tabs__item_active : ''}`}
-            onClick={() => {
-              this.viewMainTab()
+            className={`${styleTabs.tabs__item} ${this.activeTabName === 'feed' ? styleTabs.ta1bs__item_active : ''}`}
+            onClick={(event) => {
+              this.viewMainTab(event)
             }}
             style={this.props.data.configData.params.style.topBar}
           >{this.props.data.configData.params.mainTabTitle}</div>
@@ -62,8 +106,8 @@ class Main extends Component {
               <div
                 key={item.id}
                 role='button'
-                className={`${styleTabs.tabs__item} ${this.activeCategoryId === parseInt(item.id, 10) ? styleTabs.tabs__item_active : ''}`}
-                onClick={() => this.viewCategory(item)}
+                className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.ta1bs__item_active : ''}`}
+                onClick={(event) => this.viewCategory(item, event)}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>
             ))
