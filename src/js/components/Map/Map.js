@@ -89,6 +89,15 @@ class Map extends Component {
     this.isComponentMounted = true
   }
 
+  componentWillUpdate(nextProps) {
+    const isCategoryEqual = this.props.categoryId === nextProps.categoryId
+
+    if (this.clusterer && !isCategoryEqual) {
+      this.clearMap()
+      this.onClustererInited(this.clusterer)
+    }
+  }
+
   /**
    * @description При unmount'е компонента перестаем "слушать" геопозицию пользователя
    */
@@ -498,6 +507,11 @@ class Map extends Component {
     return placemark
   }
 
+  clearMap = () => {
+    this.points = []
+    this.clusterer.removeAll()
+  }
+  
   /**
    * @method showMyPosition
    * @description Показывает пользователю его местоположение
