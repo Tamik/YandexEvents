@@ -767,14 +767,14 @@ class Map extends Component {
           className={'btn-map-rounded'}
           onClick={this.zoomIn}
         >
-          +
+          <Icon type='zoomIn' width='24' height='24' />
         </BtnRounded>
         <BtnRounded
           style={{ top: 96 }}
           className={'btn-map-rounded'}
           onClick={this.zoomOut}
         >
-          -
+          <Icon type='zoomOut' width='24' height='24' />
         </BtnRounded>
         <BalloonLayout
           style={{
