@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { goBack } from 'actions/navigationActions'
+import { clearModalEventData } from 'actions/dataActions'
 import { addToFavs, delFromFavs } from 'actions/userActions'
 
 import { BottomNav, StaticMap } from 'components'
@@ -167,7 +168,6 @@ class Event extends Component {
                   </div>
                 </div>
               </Container>
-              <BottomNav />
             </div>
           )
         }
@@ -192,6 +192,7 @@ export default connect(
   dispatch => ({
     goBack: () => {
       dispatch(goBack())
+      dispatch(clearModalEventData())
     },
     addToFavs: (event) => {
       dispatch(addToFavs(event))

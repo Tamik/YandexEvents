@@ -7,6 +7,8 @@ import { sendModalCategoryData } from 'actions/dataActions'
 import { setViewMode } from 'actions/viewActions'
 import { VIEW_MODE_LIST, VIEW_MODE_MAP } from 'consts/viewModes'
 
+import { Event, Place, Entity } from 'screens'
+
 import { BottomNav, Map } from 'components'
 import { Tabs, Container, FloatingButton, Icon } from 'ui-components'
 
@@ -14,20 +16,20 @@ import styleTabs from 'ui-components/Tabs/style.scss'
 import style from './style.scss'
 
 class Main extends Component {
-  activeTabName = this.props.router.route.slice(2)
-  activeCategoryId = parseInt(this.props.params.categoryId, 10)
-  viewMode = (this.props.params.viewMode || VIEW_MODE_LIST).toUpperCase()
+  componentWillMount() {
+    this.activeCategoryId = parseInt(this.props.params.categoryId, 10)
+    this.viewMode = (this.props.params.viewMode || VIEW_MODE_LIST).toUpperCase()
+  }
 
   viewMainTab = () => {
     this.props.onViewMainTab()
-    this.activeTabName = 'feed'
     this.activeCategoryId = null
+    this.viewMode = VIEW_MODE_LIST
   }
 
   viewCategory = (categoryData) => {
     this.props.onViewCategory(categoryData)
-    this.activeTabName = null
-    this.activeCategoryId = categoryData.id
+    this.activeCategoryId = parseInt(categoryData.id, 10)
   }
 
   toggleViewMode = () => {
@@ -48,7 +50,7 @@ class Main extends Component {
           { /* Main tab */}
           <div
             role='button'
-            className={`${styleTabs.tabs__item} ${this.activeTabName === 'feed' ? styleTabs.tabs__item_active : ''}`}
+            className={`${styleTabs.tabs__item} ${!this.activeCategoryId ? styleTabs.tabs__item_active : ''}`}
             onClick={() => {
               this.viewMainTab()
             }}
@@ -60,7 +62,7 @@ class Main extends Component {
               <div
                 key={item.id}
                 role='button'
-                className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.tabs__item_active : ''}`}
+                className={`${styleTabs.tabs__item} ${this.activeCategoryId === parseInt(item.id, 10) ? styleTabs.tabs__item_active : ''}`}
                 onClick={() => this.viewCategory(item)}
                 style={this.props.data.configData.params.style.topBar}
               >{item.title}</div>
@@ -91,6 +93,24 @@ class Main extends Component {
           />
           : ''}
         <BottomNav />
+        {(this.props.data.eventData && this.props.data.eventData !== '__CLOSE__')
+          || (this.props.data.placeData && this.props.data.placeData !== '__CLOSE__')
+          || (this.props.data.entityData && this.props.data.entityData !== '__CLOSE__')
+          ? <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            zIndex: 2000,
+            background: '#fff',
+            width: '100vw',
+            height: '100vh',
+          }}
+          >
+            {this.props.data.eventData ? <Event params={{ eventId: this.props.data.eventData.id }} /> : ''}
+            {this.props.data.placeData ? <Place params={{ placeId: this.props.data.placeData.id }} /> : ''}
+            {this.props.data.entityData ? <Entity params={{ entityId: this.props.data.entityData.id }} /> : ''}
+          </div>
+          : ''}
       </div>
     )
   }

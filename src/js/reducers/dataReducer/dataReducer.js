@@ -1,10 +1,19 @@
-import { DATA_EVENT, DATA_CATEGORY, DATA_PLACE, DATA_ENTITY, DATA_CONFIG } from 'consts/actionTypes'
+import {
+  DATA_EVENT,
+  DATA_CATEGORY,
+  DATA_PLACE,
+  DATA_ENTITY,
+  DATA_CONFIG,
+  DATA_EVENT_CLEAR,
+  DATA_PLACE_CLEAR,
+  DATA_ENTITY_CLEAR,
+} from 'consts/actionTypes'
 
 const initialState = {
   eventData: null,
-  categoryData: null,
   placeData: null,
   entityData: null,
+  categoryData: null,
   configData: null,
 }
 
@@ -14,6 +23,12 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         eventData: action.eventData,
+      }
+    }
+    case DATA_EVENT_CLEAR: {
+      return {
+        ...state,
+        eventData: '__CLEAR__',
       }
     }
     case DATA_CATEGORY: {
@@ -28,10 +43,22 @@ const dataReducer = (state = initialState, action) => {
         placeData: action.placeData,
       }
     }
+    case DATA_PLACE_CLEAR: {
+      return {
+        ...state,
+        placeData: '__CLEAR__',
+      }
+    }
     case DATA_ENTITY: {
       return {
         ...state,
         entityData: action.entityData,
+      }
+    }
+    case DATA_ENTITY_CLEAR: {
+      return {
+        ...state,
+        entityData: '__CLEAR__',
       }
     }
     case DATA_CONFIG: {

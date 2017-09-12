@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { push } from 'actions/navigationActions'
-import { sendModalEventData } from 'actions/dataActions'
+import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
+import { actionModalPush } from 'actions/modalActions'
 
 import { Card, Spinner } from 'ui-components'
 
@@ -125,7 +126,15 @@ export default connect(
   state => ({}),
   dispatch => ({
     onViewEvent: (route, element) => {
-      dispatch(sendModalEventData(element))
+      if (/event/.test(route)) {
+        dispatch(sendModalEventData(element))
+      }
+      if (/place/.test(route)) {
+        dispatch(sendModalPlaceData(element))
+      }
+      if (/entity/.test(route)) {
+        dispatch(sendModalEntityData(element))
+      }
       dispatch(push(route.replace('%', element.id)))
     },
   })

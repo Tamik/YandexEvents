@@ -3,10 +3,13 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import { goBack } from 'actions/navigationActions'
+import { clearModalPlaceData } from 'actions/dataActions'
 
 import { BottomNav, StaticMap } from 'components'
 
 import { List as ListContainer } from 'containers'
+
+import { Event } from 'screens'
 
 import { Container, TopBar, Icon, Image, Spinner } from 'ui-components'
 
@@ -108,7 +111,20 @@ class Place extends Component {
                   </div>
                 </div>
               </Container>
-              <BottomNav />
+              {this.props.eventData && this.props.eventData !== '__CLOSE__'
+                ? <div style={{
+                  position: 'fixed',
+                  top: 0,
+                  left: 0,
+                  zIndex: 2000,
+                  background: '#fff',
+                  width: '100vw',
+                  height: '100vh',
+                }}
+                >
+                  <Event params={{ eventId: this.props.eventData.id }} />
+                </div>
+                : ''}
             </div>
           )}
       </div>
@@ -124,10 +140,12 @@ Place.propTypes = {
 export default connect(
   state => ({
     placeData: state.data.placeData,
+    eventData: state.data.eventData,
   }),
   dispatch => ({
     onGoBack: () => {
       dispatch(goBack())
+      dispatch(clearModalPlaceData())
     },
   })
 )(Place)
