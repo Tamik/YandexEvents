@@ -28,7 +28,7 @@ export const MYLOCATION_PLACEMARK_OPTIONS = {
 /* dev:start */
 export const formatDistance = (metters) => {
   if (metters < 1000) {
-    return `${metters} м`
+    return `${metters.toFixed(0)} м`
   }
   const km = (metters / 1000).toFixed(1)
   return `${km} км`
