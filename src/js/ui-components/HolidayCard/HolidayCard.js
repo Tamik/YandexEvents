@@ -23,6 +23,9 @@ const HolidayCard = (props) => {
     <div
       className={style.card}
       data-id={props.content.id}
+      style={{
+        backgroundImage: `url(${props.content.photo})`,
+      }}
     >
       <h4 className={style.card__title}>{props.content.title}</h4>
       <p className={style.card__time}>
@@ -39,15 +42,10 @@ const HolidayCard = (props) => {
         />
       </button>
       <div className={props.content.open ? 'textOpen' : 'textClose'}>
-        <p className={style.card__text}>
-          Москва отметит 870 лет со дня основания. В этом году День города пройдет
-          в стиле русского авангарда более чем на 50 площадках. Под слоганом «Москва
-          — город, где создается история» будут объединены семь тематик, посвященных
-          важным вехам истории столицы.
-        </p>
-        <p className={style.card__label}>1 000 000 посетителей</p>
-        <br />
-        <p className={style.card__label}>50 площадок</p>
+        <p className={style.card__text}>{props.content.description}</p>
+        {props.content.facts.map(item => (
+          <div><p className={style.card__label}>{item}</p><br /></div>
+        ))}
         <button
           type='button'
           onClick={() => addToCalendar(props.content.title, 'description', 'location')}
