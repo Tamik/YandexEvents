@@ -12,7 +12,7 @@ const BottomNav = (props) => {
 
   const isActiveTabNow = /feed/.test(route) || /category/.test(route) || route === '#/' || !route
   const isActiveTabHolidays = /holidays/.test(route)
-  const isActiveTabFavs = /favs/.test(route)
+  const isActiveTabFavorites = /favorites/.test(route)
 
   const tabSwitch = (tab) => {
     props.onTabSwitch(`/${tab}`)
@@ -49,14 +49,14 @@ const BottomNav = (props) => {
       <div
         role='button'
         onClick={() => {
-          tabSwitch('favs')
+          tabSwitch('favorites')
         }}
-        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabFavs ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
+        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabFavorites ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
       >
         <Icon
-          type={isActiveTabFavs ? 'bookmarkFill' : 'bookmark'}
+          type={isActiveTabFavorites ? 'bookmarkFill' : 'bookmark'}
           height='20'
-          color={isActiveTabFavs ? '#333' : '#777'}
+          color={isActiveTabFavorites ? '#333' : '#777'}
         />
         Закладки
       </div>

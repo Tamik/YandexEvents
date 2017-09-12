@@ -1,13 +1,13 @@
 import {
   USER_ONBOARDING_VIEWED,
-  USER_ADD_TO_FAVS,
-  USER_ADD_FAVS,
-  USER_DEL_FROM_FAVS,
+  USER_ADD_TO_FAVORITES,
+  USER_DEL_FROM_FAVORITES,
+  USER_GET_FAVORITES,
 } from 'consts/actionTypes'
 
 const initState = {
   firstEnter: true,
-  favs: {},
+  favorites: {},
 }
 
 const userReducer = (state = initState, action) => {
@@ -17,28 +17,28 @@ const userReducer = (state = initState, action) => {
         ...state,
         firstEnter: false,
       }
-    case USER_ADD_TO_FAVS: {
+    case USER_ADD_TO_FAVORITES: {
       const id = action.event.id
-      const favs = state.favs
-      favs[id] = action.event
+      const favorites = state.favorites
+      favorites[id] = action.event
       return {
         ...state,
-        favs,
+        favorites,
       }
     }
-    case USER_ADD_FAVS: {
+    case USER_DEL_FROM_FAVORITES: {
+      const id = action.event.id
+      const favorites = state.favorites
+      delete favorites[id]
       return {
         ...state,
-        favs: action.favs || {},
+        favorites,
       }
     }
-    case USER_DEL_FROM_FAVS: {
-      const id = action.event.id
-      const favs = state.favs
-      delete favs[id]
+    case USER_GET_FAVORITES: {
       return {
         ...state,
-        favs,
+        favorites: action.favorites || {},
       }
     }
     default:

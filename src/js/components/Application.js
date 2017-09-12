@@ -12,7 +12,7 @@ import {
   Map,
   Entity,
   Holidays,
-  Favs,
+  Favorites,
 } from 'screens'
 import style from './Application.scss'
 
@@ -119,9 +119,9 @@ class Application extends Component {
       return <Holidays />
     }
 
-    // Screen Favs
-    if (/favs/.test(this.route)) {
-      return <Favs />
+    // Screen Favorites
+    if (/favorites/.test(this.route)) {
+      return <Favorites />
     }
 
     /**

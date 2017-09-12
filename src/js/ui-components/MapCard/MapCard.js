@@ -1,8 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+
 import { Image } from 'ui-components'
 import style from './style.scss'
+// eslint-disable-next-line import/first
 import styleCard from 'ui-components/Card/style.scss'
+
 const MapCard = props => (
   <div
     className={`${styleCard.card} ${style.mapCard}`}
@@ -11,7 +14,7 @@ const MapCard = props => (
   >
     <Image
       src={props.src}
-      size='small'
+      size={props.size}
       style={{
         height: 88,
         borderRadius: 4,

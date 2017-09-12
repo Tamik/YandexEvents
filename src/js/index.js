@@ -14,7 +14,7 @@ import routerMiddleware from 'middlewares/routerMiddleware'
 import storageMiddleware from 'middlewares/storageMiddleware'
 import { sendApplicationConfig, sendModalEventData } from 'actions/dataActions'
 import { locationChange } from 'actions/navigationActions'
-import { onBoardingViewed, addFavs } from 'actions/userActions'
+import { onBoardingViewed, getFavorites } from 'actions/userActions'
 import rootReducer from 'reducers/rootReducer'
 
 import Application from 'components/Application'
@@ -88,9 +88,9 @@ function onDeviceReady() {
     .then(() => {
       localforage.getItem('user')
         .then(response => !response.firstEnter && store.dispatch(onBoardingViewed()))
-      localforage.getItem('favs')
+      localforage.getItem('favorites')
         .then((response) => {
-          store.dispatch(addFavs(response))
+          store.dispatch(getFavorites(response))
         })
       renderApp()
     })

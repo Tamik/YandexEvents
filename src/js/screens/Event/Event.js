@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { goBack } from 'actions/navigationActions'
+
 import { clearModalEventData } from 'actions/dataActions'
-import { addToFavs, delFromFavs } from 'actions/userActions'
+import { addToFavorites, delFromFavorites } from 'actions/userActions'
 
 import { BottomNav, StaticMap } from 'components'
 
@@ -37,14 +38,14 @@ class Event extends Component {
     this.props.goBack()
   }
 
-  isInFavs = () => !!this.props.favs[this.props.params.eventId]
+  isInFavorites = () => !!this.props.favorites[this.props.params.eventId]
 
-  addToFavs = () => {
-    if (this.isInFavs()) {
-      this.props.delFromFavs(this.state.event)
+  addToFavorites = () => {
+    if (this.isInFavorites()) {
+      this.props.delFromFavorites(this.state.event)
     }
     else {
-      this.props.addToFavs(this.state.event)
+      this.props.addToFavorites(this.state.event)
     }
   }
 
@@ -83,13 +84,13 @@ class Event extends Component {
                 isTransparent
                 onClick={{
                   back: this.goBack,
-                  addFav: this.addToFavs,
+                  favorites: this.addToFavorites,
                 }}
                 iconLeft={
                   <Icon type='arrowBack' width='24' height='24' color='#fff' />
                 }
                 iconRight={
-                  <Icon type={this.isInFavs() ? 'bookmarkFill' : 'bookmark'} width='24' height='24' color='#fff' />
+                  <Icon type={this.isInFavorites() ? 'bookmarkFill' : 'bookmark'} width='24' height='24' color='#fff' />
                 }
               />
               <Container stretching scrolling>
@@ -131,7 +132,7 @@ class Event extends Component {
                   />
                   <button
                     className={style.button}
-                    onClick={this.toggleDescription()}
+                    onClick={this.toggleDescription}
                   >
                     {
                       this.state.hideText
@@ -179,26 +180,25 @@ class Event extends Component {
 Event.propTypes = {
   params: PropTypes.shape().isRequired,
   goBack: PropTypes.func.isRequired,
-  favs: PropTypes.shape().isRequired,
-  addToFavs: PropTypes.func.isRequired,
-  delFromFavs: PropTypes.func.isRequired,
+  addToFavorites: PropTypes.func.isRequired,
+  delFromFavorites: PropTypes.func.isRequired,
 }
 
 export default connect(
   state => ({
     eventData: state.data.eventData,
-    favs: state.user.favs,
+    favorites: state.user.favorites,
   }),
   dispatch => ({
     goBack: () => {
       dispatch(goBack())
       dispatch(clearModalEventData())
     },
-    addToFavs: (event) => {
-      dispatch(addToFavs(event))
+    addToFavorites: (event) => {
+      dispatch(addToFavorites(event))
     },
-    delFromFavs: (event) => {
-      dispatch(delFromFavs(event))
+    delFromFavorites: (event) => {
+      dispatch(delFromFavorites(event))
     },
   })
 )(Event)
