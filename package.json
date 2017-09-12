@@ -62,7 +62,7 @@
             "cordova-plugin-geolocation": {},
             "yandex-appmetrica-plugin-cordova": {},
             "cordova-plugin-calendar": {
-                "CALENDAR_USAGE_DESCRIPTION": "Чтобы вы могли добавлять события к себе в календарь. :)"
+                "CALENDAR_USAGE_DESCRIPTION": "Чтобы вы могли добавлять события в свой календарь. :)"
             }
         },
         "platforms": [
