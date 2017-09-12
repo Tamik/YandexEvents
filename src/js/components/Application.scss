@@ -6,6 +6,7 @@
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
   }
 
@@ -14,7 +15,6 @@
     font-size: 16px;
     height: 100vh;
     text-rendering: optimizeLegibility;
-    touch-action: manipulation;
     -webkit-font-smoothing: antialiased;
     -webkit-touch-callout: none;
     -webkit-text-size-adjust: none;
