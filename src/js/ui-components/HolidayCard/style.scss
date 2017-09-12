@@ -3,9 +3,14 @@
   padding-bottom: 118px;
   background-color: #1e1367;
   color: #fff;
+  margin-bottom: 1px;
 
-  &:nth-child(2n) {
+  &:nth-child(2n + 1) {
     background-color: #233680;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
   }
 
   &__title {

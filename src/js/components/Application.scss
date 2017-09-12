@@ -35,10 +35,21 @@
     width: 100%;
   }
 
+
   .btn-map-rounded {
     transition: opacity 0.3s;
   }
+
   .btn-map-rounded:active {
-    opacity: 0.6
+    opacity: 0.6;
+  }
+
+  .textClose {
+    display: none;
+  }
+
+  .textOpen {
+    display: block;
+
   }
 }
