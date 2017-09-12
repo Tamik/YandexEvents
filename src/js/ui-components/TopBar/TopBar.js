@@ -16,7 +16,7 @@ const TopBar = (props) => {
       </h2>
       <button
         className={style.topBar__icon}
-        onClick={props.onClick ? props.onClick.favorite : null}
+        onClick={props.onClick ? props.onClick.favorites : null}
       >
         {props.iconRight}
       </button>
