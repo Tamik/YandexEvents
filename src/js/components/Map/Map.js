@@ -513,13 +513,31 @@ class Map extends Component {
    * @returns {Object}
    */
   createPlacemark = (event) => {
-    const placemark = new yMapsApi.Placemark(
-      [event.lat, event.lng],
-      {
-        eventId: event.id,
-      }, // for empty balloon
-      this.props.placemarkOptions || EVENT_PLACEMARK_OPTIONS,
-    )
+    let placemark = null
+
+    if (this.props.categoryId === '4') {
+      placemark = new yMapsApi.Placemark(
+        [event.lat, event.lng],
+        {
+          eventId: event.id,
+        }, // for empty balloon
+        {
+          iconLayout: 'default#image',
+          iconImageHref: 'https://static.yamblz.ru/fire.svg',
+          iconImageSize: [64, 64],
+          iconImageOffset: [-32, -32],
+        }
+      )
+    }
+    else {
+      placemark = new yMapsApi.Placemark(
+        [event.lat, event.lng],
+        {
+          eventId: event.id,
+        }, // for empty balloon
+        this.props.placemarkOptions || EVENT_PLACEMARK_OPTIONS,
+      )
+    }
 
     return placemark
   }
