@@ -36,6 +36,7 @@
         "cordova-android": "~6.2.3",
         "cordova-browser": "^4.1.0",
         "cordova-ios": "~4.4.0",
+        "cordova-plugin-calendar": "^4.6.0",
         "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-whitelist": "^1.3.2",
         "history": "^4.7.2",
@@ -59,7 +60,10 @@
         "plugins": {
             "cordova-plugin-whitelist": {},
             "cordova-plugin-geolocation": {},
-            "yandex-appmetrica-plugin-cordova": {}
+            "yandex-appmetrica-plugin-cordova": {},
+            "cordova-plugin-calendar": {
+                "CALENDAR_USAGE_DESCRIPTION": "Чтобы вы могли добавлять события к себе в календарь. :)"
+            }
         },
         "platforms": [
             "android",
