@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
@@ -21,11 +22,27 @@ class Holidays extends Component {
   componentWillMount() {
     DataApi.getHolidays()
       .perform()
-      .then((response) => {
-        this.setState({
-          holidays: response.data.data,
-        })
-      })
+      .then(response => this.setState({
+        holidays: response.data.data,
+      }))
+      .then(response => (
+        this.state.holidays.map((day) => {
+          day.open = false
+          return day
+        })))
+  }
+
+  openDescription = (event) => {
+    const newHolidays = this.state.holidays.map((item) => {
+      if (item.id === +event.target.parentNode.getAttribute('data-id')) {
+        item.open = !item.open
+      }
+      return item
+    })
+
+    this.setState({
+      holidays: newHolidays,
+    })
   }
 
   render() {
@@ -43,6 +60,7 @@ class Holidays extends Component {
             {this.state.holidays.map(item => (
               <HolidayCard
                 key={item.id}
+                onClick={this.openDescription}
                 content={item}
               />
             ))}
