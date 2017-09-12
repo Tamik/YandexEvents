@@ -256,22 +256,23 @@ class Map extends Component {
       this.afterEventsLoaded()
     }
     else {
-      DataApi.getEvents()
-        .byHoliday(1)
-        .byCategory(newCategoryId || this.props.categoryId)
-        .itemsPerPage(100)
-        .perform()
-        .then((response) => {
-          if (!this.isComponentMounted) {
-            return
-          }
+      const getData = DataApi.getEvents().byHoliday(0)
 
-          this.points = response.data.data
-          this.points.forEach((item, idx) => {
-            this.eventsToPointsMap[item.id] = idx
-          })
-          this.afterEventsLoaded()
+      if (this.props.categoryId !== 'undefined') {
+        getData.byCategory(newCategoryId || this.props.categoryId)
+      }
+
+      getData.itemsPerPage(100).perform().then((response) => {
+        if (!this.isComponentMounted) {
+          return
+        }
+
+        this.points = response.data.data
+        this.points.forEach((item, idx) => {
+          this.eventsToPointsMap[item.id] = idx
         })
+        this.afterEventsLoaded()
+      })
     }
   }
 
