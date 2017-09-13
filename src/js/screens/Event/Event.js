@@ -1,3 +1,6 @@
+/* global cordova */
+/* global StatusBar */
+
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
@@ -23,6 +26,13 @@ class Event extends Component {
   }
 
   componentWillMount() {
+    if (cordova.platformId === 'ios') {
+      StatusBar.styleBlackTranslucent()
+    }
+    else if (cordova.platformId === 'android') {
+      StatusBar.backgroundColorByHexString('#000')
+    }
+
     DataApi.getEvent()
       .byHoliday(1)
       .byId(this.props.params.eventId)
@@ -34,6 +44,13 @@ class Event extends Component {
   }
 
   goBack = () => {
+    if (cordova.platformId === 'ios') {
+      StatusBar.styleDefault()
+    }
+    else if (cordova.platformId === 'android') {
+      StatusBar.backgroundColorByHexString('#fff')
+    }
+
     this.props.goBack()
   }
 

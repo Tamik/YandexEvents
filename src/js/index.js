@@ -1,3 +1,6 @@
+/* global cordova */
+/* global StatusBar */
+
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
@@ -75,14 +78,18 @@ function onDeviceReady() {
   FastClick.attach(document.body)
   const config = {
     AppMetrica: {
-      apiKey: process.env.APPMETRICA,
+      apiKey: process.env.APM_KEY,
       trackLocationEnabled: true,
       handleFirstActivationAsUpdateEnabled: true,
       sessionTimeout: 15,
-      appVersion: '1.0.0',
+      appVersion: process.env.APM_VERSION,
     },
   }
   window.appMetrica.activate(config.AppMetrica)
+
+  if (cordova.platformId === 'ios' || cordova.platformId === 'android') {
+    StatusBar.styleDefault()
+  }
 
   DataApi.getHolidayConfig()
     .byHoliday(1)
