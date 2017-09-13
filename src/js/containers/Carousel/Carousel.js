@@ -33,7 +33,7 @@ class CarouselContainer extends Component {
 
   render() {
     return (
-      <div style={this.props.style}>
+      <div style={this.props.style} className={style.carousel_animate}>
         {this.state.loading
           ? (<Spinner />)
           : (

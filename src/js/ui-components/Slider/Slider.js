@@ -7,7 +7,7 @@ import './style.scss'
 const Slider = (props) => {
   const settings = {
     dots: props.dots,
-    infinite: true,
+    infinite: props.infinite,
     speed: 400,
     arrows: false,
     slidesToShow: 1,
@@ -24,10 +24,12 @@ const Slider = (props) => {
 
 Slider.defaultProps = {
   dots: false,
+  infinite: true,
 }
 
 Slider.propTypes = {
   dots: PropTypes.bool,
+  infinite: PropTypes.bool,
   children: PropTypes.element.isRequired,
 }
 
