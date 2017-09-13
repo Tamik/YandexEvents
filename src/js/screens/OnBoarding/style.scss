@@ -9,11 +9,12 @@
   }
 
   &__image {
-    width: 85%;
-    height: 38vh;
+    width: 100%;
     margin: auto;
+    margin-bottom: 20px;
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
   }
 
   &__text {
@@ -33,5 +34,22 @@
     background-color: #ffde5a;
     border: none;
     border-radius: 2px;
+  }
+}
+@media (min-width: 320px) {
+  .board__image {
+    height: 249px;
+  }
+}
+
+@media (min-width: 390px) {
+  .board__image {
+    height: 303px;
+  }
+}
+
+@media (min-width: 465px) {
+  .board__image {
+    height: 362px;
   }
 }
