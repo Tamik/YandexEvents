@@ -75,11 +75,11 @@ function onDeviceReady() {
   FastClick.attach(document.body)
   const config = {
     AppMetrica: {
-      apiKey: process.env.APPMETRICA,
+      apiKey: process.env.APM_KEY,
       trackLocationEnabled: true,
       handleFirstActivationAsUpdateEnabled: true,
       sessionTimeout: 15,
-      appVersion: '1.0.0',
+      appVersion: process.env.APM_VERSION,
     },
   }
   window.appMetrica.activate(config.AppMetrica)
