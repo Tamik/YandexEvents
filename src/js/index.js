@@ -1,3 +1,6 @@
+/* global cordova */
+/* global StatusBar */
+
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
@@ -83,6 +86,10 @@ function onDeviceReady() {
     },
   }
   window.appMetrica.activate(config.AppMetrica)
+
+  if (cordova.platformId === 'ios' || cordova.platformId === 'android') {
+    StatusBar.styleDefault()
+  }
 
   DataApi.getHolidayConfig()
     .byHoliday(1)
