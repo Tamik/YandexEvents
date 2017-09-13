@@ -9,10 +9,6 @@ height: 90vh;
 `
 
 export const CardContainer = styled.div`
-  position: absolute;
-  bottom: 58px;
-  right: 16px;
-  left: 16px;
 `
 
 export const Pane = styled.div`
@@ -38,7 +34,8 @@ z-index: 100;
 `
 
 export const BalloonInner = styled.div`
-margin-bottom: 32px;
+margin-bottom: 54px;
+padding: 0 16px;
 `
 
 export const BalloonTopBar = styled.div`
