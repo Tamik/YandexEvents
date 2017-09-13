@@ -29,8 +29,9 @@ const Daty = {
    * }
    */
   beautifyDatesRange: (dateStart = '', dateEnd = '') => {
-    const begin = moment(new Date(dateStart.replace(/-/g, '/')))
-    const end = moment(new Date(dateEnd.replace(/-/g, '/')))
+
+    const begin = moment(dateStart).utc()
+    const end = moment(dateEnd).utc()
 
     let range = ''
     // Одинаковые месяцы начала и конца события
