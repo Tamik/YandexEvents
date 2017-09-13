@@ -9,6 +9,8 @@ import { SlideCard, Slider, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils'
 
+import style from './styles.scss'
+
 class SliderContainer extends Component {
   state = {
     elements: [],
@@ -43,7 +45,7 @@ class SliderContainer extends Component {
         {this.state.loading
           ? (<Spinner />)
           : (
-            <div>
+            <div className={style.slider_animate}>
               {this.props.title
                 ? <h3
                   style={{
