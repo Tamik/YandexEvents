@@ -135,7 +135,7 @@ class Constructor extends Component {
       <div
         style={{
           ...this.props.config.params.style.body,
-          marginBottom: 32,
+          marginBottom: 68,
         }}
       >
         {this.renderFactory(
