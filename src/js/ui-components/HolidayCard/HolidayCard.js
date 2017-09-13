@@ -32,7 +32,11 @@ const HolidayCard = (props) => {
         {formattedDate.dates}
       </p>
       <button
-        className={`${props.content.open ? style.card__button_up : ''} ${style.card__button}`}
+        className={`
+          ${props.content.open ? style.card__buttonToggle_up : ''}
+          ${style.card__buttonToggle}
+        `}
+        type='button'
         onClick={() => handleOpen(props)}
       >
         <Icon
@@ -44,13 +48,24 @@ const HolidayCard = (props) => {
       <div className={props.content.open ? 'textOpen' : 'textClose'}>
         <p className={style.card__text}>{props.content.description}</p>
         {props.content.facts.map(item => (
-          <div><p className={style.card__label}>{item}</p><br /></div>
+          <div className={style.card__label}>
+            <p className={style.card__label_big}>{item.one}</p>
+            <p>{item.two}</p>
+          </div>
         ))}
-        <button
-          type='button'
-          onClick={() => addToCalendar(props.content.title, 'description', 'location')}
-        >add</button>
       </div>
+      <button
+        className={style.card__button}
+        type='button'
+        onClick={() => addToCalendar(props.content.title, 'description', 'location')}
+      >
+        <Icon
+          type='calendar'
+          width='25px'
+          height='23px'
+        />
+        <span style={{ marginLeft: 8 }}>Добавить<br /> в календарь</span>
+      </button>
     </div>
   )
 }
