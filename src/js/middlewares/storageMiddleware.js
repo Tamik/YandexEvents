@@ -7,7 +7,7 @@ import {
 const storageMiddleware = ls => () => next => (action) => {
   switch (action.type) {
     case USER_ONBOARDING_VIEWED:
-      ls.setItem('user', { firstEnter: false })
+      ls.setItem('user', { firstEnter: true })
       return next(action)
     case USER_ADD_TO_FAVORITES:
       ls.getItem('favorites').then((_favorites) => {
