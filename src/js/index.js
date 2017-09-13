@@ -3,6 +3,8 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import localforage from 'localforage'
 
+import FastClick from 'fastclick'
+
 import { DataApi } from 'utils'
 
 import { applyMiddleware, createStore } from 'redux'
@@ -70,6 +72,7 @@ history.listen((location) => {
 })
 
 function onDeviceReady() {
+  FastClick.attach(document.body)
   const config = {
     AppMetrica: {
       apiKey: process.env.APPMETRICA,
