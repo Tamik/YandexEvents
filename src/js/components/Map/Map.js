@@ -516,7 +516,7 @@ class Map extends Component {
   createPlacemark = (event) => {
     let placemark = null
 
-    if (this.props.categoryId === '4') {
+    if (this.props.categoryId === '20') {
       placemark = new yMapsApi.Placemark(
         [event.lat, event.lng],
         {
