@@ -739,7 +739,7 @@ class Map extends Component {
             marginBottom: '30px',
           }}
         >
-          <Slider>
+          <Slider infinite={false}>
             {events.map(item => (
               <MapCard
                 key={item.id}
