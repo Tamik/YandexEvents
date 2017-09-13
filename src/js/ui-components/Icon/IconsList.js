@@ -18,6 +18,7 @@ const IconsList = {
   mylocation: '<path fill="none" fill-rule="evenodd" stroke="#4C4C4D" stroke-linejoin="round" stroke-width="2" d="M22.891 1.047L12.005 21.632l-1.68-8.867-8.727-2.294z" />',
   zoomIn: '<g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M12 2v20M22 12H2" stroke="#4C4C4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>',
   zoomOut: '<g fill="none" fill-rule="evenodd"><path d="M0 0h24v24H0z"/><path d="M22 12H2" stroke="#4C4C4C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>',
+  calendar: '<defs><path id="a" d="M0 24h24V0H0z"/></defs><g fill="none" fill-rule="evenodd" transform="translate(0 -1)"><path fill="#FFF" d="M4.44 3.14c.58 0 1.05.47 1.05 1.04 0 .58-.5 1.05-1.1 1.05-.58 0-1.05-.47-1.05-1.05 0-.57.46-1.04 1.03-1.04zm10.8 0c.57 0 1.04.47 1.04 1.04 0 .58-.47 1.05-1.05 1.05-.58 0-1.04-.47-1.04-1.05 0-.57.4-1.04 1-1.04"/><mask id="b" fill="#fff"><use xlink:href="#a"/></mask><path fill="#FFF" d="M4 10.38h2.02V9H4m0 5.38h2.02V13H4m5-2.62h2.02V9H9m0 5.38h2.02V13H9m5-2.62h2V9h-2m4.5 12.43c-2.17 0-3.93-1.76-3.93-3.93s1.76-3.93 3.93-3.93 3.93 1.76 3.93 3.93-1.76 3.93-3.93 3.93m0-9.43c-3.03 0-5.5 2.47-5.5 5.5s2.47 5.5 5.5 5.5 5.5-2.47 5.5-5.5-2.47-5.5-5.5-5.5" mask="url(#b)"/><path fill="#FFF" d="M19.23 15.5h-1.38v1.35H16.5v1.38h1.35v1.36h1.38v-1.4h1.36v-1.4h-1.4M1.35 5.93H18.3v-3.5H1.38v3.5zM12 17.07H1.4v-9.7h16.9V11h.2c.4 0 .8.04 1.18.1V1.06H0v17.4h12.08c-.05-.32-.08-.63-.08-.95 0-.1 0-.3.02-.4z" mask="url(#b)"/></g>',
 }
 
 export default IconsList
