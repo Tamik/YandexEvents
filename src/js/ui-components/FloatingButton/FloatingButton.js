@@ -7,7 +7,7 @@ import style from './style.scss'
 const FloatingButton = props => (
   <button className={style.button} onClick={props.onClick}>
     {props.icon}
-    <span style={{ marginLeft: 8 }}>{props.title}</span>
+    <span style={{ marginLeft: 8, alignSelf: 'center' }}>{props.title}</span>
   </button>
 )
 
