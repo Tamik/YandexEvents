@@ -29,7 +29,6 @@ const Daty = {
    * }
    */
   beautifyDatesRange: (dateStart = '', dateEnd = '') => {
-
     const begin = moment(dateStart).utc()
     const end = moment(dateEnd).utc()
 
