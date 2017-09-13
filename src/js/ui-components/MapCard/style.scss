@@ -9,7 +9,8 @@
   z-index: 5;
 
   &_slider {
-    width: 80vw;
+    width: 80%;
+    max-width: 320px;
     margin-right: 20px;
   }
 
