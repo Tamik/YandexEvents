@@ -4,9 +4,8 @@ import { connect } from 'react-redux'
 
 import { push } from 'actions/navigationActions'
 import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
-import { actionModalPush } from 'actions/modalActions'
 
-import { Card, Spinner } from 'ui-components'
+import { Avatar, Card, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils'
 
@@ -55,6 +54,39 @@ class ListContainer extends Component {
   viewEvent = (route, eventData) => {
     this.props.onViewEvent(route, eventData)
   }
+
+  renderAvatar = props => (
+    <Avatar {...props} />
+  )
+  renderCard = props => (
+    <Card {...props} />
+  )
+  renderFactory = payload => (
+    payload.map((element) => {
+      switch (payload.child.type) {
+        case 'avatar': return this.renderAvatar({
+          key: element.id,
+          src: element.photo_small,
+          title: element.title,
+          style: {
+            ...element.style,
+          },
+          onClick: () => this.viewEvent(this.state.route, element),
+        })
+        default: return this.renderCard({
+          key: element.id,
+          title: element.title,
+          src: element.photo_small,
+          location: element.location_title,
+          date: `${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time}`,
+          style: {
+            ...element.style,
+          },
+          onClick: () => this.viewEvent(this.state.route, element),
+        })
+      }
+    })
+  )
 
   render() {
     return (
