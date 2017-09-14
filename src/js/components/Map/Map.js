@@ -743,6 +743,7 @@ class Map extends Component {
                 title={item.title}
                 isLeft={item.is_left}
                 location={item.location_title}
+                time={{ begin: item.begin_time, end: item.end_time }}
                 onClick={() => this.viewEvent(item)}
               />
             ))}
@@ -760,6 +761,7 @@ class Map extends Component {
               title={item.title}
               isLeft={item.is_left}
               location={item.location_title}
+              time={{ begin: item.begin_time, end: item.end_time }}
               onClick={() => this.viewEvent(item)}
             />
           </CardContainer>
