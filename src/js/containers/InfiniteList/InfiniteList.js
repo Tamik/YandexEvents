@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ClassNames from 'classnames'
 
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
@@ -87,7 +88,7 @@ class InfiniteListContainer extends Component {
         <Button
           label='Показать ещё'
           onClick={() => this.loadMore()}
-          className={styleBtn.button}
+          className={ClassNames(styleBtn.button)}
         />
       )
     }

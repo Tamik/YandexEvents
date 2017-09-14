@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import ClassNames from 'classnames'
 
 import { replace } from 'actions/navigationActions'
 
@@ -25,7 +26,11 @@ const BottomNav = (props) => {
         onClick={() => {
           tabSwitch('feed')
         }}
-        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabNow ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
+        className={
+          ClassNames(
+            styleBottomNavigation.BottomNavigation__item,
+            isActiveTabNow ? styleBottomNavigation.BottomNavigation__item_active : '',
+          )}
       >
         <Icon
           type={isActiveTabNow ? 'eventFill' : 'event'}
@@ -38,7 +43,11 @@ const BottomNav = (props) => {
         onClick={() => {
           tabSwitch('holidays')
         }}
-        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabHolidays ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
+        className={
+          ClassNames(
+            styleBottomNavigation.BottomNavigation__item,
+            isActiveTabHolidays ? styleBottomNavigation.BottomNavigation__item_active : '',
+          )}
       >
         <Icon
           type={isActiveTabHolidays ? 'starFill' : 'star'}
@@ -51,7 +60,11 @@ const BottomNav = (props) => {
         onClick={() => {
           tabSwitch('favorites')
         }}
-        className={`${styleBottomNavigation.BottomNavigation__item} ${isActiveTabFavorites ? styleBottomNavigation.BottomNavigation__item_active : ''}`}
+        className={
+          ClassNames(
+            styleBottomNavigation.BottomNavigation__item,
+            isActiveTabFavorites ? styleBottomNavigation.BottomNavigation__item_active : '',
+          )}
       >
         <Icon
           type={isActiveTabFavorites ? 'bookmarkFill' : 'bookmark'}

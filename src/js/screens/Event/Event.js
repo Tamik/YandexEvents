@@ -140,7 +140,7 @@ class Event extends Component {
                     </p>
                   </div>
                   <p
-                    style={style.text}
+                    className={ClassNames(style.text)}
                     dangerouslySetInnerHTML={
                       this.state.hideText
                         ? { __html: description.start }

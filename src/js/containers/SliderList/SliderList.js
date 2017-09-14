@@ -1,13 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import { List } from 'components'
 import { Slider } from 'ui-components'
 import style from 'components/List/style.scss'
 
 const SliderList = props => (
-  <div className={style.list__wrap}>
-    <h3 className={style.list__title}>{props.title}</h3>
+  <div className={ClassNames(style.list__wrap)}>
+    <h3 className={ClassNames(style.list__title)}>{props.title}</h3>
     <Slider>
       {
         props.payload.map(item => (

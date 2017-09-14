@@ -743,6 +743,7 @@ class Map extends Component {
                 title={item.title}
                 isLeft={item.is_left}
                 location={item.location_title}
+                time={{ begin: item.begin_time, end: item.end_time }}
                 onClick={() => this.viewEvent(item)}
               />
             ))}
@@ -760,6 +761,7 @@ class Map extends Component {
               title={item.title}
               isLeft={item.is_left}
               location={item.location_title}
+              time={{ begin: item.begin_time, end: item.end_time }}
               onClick={() => this.viewEvent(item)}
             />
           </CardContainer>
@@ -823,14 +825,14 @@ class Map extends Component {
         </BtnRounded>
         <BtnRounded
           style={{ top: 24 }}
-          className={'btn-map-rounded'}
+          className='btn-map-rounded'
           onClick={this.zoomIn}
         >
           <Icon type='zoomIn' width='24' height='24' />
         </BtnRounded>
         <BtnRounded
           style={{ top: 96 }}
-          className={'btn-map-rounded'}
+          className='btn-map-rounded'
           onClick={this.zoomOut}
         >
           <Icon type='zoomOut' width='24' height='24' />
