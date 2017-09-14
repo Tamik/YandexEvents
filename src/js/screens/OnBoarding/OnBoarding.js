@@ -54,7 +54,7 @@ const OnBoarding = (props) => {
             className={style.board__image}
             style={{
               backgroundImage: `url(${imageSlide1})`,
-              height: `${heightImage}px`,
+              height: heightImage,
             }}
           />
 
@@ -75,7 +75,7 @@ const OnBoarding = (props) => {
             className={style.board__image}
             style={{
               backgroundImage: `url(${imageSlide2})`,
-              height: `${heightImage}px`,
+              height: heightImage,
             }}
           />
 
@@ -96,7 +96,7 @@ const OnBoarding = (props) => {
             className={style.board__image}
             style={{
               backgroundImage: `url(${imageSlide3})`,
-              height: `${heightImage}px`,
+              height: heightImage,
             }}
           />
 
