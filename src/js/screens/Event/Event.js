@@ -170,7 +170,7 @@ class Event extends Component {
                     <StaticMap
                       coords={[event.lng, event.lat]}
                       zoom={15}
-                      width={342}
+                      width={window.innerWidth}
                       height={172}
                     />
                     <p

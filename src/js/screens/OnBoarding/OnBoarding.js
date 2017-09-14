@@ -33,6 +33,7 @@ const OnBoarding = (props) => {
     slidesToShow: 1,
     swipe: true,
   }
+  const heightImage = Math.floor((280 / 360) * (window.innerWidth - 32))
 
   return (
     <div
@@ -51,7 +52,10 @@ const OnBoarding = (props) => {
         <div key={1} className={style.board__wrap}>
           <div
             className={style.board__image}
-            style={{ backgroundImage: `url(${imageSlide1})` }}
+            style={{
+              backgroundImage: `url(${imageSlide1})`,
+              height: `${heightImage}px`,
+            }}
           />
 
           <p className={style.board__text}>
@@ -69,7 +73,10 @@ const OnBoarding = (props) => {
         <div key={2} className={style.board__wrap}>
           <div
             className={style.board__image}
-            style={{ backgroundImage: `url(${imageSlide2})` }}
+            style={{
+              backgroundImage: `url(${imageSlide2})`,
+              height: `${heightImage}px`,
+            }}
           />
 
           <p className={style.board__text}>
@@ -87,7 +94,10 @@ const OnBoarding = (props) => {
         <div key={3} className={style.board__wrap}>
           <div
             className={style.board__image}
-            style={{ backgroundImage: `url(${imageSlide3})` }}
+            style={{
+              backgroundImage: `url(${imageSlide3})`,
+              height: `${heightImage}px`,
+            }}
           />
 
           <p className={style.board__text}>
