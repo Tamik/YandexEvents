@@ -12,121 +12,45 @@ import {
 
 class Constructor extends Component {
   renderListContainer = props => (
-    <ListContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <ListContainer {...props} />
   )
 
   renderSliderContainer = props => (
-    <SliderContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <SliderContainer {...props} />
   )
 
   renderCarouselContainer = props => (
-    <CarouselContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <CarouselContainer {...props} />
   )
 
   renderHintContainer = props => (
-    <HintContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <HintContainer {...props} />
   )
 
   renderBlankContainer = props => (
-    <div key={props.id}>
-      {/* {props.params.title} */}
-    </div>
+    <BlankContainer {...props} />
   )
 
   renderFactory = (payload, styles, rootStyles) => (
     payload.map((container) => {
+      const settings = {
+        key: container.id,
+        title: container.params.title,
+        params: container.params,
+        route: container.route,
+        child: {
+          type: container.child.type,
+          style: rootStyles[container.child.type],
+        },
+        style: styles[container.name],
+      }
+
       switch (container.type) {
-        case 'list': return this.renderListContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
-        case 'carousel': return this.renderCarouselContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
-        case 'slider': return this.renderSliderContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
-        case 'hint': return this.renderHintContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
-          params: {
-            // title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
-        default: return this.renderBlankContainer({
-          id: container.id,
-          type: container.type,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
+        case 'carousel': return this.renderCarouselContainer({ ...settings })
+        case 'hint': return this.renderHintContainer({ ...settings })
+        case 'list': return this.renderListContainer({ ...settings })
+        case 'slider': return this.renderSliderContainer({ ...settings })
+        default: return this.renderBlankContainer({ ...settings })
       }
     })
   )
