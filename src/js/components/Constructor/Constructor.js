@@ -3,10 +3,11 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
-  List as ListContainer,
-  Slider as SliderContainer,
+  Blank as BlankContainer,
   Carousel as CarouselContainer,
   Hint as HintContainer,
+  List as ListContainer,
+  Slider as SliderContainer,
 } from 'containers'
 
 class Constructor extends Component {
