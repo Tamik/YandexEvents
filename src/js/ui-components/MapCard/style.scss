@@ -1,17 +1,22 @@
 .mapCard {
   width: 100%;
-  margin-right: 20px;
   flex-shrink: 0;
-  background-color: rgba(255, 255, 255, 1);
-  border-radius: 4px;
-  color: rgba(0, 0, 0, 1);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
   z-index: 5;
 
   &_slider {
-    height: 100%;
-    max-width: 320px;
-    margin-right: 0;
+    display: flex;
+    width: auto;
+    max-width: 90vw;
+    padding-left: 16px;
+  }
+
+  &__wrap {
+    position: relative;
+    flex-grow: 1;
+    color: rgba(0, 0, 0, 1);
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
+    border-radius: 4px;
   }
 
   &__label {
@@ -44,8 +49,8 @@
   &__text {
     position: absolute;
     top: 16px;
-    left: 10px;
-    right: 100px;
+    left: 16px;
+    right: 50px;
     font-size: 0.875rem;
     font-weight: 500;
     color: #fff;

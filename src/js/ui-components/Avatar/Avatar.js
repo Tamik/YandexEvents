@@ -1,20 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import style from './style.scss'
 
 const Avatar = props => (
-  <div className={style.Avatar}>
+  <div className={ClassNames(style.Avatar)}>
     <div
-      className={style.Avatar__img}
+      className={ClassNames(style.Avatar__img)}
       style={{
         backgroundImage: `url(${props.src})`,
       }}
       onClick={props.onClick}
       role='button'
     />
-    <div className={style.Avatar__description}>
-      <p className={style.Avatar__title}>{props.title}</p>
+    <div className={ClassNames(style.Avatar__description)}>
+      <p className={ClassNames(style.Avatar__title)}>{props.title}</p>
     </div>
   </div>
 )

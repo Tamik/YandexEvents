@@ -1,23 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
+
 import { Image } from 'ui-components'
 import style from './style.scss'
 
 const SlideCard = props => (
   <div
-    className={`${style.slideCard} ${style[`slideCard_${props.size}`]}`}
+    className={ClassNames(style.slideCard, style[`slideCard_${props.size}`])}
     style={props.style}
     role='button'
     onClick={props.onClick}
   >
     <Image src={props.src} size={props.size} style={{ borderRadius: 4 }} />
     <div
-      className={`${style.slideCard__info} ${style[`slideCard__info_${props.size}`]}`}
+      className={ClassNames(style.slideCard__info, style[`slideCard__info_${props.size}`])}
     >
-      <h3 className={`${style.slideCard__title} ${style[`slideCard__title_${props.size}`]}`}>
+      <h3 className={ClassNames(style.slideCard__title, style[`slideCard__title_${props.size}`])}>
         {props.title}
       </h3>
-      <p className={style.slideCard__text}>
+      <p className={ClassNames(style.slideCard__text)}>
         {props.date}
       </p>
     </div>

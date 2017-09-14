@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ClassNames from 'classnames'
 
 import { onBoardingViewed } from 'actions/userActions'
 import { replace } from 'actions/navigationActions'
@@ -33,6 +34,7 @@ const OnBoarding = (props) => {
     slidesToShow: 1,
     swipe: true,
   }
+  const heightImage = Math.floor((280 / 360) * (window.innerWidth - 32))
 
   return (
     <div
@@ -48,54 +50,63 @@ const OnBoarding = (props) => {
         }}
         {...settings}
       >
-        <div key={1} className={style.board__wrap}>
+        <div key={1} className={ClassNames(style.board__wrap)}>
           <div
-            className={style.board__image}
-            style={{ backgroundImage: `url(${imageSlide1})` }}
+            className={ClassNames(style.board__image)}
+            style={{
+              backgroundImage: `url(${imageSlide1})`,
+              height: heightImage,
+            }}
           />
 
-          <p className={style.board__text}>
+          <p className={ClassNames(style.board__text)}>
             Простой, но удобный путеводитель по городским праздникам и акциям
           </p>
 
           <button
-            className={style.board__btn}
+            className={ClassNames(style.board__btn)}
             onClick={next}
           >
             Далее
           </button>
         </div>
 
-        <div key={2} className={style.board__wrap}>
+        <div key={2} className={ClassNames(style.board__wrap)}>
           <div
-            className={style.board__image}
-            style={{ backgroundImage: `url(${imageSlide2})` }}
+            className={ClassNames(style.board__image)}
+            style={{
+              backgroundImage: `url(${imageSlide2})`,
+              height: heightImage,
+            }}
           />
 
-          <p className={style.board__text}>
+          <p className={ClassNames(style.board__text)}>
             Находите самые интересные события рядом с вами
           </p>
 
           <button
-            className={style.board__btn}
+            className={ClassNames(style.board__btn)}
             onClick={next}
           >
             Далее
           </button>
         </div>
 
-        <div key={3} className={style.board__wrap}>
+        <div key={3} className={ClassNames(style.board__wrap)}>
           <div
-            className={style.board__image}
-            style={{ backgroundImage: `url(${imageSlide3})` }}
+            className={ClassNames(style.board__image)}
+            style={{
+              backgroundImage: `url(${imageSlide3})`,
+              height: heightImage,
+            }}
           />
 
-          <p className={style.board__text}>
+          <p className={ClassNames(style.board__text)}>
             Добавляйте в календарь напоминания о любимых праздниках
           </p>
 
           <button
-            className={style.board__btn}
+            className={ClassNames(style.board__btn)}
             onClick={goNext}
           >
             Далее

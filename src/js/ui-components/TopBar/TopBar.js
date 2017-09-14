@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import style from './style.scss'
 
@@ -7,15 +8,18 @@ const TopBar = (props) => {
   const transparent = props.isTransparent ? 'topBar_transparent' : null
 
   return (
-    <div className={`${style.topBar} ${style[transparent]}`}>
-      <button className={style.topBar__icon} onClick={props.onClick ? props.onClick.back : null}>
+    <div className={ClassNames(style.topBar, style[transparent])}>
+      <button
+        className={ClassNames(style.topBar__icon)}
+        onClick={props.onClick ? props.onClick.back : null}
+      >
         {props.iconLeft}
       </button>
-      <h2 className={style.topBar__title}>
+      <h2 className={ClassNames(style.topBar__title)}>
         {props.title}
       </h2>
       <button
-        className={style.topBar__icon}
+        className={ClassNames(style.topBar__icon)}
         onClick={props.onClick ? props.onClick.favorites : null}
       >
         {props.iconRight}

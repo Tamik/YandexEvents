@@ -1,10 +1,11 @@
 import React from 'react'
+import ClassNames from 'classnames'
 
 import style from './style.scss'
 
 const Spinner = () => (
-  <div className={style.spinner}>
-    <div className={style.spinner__wrap} />
+  <div className={ClassNames(style.spinner)}>
+    <div className={ClassNames(style.spinner__wrap)} />
   </div>
 )
 

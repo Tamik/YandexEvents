@@ -1,16 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import style from './style.scss'
 
 const Button = (props) => {
-  const styleDisabled = props.disabled ? 'button_disabled' : null
-  const stylePrimary = props.primary ? 'button_primary' : null
+  const styleDisabled = props.disabled ? 'button_disabled' : ''
+  const stylePrimary = props.primary ? 'button_primary' : ''
 
   return (
     <button
       type='button'
-      className={`${style.button} ${style[stylePrimary]} ${style[styleDisabled]}`}
+      className={ClassNames(style.button, style[stylePrimary], style[styleDisabled])}
       disabled={props.disabled}
       onClick={props.onClick}
       style={props.style}

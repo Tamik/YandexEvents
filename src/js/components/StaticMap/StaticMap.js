@@ -9,7 +9,7 @@ const StaticMap = props => (
     className={cn(style.staticMap)}
     style={{
       ...props.style,
-      backgroundImage: `url(https://static-maps.yandex.ru/1.x/?ll=${props.coords[0]},${props.coords[1]}&size=${parseInt(props.width * 1.25, 10)},${parseInt(props.height * 1.25, 10)}&z=${props.zoom}&l=map&pt=${props.coords[0]},${props.coords[1]},pm2rdl)`,
+      backgroundImage: `url(https://static-maps.yandex.ru/1.x/?ll=${props.coords[0]},${props.coords[1]}&size=${props.width},${parseInt(props.height * 1.25, 10)}&z=${props.zoom}&l=map&pt=${props.coords[0]},${props.coords[1]},pm2rdl)`,
       maxWidth: props.width,
       height: props.height,
     }}

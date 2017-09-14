@@ -1,39 +1,40 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import axios from 'axios'
 
 import { Spinner } from 'ui-components'
 
+import { DataApi } from 'utils'
+
 export default class HintContainer extends Component {
   state = {
-    title: null,
-    subtitle: null,
     loading: true,
+    image: '',
   }
 
   componentWillMount() {
-    axios.get('http://io.yamblz.ru/events', {
-      params: {
-        items_per_page: 1,
-      },
-    })
+    DataApi.getHint().byHoliday(1)
+      .perform()
       .then(response => this.setState({
-        title: response.data.data[0].title,
-        subtitle: response.data.data[0].location_title,
+        image: response.data.data,
         loading: false,
       }))
   }
 
   render() {
+    const heightImage = Math.floor((400 / 360) * window.innerWidth)
+
     return (
       <div style={this.props.style}>
         {this.state.loading
           ? (<Spinner />)
           : (
-            <div>
-              <h3>{this.state.title}</h3>
-              <span>{this.state.subtitle}</span>
-            </div>
+            <div
+              style={{
+                width: '100%',
+                height: heightImage,
+              }}
+              dangerouslySetInnerHTML={{ __html: this.state.image }}
+            />
           )
         }
       </div>
