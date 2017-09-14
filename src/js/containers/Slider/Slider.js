@@ -12,6 +12,10 @@ import { DataApi } from 'utils'
 
 import style from './styles.scss'
 
+/**
+ * @class SliderContainer
+ * @description Компонент-контейнер для конструктора ленты
+ */
 class SliderContainer extends Component {
   state = {
     elements: [],
@@ -30,6 +34,12 @@ class SliderContainer extends Component {
       }))
   }
 
+  /**
+   * @method viewEvent
+   * @description ...
+   * @param {Object} route
+   * @param {Object} eventData
+   */
   viewEvent = (route, eventData) => {
     this.props.onViewEvent(route, eventData)
   }

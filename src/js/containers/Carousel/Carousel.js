@@ -12,6 +12,10 @@ import style from 'components/List/style.scss'
 
 import { DataApi } from 'utils'
 
+/**
+ * @class CarouselContainer
+ * @description Компонент-контейнер для конструктора ленты
+ */
 class CarouselContainer extends Component {
   state = {
     elements: [],
@@ -28,6 +32,12 @@ class CarouselContainer extends Component {
       }))
   }
 
+  /**
+   * @method viewEvent
+   * @description ...
+   * @param {Object} route
+   * @param {Object} element
+   */
   viewEvent = (route, element) => {
     this.props.onViewEvent(route, element)
   }

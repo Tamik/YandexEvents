@@ -5,6 +5,10 @@ import { Spinner } from 'ui-components'
 
 import { DataApi } from 'utils'
 
+/**
+ * @class HintContainer
+ * @description Компонент-контейнер для конструктора ленты
+ */
 export default class HintContainer extends Component {
   state = {
     loading: true,

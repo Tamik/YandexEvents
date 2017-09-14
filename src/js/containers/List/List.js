@@ -9,6 +9,10 @@ import { Avatar, Card, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils'
 
+/**
+ * @class ListContainer
+ * @description Компонент-контейнер для конструктора ленты
+ */
 class ListContainer extends Component {
   state = {
     elements: [],
@@ -29,6 +33,11 @@ class ListContainer extends Component {
     }
   }
 
+  /**
+   * @method getData
+   * @description ...
+   * @param {Object} props
+   */
   getData = (props) => {
     let routePath
 
@@ -51,16 +60,41 @@ class ListContainer extends Component {
       }))
   }
 
+  /**
+   * @method viewEvent
+   * @description ...
+   * @param {Object} route @todo change it
+   * @param {Object} eventData @todo change it
+   */
   viewEvent = (route, eventData) => {
     this.props.onViewEvent(route, eventData)
   }
 
+  /**
+   * @method renderAvatar
+   * @description Рендер компонента Avatar
+   * @param {Object} props
+   * @returns {Component}
+   */
   renderAvatar = props => (
     <Avatar {...props} />
   )
+
+  /**
+   * @method renderCard
+   * @description Рендер компонента Card
+   * @param {Object} props
+   * @returns {Component}
+   */
   renderCard = props => (
     <Card {...props} />
   )
+
+  /**
+   * @method renderFactory
+   * @description "Фабрика" рендера компонентов в сответствии с заданным типом
+   * @param {Object} payload
+   */
   renderFactory = payload => (
     payload.map((element) => {
       switch (payload.child.type) {
