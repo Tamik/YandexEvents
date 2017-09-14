@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import cn from 'classnames'
+import ClassNames from 'classnames'
 
 import style from './styles.scss'
 
 const StaticMap = props => (
   <div
-    className={cn(style.staticMap)}
+    className={ClassNames(style.staticMap)}
     style={{
       ...props.style,
       backgroundImage: `url(https://static-maps.yandex.ru/1.x/?ll=${props.coords[0]},${props.coords[1]}&size=${props.width},${parseInt(props.height * 1.25, 10)}&z=${props.zoom}&l=map&pt=${props.coords[0]},${props.coords[1]},pm2rdl)`,
