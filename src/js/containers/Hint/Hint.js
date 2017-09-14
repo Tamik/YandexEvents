@@ -31,7 +31,7 @@ export default class HintContainer extends Component {
             <div
               style={{
                 width: '100%',
-                height: `${heightImage}px`,
+                height: heightImage,
               }}
               dangerouslySetInnerHTML={{ __html: this.state.image }}
             />
