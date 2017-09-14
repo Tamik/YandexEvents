@@ -1,6 +1,5 @@
 .carousel {
-  width: calc(100% - 16px);
-  margin-left: 16px;
+  width: calc(100%);
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   overflow-scrolling: touch;
@@ -12,5 +11,6 @@
   & > div {
     display: flex;
     flex-wrap: nowrap;
+    margin-left: 16px;
   }
 }

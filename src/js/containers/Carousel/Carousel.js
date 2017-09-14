@@ -49,13 +49,7 @@ class CarouselContainer extends Component {
                 : null
               }
               <Carousel>
-                <div>
-                  {/* {this.state.elements.map(element => (
-                    <AvatarsList key={element.id} title={element.title} />
-                    {/* <List key={element.id} type='slider_avatars' data={element} />
-                  ))} */}
-                  <AvatarsList payload={this.state.elements} />
-                </div>
+                <AvatarsList payload={this.state.elements} />
               </Carousel>
             </div>
           )
