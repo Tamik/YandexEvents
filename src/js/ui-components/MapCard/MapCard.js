@@ -7,19 +7,17 @@ import style from './style.scss'
 
 const MapCard = props => (
   <div
-    style={{ paddingLeft: 16 }}
+    className={`${styleCard.card} ${style.mapCard} ${style[`mapCard_${props.option}`]}`}
     onClick={props.onClick}
     role='button'
   >
-    <div
-      className={`${styleCard.card} ${style.mapCard} ${style[`mapCard_${props.option}`]}`}
-    >
+    <div className={style.mapCard__wrap}>
       <Image
         src={props.src}
         size={props.size}
         style={{
           height: 88,
-          borderRadius: 4,
+          borderRadius: '4px 4px 0 0',
         }}
       />
       {/* { */}

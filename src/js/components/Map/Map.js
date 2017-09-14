@@ -733,11 +733,7 @@ class Map extends Component {
   renderEvents = (events) => {
     if (events.length > 1) {
       return (
-        <div
-          style={{
-            marginBottom: '30px',
-          }}
-        >
+        <div>
           <Slider infinite={false}>
             {events.map(item => (
               <MapCard

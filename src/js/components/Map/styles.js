@@ -9,6 +9,7 @@ height: 90vh;
 `
 
 export const CardContainer = styled.div`
+padding: 0 16px;
 `
 
 export const Pane = styled.div`
@@ -21,7 +22,6 @@ opacity: 0;
 `
 
 export const PaneInner = styled.div`
-padding: 16px 0px;
 color: rgba(38, 50, 56, 1);
 text-align: center;
 `
@@ -35,7 +35,6 @@ z-index: 100;
 
 export const BalloonInner = styled.div`
 margin-bottom: 54px;
-padding: 0 16px;
 `
 
 export const BalloonTopBar = styled.div`

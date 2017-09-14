@@ -134,11 +134,7 @@ class Event extends Component {
                     </p>
                   </div>
                   <p
-                    style={{
-                      fontSize: '1rem',
-                      color: '#000',
-                      lineHeight: '1.375rem',
-                    }}
+                    style={style.text}
                     dangerouslySetInnerHTML={
                       this.state.hideText
                         ? { __html: description.start }
@@ -170,7 +166,7 @@ class Event extends Component {
                     <StaticMap
                       coords={[event.lng, event.lat]}
                       zoom={15}
-                      width={342}
+                      width={window.innerWidth}
                       height={172}
                     />
                     <p
