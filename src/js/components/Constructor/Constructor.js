@@ -10,27 +10,69 @@ import {
   Slider as SliderContainer,
 } from 'containers'
 
+/**
+ * @class Constructor
+ * @description Конструктор ленты
+ */
 class Constructor extends Component {
+  /**
+   * @method renderListContainer
+   * @description Рендер компонента ListContainer
+   * @param {Object} props
+   * @returns {Component}
+   */
   renderListContainer = props => (
     <ListContainer {...props} />
   )
 
+  /**
+   * @method renderSliderContainer
+   * @description Рендер компонента SliderContainer
+   * @param {Object} props
+   * @returns {Component}
+   */
   renderSliderContainer = props => (
     <SliderContainer {...props} />
   )
 
+  /**
+   * @method renderCarouselContainer
+   * @description Рендер компонента CarouselContainer
+   * @param {Object} props
+   * @returns {Component}
+   */
   renderCarouselContainer = props => (
     <CarouselContainer {...props} />
   )
 
+  /**
+   * @method renderHintContainer
+   * @description Рендер компонента HintContainer
+   * @param {Object} props
+   * @returns {Component}
+   */
   renderHintContainer = props => (
     <HintContainer {...props} />
   )
 
+  /**
+   * @method renderBlankContainer
+   * @description Рендер компонента BlankContainer
+   * @param {Object} props
+   * @returns {Component}
+   */
   renderBlankContainer = props => (
     <BlankContainer {...props} />
   )
 
+  /**
+   * @method renderFactory
+   * @description "Фабрика" рендера компонентов в соответствии с заданной конфигурацией
+   * @param {Object} payload
+   * @param {Object} styles
+   * @param {Object} rootStyles
+   * @returns {?}
+   */
   renderFactory = (payload, styles, rootStyles) => (
     payload.map((container) => {
       const settings = {
