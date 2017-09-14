@@ -18,7 +18,6 @@ const MapCard = props => (
         size={props.size}
         style={{
           height: 88,
-          borderRadius: '4px 4px 0 0',
         }}
       />
       {/* { */}

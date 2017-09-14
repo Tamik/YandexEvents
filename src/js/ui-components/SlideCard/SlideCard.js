@@ -12,7 +12,7 @@ const SlideCard = props => (
     role='button'
     onClick={props.onClick}
   >
-    <Image src={props.src} size={props.size} style={{ borderRadius: 4 }} />
+    <Image src={props.src} size={props.size} />
     <div
       className={ClassNames(style.slideCard__info, style[`slideCard__info_${props.size}`])}
     >
