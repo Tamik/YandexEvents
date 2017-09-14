@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ClassNames from 'classnames'
 
 import { push } from 'actions/navigationActions'
 import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
@@ -45,7 +46,7 @@ class SliderContainer extends Component {
         {this.state.loading
           ? (<Spinner />)
           : (
-            <div className={style.slider_animate}>
+            <div className={ClassNames(style.slider_animate)}>
               {this.props.title
                 ? <h3
                   style={{

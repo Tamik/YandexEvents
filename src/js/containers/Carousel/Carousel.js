@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ClassNames from 'classnames'
 
 import { push } from 'actions/navigationActions'
 import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
@@ -33,11 +34,11 @@ class CarouselContainer extends Component {
 
   render() {
     return (
-      <div style={this.props.style} className={style.carousel_animate}>
+      <div style={this.props.style} className={ClassNames(style.carousel_animate)}>
         {this.state.loading
           ? (<Spinner />)
           : (
-            <div className={style.list__wrap}>
+            <div className={ClassNames(style.list__wrap)}>
               {this.props.title
                 ? <h3
                   style={{

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import ClassNames from 'classnames'
 
 import { push } from 'actions/navigationActions'
 import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
@@ -20,7 +21,7 @@ class AvatarsList extends Component {
 
   render() {
     return (
-      <div className={style.list__wrap}>
+      <div className={ClassNames(style.list__wrap)}>
         {this.props.title
           ? <h3
             style={{
