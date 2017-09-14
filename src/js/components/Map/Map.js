@@ -735,7 +735,6 @@ class Map extends Component {
       return (
         <div
           style={{
-            marginLeft: '16px',
             marginBottom: '30px',
           }}
         >

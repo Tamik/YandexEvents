@@ -7,28 +7,32 @@ import style from './style.scss'
 
 const MapCard = props => (
   <div
-    className={`${styleCard.card} ${style.mapCard} ${style[`mapCard_${props.option}`]}`}
+    style={{ paddingLeft: 16 }}
     onClick={props.onClick}
     role='button'
   >
-    <Image
-      src={props.src}
-      size={props.size}
-      style={{
-        height: 88,
-        borderRadius: 4,
-      }}
-    />
-    {
-      props.isLeft
-        ? <span className={styleCard.card__label}>завершено</span>
-        : null
-    }
-    <p className={style.mapCard__text}>ежедневно, 11:00 — 19:00</p>
-    <div className={style.mapCard__info}>
-      <h3 className={style.mapCard__title}>
-        {props.title}
-      </h3>
+    <div
+      className={`${styleCard.card} ${style.mapCard} ${style[`mapCard_${props.option}`]}`}
+    >
+      <Image
+        src={props.src}
+        size={props.size}
+        style={{
+          height: 88,
+          borderRadius: 4,
+        }}
+      />
+      {/* { */}
+      {/* props.isLeft */}
+      {/* ? <span className={styleCard.card__label}>завершено</span> */}
+      {/* : null */}
+      {/* } */}
+      <p className={style.mapCard__text}>ежедневно, 11:00 — 19:00</p>
+      <div className={style.mapCard__info}>
+        <h3 className={style.mapCard__title}>
+          {props.title}
+        </h3>
+      </div>
     </div>
   </div>
 )

@@ -12,11 +12,11 @@ const Card = props => (
     role='button'
   >
     <Image src={props.src} size={props.size} />
-    {
-      props.isLeft
-        ? <span className={style.card__label}>завершено</span>
-        : null
-    }
+    {/* { */}
+    {/* props.isLeft */}
+    {/* ? <span className={style.card__label}>завершено</span> */}
+    {/* : null */}
+    {/* } */}
     <div
       className={`${style.card__info} ${style[`card__info_${props.size}`]}`}
     >

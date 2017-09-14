@@ -39,7 +39,6 @@ class SliderContainer extends Component {
         style={{
           ...this.props.style,
           margin: '16px 0',
-          marginLeft: '16px',
         }}
       >
         {this.state.loading
@@ -50,7 +49,7 @@ class SliderContainer extends Component {
                 ? <h3
                   style={{
                     fontSize: '1rem',
-                    margin: '40px 0 6px',
+                    margin: '40px 0 6px 16px',
                     lineHeight: '1.25rem',
                   }}
                 >{this.props.title}</h3>
@@ -58,19 +57,19 @@ class SliderContainer extends Component {
               }
               <Slider>
                 {this.state.elements.map(element => (
-                  <SlideCard
-                    key={element.id}
-                    title={element.title}
-                    src={`${element.photo_small}`}
-                    location={element.location_title}
-                    size={this.props.cardSize}
-                    style={{
-                      ...this.props.cardStyle,
-                      margin: '8px 16px',
-                      marginLeft: 0,
-                    }}
-                    onClick={() => this.viewEvent(this.state.route.url, element)}
-                  />
+                  <div style={{ paddingLeft: 16 }}>
+                    <SlideCard
+                      key={element.id}
+                      title={element.title}
+                      src={`${element.photo_small}`}
+                      location={element.location_title}
+                      size={this.props.cardSize}
+                      style={{
+                        ...this.props.cardStyle,
+                      }}
+                      onClick={() => this.viewEvent(this.state.route.url, element)}
+                    />
+                  </div>
                 ))}
               </Slider>
             </div>
