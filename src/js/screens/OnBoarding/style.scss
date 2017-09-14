@@ -26,6 +26,7 @@
   }
 
   &__btn {
+    flex-shrink: 0;
     padding: 14px;
     color: #2a3034;
     font-size: 1.25rem;

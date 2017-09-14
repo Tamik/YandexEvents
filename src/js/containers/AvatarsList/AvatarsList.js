@@ -31,20 +31,16 @@ class AvatarsList extends Component {
           >{this.props.title}</h3>
           : null
         }
-        <Carousel>
-          <div>
-            {
-              this.props.payload.map(item => (
-                <Avatar
-                  key={item.id}
-                  src={item.photo_small}
-                  title={item.title}
-                  onClick={() => this.viewEvent('/entity/%', item)}
-                />
-              ))
-            }
-          </div>
-        </Carousel>
+        {
+          this.props.payload.map(item => (
+            <Avatar
+              key={item.id}
+              src={item.photo_small}
+              title={item.title}
+              onClick={() => this.viewEvent('/entity/%', item)}
+            />
+          ))
+        }
       </div>
     )
   }
