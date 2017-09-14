@@ -40,7 +40,6 @@ class SliderContainer extends Component {
         style={{
           ...this.props.style,
           margin: '16px 0',
-          marginLeft: 16,
         }}
       >
         {this.state.loading
@@ -51,7 +50,7 @@ class SliderContainer extends Component {
                 ? <h3
                   style={{
                     fontSize: '1rem',
-                    margin: '40px 0 6px',
+                    margin: '40px 0 6px 16px',
                     lineHeight: '1.25rem',
                   }}
                 >{this.props.title}</h3>
@@ -67,8 +66,6 @@ class SliderContainer extends Component {
                     size={this.props.cardSize}
                     style={{
                       ...this.props.cardStyle,
-                      margin: '8px 16px',
-                      marginLeft: 0,
                     }}
                     onClick={() => this.viewEvent(this.state.route.url, element)}
                   />
