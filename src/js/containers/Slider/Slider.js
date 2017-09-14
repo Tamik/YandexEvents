@@ -39,7 +39,7 @@ class SliderContainer extends Component {
         style={{
           ...this.props.style,
           margin: '16px 0',
-          marginLeft: '16px',
+          marginLeft: 16,
         }}
       >
         {this.state.loading

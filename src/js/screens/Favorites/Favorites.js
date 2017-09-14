@@ -10,11 +10,6 @@ import { Event } from 'screens'
 import { TopBar, Container, Card } from 'ui-components'
 import { BottomNav } from 'components'
 
-// import { DataApi } from 'utils/DataApi'
-
-// import styleBotNav from 'ui-components/BottomNavigation/style.scss'
-// import style from './style.scss'
-
 const Favorites = (props) => {
   const viewEvent = (eventData) => {
     props.onViewEvent(eventData)

@@ -5,6 +5,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { goBack } from 'actions/navigationActions'
+import ClassNames from 'classnames'
 
 import { clearModalEventData } from 'actions/dataActions'
 import { addToFavorites, delFromFavorites } from 'actions/userActions'
@@ -114,8 +115,13 @@ class Event extends Component {
                   size='large'
                   src={event.photo_large}
                 />
-                <div className={`${styleCard.card__info} ${style.card__info_large}`}>
-                  <h2 className={`${styleCard.card__title} ${styleCard.card__title_large}`}>
+                <div className={ClassNames(styleCard.card__info, style.card__info_large)}>
+                  <h2 className={
+                    ClassNames(
+                      styleCard.card__title,
+                      styleCard.card__title_large,
+                    )}
+                  >
                     {event.title}
                   </h2>
                   <div
@@ -142,7 +148,7 @@ class Event extends Component {
                     }
                   />
                   <button
-                    className={style.button}
+                    className={ClassNames(style.button)}
                     onClick={this.toggleDescription}
                   >
                     {

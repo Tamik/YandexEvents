@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
-import cn from 'classnames'
+import ClassNames from 'classnames'
 
 import { replace } from 'actions/navigationActions'
 import { sendModalCategoryData } from 'actions/dataActions'
@@ -85,7 +85,7 @@ class Main extends Component {
     return (
       <div className='screen'>
         <Tabs
-          className={styleTabs.tabs}
+          className={ClassNames(styleTabs.tabs)}
           style={{ ...this.props.data.configData.params.style.tabs }}
         >
           <div style={{ position: 'relative' }}>
@@ -107,7 +107,11 @@ class Main extends Component {
           { /* Main tab */}
           <div
             role='button'
-            className={`${styleTabs.tabs__item} ${this.activeTabName === 'feed' ? styleTabs.ta1bs__item_active : ''}`}
+            className={
+              ClassNames(
+                styleTabs.tabs__item,
+                this.activeTabName === 'feed' ? styleTabs.ta1bs__item_active : '',
+              )}
             onClick={(event) => {
               this.viewMainTab(event)
             }}
@@ -119,7 +123,11 @@ class Main extends Component {
               <div
                 key={item.id}
                 role='button'
-                className={`${styleTabs.tabs__item} ${this.activeCategoryId === item.id ? styleTabs.ta1bs__item_active : ''}`}
+                className={
+                  ClassNames(
+                    styleTabs.tabs__item,
+                    this.activeCategoryId === item.id ? styleTabs.ta1bs__item_active : '',
+                  )}
                 onClick={event => this.viewCategory(
                   item,
                   event,

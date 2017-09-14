@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import { InfiniteList as InfiniteListContainer } from 'containers'
 
@@ -63,7 +64,11 @@ class Category extends Component {
                 <button
                   key={item.date}
                   type='button'
-                  className={`${style.filter_date} ${this.state.filterByDate === item.date ? style.filter_date__active : ''}`}
+                  className={
+                    ClassNames(
+                      style.filter_date,
+                      this.state.filterByDate === item.date ? style.filter_date__active : '',
+                    )}
                   onClick={() => {
                     this.filterByDate(item.date)
                   }}
