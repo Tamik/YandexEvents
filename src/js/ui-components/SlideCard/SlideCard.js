@@ -12,16 +12,18 @@ const SlideCard = props => (
     role='button'
     onClick={props.onClick}
   >
-    <Image src={props.src} size={props.size} />
-    <div
-      className={ClassNames(style.slideCard__info, style[`slideCard__info_${props.size}`])}
-    >
-      <h3 className={ClassNames(style.slideCard__title, style[`slideCard__title_${props.size}`])}>
-        {props.title}
-      </h3>
-      <p className={ClassNames(style.slideCard__text)}>
-        {props.date}
-      </p>
+    <div className={ClassNames(style.slideCard__wrap)}>
+      <Image src={props.src} size={props.size} />
+      <div
+        className={ClassNames(style.slideCard__info, style[`slideCard__info_${props.size}`])}
+      >
+        <h3 className={ClassNames(style.slideCard__title, style[`slideCard__title_${props.size}`])}>
+          {props.title}
+        </h3>
+        <p className={ClassNames(style.slideCard__text)}>
+          {props.date}
+        </p>
+      </div>
     </div>
   </div>
 )
