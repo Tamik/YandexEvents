@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import style from './style.scss'
 
@@ -9,7 +10,7 @@ const Image = props => (
       ...props.style,
       backgroundImage: `url(${props.src})`,
     }}
-    className={`${style.image} ${style[`image_${props.size}`]}`}
+    className={ClassNames(style.image, style[`image_${props.size}`])}
   />
 )
 

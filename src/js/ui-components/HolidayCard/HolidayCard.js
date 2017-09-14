@@ -1,7 +1,6 @@
 import React from 'react'
-import ReactDom from 'react-dom'
-
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import { Icon } from 'ui-components'
 
@@ -21,21 +20,22 @@ const HolidayCard = (props) => {
 
   return (
     <div
-      className={style.card}
+      className={ClassNames(style.card)}
       data-id={props.content.id}
       style={{
         backgroundImage: `url(${props.content.photo})`,
       }}
     >
-      <h4 className={style.card__title}>{props.content.title}</h4>
-      <p className={style.card__time}>
+      <h4 className={ClassNames(style.card__title)}>{props.content.title}</h4>
+      <p className={ClassNames(style.card__time)}>
         {formattedDate.dates}
       </p>
       <button
-        className={`
-          ${props.content.open ? style.card__buttonToggle_up : ''}
-          ${style.card__buttonToggle}
-        `}
+        className={
+          ClassNames(
+            props.content.open ? style.card__buttonToggle_up : '',
+            style.card__buttonToggle)
+        }
         type='button'
         onClick={() => handleOpen(props)}
       >
@@ -46,16 +46,16 @@ const HolidayCard = (props) => {
         />
       </button>
       <div className={props.content.open ? 'textOpen' : 'textClose'}>
-        <p className={style.card__text}>{props.content.description}</p>
+        <p className={ClassNames(style.card__text)}>{props.content.description}</p>
         {props.content.facts.map(item => (
-          <div className={style.card__label}>
-            <p className={style.card__label_big}>{item.one}</p>
+          <div className={ClassNames(style.card__label)}>
+            <p className={ClassNames(style.card__label_big)}>{item.one}</p>
             <p>{item.two}</p>
           </div>
         ))}
       </div>
       <button
-        className={style.card__button}
+        className={ClassNames(style.card__button)}
         type='button'
         onClick={() => addToCalendar(props.content.title, 'description', 'location')}
       >

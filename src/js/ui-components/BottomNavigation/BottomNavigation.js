@@ -1,10 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import style from './style.scss'
 
 const BottomNavigation = props => (
-  <div className={style.BottomNavigation}>
+  <div className={ClassNames(style.BottomNavigation)}>
     { React.Children.toArray(props.children) }
   </div>
 )

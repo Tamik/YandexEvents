@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ClassNames from 'classnames'
 
 import { Icon } from 'ui-components'
 import style from './style.scss'
 
 const FloatingButton = props => (
-  <button className={style.button} onClick={props.onClick}>
+  <button className={ClassNames(style.button)} onClick={props.onClick}>
     {props.icon}
     <span style={{ marginLeft: 8, alignSelf: 'center' }}>{props.title}</span>
   </button>
