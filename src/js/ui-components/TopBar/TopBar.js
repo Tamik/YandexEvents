@@ -19,6 +19,13 @@ const TopBar = (props) => {
         {props.title}
       </h2>
       <button
+        style={{ margin: '2px 8px 0 0' }}
+        className={ClassNames(style.topBar__icon)}
+        onClick={props.onClick ? props.onClick.share : null}
+      >
+        {props.iconBeforeRight}
+      </button>
+      <button
         className={ClassNames(style.topBar__icon)}
         onClick={props.onClick ? props.onClick.favorites : null}
       >
