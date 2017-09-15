@@ -25,6 +25,8 @@ const HolidayCard = (props) => {
       style={{
         backgroundImage: `url(${props.content.photo})`,
       }}
+      role='button'
+      onClick={() => handleOpen(props)}
     >
       <h4 className={ClassNames(style.card__title)}>{props.content.title}</h4>
       <p className={ClassNames(style.card__time)}>
@@ -36,8 +38,6 @@ const HolidayCard = (props) => {
             props.content.open ? style.card__buttonToggle_up : '',
             style.card__buttonToggle)
         }
-        type='button'
-        onClick={() => handleOpen(props)}
       >
         <Icon
           type='arrowUp'
