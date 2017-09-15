@@ -4,12 +4,17 @@ import ClassNames from 'classnames'
 
 import { Icon } from 'ui-components'
 
-import { addToCalendar, Daty } from 'utils'
+import { Daty } from 'utils'
 
 import style from './style.scss'
 
-const handleOpen = (props) => {
-  props.onClick(props.content.id)
+const handleOpen = (event, props) => {
+  if (event.target.type === 'button' || event.target.parentNode.type === 'button') {
+    props.addToCalendar()
+  }
+  else {
+    props.onClick(props.content.id)
+  }
 }
 
 const HolidayCard = (props) => {
@@ -20,13 +25,14 @@ const HolidayCard = (props) => {
 
   return (
     <div
+      key={props.content.id}
       className={ClassNames(style.card)}
       data-id={props.content.id}
       style={{
         backgroundImage: `url(${props.content.photo})`,
       }}
       role='button'
-      onClick={() => handleOpen(props)}
+      onClick={event => handleOpen(event, props)}
     >
       <h4 className={ClassNames(style.card__title)}>{props.content.title}</h4>
       <p className={ClassNames(style.card__time)}>
@@ -48,7 +54,7 @@ const HolidayCard = (props) => {
       <div className={props.content.open ? 'textOpen' : 'textClose'}>
         <p className={ClassNames(style.card__text)}>{props.content.description}</p>
         {props.content.facts.map(item => (
-          <div className={ClassNames(style.card__label)}>
+          <div key={item.id} className={ClassNames(style.card__label)}>
             <p className={ClassNames(style.card__label_big)}>{item.one}</p>
             <p>{item.two}</p>
           </div>
@@ -57,7 +63,6 @@ const HolidayCard = (props) => {
       <button
         className={ClassNames(style.card__button)}
         type='button'
-        onClick={() => addToCalendar(props.content.title, 'Москва', props.content.description)}
       >
         <Icon
           type='calendar'

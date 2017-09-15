@@ -1,13 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import { push, goBack } from 'actions/navigationActions'
-
 import { BottomNav } from 'components'
 
 import { TopBar, Container, HolidayCard } from 'ui-components'
 
-import { DataApi } from 'utils'
+import { addToCalendar, DataApi } from 'utils'
 
 class Holidays extends Component {
   constructor(props) {
@@ -23,7 +21,7 @@ class Holidays extends Component {
       .then(response => this.setState({
         holidays: response.data.data,
       }))
-      .then(response => (
+      .then(() => (
         this.state.holidays.map((day) => {
           const holiday = day
           holiday.open = false
@@ -62,6 +60,13 @@ class Holidays extends Component {
                 key={item.id}
                 onClick={this.openDescription}
                 content={item}
+                addToCalendar={() => addToCalendar(
+                  item.title,
+                  'Москва',
+                  item.description,
+                  item.enabledBetweenDates.from,
+                  item.enabledBetweenDates.to,
+                )}
               />
             ))}
           </div>
