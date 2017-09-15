@@ -7,6 +7,10 @@ import {
   viewReducer,
 } from 'reducers'
 
+/**
+ * @function rootReducer
+ * @description Редьюсер, комбинирующий в себе другие редьюсеры
+ */
 const rootReducer = combineReducers({
   router: routerReducer,
   user: userReducer,

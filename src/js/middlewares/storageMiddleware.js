@@ -4,6 +4,12 @@ import {
   USER_DEL_FROM_FAVORITES,
 } from 'consts/actionTypes'
 
+/**
+ * @function storageMiddleware
+ * @description Миддлвара для получения/передачи данных из Redux Store
+ * @param {Object} ls (Instance)
+ * @returns {Function} 
+ */
 const storageMiddleware = ls => () => next => (action) => {
   switch (action.type) {
     case USER_ONBOARDING_VIEWED:

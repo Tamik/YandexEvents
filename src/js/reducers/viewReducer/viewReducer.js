@@ -5,6 +5,13 @@ const initialState = {
   viewMode: VIEW_MODE_LIST,
 }
 
+/**
+ * @function viewReducer
+ * @description Редьюсер
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {Object}
+ */
 const viewReducer = (state = initialState, action) => {
   switch (action.type) {
     case VIEW_SET_VIEW_MODE:

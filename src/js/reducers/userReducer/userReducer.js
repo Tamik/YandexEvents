@@ -11,6 +11,13 @@ const initState = {
 }
 
 const userReducer = (state = initState, action) => {
+/**
+ * @function userReducer
+ * @description Редьюсер
+ * @param {Object} state
+ * @param {Object} action
+ * @returns {Object}
+ */
   switch (action.type) {
     case USER_ONBOARDING_VIEWED:
       return {
