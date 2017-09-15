@@ -82,7 +82,6 @@ HolidayCard.propTypes = {
     title: PropTypes.string,
     enabledBetweenDates: PropTypes.shape(),
   }).isRequired,
-  addToCalendar: PropTypes.func.isRequired,
 }
 
 export default HolidayCard
