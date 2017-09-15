@@ -40,6 +40,8 @@
         "cordova-plugin-geolocation": "^2.4.3",
         "cordova-plugin-statusbar": "^2.2.3",
         "cordova-plugin-whitelist": "^1.3.2",
+        "cordova-plugin-x-socialsharing": "^5.2.0",
+        "es6-promise-plugin": "^4.1.0",
         "fastclick": "^1.0.6",
         "history": "^4.7.2",
         "localforage": "^1.5.0",
@@ -66,7 +68,8 @@
             "cordova-plugin-calendar": {
                 "CALENDAR_USAGE_DESCRIPTION": "Чтобы вы могли добавлять события в свой календарь. :)"
             },
-            "cordova-plugin-statusbar": {}
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-x-socialsharing": {}
         },
         "platforms": [
             "android",

@@ -57,7 +57,7 @@ const HolidayCard = (props) => {
       <button
         className={ClassNames(style.card__button)}
         type='button'
-        onClick={() => addToCalendar(props.content.title, 'description', 'location')}
+        onClick={() => addToCalendar(props.content.title, 'Москва', props.content.description)}
       >
         <Icon
           type='calendar'

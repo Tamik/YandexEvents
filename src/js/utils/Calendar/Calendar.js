@@ -7,7 +7,7 @@
  * @param {Object} startDate
  * @param {Object} endDate
  */
-const addToCalendar = (title, location = null, description = '', startDate = new Date(), endDate = null) => {
+const addToCalendar = (title, location = null, description = '', startDate = new Date(), endDate = new Date()) => {
   const successHandler = () => {
     // successHandler
     console.log('Calendar', true)
