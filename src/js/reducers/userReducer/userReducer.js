@@ -5,12 +5,11 @@ import {
   USER_GET_FAVORITES,
 } from 'consts/actionTypes'
 
-const initState = {
+const initialState = {
   firstEnter: true,
   favorites: {},
 }
 
-const userReducer = (state = initState, action) => {
 /**
  * @function userReducer
  * @description Редьюсер
@@ -18,6 +17,7 @@ const userReducer = (state = initState, action) => {
  * @param {Object} action
  * @returns {Object}
  */
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case USER_ONBOARDING_VIEWED:
       return {

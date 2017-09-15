@@ -1,4 +1,7 @@
-const eventReducer = (state = { event: {} }, action) => {
+const initialState = {
+  event: {},
+}
+
 /**
  * @function eventReducer
  * @description Редьюсер
@@ -6,6 +9,7 @@ const eventReducer = (state = { event: {} }, action) => {
  * @param {Object} action
  * @returns {Object}
  */
+const eventReducer = (state = initialState, action) => {
   if (action.type === 'SEND_TO_EVENT') {
     const newState = {
       ...state,
