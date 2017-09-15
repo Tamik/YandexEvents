@@ -10,7 +10,7 @@ const TopBar = (props) => {
   return (
     <div className={ClassNames(style.topBar, style[transparent])}>
       <button
-        style={{left: 0, top: 24 }}
+        style={{ left: 0, top: 24 }}
         className={ClassNames(style.topBar__icon)}
         onClick={props.onClick ? props.onClick.back : null}
       >
