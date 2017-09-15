@@ -40,5 +40,6 @@
     <plugin name="cordova-plugin-geolocation" spec="^2.4.3" />
     <plugin name="cordova-plugin-statusbar" spec="^2.2.3" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.2" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="^5.2.0" />
     <plugin name="yandex-appmetrica-plugin-cordova" spec="git+https://github.com/Tamik/metrica-plugin-cordova.git" />
 </widget>

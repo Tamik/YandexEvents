@@ -45,6 +45,8 @@ const Icon = (props) => {
       return <svg viewBox='0 0 24 24' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.zoomOut }} />
     case 'calendar':
       return <svg viewBox='0 0 25 23' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.calendar }} />
+    case 'share':
+      return <svg viewBox='0 0 25 23' width={props.width} height={props.height} fill={props.color} dangerouslySetInnerHTML={{ __html: IconsList.share }} />
     default:
       return ''
   }

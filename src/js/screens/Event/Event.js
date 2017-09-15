@@ -12,9 +12,9 @@ import { addToFavorites, delFromFavorites } from 'actions/userActions'
 
 import { BottomNav, StaticMap } from 'components'
 
-import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
+import { TopBar, Image, Icon, Container, Spinner, Button } from 'ui-components'
 
-import { DataApi, Daty } from 'utils'
+import { DataApi, Daty, Shary } from 'utils'
 
 import styleCard from 'ui-components/Card/style.scss'
 import style from './style.scss'
@@ -79,6 +79,24 @@ class Event extends Component {
     }
   }
 
+  share = () => {
+    const formattedDate = Daty.beautifyDatesRange(
+      this.state.event.begin_time,
+      this.state.event.end_time
+    )
+
+    Shary.shareEvent({
+      ...this.state.event,
+      dateTime: `${formattedDate.dates}, ${formattedDate.time}`,
+    })
+      .then((result) => {
+        // @todo: show toast
+      })
+      .catch((error) => {
+        // @todo: show toast
+      })
+  }
+
   render() {
     const event = this.state.event
     const formattedDate = Daty.beautifyDatesRange(
@@ -102,9 +120,13 @@ class Event extends Component {
                 onClick={{
                   back: this.goBack,
                   favorites: this.addToFavorites,
+                  share: this.share,
                 }}
                 iconLeft={
                   <Icon type='arrowBack' width='24' height='24' color='#fff' />
+                }
+                iconBeforeRight={
+                  <Icon type='share' width='24' height='24' color='#fff' />
                 }
                 iconRight={
                   <Icon type={this.isInFavorites() ? 'bookmarkFill' : 'bookmark'} width='24' height='24' color='#fff' />

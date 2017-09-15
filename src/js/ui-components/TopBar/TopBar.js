@@ -19,6 +19,13 @@ const TopBar = (props) => {
         {props.title}
       </h2>
       <button
+        style={{ margin: '2px 8px 0 0' }}
+        className={ClassNames(style.topBar__icon)}
+        onClick={props.onClick ? props.onClick.share : null}
+      >
+        {props.iconBeforeRight}
+      </button>
+      <button
         className={ClassNames(style.topBar__icon)}
         onClick={props.onClick ? props.onClick.favorites : null}
       >
@@ -31,6 +38,7 @@ const TopBar = (props) => {
 TopBar.defaultProps = {
   isVisible: true,
   isTransparent: false,
+  iconBeforeRight: null,
   iconRight: null,
   iconLeft: null,
   title: null,
@@ -38,6 +46,7 @@ TopBar.defaultProps = {
 }
 
 TopBar.propTypes = {
+  iconBeforeRight: PropTypes.element,
   iconRight: PropTypes.element,
   iconLeft: PropTypes.element,
   onClick: PropTypes.func,
