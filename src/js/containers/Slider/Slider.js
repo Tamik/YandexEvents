@@ -4,11 +4,14 @@ import { connect } from 'react-redux'
 import ClassNames from 'classnames'
 
 import { push } from 'actions/navigationActions'
-import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
+import {
+  sendModalEventData,
+  sendModalPlaceData,
+  sendModalEntityData,
+} from 'actions/dataActions'
+import { fetchContainerData } from 'actions/constructorActions'
 
-import { SlideCard, Slider, Spinner } from 'ui-components'
-
-import { DataApi } from 'utils'
+import { SlideCard, Slider, Spinner, Avatar } from 'ui-components'
 
 import style from './styles.scss'
 
@@ -17,32 +20,101 @@ import style from './styles.scss'
  * @description Компонент-контейнер для конструктора ленты
  */
 class SliderContainer extends Component {
-  state = {
-    elements: [],
-    route: {},
-    loading: true,
-  }
-
-  componentWillMount() {
-    DataApi
-      .prepareQuery(this.props.params)
-      .perform()
-      .then(response => this.setState({
-        elements: response.data.data,
-        route: this.props.route,
-        loading: false,
-      }))
+  /**
+   * @static propTypes
+   */
+  static propTypes = {
+    onRequestData: PropTypes.func.isRequired,
+    onViewModal: PropTypes.func.isRequired,
+    route: PropTypes.string,
+    title: PropTypes.string,
+    style: PropTypes.shape(),
+    params: PropTypes.shape(),
+    loaded: PropTypes.bool,
   }
 
   /**
-   * @method viewEvent
-   * @description ...
+   * @static defaultProps
+   * @description Значения props по-умолчанию
+   */
+  static defaultProps = {
+    route: '',
+    title: null,
+    style: {},
+    params: {},
+    loaded: false,
+  }
+
+  componentWillMount() {
+    this.getData(this.props)
+  }
+
+  /**
+   * @method getData
+   * @description Вызов экшена запроса данных для контейнера
+   * @param {Object} props
+   */
+  getData = props => this.props.onRequestData(props, this.props.params.key)
+
+  /**
+   * @method openModal
+   * @description Вызов экшена для открытия модального окна
    * @param {Object} route
    * @param {Object} eventData
    */
-  viewEvent = (route, eventData) => {
-    this.props.onViewEvent(route, eventData)
+  openModal = (route, element) => {
+    this.props.onViewModal(route, element)
   }
+
+  /**
+   * @method renderAvatar
+   * @description Рендер компонента Avatar
+   * @param {Object} props
+   * @return {Component}
+   */
+  renderAvatar = props => (
+    <Avatar {...props} />
+  )
+
+  /**
+   * @method renderCard
+   * @description Рендер компонента Card
+   * @param {Object} props
+   * @return {Component}
+   */
+  renderCard = props => (
+    <SlideCard {...props} />
+  )
+
+  /**
+   * @method renderFactory
+   * @description "Фабрика" рендера компонентов в соответствии с заданной конфигурацией
+   * @param {Array} payload
+   */
+  renderFactory = payload => (
+    payload.map((element) => {
+      switch (this.props.child.type) {
+        case 'avatar': return this.renderAvatar({
+          key: element.id,
+          src: element.photo_small,
+          title: element.title,
+          onClick: () => this.openModal(this.props.route, element),
+        })
+        default: return this.renderCard({
+          key: element.id,
+          size: this.props.child.params.size,
+          title: element.title,
+          src: element.photo_small,
+          location: element.location_title,
+          date: element.dateFormatted ? `${element.dateFormatted.day} ${element.dateFormatted.month} ${element.dateFormatted.time}` : null,
+          style: {
+            ...element.style,
+          },
+          onClick: () => this.openModal(this.props.route, element),
+        })
+      }
+    })
+  )
 
   render() {
     return (
@@ -52,36 +124,29 @@ class SliderContainer extends Component {
           margin: '16px 0',
         }}
       >
-        {this.state.loading
-          ? (<Spinner />)
-          : (
+        {this.props.constructor[this.props.params.key]
+          && this.props.constructor[this.props.params.key].length > 0
+          ? (
             <div className={ClassNames(style.slider_animate)}>
               {this.props.title
-                ? <h3
-                  style={{
-                    fontSize: '1rem',
-                    margin: '40px 0 6px 16px',
-                    lineHeight: '1.25rem',
-                  }}
-                >{this.props.title}</h3>
+                ? (
+                  <h3
+                    style={{
+                      fontSize: '1rem',
+                      margin: '40px 0 6px 16px',
+                      lineHeight: '1.25rem',
+                    }}
+                  >{this.props.title}</h3>
+                )
                 : null
               }
               <Slider>
-                {this.state.elements.map(element => (
-                  <SlideCard
-                    key={element.id}
-                    title={element.title}
-                    src={`${element.photo_small}`}
-                    location={element.location_title}
-                    size={this.props.cardSize}
-                    style={{
-                      ...this.props.cardStyle,
-                    }}
-                    onClick={() => this.viewEvent(this.state.route.url, element)}
-                  />
-                ))}
+                {this.renderFactory(this.props.constructor[this.props.params.key])}
               </Slider>
             </div>
+          )
+          : (
+            <Spinner />
           )
         }
       </div>
@@ -89,29 +154,12 @@ class SliderContainer extends Component {
   }
 }
 
-SliderContainer.defaultProps = {
-  route: {},
-  title: null,
-  style: {},
-  cardSize: 'small',
-  cardStyle: {},
-  params: {},
-}
-
-SliderContainer.propTypes = {
-  onViewEvent: PropTypes.func.isRequired,
-  route: PropTypes.shape(),
-  title: PropTypes.string,
-  style: PropTypes.shape(),
-  cardSize: PropTypes.string,
-  cardStyle: PropTypes.shape(),
-  params: PropTypes.shape(),
-}
-
 export default connect(
-  state => ({}),
+  state => ({
+    constructor: state.constructor,
+  }),
   dispatch => ({
-    onViewEvent: (route, element) => {
+    onViewModal: (route, element) => {
       if (/event/.test(route)) {
         dispatch(sendModalEventData(element))
       }
@@ -123,6 +171,9 @@ export default connect(
       }
 
       dispatch(push(route.replace('%', element.id)))
+    },
+    onRequestData: (payload, key) => {
+      dispatch(fetchContainerData(payload.params, key))
     },
   })
 )(SliderContainer)
