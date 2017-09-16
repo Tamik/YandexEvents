@@ -1,34 +1,58 @@
 /* dev:start */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import axios from 'axios'
+import { connect } from 'react-redux'
 
-export default class BlankContainer extends Component {
-  constructor(props) {
-    super(props)
+import { fetchContainerData } from 'actions/constructorActions'
 
-    this.state = {}
+/**
+ * @class BlankContainer
+ * @description Компонент-контейнер для конструктора ленты
+ * 
+ * @deprecated Данный компонент не разработан
+ */
+class BlankContainer extends Component {
+  /**
+   * @static propTypes
+   */
+  static propTypes = {
+    onRequestData: PropTypes.func.isRequired,
+    params: PropTypes.shape().isRequired,
   }
+
+  /**
+   * @static defaultProps
+   * @description Значения props по-умолчанию
+   */
+  static defaultProps = {}
 
   componentWillMount() {
-    // axios.get()
-    console.warn('Component BlankContainer could not to use.')
+    console.warn('Component Blank is depreacated')
+    this.getData(this.props)
   }
+
+  /**
+   * @method getData
+   * @description Вызов экшена запроса данных для контейнера
+   * @param {Object} props
+   */
+  getData = props => this.props.onRequestData(props, this.props.params.key)
 
   render() {
     return (
-      <div>
-        {this.props.item}
-      </div>
+      <div>This component is deprecated.</div>
     )
   }
 }
 
-BlankContainer.defaultProps = {
-  item: {},
-}
-
-BlankContainer.propTypes = {
-  item: PropTypes.shape().isRequired,
-}
+export default connect(
+  state => ({
+    constructor: state.constructor,
+  }),
+  dispatch => ({
+    onRequestData: (payload, key) => {
+      dispatch(fetchContainerData(payload.params, key))
+    },
+  })
+)(BlankContainer)
 /* dev:end */
