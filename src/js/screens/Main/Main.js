@@ -186,9 +186,18 @@ class Main extends Component {
             height: '100vh',
           }}
           >
-            {this.props.data.eventData ? <Event params={{ eventId: this.props.data.eventData.id }} /> : null}
-            {this.props.data.placeData ? <Place params={{ placeId: this.props.data.placeData.id }} /> : null}
-            {this.props.data.entityData ? <Entity params={{ entityId: this.props.data.entityData.id }} /> : null}
+            {this.props.data.eventData
+              ? (<Event params={{ eventId: this.props.data.eventData.id }} />)
+              : null
+            }
+            {this.props.data.placeData
+              ? (<Place params={{ placeId: this.props.data.placeData.id }} />)
+              : null
+            }
+            {this.props.data.entityData
+              ? (<Entity params={{ entityId: this.props.data.entityData.id }} />)
+              : null
+            }
           </div>
           : null}
       </div>
