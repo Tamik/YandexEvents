@@ -72,9 +72,14 @@
     }
 
     &_big {
+      margin: 0;
       font-size: 1.875rem;
       line-height: 1.75rem;
       font-weight: bold;
+    }
+
+    &_small {
+      margin: 0;
     }
   }
 }
