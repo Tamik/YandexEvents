@@ -13,20 +13,20 @@ import style from './style.scss'
  * @description Экран просмотра категории
  */
 class Category extends Component {
-  constructor(props) {
-    super(props)
   /**
    * @static propTypes
    */
+  static propTypes = {
+    params: PropTypes.shape().isRequired,
+  }
 
-    this.state = {
-      filterByDate: null,
-      holiDates: [],
-    }
   /**
    * @property state
    * @description Состояние компонента
    */
+  state = {
+    filterByDate: null,
+    holiDates: [],
   }
 
   componentWillMount() {
@@ -90,13 +90,11 @@ class Category extends Component {
                       style.filter_date,
                       this.state.filterByDate === item.date ? style.filter_date__active : '',
                     )}
-                  onClick={() => {
-                    this.filterByDate(item.date)
-                  }}
+                  onClick={() => this.filterByDate(item.date)}
                 >{item.dateFormatted.day} {item.dateFormatted.month}</button>
               ))}
             </div>
-            : ''
+            : null
         }
         <InfiniteListContainer
           categoryId={this.props.params.categoryId}
@@ -105,10 +103,6 @@ class Category extends Component {
       </div>
     )
   }
-}
-
-Category.propTypes = {
-  params: PropTypes.shape().isRequired,
 }
 
 export default Category
