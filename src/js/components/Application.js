@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { sendModalEventData, sendModalPlaceData, sendModalEntityData } from 'actions/dataActions'
+import {
+  sendModalEventData,
+  sendModalPlaceData,
+  sendModalEntityData,
+} from 'actions/dataActions'
 
 import {
   OnBoarding,
@@ -9,22 +13,17 @@ import {
   Place,
   Category,
   Feed,
-  Map,
   Entity,
   Holidays,
   Favorites,
 } from 'screens'
-import style from './Application.scss'
+import './global.scss'
 
 class Application extends Component {
   constructor(props) {
     super(props)
     this.route = props.router ? props.router.route : ''
     this.routeChunks = window.location.hash.replace(/^#\/?|\/$/g, '').split('/')
-  }
-
-  componentWillReceiveProps(props) {
-
   }
 
   shouldComponentUpdate(nextProps) {
@@ -35,6 +34,10 @@ class Application extends Component {
     this.route = nextProps.router ? nextProps.router.route : ''
   }
 
+  /**
+   * @method shouldUpdateWhenModal
+   * @param {Object} nextProps
+   */
   shouldUpdateWhenModal = (nextProps) => {
     const MODALS = ['event', 'place', 'entity']
     let returns = true
@@ -65,93 +68,70 @@ class Application extends Component {
     return returns
   }
 
-  /*
-    @TODO: Match URLs properly with regexp ;)
-  */
-
   render() {
-    // Если пользователь впервые у нас, 
-    // то покажем OnBoarding
+    /**
+     * Если пользователь первый раз открыл приложение,
+     * то показываем ему OnBoarding
+     */
     if (this.props.user.firstEnter) {
       return (<OnBoarding />)
     }
-
-    // All routes
-    // @todo: pass to routes config
-    // /
-    // /feed
-    //    /feed/list
-    //    /feed/map
-    // /category/999
-    //    /category/999/list
-    //    /category/999/map
-    // /place/999
-    // /entity/999
-    // /holidays - tab two
-    // /favorites - tab three
-    //    /list
-    //    /map
-    // /event
-
-    // Main -> fragment -> Feed 
+    /**
+     * @todo Pass to routes config
+     * /
+     * /feed
+     *  /feed/list
+     *  /feed/map
+     * /category/:id
+     *  /category/:id/list
+     *  /category/:id/map
+     * /event/:id
+     * /place/:id
+     * /entity/:id
+     * /holidays
+     * /favorites
+     */
+    /** Main -> fragment -> Feed */
     if (!this.route || this.route === '#/' || /main/.test(this.route) || /feed/.test(this.route)) {
       const params = { viewMode: 'list' }
-      return (
-        <Main
-          fragment={Feed}
-          params={params}
-        />
-      )
+      return (<Main fragment={Feed} params={params} />)
     }
-
-    // Main -> fragment -> Category
+    /** Main -> fragment -> Category */
     if (/category/.test(this.route)) {
       const chunks = this.route.split('/') // #/category/([0-9])/(map|list)
       const categoryId = chunks[2]
       const viewMode = chunks[3]
       const params = { categoryId, viewMode }
-      return (<Main
-        fragment={Category}
-        params={params}
-      />)
+      return (<Main fragment={Category} params={params} />)
     }
-
-    // Screen Holidays
+    /** Holidays screen */
     if (/holidays/.test(this.route)) {
-      return <Holidays />
+      return (<Holidays />)
     }
-
-    // Screen Favorites
+    /** Favorites screen */
     if (/favorites/.test(this.route)) {
-      return <Favorites />
+      return (<Favorites />)
     }
-
-    /**
-     * General screens
-     */
-    // Screen Entity
+    /** Entity screen */
     if (/entity/.test(this.route)) {
       const entityId = this.route.split('/')[2]
       const params = { entityId }
-      return <Entity params={params} />
+      return (<Entity params={params} />)
     }
-
-    // Screen Event
+    /** Event screen */
     if (/event/.test(this.route)) {
       const eventId = this.route.split('/')[2]
       const params = { eventId }
-      return <Event params={params} />
+      return (<Event params={params} />)
     }
-
-    // Screen Place
+    /** Place screen */
     if (/place/.test(this.route)) {
       const placeId = this.route.split('/')[2]
       const params = { placeId }
-      return <Place params={params} />
+      return (<Place params={params} />)
     }
-
-    // @todo: redirect to Screen Main
-    return <div>Not found ;)</div>
+    /** @todo Redirect to Main screen */
+    return (<div>Not found.</div>)
   }
 }
 

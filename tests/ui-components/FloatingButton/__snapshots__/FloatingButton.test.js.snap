@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FloatingButton Проверка снепшота компонента 1`] = `
+<button
+  className=""
+  onClick={[Function]}
+>
+  <span
+    style={
+      Object {
+        "alignSelf": "center",
+        "marginLeft": 8,
+      }
+    }
+  />
+</button>
+`;

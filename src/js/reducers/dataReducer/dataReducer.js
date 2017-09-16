@@ -17,6 +17,13 @@ const initialState = {
   configData: null,
 }
 
+/**
+ * @function dataReducer
+ * @description Редьюсер
+ * @param {Object} state
+ * @param {Object} action
+ * @return {Object}
+ */
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
     case DATA_EVENT: {

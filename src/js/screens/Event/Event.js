@@ -1,25 +1,42 @@
 /* global cordova */
 /* global StatusBar */
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { goBack } from 'actions/navigationActions'
 import ClassNames from 'classnames'
 
+import { goBack } from 'actions/navigationActions'
 import { clearModalEventData } from 'actions/dataActions'
 import { addToFavorites, delFromFavorites } from 'actions/userActions'
 
-import { BottomNav, StaticMap } from 'components'
+import { StaticMap } from 'components'
 
-import { TopBar, Image, Icon, Container, Spinner, Button } from 'ui-components'
+import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
 
 import { DataApi, Daty, Shary } from 'utils'
 
 import styleCard from 'ui-components/Card/style.scss'
 import style from './style.scss'
 
+/**
+ * @class Event
+ * @description Экран просмотра события
+ */
 class Event extends Component {
+  /**
+   * @static propTypes
+   */
+  static propTypes = {
+    params: PropTypes.shape().isRequired,
+    goBack: PropTypes.func.isRequired,
+    addToFavorites: PropTypes.func.isRequired,
+    delFromFavorites: PropTypes.func.isRequired,
+  }
+
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   state = {
     event: {},
     loading: true,
@@ -44,6 +61,10 @@ class Event extends Component {
       }))
   }
 
+  /**
+   * @method goBack
+   * @description Вернуться на предыдущий экран
+   */
   goBack = () => {
     if (cordova.platformId === 'ios') {
       StatusBar.styleDefault()
@@ -55,8 +76,17 @@ class Event extends Component {
     this.props.goBack()
   }
 
+  /**
+   * @method isInFavorites
+   * @description Проверка, находится ли сущность в коллекции (закладки)
+   * @return {bool}
+   */
   isInFavorites = () => !!this.props.favorites[this.props.params.eventId]
 
+  /**
+   * @method addToFavorites
+   * @description Добавить в избранное
+   */
   addToFavorites = () => {
     if (this.isInFavorites()) {
       this.props.delFromFavorites(this.state.event)
@@ -66,6 +96,10 @@ class Event extends Component {
     }
   }
 
+  /**
+   * @method toggleDescription
+   * @description Возможность посмотреть полное или краткое описание
+   */
   toggleDescription = () => {
     if (this.state.hideText) {
       this.setState({
@@ -79,6 +113,10 @@ class Event extends Component {
     }
   }
 
+  /**
+   * @method share
+   * @description Поделиться сущностью
+   */
   share = () => {
     const formattedDate = Daty.beautifyDatesRange(
       this.state.event.begin_time,
@@ -143,9 +181,7 @@ class Event extends Component {
                       styleCard.card__title,
                       styleCard.card__title_large,
                     )}
-                  >
-                    {event.title}
-                  </h2>
+                  >{event.title}</h2>
                   <div
                     style={{
                       fontSize: '1.25rem',
@@ -154,12 +190,8 @@ class Event extends Component {
                       lineHeight: '1.75rem',
                     }}
                   >
-                    <p>
-                      {formattedDate.dates}
-                    </p>
-                    <p>
-                      {formattedDate.time}
-                    </p>
+                    <p>{formattedDate.dates}</p>
+                    <p>{formattedDate.time}</p>
                   </div>
                   <p
                     className={ClassNames(style.text)}
@@ -173,10 +205,9 @@ class Event extends Component {
                     className={ClassNames(style.button)}
                     onClick={this.toggleDescription}
                   >
-                    {
-                      this.state.hideText
-                        ? 'Полное описание'
-                        : 'Скрыть описание'
+                    {this.state.hideText
+                      ? 'Полное описание'
+                      : 'Скрыть описание'
                     }
                   </button>
                   <div style={{ margin: '16px 0' }}>
@@ -214,13 +245,6 @@ class Event extends Component {
       </div>
     )
   }
-}
-
-Event.propTypes = {
-  params: PropTypes.shape().isRequired,
-  goBack: PropTypes.func.isRequired,
-  addToFavorites: PropTypes.func.isRequired,
-  delFromFavorites: PropTypes.func.isRequired,
 }
 
 export default connect(

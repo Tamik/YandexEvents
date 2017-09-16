@@ -5,17 +5,31 @@ import { connect } from 'react-redux'
 import { goBack } from 'actions/navigationActions'
 import { clearModalEntityData } from 'actions/dataActions'
 
-import { Event } from 'screens'
-
-import { BottomNav } from 'components'
-
 import { List as ListContainer } from 'containers'
+
+import { Event } from 'screens'
 
 import { TopBar, Icon, Container, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils'
 
+/**
+ * @class Entity
+ * @description Экран просмотра сущности
+ */
 class Entity extends Component {
+  /**
+   * @static propTypes
+   */
+  static propTypes = {
+    params: PropTypes.shape().isRequired,
+    goBack: PropTypes.func.isRequired,
+  }
+
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   state = {
     entity: {},
     loading: true,
@@ -32,6 +46,10 @@ class Entity extends Component {
       }))
   }
 
+  /**
+   * @method goBack
+   * @description Вернуться на предыдущий экран
+   */
   goBack = () => {
     this.props.goBack()
   }
@@ -55,11 +73,13 @@ class Entity extends Component {
               />
               <Container scrolling stretching>
                 <ListContainer
+                  route='/event/%'
                   params={{
                     method: 'events',
                     holiday: 1,
                     entity: this.props.params.entityId,
                   }}
+                  child={{ type: 'card', params: { size: 'medium' } }}
                 />
               </Container>
               {this.props.eventData && this.props.eventData !== '__CLOSE__'
@@ -75,18 +95,13 @@ class Entity extends Component {
                 >
                   <Event params={{ eventId: this.props.eventData.id }} />
                 </div>
-                : ''}
+                : null}
             </div>
           )
         }
       </div>
     )
   }
-}
-
-Entity.propTypes = {
-  params: PropTypes.shape().isRequired,
-  goBack: PropTypes.func.isRequired,
 }
 
 export default connect(

@@ -3,153 +3,125 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
 import {
-  List as ListContainer,
-  Slider as SliderContainer,
+  Blank as BlankContainer,
   Carousel as CarouselContainer,
   Hint as HintContainer,
+  List as ListContainer,
+  Slider as SliderContainer,
 } from 'containers'
 
+/**
+ * @class Constructor
+ * @description Конструктор ленты
+ */
 class Constructor extends Component {
+  /**
+   * @static propTypes
+   */
+  static propTypes = {
+    config: PropTypes.shape().isRequired,
+  }
+
+  /**
+   * @method renderListContainer
+   * @description Рендер компонента ListContainer
+   * @param {Object} props
+   * @return {Component}
+   */
   renderListContainer = props => (
-    <ListContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <ListContainer {...props} />
   )
 
+  /**
+   * @method renderSliderContainer
+   * @description Рендер компонента SliderContainer
+   * @param {Object} props
+   * @return {Component}
+   */
   renderSliderContainer = props => (
-    <SliderContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <SliderContainer {...props} />
   )
 
+  /**
+   * @method renderCarouselContainer
+   * @description Рендер компонента CarouselContainer
+   * @param {Object} props
+   * @return {Component}
+   */
   renderCarouselContainer = props => (
-    <CarouselContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <CarouselContainer {...props} />
   )
 
+  /**
+   * @method renderHintContainer
+   * @description Рендер компонента HintContainer
+   * @param {Object} props
+   * @return {Component}
+   */
   renderHintContainer = props => (
-    <HintContainer
-      key={props.id}
-      params={props.data}
-      title={props.params.title}
-      style={props.style}
-      route={props.route}
-      cardSize={props.cardSize}
-      cardStyle={props.cardStyle}
-    />
+    <HintContainer {...props} />
   )
 
+  /**
+   * @method renderBlankContainer
+   * @description Рендер компонента BlankContainer
+   * @param {Object} props
+   * @return {Component}
+   */
   renderBlankContainer = props => (
-    <div key={props.id}>
-      {/* {props.params.title} */}
-    </div>
+    <BlankContainer {...props} />
   )
 
-  renderFactory = (payload, styles, rootStyles) => (
+  /**
+   * @method renderFactory
+   * @description "Фабрика" рендера компонентов в соответствии с заданной конфигурацией
+   * @param {Object} payload
+   * @param {Object} styles
+   */
+  renderFactory = (payload, styles) => (
     payload.map((container) => {
+      const settings = {
+        key: container.id,
+        title: container.params.title,
+        params: {
+          ...container.data,
+          key: container.id,
+        },
+        route: container.route,
+        child: {
+          type: container.child.type,
+          style: container.child.style,
+          params: container.child.params,
+        },
+        style: styles[container.name],
+      }
+
       switch (container.type) {
-        case 'list': return this.renderListContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
-        case 'carousel': return this.renderCarouselContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
-        case 'slider': return this.renderSliderContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
+        case 'carousel': return this.renderCarouselContainer({ ...settings })
         case 'hint': return this.renderHintContainer({
-          id: container.id,
-          type: container.type,
-          data: container.data,
+          key: container.id,
           params: {
-            // title: container.params.title,
+            ...container.data,
+            key: container.id,
           },
           style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
         })
-        default: return this.renderBlankContainer({
-          id: container.id,
-          type: container.type,
-          params: {
-            title: container.params.title,
-          },
-          style: styles[container.name],
-          route: container.route,
-          cardSize: container.params.cardSize,
-          cardStyle: rootStyles.card,
-        })
+        case 'slider': return this.renderSliderContainer({ ...settings })
+        default: return this.renderListContainer({ ...settings })
       }
     })
   )
 
   render() {
     return (
-      <div
-        style={{
-          ...this.props.config.params.style.body,
-          marginBottom: 68,
-        }}
-      >
+      <div>
         {this.renderFactory(
           this.props.config.containers,
           this.props.config.style,
-          this.props.config.params.style,
         )}
       </div>
     )
   }
-}
-
-Constructor.propTypes = {
-  config: PropTypes.shape().isRequired,
 }
 
 export default connect(

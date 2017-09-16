@@ -5,15 +5,22 @@ import { connect } from 'react-redux'
 import { push } from 'actions/navigationActions'
 import { sendModalEventData } from 'actions/dataActions'
 
+import { BottomNav } from 'components'
+
 import { Event } from 'screens'
 
 import { TopBar, Container, Card } from 'ui-components'
-import { BottomNav } from 'components'
 
+/**
+ * @function Favorites
+ * @description Экран просмотра коллекции (закладки)
+ * @param {Object} props
+ */
 const Favorites = (props) => {
-  const viewEvent = (eventData) => {
-    props.onViewEvent(eventData)
+  const openModal = (element) => {
+    props.onViewModal(element)
   }
+
   return (
     <div className='screen'>
       <TopBar
@@ -34,7 +41,7 @@ const Favorites = (props) => {
                     marginBottom: 20,
                     animationDelay: `${index * 200}ms`,
                   }}
-                  onClick={() => viewEvent(props.favorites[key])}
+                  onClick={() => openModal(props.favorites[key])}
                   date={`${props.favorites[key].dateFormatted.day} ${props.favorites[key].dateFormatted.month} ${props.favorites[key].dateFormatted.time} `}
                 />
               ))
@@ -61,7 +68,7 @@ const Favorites = (props) => {
 }
 
 Favorites.propTypes = {
-  onViewEvent: PropTypes.func.isRequired,
+  onViewModal: PropTypes.func.isRequired,
   favorites: PropTypes.shape().isRequired,
 }
 
@@ -71,7 +78,7 @@ export default connect(
     eventData: state.data.eventData,
   }),
   dispatch => ({
-    onViewEvent: (eventData) => {
+    onViewModal: (eventData) => {
       const newEventData = eventData
       newEventData.notModal = true
 

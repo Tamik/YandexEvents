@@ -4,7 +4,6 @@ const EVENT_URL_TPL = `${process.env.HOST}/event/%`
 /**
  * @see https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin#readme
  */
-
 const share = options => new Promise((resolve, reject) => {
   window.plugins.socialsharing.shareWithOptions(options, resolve, reject)
 })
@@ -32,9 +31,9 @@ const Shary = {
     return share(options)
   },
 
-  sharePlace: () => { },
-  shareEntity: () => { },
-  shareApp: () => { },
+  sharePlace: () => {},
+  shareEntity: () => {},
+  shareApp: () => {},
 }
 
 export default Shary

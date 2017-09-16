@@ -1,16 +1,16 @@
 .button {
   flex-shrink: 0;
-  color: #3d327c;
   font-size: 1rem;
-  text-align: left;
-  border: none;
   background-color: transparent;
+  border: none;
+  color: #3d327c;
+  text-align: left;
 }
 
 .text {
   font-size: 1rem;
-  line-height: 1.375rem;
   color: #000;
+  line-height: 1.375rem;
 
   & * {
     color: #000;

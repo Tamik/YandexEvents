@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Spinner Проверка снепшота компонента 1`] = `
+<div
+  className=""
+>
+  <div
+    className=""
+  />
+</div>
+`;

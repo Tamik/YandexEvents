@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopBar Проверка снепшота компонента 1`] = `
+<div
+  className=""
+>
+  <button
+    className=""
+    onClick={undefined}
+    style={
+      Object {
+        "left": 0,
+        "top": 24,
+      }
+    }
+  />
+  <h2
+    className=""
+  />
+  <button
+    className=""
+    onClick={undefined}
+    style={
+      Object {
+        "right": 56,
+        "top": 24,
+      }
+    }
+  />
+  <button
+    className=""
+    onClick={undefined}
+    style={
+      Object {
+        "right": 0,
+        "top": 24,
+      }
+    }
+  />
+</div>
+`;

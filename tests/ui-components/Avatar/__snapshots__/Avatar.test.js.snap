@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Avatar Проверка снепшота компонента 1`] = `
+<div
+  className=""
+>
+  <div
+    className=""
+    onClick={null}
+    role="button"
+    style={
+      Object {
+        "backgroundImage": "url(https://placehold.it/256x256)",
+      }
+    }
+  />
+  <div
+    className=""
+  >
+    <p
+      className=""
+    />
+  </div>
+</div>
+`;

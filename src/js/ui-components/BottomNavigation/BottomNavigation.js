@@ -6,7 +6,7 @@ import style from './style.scss'
 
 const BottomNavigation = props => (
   <div className={ClassNames(style.BottomNavigation)}>
-    { React.Children.toArray(props.children) }
+    {React.Children.toArray(props.children)}
   </div>
 )
 
