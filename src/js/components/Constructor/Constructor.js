@@ -16,10 +16,17 @@ import {
  */
 class Constructor extends Component {
   /**
+   * @static propTypes
+   */
+  static propTypes = {
+    config: PropTypes.shape().isRequired,
+  }
+
+  /**
    * @method renderListContainer
    * @description Рендер компонента ListContainer
    * @param {Object} props
-   * @returns {Component}
+   * @return {Component}
    */
   renderListContainer = props => (
     <ListContainer {...props} />
@@ -29,7 +36,7 @@ class Constructor extends Component {
    * @method renderSliderContainer
    * @description Рендер компонента SliderContainer
    * @param {Object} props
-   * @returns {Component}
+   * @return {Component}
    */
   renderSliderContainer = props => (
     <SliderContainer {...props} />
@@ -39,7 +46,7 @@ class Constructor extends Component {
    * @method renderCarouselContainer
    * @description Рендер компонента CarouselContainer
    * @param {Object} props
-   * @returns {Component}
+   * @return {Component}
    */
   renderCarouselContainer = props => (
     <CarouselContainer {...props} />
@@ -49,7 +56,7 @@ class Constructor extends Component {
    * @method renderHintContainer
    * @description Рендер компонента HintContainer
    * @param {Object} props
-   * @returns {Component}
+   * @return {Component}
    */
   renderHintContainer = props => (
     <HintContainer {...props} />
@@ -59,7 +66,7 @@ class Constructor extends Component {
    * @method renderBlankContainer
    * @description Рендер компонента BlankContainer
    * @param {Object} props
-   * @returns {Component}
+   * @return {Component}
    */
   renderBlankContainer = props => (
     <BlankContainer {...props} />
@@ -70,53 +77,51 @@ class Constructor extends Component {
    * @description "Фабрика" рендера компонентов в соответствии с заданной конфигурацией
    * @param {Object} payload
    * @param {Object} styles
-   * @param {Object} rootStyles
-   * @returns {?}
    */
-  renderFactory = (payload, styles, rootStyles) => (
+  renderFactory = (payload, styles) => (
     payload.map((container) => {
       const settings = {
         key: container.id,
         title: container.params.title,
-        params: container.params,
+        params: {
+          ...container.data,
+          key: container.id,
+        },
         route: container.route,
         child: {
           type: container.child.type,
-          style: rootStyles[container.child.type],
+          style: container.child.style,
+          params: container.child.params,
         },
         style: styles[container.name],
       }
 
       switch (container.type) {
         case 'carousel': return this.renderCarouselContainer({ ...settings })
-        case 'hint': return this.renderHintContainer({ ...settings })
-        case 'list': return this.renderListContainer({ ...settings })
+        case 'hint': return this.renderHintContainer({
+          key: container.id,
+          params: {
+            ...container.data,
+            key: container.id,
+          },
+          style: styles[container.name],
+        })
         case 'slider': return this.renderSliderContainer({ ...settings })
-        default: return this.renderBlankContainer({ ...settings })
+        default: return this.renderListContainer({ ...settings })
       }
     })
   )
 
   render() {
     return (
-      <div
-        style={{
-          ...this.props.config.params.style.body,
-          marginBottom: 68,
-        }}
-      >
+      <div>
         {this.renderFactory(
           this.props.config.containers,
           this.props.config.style,
-          this.props.config.params.style,
         )}
       </div>
     )
   }
-}
-
-Constructor.propTypes = {
-  config: PropTypes.shape().isRequired,
 }
 
 export default connect(
