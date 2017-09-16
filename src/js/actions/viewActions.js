@@ -3,7 +3,7 @@ import { VIEW_SET_VIEW_MODE } from 'consts/actionTypes'
 /**
  * @function setViewMode
  * @description Экшен
- * @param {Object} payload ?
+ * @param {string} payload
  * @return {Object}
  */
 export const setViewMode = payload => ({

@@ -7,7 +7,7 @@ import {
 
 /**
  * @function onBoardingViewed
- * @description Экшен
+ * @description Экшен, проверяющий, видел ли пользователь онбординг
  * @return {Object}
  */
 export const onBoardingViewed = () => ({
@@ -16,7 +16,7 @@ export const onBoardingViewed = () => ({
 
 /**
  * @function addToFavorites
- * @description Экшен
+ * @description Экшен, добавляющий сущность в коллекцию (закладки)
  * @param {Object} payload
  * @return {Object}
  */
@@ -27,7 +27,7 @@ export const addToFavorites = payload => ({
 
 /**
  * @function delFromFavorites
- * @description Экшен
+ * @description Экшен, удаляющий сущность из коллекции (закладки)
  * @param {Object} payload 
  * @return {Object}
  */
@@ -38,7 +38,7 @@ export const delFromFavorites = payload => ({
 
 /**
  * @function getFavorites
- * @description Экшен
+ * @description Экшен, запрашивающий сущности в коллекции
  * @param {Object} payload
  * @return {Object}
  */
