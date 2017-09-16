@@ -1,45 +1,26 @@
 /* global cordova */
 /* global StatusBar */
-
 import React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import localforage from 'localforage'
-
-import axios from 'axios'
-
-import thunk from 'redux-thunk'
-
 import FastClick from 'fastclick'
 
-import { DataApi } from 'utils'
-
-import { applyMiddleware, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { createHashHistory } from 'history'
-import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 
-import routerMiddleware from 'middlewares/routerMiddleware'
-import storageMiddleware from 'middlewares/storageMiddleware'
 import { sendApplicationConfig, sendModalEventData } from 'actions/dataActions'
 import { locationChange } from 'actions/navigationActions'
 import { onBoardingViewed, getFavorites } from 'actions/userActions'
-import rootReducer from 'reducers/rootReducer'
 
 import Application from 'components/Application'
 
-const history = createHashHistory({ hashType: 'slash' })
+import configureStore from 'store/configureStore'
 
-const store = createStore(
-  rootReducer,
-  composeWithDevTools(
-    applyMiddleware(
-      routerMiddleware(history),
-      storageMiddleware(localforage),
-      thunk,
-    )
-  )
-)
+import { DataApi } from 'utils'
+
+const history = createHashHistory({ hashType: 'slash' })
+const store = configureStore()
 
 const renderApp = () => {
   render(
@@ -52,16 +33,10 @@ const renderApp = () => {
   )
 }
 
-// Current location displatch
+/** Current location dispatch */
 store.dispatch(
   locationChange(window.location.hash)
 )
-
-// Listen store and render page on storeUpdate
-store.subscribe(() => {
-  // @todo: improve for chunked rendering
-  // renderApp()
-})
 
 let prevHash = window.location.hash
 
@@ -75,7 +50,6 @@ history.listen((location) => {
   store.dispatch(
     locationChange(hash)
   )
-
   prevHash = hash
 })
 
@@ -96,10 +70,9 @@ function onDeviceReady() {
     StatusBar.styleDefault()
   }
 
-  // DataApi.getHolidayConfig()
-  //   .byHoliday(1)
-  //   .perform()
-  axios.get('https://static.yamblz.ru/response.json')
+  DataApi.getHolidayConfig()
+    .byHoliday(1)
+    .perform()
     .then(response => store.dispatch(sendApplicationConfig(response.data.data)))
     .then(() => {
       localforage.getItem('user')
