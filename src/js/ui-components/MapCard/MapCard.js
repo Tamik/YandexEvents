@@ -52,6 +52,10 @@ MapCard.defaultProps = {
   src: 'http://placehold.it/350x50',
   title: null,
   option: null,
+  time: {
+    begin: 'Sat, 14 Sep 2017 07:36:44',
+    end: 'Sat, 16 Sep 2017 07:36:44',
+  },
 }
 
 MapCard.propTypes = {

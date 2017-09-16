@@ -7,11 +7,11 @@ import style from './style.scss'
 const Container = (props) => {
   const scrollStyle = props.scrolling ? 'container_scroll' : null
   const stretchStyle = props.stretching ? 'container_stretch' : null
-  const backgroundStyle = props.background ? 'container_image' : null
+  const colorStyle = props.color ? 'container_color' : null
 
   return (
     <div
-      className={ClassNames(style[scrollStyle], style[stretchStyle], style[backgroundStyle])}
+      className={ClassNames(style[scrollStyle], style[stretchStyle], style[colorStyle])}
     >
       { React.Children.toArray(props.children) }
     </div>
@@ -21,13 +21,12 @@ const Container = (props) => {
 Container.defaultProps = {
   scrolling: false,
   stretching: false,
-  background: false,
+  color: false,
 }
 
 Container.propTypes = {
   scrolling: PropTypes.bool,
   stretching: PropTypes.bool,
-  background: PropTypes.bool,
   children: PropTypes.element.isRequired,
 }
 

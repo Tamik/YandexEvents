@@ -56,7 +56,7 @@ const HolidayCard = (props) => {
         {props.content.facts.map(item => (
           <div key={item.id} className={ClassNames(style.card__label)}>
             <p className={ClassNames(style.card__label_big)}>{item.one}</p>
-            <p>{item.two}</p>
+            <p className={ClassNames(style.card__label_small)}>{item.two}</p>
           </div>
         ))}
       </div>
@@ -75,12 +75,39 @@ const HolidayCard = (props) => {
   )
 }
 
-HolidayCard.defaultProps = {}
+HolidayCard.defaultProps = {
+  content: {
+    title: 'День города Москва',
+    description: 'Москва отметит 870 лет со дня основания. В этом году День города пройдет'
+    + '        в стиле русского авангарда более чем на 50 площадках. Под слоганом «Москва'
+    + '        — город, где создается история» будут объединены семь тематик, посвященных'
+    + '        важным вехам истории столицы.',
+    enabledBetweenDates: {
+      from: 'Sat, 14 Sep 2017 07:36:44',
+      to: 'Sat, 16 Sep 2017 07:36:44',
+    },
+    facts: [
+      {
+        id: 1,
+        one: '1 000 000',
+        two: 'посетителей',
+      },
+      {
+        id: 2,
+        one: '80+',
+        two: 'площадок',
+      },
+    ],
+    open: true,
+  },
+}
 
 HolidayCard.propTypes = {
   content: PropTypes.shape({
     title: PropTypes.string,
     enabledBetweenDates: PropTypes.shape(),
+    facts: PropTypes.array,
+    open: PropTypes.bool,
   }).isRequired,
 }
 
