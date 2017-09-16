@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomNavigation Проверка снепшота компонента 1`] = `
+<div
+  className=""
+>
+  <div>
+    <button
+      className=""
+      disabled={false}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      День города
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      Все праздники
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      Закладки
+    </button>
+  </div>
+</div>
+`;

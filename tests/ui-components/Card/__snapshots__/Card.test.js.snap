@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Card Проверка снепшота компонента 1`] = `
+<div
+  className=""
+  onClick={[Function]}
+  role="button"
+  style={null}
+>
+  <div
+    className=""
+    style={
+      Object {
+        "backgroundImage": "url(https://placehold.it/256x128)",
+      }
+    }
+  />
+  <div
+    className=""
+  >
+    <h3
+      className=""
+    />
+    <p
+      className={undefined}
+    />
+  </div>
+</div>
+`;

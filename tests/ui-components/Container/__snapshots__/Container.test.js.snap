@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container Проверка снепшота компонента 1`] = `
+<div
+  className=""
+>
+  <div>
+    <button
+      className=""
+      disabled={false}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      Кнопка 1
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      Кнопка 2
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onClick={[Function]}
+      style={Object {}}
+      type="button"
+    >
+      Кнопка 3
+    </button>
+  </div>
+</div>
+`;

@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs Проверка снепшота компонента 1`] = `
+<div
+  className=""
+  style={Object {}}
+>
+  <div>
+    <span>
+      1
+    </span>
+    <span>
+      2
+    </span>
+    <span>
+      3
+    </span>
+  </div>
+</div>
+`;

@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MapCard Проверка снепшота компонента 1`] = `
+<div
+  className=""
+  onClick={[Function]}
+  role="button"
+>
+  <div
+    className=""
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "backgroundImage": "url(http://placehold.it/350x50)",
+          "height": 88,
+        }
+      }
+    />
+    <p
+      className=""
+    >
+      14 — 16 сентября
+      , 
+      04:36
+    </p>
+    <div
+      className=""
+    >
+      <h3
+        className=""
+      />
+    </div>
+  </div>
+</div>
+`;
