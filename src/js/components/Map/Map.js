@@ -516,7 +516,7 @@ class Map extends Component {
   createPlacemark = (event) => {
     let placemark = null
 
-    if (this.props.categoryId === '20') {
+    if (this.props.categoryId === this.props.config.map.category.toString()) {
       placemark = new yMapsApi.Placemark(
         [event.lat, event.lng],
         {
@@ -524,9 +524,9 @@ class Map extends Component {
         }, // for empty balloon
         {
           iconLayout: 'default#image',
-          iconImageHref: 'https://static.yamblz.ru/fire.svg',
-          iconImageSize: [64, 64],
-          iconImageOffset: [-32, -32],
+          iconImageHref: this.props.config.map.marker,
+          iconImageSize: [36, 36],
+          iconImageOffset: [0, 0],
         }
       )
     }
@@ -821,21 +821,21 @@ class Map extends Component {
             ? <div className='radar-spinner' />
             : ''
           }
-          <Icon type='mylocation' width='24' height='24' />
+          <Icon type='mylocation' width='22' height='24' />
         </BtnRounded>
         <BtnRounded
           style={{ top: 24 }}
           className='btn-map-rounded'
           onClick={this.zoomIn}
         >
-          <Icon type='zoomIn' width='24' height='24' />
+          <Icon type='zoomIn' width='20' height='24' />
         </BtnRounded>
         <BtnRounded
           style={{ top: 96 }}
           className='btn-map-rounded'
           onClick={this.zoomOut}
         >
-          <Icon type='zoomOut' width='24' height='24' />
+          <Icon type='zoomOut' width='20' height='24' />
         </BtnRounded>
         <BalloonLayout
           style={{
@@ -864,7 +864,9 @@ class Map extends Component {
 }
 
 export default connect(
-  state => ({}),
+  state => ({
+    config: state.data.configData,
+  }),
   dispatch => ({
     onViewEvent: (event) => {
       dispatch(sendModalEventData(event))

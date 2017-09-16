@@ -9,9 +9,9 @@ import rootReducer from 'reducers/rootReducer'
 import routerMiddleware from 'middlewares/routerMiddleware'
 import storageMiddleware from 'middlewares/storageMiddleware'
 
-const history = createHashHistory({ hashType: 'slash' })
+export const history = createHashHistory({ hashType: 'slash' })
 
-const configureStore = () => (
+export const configureStore = () => (
   createStore(
     rootReducer,
     composeWithDevTools(
@@ -23,5 +23,3 @@ const configureStore = () => (
     )
   )
 )
-
-export default configureStore

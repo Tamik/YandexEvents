@@ -5,9 +5,7 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import localforage from 'localforage'
 import FastClick from 'fastclick'
-
 import { Provider } from 'react-redux'
-import { createHashHistory } from 'history'
 
 import { sendApplicationConfig, sendModalEventData } from 'actions/dataActions'
 import { locationChange } from 'actions/navigationActions'
@@ -15,11 +13,10 @@ import { onBoardingViewed, getFavorites } from 'actions/userActions'
 
 import Application from 'components/Application'
 
-import configureStore from 'store/configureStore'
+import { configureStore, history } from 'store/configureStore'
 
 import { DataApi } from 'utils'
 
-const history = createHashHistory({ hashType: 'slash' })
 const store = configureStore()
 
 const renderApp = () => {
