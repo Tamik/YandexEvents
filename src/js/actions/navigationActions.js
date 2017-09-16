@@ -7,8 +7,8 @@ import {
 
 /**
  * @function push
- * @description Экшен
- * @param {?} hash
+ * @description Экшен, добавляющий в стек истории новую запись (роутер)
+ * @param {string} hash
  * @return {Object}
  */
 export const push = hash => ({
@@ -17,8 +17,8 @@ export const push = hash => ({
 })
 /**
  * @function replace
- * @description Экшен
- * @param {?} hash
+ * @description Экшен, заменяющий в стеке истории текущую запись (роутер)
+ * @param {string} hash
  * @return {Object}
  */
 export const replace = hash => ({
@@ -28,7 +28,7 @@ export const replace = hash => ({
 
 /**
  * @function goBack
- * @description Экшен
+ * @description Экшен, вызывающий переход на предпоследний объект в стеке (роутер)
  * @return {Object}
  */
 export const goBack = () => ({
@@ -37,8 +37,8 @@ export const goBack = () => ({
 
 /**
  * @function locationChange
- * @description Экшен
- * @param {?} hash
+ * @description Экшен (роутер)
+ * @param {string} hash
  * @return {Object}
  */
 export const locationChange = hash => ({
