@@ -55,11 +55,13 @@ class Entity extends Component {
               />
               <Container scrolling stretching>
                 <ListContainer
+                  route='/event/%'
                   params={{
                     method: 'events',
                     holiday: 1,
                     entity: this.props.params.entityId,
                   }}
+                  child={{ type: 'card', params: { size: 'medium' } }}
                 />
               </Container>
               {this.props.eventData && this.props.eventData !== '__CLOSE__'

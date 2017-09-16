@@ -77,11 +77,13 @@ class Place extends Component {
                     <h2>Расписание</h2>
                   </div>
                   <ListContainer
+                    route='/event/%'
                     params={{
                       method: 'events',
                       holiday: 1,
                       placeId: this.props.params.placeId,
                     }}
+                    child={{ type: 'card', params: { size: 'medium' } }}
                   />
                   <div
                     style={{
