@@ -8,7 +8,7 @@ import {
  * @function routerMiddleware
  * @description Миддлвара для роутинга с использованием Redux Store
  * @param {Object} history
- * @returns {Function}
+ * @return {Function}
  */
 const routerMiddleware = history => () => next => (action) => {
   switch (action.type) {

@@ -8,7 +8,7 @@ import {
  * @function storageMiddleware
  * @description Миддлвара для получения/передачи данных из Redux Store
  * @param {Object} ls (Instance)
- * @returns {Function} 
+ * @return {Function} 
  */
 const storageMiddleware = ls => () => next => (action) => {
   switch (action.type) {
