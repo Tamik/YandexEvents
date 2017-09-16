@@ -21,9 +21,9 @@ exports[`MapCard Проверка снепшота компонента 1`] = `
     <p
       className=""
     >
-      14 — 16 сентября
+      Invalid date — Invalid date
       , 
-      04:36
+      Invalid date
     </p>
     <div
       className=""
