@@ -5,6 +5,7 @@ import {
   modalReducer,
   dataReducer,
   viewReducer,
+  constructorReducer,
 } from 'reducers'
 
 /**
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   data: dataReducer,
   modal: modalReducer,
   view: viewReducer,
+  constructor: constructorReducer,
 })
 
 export default rootReducer
