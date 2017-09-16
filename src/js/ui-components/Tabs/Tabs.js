@@ -6,7 +6,7 @@ import style from './style.scss'
 
 const Tabs = props => (
   <div className={ClassNames(style.tabs)} style={props.style}>
-    { React.Children.toArray(props.children) }
+    {React.Children.toArray(props.children)}
   </div>
 )
 

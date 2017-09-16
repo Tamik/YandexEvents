@@ -17,7 +17,7 @@ const Slider = (props) => {
 
   return (
     <SliderLib {...settings}>
-      { React.Children.toArray(props.children) }
+      {React.Children.toArray(props.children)}
     </SliderLib>
   )
 }
