@@ -29,11 +29,6 @@ const MapCard = (props) => {
             height: 88,
           }}
         />
-        {/* { */}
-        {/* props.isLeft */}
-        {/* ? <span className={styleCard.card__label}>завершено</span> */}
-        {/* : null */}
-        {/* } */}
         <p className={ClassNames(style.mapCard__text)}>
           {formattedDate.dates}, {formattedDate.time}
         </p>
