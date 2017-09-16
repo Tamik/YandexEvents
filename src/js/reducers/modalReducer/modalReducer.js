@@ -1,5 +1,3 @@
-// import { MODAL_SOME_ACTION } from 'consts/actionTypes'
-
 const initialState = {}
 
 /**
@@ -7,7 +5,9 @@ const initialState = {}
  * @description Редьюсер
  * @param {Object} state
  * @param {Object} action
- * @returns {Object}
+ * @return {Object}
+ * 
+ * @deprecated
  */
 const modalReducer = (state = initialState, action) => {
   switch (action.type) {

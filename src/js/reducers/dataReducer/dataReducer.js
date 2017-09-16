@@ -22,7 +22,7 @@ const initialState = {
  * @description Редьюсер
  * @param {Object} state
  * @param {Object} action
- * @returns {Object}
+ * @return {Object}
  */
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {

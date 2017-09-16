@@ -7,6 +7,13 @@ const initialState = {
   constructorData: {},
 }
 
+/**
+ * @function constructorReducer
+ * @description Редьюсер работающий с Конструктором
+ * @param {Object} state
+ * @param {Object} action
+ * @return {Object}
+ */
 const constructorReducer = (state = initialState, action) => {
   switch (action.type) {
     // case REQUEST_CONTAINER_DATA: return {

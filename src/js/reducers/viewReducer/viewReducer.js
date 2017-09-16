@@ -10,7 +10,7 @@ const initialState = {
  * @description Редьюсер
  * @param {Object} state
  * @param {Object} action
- * @returns {Object}
+ * @return {Object}
  */
 const viewReducer = (state = initialState, action) => {
   switch (action.type) {
