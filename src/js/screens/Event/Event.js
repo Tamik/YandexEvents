@@ -19,7 +19,18 @@ import { DataApi, Daty, Shary } from 'utils'
 import styleCard from 'ui-components/Card/style.scss'
 import style from './style.scss'
 
+/**
+ * @class Event
+ * @description Экран просмотра события
+ */
 class Event extends Component {
+  /**
+   * @static propTypes
+   */
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   state = {
     event: {},
     loading: true,
@@ -44,6 +55,10 @@ class Event extends Component {
       }))
   }
 
+  /**
+   * @method goBack
+   * @description Экшен, запрашивающий закрыть модальное окно
+   */
   goBack = () => {
     if (cordova.platformId === 'ios') {
       StatusBar.styleDefault()
@@ -55,8 +70,17 @@ class Event extends Component {
     this.props.goBack()
   }
 
+  /**
+   * @method isInFavorites
+   * @description Проверка, находится ли сущность в коллекции (закладки)
+   * @return {bool}
+   */
   isInFavorites = () => !!this.props.favorites[this.props.params.eventId]
 
+  /**
+   * @method addToFavorites
+   * @description Добавить в избранное
+   */
   addToFavorites = () => {
     if (this.isInFavorites()) {
       this.props.delFromFavorites(this.state.event)
@@ -66,6 +90,10 @@ class Event extends Component {
     }
   }
 
+  /**
+   * @method toggleDescription
+   * @description Возможность посмотреть полное или краткое описание
+   */
   toggleDescription = () => {
     if (this.state.hideText) {
       this.setState({
@@ -79,6 +107,10 @@ class Event extends Component {
     }
   }
 
+  /**
+   * @method share
+   * @description Поделиться сущностью
+   */
   share = () => {
     const formattedDate = Daty.beautifyDatesRange(
       this.state.event.begin_time,

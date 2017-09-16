@@ -15,7 +15,18 @@ import { TopBar, Icon, Container, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils'
 
+/**
+ * @class Entity
+ * @description Экран просмотра сущности
+ */
 class Entity extends Component {
+  /**
+   * @static propTypes
+   */
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   state = {
     entity: {},
     loading: true,
@@ -32,6 +43,10 @@ class Entity extends Component {
       }))
   }
 
+  /**
+   * @method goBack
+   * @description Закрыть модальное окно
+   */
   goBack = () => {
     this.props.goBack()
   }

@@ -7,12 +7,20 @@ import { TopBar, Container, HolidayCard } from 'ui-components'
 
 import { addToCalendar, DataApi } from 'utils'
 
+/**
+ * @class Holidays
+ * @description Экран просмотра праздников
+ */
 class Holidays extends Component {
   constructor(props) {
     super(props)
     this.state = {
       holidays: [],
     }
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   }
 
   componentWillMount() {
@@ -29,6 +37,12 @@ class Holidays extends Component {
         })))
   }
 
+  /**
+   * @method openDescription
+   * @description Тумблер открытия, закрытия описания праздника
+   * @param {number} holidayId
+   * @return {Object}
+   */
   openDescription = (holidayId) => {
     const newHolidays = this.state.holidays.map((day) => {
       const holiday = day

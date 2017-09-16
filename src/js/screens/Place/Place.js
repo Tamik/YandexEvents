@@ -15,7 +15,18 @@ import { Container, TopBar, Icon, Image, Spinner } from 'ui-components'
 
 import { DataApi } from 'utils'
 
+/**
+ * @class Place
+ * @description Экран просмотра Места
+ */
 class Place extends Component {
+  /**
+   * @static propTypes
+   */
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   state = {
     place: {},
     loading: false,
@@ -31,6 +42,10 @@ class Place extends Component {
       }))
   }
 
+  /**
+   * @method goBack
+   * @description Закрыть модальное окно
+   */
   goBack = () => {
     this.props.onGoBack()
   }

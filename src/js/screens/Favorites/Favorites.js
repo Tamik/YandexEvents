@@ -10,6 +10,11 @@ import { Event } from 'screens'
 import { TopBar, Container, Card } from 'ui-components'
 import { BottomNav } from 'components'
 
+/**
+ * @function Favorites
+ * @description Экран просмотра коллекции (закладки)
+ * @param {Object} props
+ */
 const Favorites = (props) => {
   const viewEvent = (eventData) => {
     props.onViewEvent(eventData)

@@ -17,7 +17,14 @@ import { Tabs, Container, FloatingButton, Icon } from 'ui-components'
 import styleTabs from 'ui-components/Tabs/style.scss'
 import style from './style.scss'
 
+/**
+ * @class Main
+ */
 class Main extends Component {
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   state = {
     offset: {},
   }
@@ -27,6 +34,10 @@ class Main extends Component {
     this.viewMode = (this.props.params.viewMode || VIEW_MODE_LIST).toUpperCase()
   }
 
+  /**
+   * @method viewMainTab
+   * @description Посмотреть основную вкладку (ленту)
+   */
   viewMainTab = (event) => {
     this.props.onViewMainTab()
     this.activeCategoryId = null
@@ -44,6 +55,10 @@ class Main extends Component {
     })
   }
 
+  /**
+   * @method viewCategory
+   * @description Посмотреть вкладку категории
+   */
   viewCategory = (categoryData, event, lastChild) => {
     this.props.onViewCategory(categoryData)
     this.activeCategoryId = parseInt(categoryData.id, 10)
@@ -65,6 +80,10 @@ class Main extends Component {
     })
   }
 
+  /**
+   * @method toggleViewMode
+   * @description Изменить представления (список/карта)
+   */
   toggleViewMode = () => {
     this.viewMode = this.viewMode === VIEW_MODE_LIST ? VIEW_MODE_MAP : VIEW_MODE_LIST
 
