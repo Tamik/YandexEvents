@@ -6,11 +6,9 @@ import ClassNames from 'classnames'
 import { onBoardingViewed } from 'actions/userActions'
 import { replace } from 'actions/navigationActions'
 
-import { BottomNav } from 'components'
 import SliderLib from 'react-slick'
-import { Container } from 'ui-components'
 
-import styleSlider from 'ui-components/Slider/style.scss'
+import 'ui-components/Slider/style.scss'
 import style from './style.scss'
 
 import imageSlide1 from './slide1.svg'
@@ -34,6 +32,7 @@ const OnBoarding = (props) => {
     slidesToShow: 1,
     swipe: true,
   }
+
   const heightImage = Math.floor((280 / 360) * (window.innerWidth - 32))
 
   return (
@@ -58,19 +57,14 @@ const OnBoarding = (props) => {
               height: heightImage,
             }}
           />
-
           <p className={ClassNames(style.board__text)}>
             Простой, но удобный путеводитель по городским праздникам и акциям
           </p>
-
           <button
             className={ClassNames(style.board__btn)}
             onClick={next}
-          >
-            Далее
-          </button>
+          >Далее</button>
         </div>
-
         <div key={2} className={ClassNames(style.board__wrap)}>
           <div
             className={ClassNames(style.board__image)}
@@ -79,19 +73,14 @@ const OnBoarding = (props) => {
               height: heightImage,
             }}
           />
-
           <p className={ClassNames(style.board__text)}>
             Находите самые интересные события рядом с вами
           </p>
-
           <button
             className={ClassNames(style.board__btn)}
             onClick={next}
-          >
-            Далее
-          </button>
+          >Далее</button>
         </div>
-
         <div key={3} className={ClassNames(style.board__wrap)}>
           <div
             className={ClassNames(style.board__image)}
@@ -100,17 +89,13 @@ const OnBoarding = (props) => {
               height: heightImage,
             }}
           />
-
           <p className={ClassNames(style.board__text)}>
             Добавляйте в календарь напоминания о любимых праздниках
           </p>
-
           <button
             className={ClassNames(style.board__btn)}
             onClick={goNext}
-          >
-            Далее
-          </button>
+          >Далее</button>
         </div>
       </SliderLib>
     </div>

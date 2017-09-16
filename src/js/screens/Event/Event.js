@@ -1,18 +1,17 @@
 /* global cordova */
 /* global StatusBar */
-
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { goBack } from 'actions/navigationActions'
 import ClassNames from 'classnames'
 
+import { goBack } from 'actions/navigationActions'
 import { clearModalEventData } from 'actions/dataActions'
 import { addToFavorites, delFromFavorites } from 'actions/userActions'
 
-import { BottomNav, StaticMap } from 'components'
+import { StaticMap } from 'components'
 
-import { TopBar, Image, Icon, Container, Spinner, Button } from 'ui-components'
+import { TopBar, Image, Icon, Container, Spinner } from 'ui-components'
 
 import { DataApi, Daty, Shary } from 'utils'
 
@@ -27,6 +26,13 @@ class Event extends Component {
   /**
    * @static propTypes
    */
+  static propTypes = {
+    params: PropTypes.shape().isRequired,
+    goBack: PropTypes.func.isRequired,
+    addToFavorites: PropTypes.func.isRequired,
+    delFromFavorites: PropTypes.func.isRequired,
+  }
+
   /**
    * @property state
    * @description Состояние компонента
@@ -175,9 +181,7 @@ class Event extends Component {
                       styleCard.card__title,
                       styleCard.card__title_large,
                     )}
-                  >
-                    {event.title}
-                  </h2>
+                  >{event.title}</h2>
                   <div
                     style={{
                       fontSize: '1.25rem',
@@ -186,12 +190,8 @@ class Event extends Component {
                       lineHeight: '1.75rem',
                     }}
                   >
-                    <p>
-                      {formattedDate.dates}
-                    </p>
-                    <p>
-                      {formattedDate.time}
-                    </p>
+                    <p>{formattedDate.dates}</p>
+                    <p>{formattedDate.time}</p>
                   </div>
                   <p
                     className={ClassNames(style.text)}
@@ -205,10 +205,9 @@ class Event extends Component {
                     className={ClassNames(style.button)}
                     onClick={this.toggleDescription}
                   >
-                    {
-                      this.state.hideText
-                        ? 'Полное описание'
-                        : 'Скрыть описание'
+                    {this.state.hideText
+                      ? 'Полное описание'
+                      : 'Скрыть описание'
                     }
                   </button>
                   <div style={{ margin: '16px 0' }}>
@@ -246,13 +245,6 @@ class Event extends Component {
       </div>
     )
   }
-}
-
-Event.propTypes = {
-  params: PropTypes.shape().isRequired,
-  goBack: PropTypes.func.isRequired,
-  addToFavorites: PropTypes.func.isRequired,
-  delFromFavorites: PropTypes.func.isRequired,
 }
 
 export default connect(

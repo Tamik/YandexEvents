@@ -5,11 +5,9 @@ import { connect } from 'react-redux'
 import { goBack } from 'actions/navigationActions'
 import { clearModalEntityData } from 'actions/dataActions'
 
-import { Event } from 'screens'
-
-import { BottomNav } from 'components'
-
 import { List as ListContainer } from 'containers'
+
+import { Event } from 'screens'
 
 import { TopBar, Icon, Container, Spinner } from 'ui-components'
 
@@ -23,6 +21,11 @@ class Entity extends Component {
   /**
    * @static propTypes
    */
+  static propTypes = {
+    params: PropTypes.shape().isRequired,
+    goBack: PropTypes.func.isRequired,
+  }
+
   /**
    * @property state
    * @description Состояние компонента
@@ -92,18 +95,13 @@ class Entity extends Component {
                 >
                   <Event params={{ eventId: this.props.eventData.id }} />
                 </div>
-                : ''}
+                : null}
             </div>
           )
         }
       </div>
     )
   }
-}
-
-Entity.propTypes = {
-  params: PropTypes.shape().isRequired,
-  goBack: PropTypes.func.isRequired,
 }
 
 export default connect(

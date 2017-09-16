@@ -8,14 +8,25 @@ import { DataApi } from 'utils'
 
 import style from './style.scss'
 
+/**
+ * @class Category
+ * @description Экран просмотра категории
+ */
 class Category extends Component {
   constructor(props) {
     super(props)
+  /**
+   * @static propTypes
+   */
 
     this.state = {
       filterByDate: null,
       holiDates: [],
     }
+  /**
+   * @property state
+   * @description Состояние компонента
+   */
   }
 
   componentWillMount() {
@@ -30,6 +41,11 @@ class Category extends Component {
     }
   }
 
+  /**
+   * @method getHoliDates
+   * @description ?
+   * @param {Object} props
+   */
   getHoliDates(props) {
     DataApi.getDatesWithEvents()
       .byHoliday(1)
@@ -42,6 +58,11 @@ class Category extends Component {
       })
   }
 
+  /**
+   * @method filterByDate
+   * @description Фильтрация по дате
+   * @param {Object} date
+   */
   filterByDate = (date) => {
     if (date !== this.state.filterByDate) {
       this.setState({

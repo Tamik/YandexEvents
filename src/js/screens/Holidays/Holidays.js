@@ -12,15 +12,12 @@ import { addToCalendar, DataApi } from 'utils'
  * @description Экран просмотра праздников
  */
 class Holidays extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      holidays: [],
-    }
   /**
    * @property state
    * @description Состояние компонента
    */
+  state = {
+    holidays: [],
   }
 
   componentWillMount() {
@@ -91,9 +88,4 @@ class Holidays extends Component {
   }
 }
 
-export default connect(
-  state => ({
-  }),
-  dispatch => ({
-  })
-)(Holidays)
+export default connect()(Holidays)
