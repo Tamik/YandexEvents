@@ -44,14 +44,14 @@ TopBar.defaultProps = {
   iconRight: null,
   iconLeft: null,
   title: null,
-  onClick: () => {},
+  onClick: {},
 }
 
 TopBar.propTypes = {
   iconBeforeRight: PropTypes.element,
   iconRight: PropTypes.element,
   iconLeft: PropTypes.element,
-  onClick: PropTypes.func,
+  onClick: PropTypes.shape(),
   title: PropTypes.string,
   isTransparent: PropTypes.bool,
 }
