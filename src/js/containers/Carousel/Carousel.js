@@ -13,7 +13,7 @@ import { fetchContainerData } from 'actions/constructorActions'
 
 import { Avatar, Card, Carousel, Spinner } from 'ui-components'
 
-import style from 'components/List/style.scss'
+import style from './styles.scss'
 
 /**
  * @class CarouselContainer
