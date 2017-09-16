@@ -6,6 +6,10 @@ import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import localforage from 'localforage'
 
+import axios from 'axios'
+
+import thunk from 'redux-thunk'
+
 import FastClick from 'fastclick'
 
 import { DataApi } from 'utils'
@@ -32,6 +36,7 @@ const store = createStore(
     applyMiddleware(
       routerMiddleware(history),
       storageMiddleware(localforage),
+      thunk,
     )
   )
 )
@@ -91,9 +96,10 @@ function onDeviceReady() {
     StatusBar.styleDefault()
   }
 
-  DataApi.getHolidayConfig()
-    .byHoliday(1)
-    .perform()
+  // DataApi.getHolidayConfig()
+  //   .byHoliday(1)
+  //   .perform()
+  axios.get('https://static.yamblz.ru/response.json')
     .then(response => store.dispatch(sendApplicationConfig(response.data.data)))
     .then(() => {
       localforage.getItem('user')
