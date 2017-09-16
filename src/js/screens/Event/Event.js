@@ -63,7 +63,7 @@ class Event extends Component {
 
   /**
    * @method goBack
-   * @description Экшен, запрашивающий закрыть модальное окно
+   * @description Вернуться на предыдущий экран
    */
   goBack = () => {
     if (cordova.platformId === 'ios') {

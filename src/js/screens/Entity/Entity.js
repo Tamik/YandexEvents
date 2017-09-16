@@ -48,7 +48,7 @@ class Entity extends Component {
 
   /**
    * @method goBack
-   * @description Закрыть модальное окно
+   * @description Вернуться на предыдущий экран
    */
   goBack = () => {
     this.props.goBack()
