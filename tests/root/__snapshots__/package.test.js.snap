@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`package.json Проверка снепшота package.json 1`] = `
+exports[`Целостность package.json Проверка снепшота package.json 1`] = `
 Object {
   "author": "Yandex.Events Team",
   "cordova": Object {
