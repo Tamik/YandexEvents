@@ -70,6 +70,7 @@ class Map extends Component {
     this.lastOpenedBalloon = null
     this.cachedMyLocation = null
     this.points = props.points || []
+    this.activePlacemark = null
     this.state = {
       myLocationPoint: {
         lat: 0,
@@ -399,6 +400,9 @@ class Map extends Component {
         const placemark = event.get('target')
         const eventId = placemark.properties.get('eventId')
         items.push(this.getEventById(eventId))
+
+        this.activePlacemark = placemark
+        this.activePlacemark.options.set('preset', 'islands#redDotIcon')
       }
       /**
        * @description Несколько событий (кластер)
@@ -410,8 +414,10 @@ class Map extends Component {
           items.push(this.getEventById(eventId))
           return item
         })
+
+        this.activePlacemark = event.get('target')
+        this.activePlacemark.options.set('preset', 'islands#redClusterIcons')
       }
-      /* dev:end */
 
       this.openBalloon(items)
     })
@@ -439,6 +445,10 @@ class Map extends Component {
       this.doAutoPan = false
       if (this.isBalloonOpened()) {
         this.closeBalloon()
+      }
+
+      if (this.activePlacemark !== null) {
+        this.activePlacemark.options.set('preset', 'islands#blueCircleDotIcon')
       }
     })
   }
